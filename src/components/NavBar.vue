@@ -1,0 +1,140 @@
+<template>
+  <nav>
+    <section id="top">
+      <img id="logo" src="../assets/imgs/odc.jpg" />
+      <article id="radio"><span>Radio - Before</span></article>
+      <article id="links">
+        <router-link :to="{path: '/'}">Accueil</router-link>
+        <router-link :to="{path: '/events'}">Evenements</router-link>
+        <router-link :to="{path: '/podcasts'}">Podcasts</router-link>
+      </article>
+      <article id="more" class="right">
+        <svg
+          class="chaticon unselect"
+          xmlns="http:          xmlns:xlink="http:          viewBox="0 0 16 16"
+          version="1.1"
+        >
+          <g id="surface1">
+            <path
+              style=" "
+              d="M 2.5 2 C 1.675781 2 1 2.675781 1 3.5 L 1 8.5 C 1 9.324219 1.675781 10 2.5
+    10 L 3.992188 10 L 3.992188 12 L 6.664063 10 L 9.5 10 C 10.324219 10 11 9.324219 11 8.5 L
+    11 3.5 C 11 2.675781 10.324219 2 9.5 2 Z M 2.5 3 L 9.5 3 C 9.78125 3 10 3.21875 10 3.5 L
+    10 8.5 C 10 8.78125 9.78125 9 9.5 9 L 6.328125 9 L 4.992188 10 L 4.992188 9 L 2.5 9 C 2.21875
+    9 2 8.78125 2 8.5 L 2 3.5 C 2 3.21875 2.21875 3 2.5 3 Z M 12 5 L 12 8.5 C 12 9.878906
+    10.878906 11 9.5 11 L 8.1875 11 L 8.183594 11.003906 C 7.683594 11.003906 7.246094
+    11.003906 6.988281 11.003906 L 5.242188 12.3125 C 5.511719 12.726563 5.972656 13 6.5 13 L
+    9.335938 13 L 12.003906 15 L 12.003906 13 L 13.5 13 C 14.328125 13 15 12.328125 15 11.5
+    L 15 6.5 C 15 5.671875 14.328125 5 13.5 5 Z "
+            ></path>
+          </g>
+        </svg>
+        <a href="https:          <div class="network _mclink"></div>
+        </a>
+        <a href="https:          <div class="network _iglink"></div>
+        </a>
+        <a href="https:          <div class="network _fblink"></div>
+        </a>
+      </article>
+    </section>
+    <section id="bottom">
+      <span>{{ nowPlaying }}</span>
+    </section>
+  </nav>
+</template>
+<script>
+export default {
+  name: 'NavBar',
+  data() {
+    return {
+      nowPlaying: 'good music - good artist',
+    };
+  },
+};
+</script>
+<style lang="less" scoped>
+nav {
+  width: 100%;
+  font-weight: bold;
+  position: fixed;
+  background-color: black;
+  .right {
+    right: 0;
+    margin-right: 5px;
+    position: absolute;
+  }
+  #top {
+    height: 35px;
+    display: flex;
+    padding-top: 15px;
+    #more {
+      .chaticon {
+        position: absolute;
+        fill: white;
+        height: 25px;
+        width: 25px;
+        left: -123px;
+        cursor: pointer;
+      }
+      a {
+        .network {
+          position: absolute;
+          top: 0;
+        }
+        ._mclink {
+          height: 24px;
+          width: 24px;
+          background: url('../assets/imgs/sprite.png') 1243px 360px;
+          background-size: auto auto;
+          background-size: 430px;
+          right: 63px;
+        }
+        ._iglink {
+          height: 24px;
+          width: 24px;
+          background: url('../assets/imgs/sprite.png') 974px 355px;
+          background-size: auto auto;
+          background-size: 328px;
+          right: 28px;
+        }
+        ._fblink {
+          height: 24px;
+          width: 24px;
+          background: url('../assets/imgs/sprite.png') 903px 338px;
+          background-size: auto auto;
+          background-size: 313px;
+          right: 0;
+        }
+      }
+    }
+    #links {
+      a {
+        margin-left: 10px;
+        color: #fffc;
+        text-decoration: none;
+        border: 1px solid #fffc;
+        padding: 5px;
+        cursor: pointer;
+        &:hover {
+          color: white;
+          border: 1px solid white;
+        }
+      }
+    }
+    #radio {
+      margin-left: 100px;
+    }
+    #logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 80px;
+    }
+  }
+  #bottom {
+    background-color: white;
+    color: black;
+    padding-left: 100px;
+  }
+}
+</style>
