@@ -58,6 +58,7 @@ nav {
   font-weight: bold;
   position: fixed;
   background-color: black;
+  top: 0px;
   .right {
     right: 0;
     margin-right: 5px;

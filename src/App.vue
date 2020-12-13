@@ -1,6 +1,7 @@
 <template>
   <main id="app">
-    <NavBar/>
+    <NavBar />
+    <router-view class="router" />
     <Footer />
   </main>
 </template>
@@ -16,7 +17,7 @@ export default {
 };
 </script>
 <style lang="less">
-@import "./assets/fonts/fonts.css";
+@import './assets/fonts/fonts.css';
 body {
   margin: 0;
   background-color: black;
@@ -25,6 +26,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: white;
+  }
+  .router {
+    margin: 100px 30px 0px 30px;
   }
 }
 </style>
