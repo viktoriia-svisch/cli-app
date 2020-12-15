@@ -3,6 +3,7 @@ import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import App from './App.vue';
 import {routes} from './router';
+import { createProvider } from './vue-apollo'
 Vue.config.productionTip = false;
 const router = new VueRouter({
   routes,
@@ -12,5 +13,6 @@ Vue.use(VueRouter);
 Vue.use(Vuetify);
 new Vue({
   render: h => h(App),
-  router,
+  apolloProvider: createProvider(),
+  router
 }).$mount('#app');

@@ -19,7 +19,7 @@ export default {
 </script>
 <style lang="less" scoped>
 footer {
-  margin: 0 auto;
+  margin: 20px auto;
   display: flex;
   width: 900px;
   padding-top: 100px;
