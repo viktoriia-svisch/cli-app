@@ -1,7 +1,9 @@
 <template>
   <footer>
     <div class="links">
-      <a id="mentions" href="/mentions"><b>Mentions legales</b></a>
+      <router-link :to="{path: '/mentions'}"
+        ><b>Mentions legales</b></router-link
+      >
     </div>
     <div class="moto">
       <span>
