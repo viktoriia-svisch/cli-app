@@ -1,7 +1,7 @@
 <template>
   <section id="cal">
     <h1 id="title">Le Calendrier des emissions</h1>
-    <h2>Cette semaine</h2>
+    <h2>Semaine du {{ week.toLocaleDateString('fr') }}</h2>
     <div class="dowPicker">
       <div class="dowPickerOption">
         <input type="radio" name="dow" id="dow2" checked />
@@ -169,11 +169,8 @@ export default {
     this.getNextMonday(this.weekafter);
     const t = `${this.week.getFullYear()}-${this.week.getMonth() +
       1}-${this.week.getDate()}`;
-    this.getCalendar(t, 1);
-    const n = `${this.weekafter.getFullYear()}-${this.weekafter.getMonth() +
-      1}-${this.weekafter.getDate()}`;
-    this.getCalendar(n, 0);
-    this.disp_shows(0, 'monday');
+    this.getCalendar(t, 0);
+                this.disp_shows(0, 'monday');
   },
 };
 </script>

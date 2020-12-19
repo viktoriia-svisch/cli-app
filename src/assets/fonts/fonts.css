@@ -1,4 +1,16 @@
 @font-face {
   font-family: Kiona;
-  src: url("../fonts/Kiona.woff");
+  src: url("./Kiona.woff");
+}
+@font-face {
+  font-family: Bison;
+  src: url("./Bison-Bold.woff");
+}
+@font-face {
+  font-family: SpaceMono;
+  src: url("./SpaceMono-Regular.ttf");
+}
+@font-face {
+  font-family: SpaceMonoBold;
+  src: url("./SpaceMono-Bold.ttf");
 }
