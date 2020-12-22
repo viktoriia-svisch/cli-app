@@ -1,7 +1,7 @@
 <template>
   <section id="cal">
     <h1 id="title">Le Calendrier des emissions</h1>
-    <h2>Semaine du {{ week.toLocaleDateString('fr') }}</h2>
+    <h2>Semaine du <u>{{ week.toLocaleDateString('fr') }}:</u></h2>
     <div class="dowPicker">
       <div class="dowPickerOption">
         <input type="radio" name="dow" id="dow2" checked />
@@ -176,11 +176,16 @@ export default {
 </script>
 <style lang="less" scoped>
 #cal {
+  h1, h2 {
+    margin: 10px auto;
+    width: 900px;
+  }
   #title {
     font-size: 30px;
   }
   #shows {
-    margin-top: 30px;
+    width: 900px;
+    margin: 30px auto;
     .show {
       border-left: 1px solid #7e7e7e;
       padding-left: 10px;
@@ -197,6 +202,7 @@ export default {
   }
   .dowPicker {
     margin: 0 auto;
+    width: 900px;
     display: flex;
     .dowPickerOption {
       display: inline-block;
