@@ -1,6 +1,6 @@
 <template>
   <article id="spod">
-    <h1>podcasts</h1>
+    <h1>Les podcasts des emissions passées</h1>
     <section id="podcasts">
       <section class="podcast" v-for="pod in podcasts">
         <header>
@@ -25,6 +25,9 @@
         </ul>
       </section>
     </section>
+    <section id="more" v-if="more">
+      <h1 id="more" @click="getPodcasts">en charger plus</h1>
+    </section>
   </article>
 </template>
 <script>
@@ -35,15 +38,23 @@ export default {
     return {
       podcasts: [],
       next: '',
+      more: true,
     };
   },
+  methods: {
+    getPodcasts() {
+      axios
+        .get(this.next)
+        .then(res => {
+          if (res.data.paging.next === undefined) this.more = false;
+          this.podcasts = this.podcasts.concat(res.data.data);
+          this.next = res.data.paging.next;
+        })
+        .catch();
+    },
+  },
   mounted() {
-    axios
-      .get('https:      .then(res => {
-        this.podcasts = res.data.data;
-        this.next = res.data.paging.next;
-      })
-      .catch();
+    this.next = 'https:    this.getPodcasts();
   },
 };
 </script>
@@ -53,10 +64,27 @@ export default {
     font-family: Bison;
     font-size: 40px;
   }
+  #more {
+    text-align: center;
+    h1 {
+      border: 3px solid #ffffff80;
+      color: #ffffff80;
+      display: inline;
+      margin: 0 auto;
+      padding: 3px;
+      font-weight: normal;
+      cursor: pointer;
+      &:hover {
+        border: 3px solid white;
+        color: white;
+      }
+    }
+  }
   #podcasts {
     display: flex;
     flex-flow: wrap;
     width: 100%;
+    justify-content: center;
     .podcast {
       width: 400px;
       margin-left: 4px;
@@ -66,19 +94,33 @@ export default {
         list-style-type: none;
         padding-left: 5px;
         padding-bottom: 5px;
-        border: 1px solid white;
+        border: 1px solid #ffffff80;
         margin-top: 0px;
+        &:hover {
+          border: 1px solid white;
+          .genres {
+            span {
+              color: white;
+            }
+          }
+        }
         .title {
         }
         .time {
+          color: #ffffff80;
         }
         .genres {
           display: flex;
           flex-flow: wrap;
           span {
-            border: 1px solid;
             margin: 3px 5px 0px 0px;
+            border: 1px solid #ffffff80;
             padding: 0px 2px 0px 2px;
+            color: #ffffff80;
+            cursor: pointer;
+            &:hover {
+              border: 1px solid white;
+            }
           }
         }
       }
