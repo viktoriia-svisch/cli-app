@@ -56,6 +56,10 @@ export default {
       height: 40px;
       th {
         text-align: inherit;
+        border-bottom: 1px solid white;
+      }
+      td {
+        padding-left: 10px;
       }
     }
     #ovhlast {

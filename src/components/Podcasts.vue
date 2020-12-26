@@ -2,7 +2,7 @@
   <article id="spod">
     <h1>Les podcasts des emissions passées</h1>
     <section id="podcasts">
-      <section class="podcast" v-for="pod in podcasts">
+      <section class="podcast" v-for="pod in podcasts" v-bind:key="pod.key">
         <header>
           <section
             class="miximg"
@@ -18,7 +18,7 @@
           <li class="title">{{ pod.name }}</li>
           <li class="time">{{ Math.floor(pod.audio_length / 60) }} min</li>
           <li class="genres">
-            <span class="tag" v-for="(tag, i) in pod.tags" v-bind:key="tag.name"
+            <span class="tag" v-for="tag in pod.tags" v-bind:key="tag.name"
               >{{ tag.name.toLowerCase() }}
             </span>
           </li>

@@ -1,7 +1,9 @@
 <template>
   <section id="cal">
     <h1 id="title">Le Calendrier des emissions</h1>
-    <h2>Semaine du <u>{{ week.toLocaleDateString('fr') }}:</u></h2>
+    <h2>
+      Semaine du <u>{{ week.toLocaleDateString('fr') }}:</u>
+    </h2>
     <div class="dowPicker">
       <div class="dowPickerOption">
         <input type="radio" name="dow" id="dow2" checked />
@@ -71,7 +73,7 @@ export default {
   data() {
     return {
       day_selected: null,
-      week: null,
+      week: new Date(),
       weekafter: null,
       shows: [],
       weeks: [
@@ -163,7 +165,6 @@ export default {
     },
   },
   async mounted() {
-    this.week = new Date();
     this.getMonday(this.week);
     this.weekafter = new Date();
     this.getNextMonday(this.weekafter);
@@ -176,7 +177,8 @@ export default {
 </script>
 <style lang="less" scoped>
 #cal {
-  h1, h2 {
+  h1,
+  h2 {
     margin: 10px auto;
     width: 900px;
   }
