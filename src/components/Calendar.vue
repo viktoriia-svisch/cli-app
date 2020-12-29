@@ -183,7 +183,8 @@ export default {
     width: 900px;
   }
   #title {
-    font-size: 30px;
+    font-size: 40px;
+    font-family: Bison;
   }
   #shows {
     width: 900px;
