@@ -24,7 +24,7 @@ footer {
   margin: 20px auto;
   display: flex;
   width: 900px;
-  padding-top: 100px;
+  padding-top: 10px;
   border-top: 1px solid #ffffff80;
   flex-direction: row;
   .links {

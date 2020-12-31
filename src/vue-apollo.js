@@ -10,7 +10,6 @@ const httpEndpoint =
   process.env.VUE_APP_GRAPHQL_HTTP || 'http:
 const defaultOptions = {
   httpEndpoint,
-  wsEndpoint: process.env.VUE_APP_GRAPHQL_WS || 'ws:
   tokenName: AUTH_TOKEN,
   persisting: false,
   websocketsOnly: false,
