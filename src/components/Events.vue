@@ -1,7 +1,6 @@
 <template>
   <section id="events_h">
     <h1 id="title">Evenements a venir</h1>
-    <h2>{{ events }}</h2>
     <article id="events">
       <section class="event" v-for="e in events" v-bind:key="e.id">
         <header>
@@ -33,11 +32,13 @@
               <a :href="e.facebook" target="_blank">facebook</a>
             </li>
             <li v-if="e.genres.length" class="right">
-              <span v-for="g in e.genres">{{ g }}</span>
+              <span v-for="g in e.genres" v-bind:key="g">{{ g }}</span>
             </li>
           </ul>
         </header>
-        <article class="e_body"><img :src="e.image" /></article>
+        <article class="e_body">
+          <div class="e_img" :style="`background-image: url(${e.image})`"></div>
+        </article>
       </section>
     </article>
   </section>
@@ -105,6 +106,7 @@ export default {
           font-family: Bison;
           margin: 0;
           padding-left: 5px;
+          display: inline;
         }
         ul {
           list-style-type: none;
@@ -138,8 +140,11 @@ export default {
         }
       }
       .e_body {
-        img {
-          height: 300px;
+        .e_img {
+          height: 451px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
         }
       }
     }

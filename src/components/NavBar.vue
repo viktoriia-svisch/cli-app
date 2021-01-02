@@ -2,7 +2,7 @@
   <nav>
     <section id="top">
       <img id="logo" src="../assets/imgs/odc.jpg" />
-      <article id="radio"><span>Radio - Before</span></article>
+      <article id="radio"><span>▶ Radio - Before</span></article>
       <article id="links">
         <router-link :to="{path: '/'}">Accueil</router-link>
         <router-link :to="{path: '/events'}">Evenements</router-link>

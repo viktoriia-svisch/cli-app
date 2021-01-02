@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
-import {
-  createApolloClient,
-  restartWebsockets,
-} from 'vue-cli-plugin-apollo/graphql-client';
+import {createApolloClient} from 'vue-cli-plugin-apollo/graphql-client';
 Vue.use(VueApollo);
 const AUTH_TOKEN = 'apollo-token';
 const httpEndpoint =
@@ -26,7 +23,6 @@ export function createProvider(options = {}) {
     defaultOptions: {
       $query: {},
     },
-    errorHandler(error) {},
   });
   return apolloProvider;
 }
