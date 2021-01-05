@@ -2,17 +2,34 @@
   <main id="app">
     <NavBar />
     <router-view class="router" />
+    <Chat v-if="chatting" />
     <Footer />
   </main>
 </template>
 <script>
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
+import Chat from '@/components/Chat';
 export default {
   name: 'app',
+  data() {
+    return {
+      chatting: true,
+      msgs: [],
+    };
+  },
+  sockets: {
+    listen(msgs) {
+      this.msgs = msgs;
+    },
+    msg(message) {
+      this.msgs.push(message);
+    },
+  },
   components: {
     NavBar,
     Footer,
+    Chat,
   },
 };
 </script>
