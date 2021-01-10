@@ -11,6 +11,7 @@
       </article>
       <article id="more" class="right">
         <svg
+          @click="$parent.chatting = true"
           class="chaticon unselect"
           xmlns="http:          xmlns:xlink="http:          viewBox="0 0 16 16"
           version="1.1"

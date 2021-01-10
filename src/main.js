@@ -3,6 +3,7 @@ import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import VueChatScroll from 'vue-chat-scroll';
 import VueSocket from 'vue-socket.io';
+import {createProvider} from './vue-apollo';
 import App from './App.vue';
 import {routes} from './router';
 import en from './locales/en.ts';
@@ -29,5 +30,6 @@ Vue.use(
 );
 new Vue({
   render: h => h(App),
+  apolloProvider: createProvider(),
   router,
 }).$mount('#app');
