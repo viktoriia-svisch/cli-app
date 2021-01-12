@@ -1,4 +1,5 @@
 import Index from '@/components/Index';
+import Event from '@/components/Event';
 import Events from '@/components/Events';
 import Calendar from '@/components/Calendar';
 import Mentions from '@/components/Mentions';
@@ -19,6 +20,11 @@ export const routes = [
   {
     path: '/events',
     component: Events,
+  },
+  {
+    path: '/events/:id',
+    props: true,
+    component: Event,
   },
   {
     path: '/',

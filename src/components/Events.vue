@@ -2,11 +2,14 @@
   <section id="events_h">
     <h1 id="title">Evenements a venir</h1>
     <article id="events">
-      <section class="event" v-for="e in events" v-bind:key="e.id">
+      <section
+        class="event"
+        v-for="e in events"
+        v-bind:key="e.id"
+        @click="getEvent(e.id)"
+      >
         <header>
-          <h1>
-            {{ e.name }} {{ e.name }} {{ e.name }} {{ e.name }} {{ e.name }}
-          </h1>
+          <h1>{{ e.name }}</h1>
           <ul>
             <li>
               <p>
@@ -53,6 +56,9 @@ export default {
     };
   },
   methods: {
+    getEvent(id) {
+      this.$router.push({path: `/events/${id}`});
+    },
     async getEvents() {
       await this.$apollo
         .query({
@@ -96,6 +102,25 @@ export default {
       margin: 10px;
       border: 1px solid white;
       cursor: pointer;
+      &:hover {
+        header {
+          background-color: white;
+          h1 {
+            color: white;
+            background-color: black;
+          }
+          ul {
+            li {
+              a,
+              p,
+              span {
+                background-color: black;
+                color: white;
+              }
+            }
+          }
+        }
+      }
       header {
         padding: 5px;
         border-bottom: 1px solid white;
@@ -106,6 +131,7 @@ export default {
           font-family: Bison;
           margin: 0;
           padding-left: 5px;
+          padding-right: 5px;
           display: inline;
         }
         ul {
