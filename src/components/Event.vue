@@ -3,11 +3,12 @@
     <h1 id="title">{{ e.name }}</h1>
     <article id="event">
       <header>
-        <h4>{{ e.description }}</h4>
         <ul>
           <li>
-            <p>
+            <p class="time">
               {{ new Date(Number(e.starts_at)).toLocaleDateString('fr', {}) }}
+            </p>
+            <p class="time">
               {{
                 new Date(Number(e.starts_at)).toLocaleTimeString('fr', {
                   hour: '2-digit',
@@ -22,6 +23,9 @@
                 })
               }}
             </p>
+          </li>
+          <li>
+            <h4>{{ e.description }}</h4>
           </li>
           <li v-if="e.facebook">
             <a :href="e.facebook" target="_blank">facebook</a>
@@ -80,6 +84,8 @@ export default {
 </script>
 <style lang="less" scoped>
 .ev_h {
+  max-width: 900px;
+  margin: 100px auto;
   #title {
     font-family: Bison;
     font-size: 44px;
@@ -90,6 +96,17 @@ export default {
         list-style-type: none;
         margin: 0px;
         padding: 0px;
+        li {
+          .time {
+            font-size: 20px;
+            font-family: SpaceMonoBold;
+            color: black;
+            background-color: white;
+            padding: 0px 3px 0px 3px;
+            display: inline;
+            margin-right: 10px;
+          }
+        }
       }
     }
   }
