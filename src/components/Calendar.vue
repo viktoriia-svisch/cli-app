@@ -60,7 +60,11 @@
           <span class="genre" v-for="genre in show.genres" v-bind:key="genre">{{
             genre
           }}</span>
-          Toutes les {{ show.redundancy == 1 ? '' : show.redundancy }} semaines
+          <span v-if="show.redundancy"
+            >Toutes les
+            {{ show.redundancy == 1 ? '' : show.redundancy }} semaines</span
+          >
+          <span v-else class="once">Emission speciale</span>
         </p>
       </section>
     </article>
@@ -180,14 +184,14 @@ export default {
   h1,
   h2 {
     margin: 10px auto;
-    width: 900px;
+    max-width: 1000px;
   }
   #title {
     font-size: 40px;
     font-family: Bison;
   }
   #shows {
-    width: 900px;
+    max-width: 1000px;
     margin: 30px auto;
     .show {
       border-left: 1px solid #7e7e7e;
@@ -201,12 +205,18 @@ export default {
         border-radius: 2px;
         font-size: 12px;
       }
+      .once {
+        background-color: #161671;
+        padding: 3px;
+        border-radius: 3px;
+      }
     }
   }
   .dowPicker {
     margin: 0 auto;
-    width: 900px;
+    width: 1000px;
     display: flex;
+    justify-content: center;
     .dowPickerOption {
       display: inline-block;
       margin-right: 20px;

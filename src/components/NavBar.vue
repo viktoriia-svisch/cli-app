@@ -2,7 +2,10 @@
   <nav>
     <section id="top">
       <img id="logo" src="../assets/imgs/odc.jpg" />
-      <article id="radio"><span>▶ Radio - Before</span></article>
+      <article id="radio" @click="triggerRadio">
+        <span class="play">{{ icon }}</span
+        ><span class="title">{{ currentShow }}</span>
+      </article>
       <article id="links">
         <router-link :to="{path: '/'}">Accueil</router-link>
         <router-link :to="{path: '/events'}">Evenements</router-link>
@@ -40,17 +43,72 @@
       </article>
     </section>
     <section id="bottom">
-      <span>{{ nowPlaying }}</span>
+      <span>{{ artist }} - {{ title }}</span>
     </section>
   </nav>
 </template>
 <script>
+import axios from 'axios';
 export default {
   name: 'NavBar',
   data() {
     return {
-      nowPlaying: 'good music - good artist',
+      isPlaying: false,
+      radio: new Audio(),
+      title: '',
+      artist: '',
+      currentShow: 'Radio',
+      icon: '▶',
+      timeout: null,
+      livestream: false,
     };
+  },
+  methods: {
+    triggerRadio() {
+      if (!this.isPlaying) {
+        this.radio.setAttribute(
+          'src',
+          `https:        );
+        this.radio.play();
+        this.icon = '■';
+        this.isPlaying = true;
+      } else {
+        this.radio.pause();
+        this.isPlaying = false;
+        this.icon = '▶';
+      }
+    },
+    checkTitle() {
+      axios
+        .get('https:        .then(res => {
+          if (res.data.current.type == 'livestream') {
+            this.livestream = true;
+            this.artist = 'Live Radio';
+            this.title = '';
+            this.timeout = setTimeout(this.checkTitle, 15 * 60000);
+          } else {
+            this.livestream = false;
+            const time = res.data.current.ends.replace(' ', 'T');
+            const next = Math.floor(new Date(time).getTime() / 1000);
+            const now = Math.floor(new Date().getTime() / 1000);
+            this.timeout = setTimeout(this.checkTitle, (next - now - 5) * 1000);
+            this.artist = res.data.current.metadata.artist_name
+              .replace('&#039;', "'")
+              .replace('amp;', '');
+            this.title = res.data.current.metadata.track_title
+              .replace('&#039;', "'")
+              .replace('amp;', '');
+            this.currentShow = res.data.currentShow[0].name;
+          }
+        })
+        .catch(() => {
+          clearTimeout(this.timeout);
+          this.timeout = null;
+        });
+    },
+  },
+  mounted() {
+    this.checkTitle();
   },
 };
 </script>
@@ -126,6 +184,13 @@ nav {
     }
     #radio {
       margin-left: 100px;
+      cursor: pointer;
+      .play {
+        position: absolute;
+      }
+      .title {
+        margin-left: 20px; 
+      }
     }
     #logo {
       position: absolute;

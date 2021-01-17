@@ -1,7 +1,7 @@
 <template>
   <section class="ev_h">
     <h1 id="title">{{ e.name }}</h1>
-    <article id="event">
+    <article id="event" v-if="e.starts_at">
       <header>
         <ul>
           <li>
@@ -35,9 +35,13 @@
           </li>
         </ul>
       </header>
-      <article class="e_body">
-        <div class="e_img" :style="`background-image: url(${e.image})`"></div>
-      </article>
+      <section class="e_body">
+        <a :href="e.image" target="_blank">
+          <img :src="e.image" class="e_img" />
+          <img :src="e.image" class="e_img" />
+          <img :src="e.image" class="e_img" />
+        </a>
+      </section>
     </article>
   </section>
 </template>
@@ -84,18 +88,37 @@ export default {
 </script>
 <style lang="less" scoped>
 .ev_h {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 100px auto;
   #title {
     font-family: Bison;
     font-size: 44px;
   }
   #event {
+    display: flex;
+    flex-flow: column;
     header {
+      margin-left: 20px;
       ul {
         list-style-type: none;
         margin: 0px;
         padding: 0px;
+        .right {
+          float: right;
+          margin-right: 20px;
+          span {
+            margin-left: 10px;
+            padding: 3px;
+            font-family: SpaceMonoBold;
+            color: black;
+            background-color: white;
+            cursor: pointer;
+            &:hover {
+              color: white;
+              background-color: black;
+            }
+          }
+        }
         li {
           .time {
             font-size: 20px;
@@ -106,7 +129,20 @@ export default {
             display: inline;
             margin-right: 10px;
           }
+          a {
+            padding: 3px;
+            color: #4040e0;
+            background-color: white;
+            font-family: SpaceMonoBold;
+            text-decoration: none;
+          }
         }
+      }
+    }
+    .e_body {
+      margin-top: 20px;
+      .e_img {
+        width: 33.33%;
       }
     }
   }
