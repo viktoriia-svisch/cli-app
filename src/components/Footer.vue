@@ -21,12 +21,16 @@ export default {
 </script>
 <style lang="less" scoped>
 footer {
-  margin: 20px auto;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  bottom: 0;
+  right: 0;
+  left: 0;
   display: flex;
-  max-width: 1000px;
+  justify-content: center;
   padding-top: 10px;
+  background-color: black;
   border-top: 1px solid #ffffff80;
-  flex-direction: row;
   .links {
     a {
       font-weight: bold;

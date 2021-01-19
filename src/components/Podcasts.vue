@@ -89,14 +89,9 @@ export default {
       width: 400px;
       margin-left: 4px;
       margin-right: 4px;
-      .podinfo {
-        font-family: SpaceMonoBold;
-        list-style-type: none;
-        padding-left: 5px;
-        padding-bottom: 5px;
-        border: 1px solid #ffffff80;
-        margin-top: 0px;
-        &:hover {
+      cursor: pointer;
+      &:hover {
+        .podinfo {
           border: 1px solid white;
           .genres {
             span {
@@ -104,6 +99,19 @@ export default {
             }
           }
         }
+        header {
+          .miximg {
+            opacity: 1;
+          }
+        }
+      }
+      .podinfo {
+        font-family: SpaceMonoBold;
+        list-style-type: none;
+        padding-left: 5px;
+        padding-bottom: 5px;
+        border: 1px solid #ffffff80;
+        margin-top: 0px;
         .title {
         }
         .time {
@@ -130,6 +138,7 @@ export default {
           width: 400px;
           position: relative;
           z-index: -1;
+          opacity: 0.7;
           .play_mix {
             position: absolute;
             bottom: 43%;

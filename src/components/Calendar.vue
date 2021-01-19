@@ -4,69 +4,100 @@
     <h2>
       Semaine du <u>{{ week.toLocaleDateString('fr') }}:</u>
     </h2>
-    <div class="dowPicker">
-      <div class="dowPickerOption">
-        <input type="radio" name="dow" id="dow2" checked />
-        <label for="dow2" @click="disp_shows(0, 'monday')">Lundi</label>
-      </div>
-      <div class="dowPickerOption">
-        <input type="radio" name="dow" id="dow3" />
-        <label for="dow3" @click="disp_shows(0, 'tuesday')">Mardi</label>
-      </div>
-      <div class="dowPickerOption">
-        <input type="radio" name="dow" id="dow4" />
-        <label for="dow4" @click="disp_shows(0, 'wednesday')">Mercredi</label>
-      </div>
-      <div class="dowPickerOption">
-        <input type="radio" name="dow" id="dow5" />
-        <label for="dow5" @click="disp_shows(0, 'thursday')">Jeudi</label>
-      </div>
-      <div class="dowPickerOption">
-        <input type="radio" name="dow" id="dow6" />
-        <label for="dow6" @click="disp_shows(0, 'friday')">Vendredi</label>
-      </div>
-      <div class="dowPickerOption">
-        <input type="radio" name="dow" id="dow7" />
-        <label for="dow7" @click="disp_shows(0, 'saturday')">Samedi</label>
-      </div>
-      <div class="dowPickerOption">
-        <input type="radio" name="dow" id="dow1" />
-        <label for="dow1" @click="disp_shows(0, 'sunday')">Dimanche</label>
-      </div>
-    </div>
-    <article id="shows">
-      <section v-for="show in day_selected" v-bind:key="show.id" class="show">
-        <h3>
-          <u
-            >De
-            {{
-              new Date(Number(show.starts_at)).toLocaleTimeString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit',
-              })
-            }}
-            a
-            {{
-              new Date(Number(show.ends_at)).toLocaleTimeString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit',
-              })
-            }}:</u
+    <article id="flexshows">
+      <div class="dowPicker">
+        <div class="dowPickerOption">
+          <input type="radio" name="dow" id="dow2" checked />
+          <label for="dow2" @click="disp_shows(0, 'monday')"
+            >Lundi<br />{{ week.getDate() }}</label
           >
-          {{ show.name }}
-        </h3>
-        <h4 v-if="show.dj.length">Animee par {{ show.dj }}</h4>
-        <p>
-          <span class="genre" v-for="genre in show.genres" v-bind:key="genre">{{
-            genre
-          }}</span>
-          <span v-if="show.redundancy"
-            >Toutes les
-            {{ show.redundancy == 1 ? '' : show.redundancy }} semaines</span
+        </div>
+        <div class="dowPickerOption">
+          <input type="radio" name="dow" id="dow3" />
+          <label for="dow3" @click="disp_shows(0, 'tuesday')"
+            >Mardi<br />{{
+              new Date(week.valueOf() + 1000 * 3600 * 24).getDate()
+            }}</label
           >
-          <span v-else class="once">Emission speciale</span>
-        </p>
-      </section>
+        </div>
+        <div class="dowPickerOption">
+          <input type="radio" name="dow" id="dow4" />
+          <label for="dow4" @click="disp_shows(0, 'wednesday')"
+            >Mercredi<br />{{
+              new Date(week.valueOf() + 2000 * 3600 * 24).getDate()
+            }}</label
+          >
+        </div>
+        <div class="dowPickerOption">
+          <input type="radio" name="dow" id="dow5" />
+          <label for="dow5" @click="disp_shows(0, 'thursday')"
+            >Jeudi<br />{{
+              new Date(week.valueOf() + 3000 * 3600 * 24).getDate()
+            }}</label
+          >
+        </div>
+        <div class="dowPickerOption">
+          <input type="radio" name="dow" id="dow6" />
+          <label for="dow6" @click="disp_shows(0, 'friday')"
+            >Vendredi<br />{{
+              new Date(week.valueOf() + 4000 * 3600 * 24).getDate()
+            }}</label
+          >
+        </div>
+        <div class="dowPickerOption">
+          <input type="radio" name="dow" id="dow7" />
+          <label for="dow7" @click="disp_shows(0, 'saturday')"
+            >Samedi<br />{{
+              new Date(week.valueOf() + 5000 * 3600 * 24).getDate()
+            }}</label
+          >
+        </div>
+        <div class="dowPickerOption">
+          <input type="radio" name="dow" id="dow1" />
+          <label for="dow1" @click="disp_shows(0, 'sunday')"
+            >Dimanche<br />{{
+              new Date(week.valueOf() + 6000 * 3600 * 24).getDate()
+            }}</label
+          >
+        </div>
+      </div>
+      <article id="shows">
+        <section v-for="show in day_selected" v-bind:key="show.id" class="show">
+          <h3>
+            <u
+              >De
+              {{
+                new Date(Number(show.starts_at)).toLocaleTimeString('fr-FR', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })
+              }}
+              a
+              {{
+                new Date(Number(show.ends_at)).toLocaleTimeString('fr-FR', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })
+              }}:</u
+            >
+            {{ show.name }}
+          </h3>
+          <h4 v-if="show.dj.length">Animee par {{ show.dj }}</h4>
+          <p>
+            <span
+              class="genre"
+              v-for="genre in show.genres"
+              v-bind:key="genre"
+              >{{ genre }}</span
+            >
+            <span v-if="show.redundancy"
+              >Toutes les
+              {{ show.redundancy == 1 ? '' : show.redundancy }} semaines</span
+            >
+            <span v-else class="once">Emission speciale</span>
+          </p>
+        </section>
+      </article>
     </article>
   </section>
 </template>
@@ -190,47 +221,77 @@ export default {
     font-size: 40px;
     font-family: Bison;
   }
-  #shows {
-    max-width: 1000px;
-    margin: 30px auto;
-    .show {
-      border-left: 1px solid #7e7e7e;
-      padding-left: 10px;
-      margin-bottom: 30px;
-      .genre {
-        background-color: #a71313;
-        font-weight: bold;
-        margin-right: 10px;
-        padding: 4px;
-        border-radius: 2px;
-        font-size: 12px;
+  #flexshows {
+    display: flex;
+    flex-direction: column;
+    #shows {
+      width: 1000px;
+      margin: 30px auto;
+      .show {
+        border-left: 1px solid #7e7e7e;
+        padding-left: 10px;
+        margin-bottom: 30px;
+        p {
+          font-family: SpaceMono;
+          font-size: 14px;
+        }
+        .genre {
+          background-color: #a71313;
+          font-weight: bold;
+          margin-right: 10px;
+          padding: 4px;
+          border-radius: 2px;
+          font-size: 12px;
+        }
+        .once {
+          background-color: #161671;
+          padding: 3px;
+          border-radius: 3px;
+        }
       }
-      .once {
-        background-color: #161671;
-        padding: 3px;
-        border-radius: 3px;
+    }
+    .dowPicker {
+      margin: 0 auto;
+      width: 1000px;
+      display: flex;
+      justify-content: center;
+      .dowPickerOption {
+        display: inline-block;
+        text-align: center;
+        margin-right: 10px;
+        input[type='radio'] {
+          display: none;
+        }
+        label {
+          font-size: 25px;
+          font-weight: bold;
+          color: #a7a7a7;
+          cursor: pointer;
+        }
+        input[type='radio']:checked ~ label {
+          color: white;
+        }
       }
     }
   }
-  .dowPicker {
-    margin: 0 auto;
-    width: 1000px;
-    display: flex;
-    justify-content: center;
-    .dowPickerOption {
-      display: inline-block;
-      margin-right: 20px;
-      input[type='radio'] {
-        display: none;
+  @media (max-width: 1000px) {
+    #flexshows {
+      flex-direction: row;
+      #shows {
+        margin: 0px;
+        .show {
+          margin-bottom: 0px;
+        }
       }
-      label {
-        font-size: 25px;
-        font-weight: bold;
-        color: #a7a7a7;
-        cursor: pointer;
-      }
-      input[type='radio']:checked ~ label {
-        color: white;
+      .dowPicker {
+        flex-flow: column;
+        width: 100px;
+        height: 280px;
+        .dowPickerOption {
+          label {
+            font-size: 15px;
+          }
+        }
       }
     }
   }
