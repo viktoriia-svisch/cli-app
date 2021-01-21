@@ -100,11 +100,13 @@ export default {
       width: 100%;
       max-width: 400px;
       margin: 10px;
-      border: 1px solid white;
+      border: 1px solid #ffffff80;
       cursor: pointer;
       &:hover {
+        border: 1px solid white;
         header {
           background-color: white;
+          border-bottom: 1px solid white;
           h1 {
             color: white;
             background-color: black;
@@ -123,7 +125,7 @@ export default {
       }
       header {
         padding: 5px;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid #ffffff80;
         h1 {
           font-size: 34px;
           color: black;

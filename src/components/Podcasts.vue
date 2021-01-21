@@ -112,6 +112,10 @@ export default {
         padding-bottom: 5px;
         border: 1px solid #ffffff80;
         margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 131px;
         .title {
         }
         .time {
