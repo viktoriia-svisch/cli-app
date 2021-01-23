@@ -14,7 +14,7 @@
       </article>
       <article id="more" class="right">
         <svg
-          @click="$parent.chatting = true"
+          @click="$parent.chatting = !$parent.chatting"
           class="chaticon unselect"
           xmlns="http:          xmlns:xlink="http:          viewBox="0 0 16 16"
           version="1.1"
@@ -43,7 +43,10 @@
       </article>
     </section>
     <section id="bottom">
-      <span>{{ artist }} - {{ title }}</span>
+      <span
+        ><span class="reddot" v-if="livestream">• </span>{{ artist }}
+        <span v-if="!livestream">-</span> {{ title }}</span
+      >
     </section>
   </nav>
 </template>
@@ -189,7 +192,7 @@ nav {
         position: absolute;
       }
       .title {
-        margin-left: 20px; 
+        margin-left: 20px;
       }
     }
     #logo {
@@ -203,6 +206,15 @@ nav {
     background-color: white;
     color: black;
     padding-left: 100px;
+    .reddot {
+      color: red;
+      animation: live 2.5s linear infinite;
+    }
+    @keyframes live {
+      50% {
+        opacity: 0;
+      }
+    }
   }
 }
 </style>

@@ -12,6 +12,11 @@ import Footer from '@/components/Footer';
 import Chat from '@/components/Chat';
 export default {
   name: 'app',
+  components: {
+    NavBar,
+    Footer,
+    Chat,
+  },
   data() {
     return {
       chatting: false,
@@ -25,11 +30,6 @@ export default {
     msg(message) {
       this.msgs.push(message);
     },
-  },
-  components: {
-    NavBar,
-    Footer,
-    Chat,
   },
 };
 </script>

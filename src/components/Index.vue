@@ -1,10 +1,41 @@
 <template>
   <section id="index">
-    <article id="odc">
-      <img src="../assets/imgs/logo.gif" />
-      <h1>DC Live</h1>
+    <article id="shows" v-if="shows.length">
+      <h1 class="subtitle">Les emissions aujourd'hui</h1>
+      <section v-for="show in shows" v-bind:key="show.id" class="show">
+        <h3>
+          <u
+            >De
+            {{
+              new Date(Number(show.starts_at)).toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit',
+              })
+            }}
+            a
+            {{
+              new Date(Number(show.ends_at)).toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit',
+              })
+            }}:</u
+          >
+          {{ show.name }}
+        </h3>
+        <h4 v-if="show.dj.length">Animee par {{ show.dj }}</h4>
+        <p>
+          <span class="genre" v-for="genre in show.genres" v-bind:key="genre">{{
+            genre
+          }}</span>
+          <span v-if="show.redundancy"
+            >Toutes les
+            {{ show.redundancy == 1 ? '' : show.redundancy }} semaines</span
+          >
+          <span v-else class="once">Emission speciale</span>
+        </p>
+      </section>
     </article>
-    <h1 class="subtitle">Les dernieres emissions</h1>
+    <h1 class="subtitle">Les derniers podcasts</h1>
     <section id="podcasts">
       <section class="podcast" v-for="pod in podcasts" v-bind:key="pod.key">
         <header>
@@ -34,7 +65,7 @@
         >Voir plus de podcasts</router-link
       >
     </section>
-    <h1 class="subtitle">Les prochains evenements</h1>
+    <h1 class="subtitle" v-if="events.length">Les prochains evenements</h1>
     <article id="events">
       <section
         class="event"
@@ -78,6 +109,10 @@
         </article>
       </section>
     </article>
+    <article id="odc">
+      <img src="../assets/imgs/logo.gif" />
+      <h1>DC Live</h1>
+    </article>
   </section>
 </template>
 <script>
@@ -89,6 +124,7 @@ export default {
     return {
       events: [],
       podcasts: [],
+      shows: [],
       next: '',
       more: true,
     };
@@ -128,15 +164,63 @@ export default {
           this.events = res.data.Events;
         });
     },
+    async getShows() {
+      const res = await this.$apollo.query({
+        query: gql`
+          query today_shows($start: String!) {
+            today_shows(start: $start) {
+              id
+              name
+              starts_at
+              ends_at
+              redundancy
+              genres
+              dj
+            }
+          }
+        `,
+        variables: {
+          start: '2019-01-13',
+        },
+      });
+      this.shows = res.data.today_shows;
+    },
   },
   mounted() {
     this.next = 'https:    this.getPodcasts();
     this.getEvents();
+    this.getShows();
   },
 };
 </script>
 <style lang="less" scoped>
 #index {
+  #shows {
+    width: 1100px;
+    margin: 30px auto;
+    .show {
+      border-left: 1px solid #7e7e7e;
+      padding-left: 10px;
+      margin-bottom: 30px;
+      p {
+        font-family: SpaceMono;
+        font-size: 14px;
+      }
+      .genre {
+        background-color: #a71313;
+        font-weight: bold;
+        margin-right: 10px;
+        padding: 4px;
+        border-radius: 2px;
+        font-size: 12px;
+      }
+      .once {
+        background-color: #161671;
+        padding: 3px;
+        border-radius: 3px;
+      }
+    }
+  }
   #odc {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -162,6 +246,8 @@ export default {
   .subtitle {
     font-family: Bison;
     font-size: 40px;
+    max-width: 1100px;
+    margin: 25px auto;
   }
   #more {
     text-align: center;

@@ -116,11 +116,12 @@ export default {
 <style lang="less" scoped>
 #chat {
   bottom: 0;
-  position: absolute;
+  position: fixed;
   right: 0;
   z-index: 4;
-  height: 100%;
-  width: 100%;
+  height: ~'calc(100% - 70px)';
+  width: 350px;
+  border-left: 1px solid white;
   background-color: black;
   #closechat {
     height: 40px;
