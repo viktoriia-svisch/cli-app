@@ -270,6 +270,7 @@ export default {
         }
         input[type='radio']:checked ~ label {
           color: white;
+          text-decoration: underline;
         }
       }
     }
