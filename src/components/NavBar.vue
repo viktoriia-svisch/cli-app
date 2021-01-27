@@ -1,7 +1,9 @@
 <template>
   <nav>
     <section id="top">
-      <img id="logo" src="../assets/imgs/odc.jpg" />
+      <router-link :to="{path: '/'}"
+        ><img id="logo" src="../assets/imgs/odc.jpg"
+      /></router-link>
       <article id="radio" @click="triggerRadio">
         <span class="play">{{ icon }}</span
         ><span class="title">{{ currentShow }}</span>
@@ -122,6 +124,7 @@ nav {
   position: fixed;
   background-color: black;
   top: 0px;
+  z-index: 3;
   .right {
     right: 0;
     margin-right: 5px;
