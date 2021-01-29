@@ -16,6 +16,7 @@ ce<template>
         type="text"
         v-model="searchQuery"
         @keyup.enter="getGenre"
+        placeholder="tag example: acid, house, reggae"
         :disabled="disabled"
       />
     </header>
@@ -43,7 +44,7 @@ export default {
     async getGenre() {
       this.disabled = true;
       this.shows = [];
-      const reg = new RegExp(this.searchQuery, 'i');
+      const reg = new RegExp(this.searchQuery, 'gmi');
       const res = await axios.get(this.next);
       this.disabled = false;
       for (let i = 0; i < 100; i++) {

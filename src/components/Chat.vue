@@ -94,7 +94,10 @@ export default {
   },
   methods: {
     send_msg() {
-      if (this.msg == '' || this.pseudo == '') return;
+      if (this.message == '' || this.message.length < 2 || this.pseudo == '') {
+        this.message = '';
+        return;
+      }
       localStorage.setItem('username', this.pseudo);
       this.$socket.emit('msg', {pseudo: this.pseudo, msg: this.message});
       this.message = '';
