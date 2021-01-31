@@ -97,9 +97,10 @@ export default {
             const next = Math.floor(new Date(time).getTime() / 1000);
             const now = Math.floor(new Date().getTime() / 1000);
             this.timeout = setTimeout(this.checkTitle, (next - now - 5) * 1000);
-            this.artist = res.data.current.metadata.artist_name
-              .replace('&#039;', "'")
-              .replace('amp;', '');
+            if (res.data.current.metadata.artist_name !== null)
+              this.artist = res.data.current.metadata.artist_name
+                .replace('&#039;', "'")
+                .replace('amp;', '');
             this.title = res.data.current.metadata.track_title
               .replace('&#039;', "'")
               .replace('amp;', '');
