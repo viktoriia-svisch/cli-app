@@ -33,6 +33,7 @@ export default {
   components: {
     Podcast,
   },
+  props: ['tag'],
   data() {
     return {
       searchQuery: '',
@@ -42,6 +43,7 @@ export default {
   },
   methods: {
     async getGenre() {
+      if (this.searchQuery.length < 2) return;
       this.disabled = true;
       this.shows = [];
       const reg = new RegExp(this.searchQuery, 'gmi');
@@ -55,6 +57,13 @@ export default {
           }
       }
     },
+  },
+  mounted() {
+    if (localStorage.getItem('tag')) {
+      this.searchQuery = localStorage.getItem('tag');
+      localStorage.removeItem('tag');
+      this.getGenre();
+    }
   },
 };
 </script>

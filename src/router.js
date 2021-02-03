@@ -9,6 +9,7 @@ export const routes = [
   {
     path: '/search',
     component: Search,
+    props: true,
   },
   {
     path: '/calendar',
@@ -28,8 +29,8 @@ export const routes = [
   },
   {
     path: '/events/:id',
-    props: true,
     component: Event,
+    props: true,
   },
   {
     path: '/',

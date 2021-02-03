@@ -15,7 +15,11 @@
       <li class="title">{{ pod.name }}</li>
       <li class="time">{{ Math.floor(pod.audio_length / 60) }} min</li>
       <li class="genres">
-        <span class="tag" v-for="tag in pod.tags" v-bind:key="tag.name"
+        <span
+          class="tag"
+          v-for="tag in pod.tags"
+          v-bind:key="tag.name"
+          @click="search(tag.name.toLowerCase())"
           >{{ tag.name.toLowerCase() }}
         </span>
       </li>
@@ -26,6 +30,17 @@
 export default {
   name: 'Podcast_Widget',
   props: ['pod'],
+  methods: {
+    search(tag) {
+      if (this.$route.path == '/search') {
+        this.$parent.searchQuery = tag;
+        this.$parent.getGenre();
+      } else {
+        localStorage.setItem('tag', tag);
+        this.$router.push({path: '/search'});
+      }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
