@@ -12,7 +12,6 @@
         <router-link :to="{path: '/'}">Accueil</router-link>
         <router-link :to="{path: '/events'}">Evenements</router-link>
         <router-link :to="{path: '/podcasts'}">Podcasts</router-link>
-        <router-link :to="{path: '/calendar'}">Calendrier</router-link>
         <router-link :to="{path: '/search'}">Recherche</router-link>
       </article>
       <article id="more" class="right">

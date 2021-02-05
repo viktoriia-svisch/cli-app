@@ -1,40 +1,6 @@
 <template>
   <section id="index">
-    <article id="shows" v-if="shows.length">
-      <h1 class="subtitle">Les emissions aujourd'hui</h1>
-      <section v-for="show in shows" v-bind:key="show.id" class="show">
-        <h3>
-          <u
-            >De
-            {{
-              new Date(Number(show.starts_at)).toLocaleTimeString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit',
-              })
-            }}
-            a
-            {{
-              new Date(Number(show.ends_at)).toLocaleTimeString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit',
-              })
-            }}:</u
-          >
-          {{ show.name }}
-        </h3>
-        <h4 v-if="show.dj.length">Animee par {{ show.dj }}</h4>
-        <p>
-          <span class="genre" v-for="genre in show.genres" v-bind:key="genre">{{
-            genre
-          }}</span>
-          <span v-if="show.redundancy"
-            >Toutes les
-            {{ show.redundancy == 1 ? '' : show.redundancy }} semaines</span
-          >
-          <span v-else class="once">Emission speciale</span>
-        </p>
-      </section>
-    </article>
+    <Calendar />
     <h1 class="subtitle">Les derniers podcasts</h1>
     <section id="podcasts">
       <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
@@ -98,10 +64,12 @@
 import axios from 'axios';
 import gql from 'graphql-tag';
 import Podcast from '@/components/Podcast_Widget';
+import Calendar from '@/components/Calendar';
 export default {
   name: 'Index',
   components: {
     Podcast,
+    Calendar,
   },
   data() {
     return {

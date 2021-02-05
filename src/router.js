@@ -12,10 +12,6 @@ export const routes = [
     props: true,
   },
   {
-    path: '/calendar',
-    component: Calendar,
-  },
-  {
     path: '/mentions',
     component: Mentions,
   },

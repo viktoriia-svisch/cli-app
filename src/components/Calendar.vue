@@ -215,7 +215,7 @@ export default {
   h1,
   h2 {
     margin: 10px auto;
-    max-width: 1000px;
+    max-width: 1100px;
   }
   #title {
     font-size: 40px;
