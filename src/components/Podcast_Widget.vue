@@ -1,6 +1,6 @@
 <template>
   <section class="podcast">
-    <header>
+    <header @click="getAudio(pod.key)">
       <section
         class="miximg"
         :style="
@@ -27,10 +27,17 @@
   </section>
 </template>
 <script>
+import axios from 'axios';
 export default {
   name: 'Podcast_Widget',
   props: ['pod'],
   methods: {
+    async getAudio(key) {
+      const res = await axios.get(`${process.env.VUE_APP_API}/mix`, {
+        params: {key: key},
+      });
+      console.log(res);
+    },
     search(tag) {
       if (this.$route.path == '/search') {
         this.$parent.searchQuery = tag;
@@ -109,6 +116,20 @@ export default {
         height: 18%;
         transform: rotate(90deg);
       }
+    }
+  }
+  @media (max-width: 400px) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    header {
+      .miximg {
+        width: 100%;
+        height: 150px;
+      }
+    }
+    .podinfo {
+      height: initial;
     }
   }
 }

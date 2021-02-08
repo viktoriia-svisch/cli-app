@@ -47,5 +47,10 @@ body {
   .router {
     margin: 100px 30px 0px 30px;
   }
+  @media(max-width: 400px) {
+    .router {
+      margin: 100px 4px 0 4px;
+    }
+  } 
 }
 </style>
