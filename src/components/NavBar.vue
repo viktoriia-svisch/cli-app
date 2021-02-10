@@ -132,9 +132,8 @@ nav {
     position: absolute;
   }
   #top {
-    height: 35px;
     display: flex;
-    padding-top: 15px;
+    padding-top: 10px;
     #more {
       .chaticon {
         position: absolute;
@@ -176,8 +175,12 @@ nav {
       }
     }
     #links {
+      display: flex;
+      flex-direction: row;
+      margin-top: -6px;
       a {
         margin-left: 10px;
+        margin-bottom: 5px;
         color: #fffc;
         text-decoration: none;
         border: 1px solid #fffc;
@@ -217,6 +220,43 @@ nav {
     @keyframes live {
       50% {
         opacity: 0;
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    position: relative;
+    #top {
+      #links {
+        flex-direction: column;
+        width: ~'calc(100% - 143px)';
+      }
+      #radio {
+        margin-left: 5px;
+        margin-top: 90px;
+        width: 100px;
+      }
+      #more {
+        .chaticon {
+          position: relative;
+          left: 0;
+        }
+        a {
+          .network {
+            position: relative;
+          }
+          ._iglink {
+            right: 0px;
+            margin-bottom: 15px;
+          }
+          ._fblink {
+            right: 0px;
+          }
+          ._mclink {
+            right: 0px;
+            margin-bottom: 15px;
+            margin-top: 5px;
+          }
+        }
       }
     }
   }
