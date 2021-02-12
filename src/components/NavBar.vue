@@ -260,5 +260,15 @@ nav {
       }
     }
   }
+  @media (max-width: 300px) {
+    #top {
+      #links {
+        a {
+          font-size: 12px;
+          padding: 7.5px;
+        }
+      }
+    }
+  }
 }
 </style>
