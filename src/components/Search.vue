@@ -104,5 +104,28 @@ export default {
     justify-content: center;
     margin-top: 20px;
   }
+  @media (max-width: 700px) {
+    header {
+      #title {
+        font-size: 30px;
+        padding-bottom: 8px;
+      }
+      input {
+        left: 150px;
+        width: ~'calc(100% - 190px)';
+      }
+    }
+  }
+  @media (max-width: 400px) {
+    header {
+      #title {
+        font-size: 0px;
+      }
+      input {
+        left: 40px;
+        width: ~'calc(100% - 70px)';
+      }
+    }
+  }
 }
 </style>

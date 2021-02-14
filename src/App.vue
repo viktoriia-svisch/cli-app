@@ -49,12 +49,12 @@ body {
   }
   @media (max-width: 800px) {
     .router {
-      margin: 0px 30px 0 30px;
+      margin: 10px 30px 0 30px;
     }
   }
   @media (max-width: 400px) {
     .router {
-      margin: 0px 4px 0 4px;
+      margin: 10px 4px 0 4px;
     }
   }
 }

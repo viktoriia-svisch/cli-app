@@ -2,7 +2,6 @@ import Index from '@/components/Index';
 import Event from '@/components/Event';
 import Events from '@/components/Events';
 import Search from '@/components/Search';
-import Calendar from '@/components/Calendar';
 import Mentions from '@/components/Mentions';
 import Podcasts from '@/components/Podcasts';
 export const routes = [

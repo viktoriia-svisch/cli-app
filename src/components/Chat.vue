@@ -122,7 +122,7 @@ export default {
   position: fixed;
   right: 0;
   z-index: 4;
-  height: ~'calc(100% - 70px)';
+  height: ~'calc(100% - 61px)';
   width: 350px;
   border-left: 1px solid white;
   background-color: black;
@@ -203,6 +203,10 @@ export default {
       background-color: black;
       color: white;
     }
+  }
+  @media (max-width: 800px) {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

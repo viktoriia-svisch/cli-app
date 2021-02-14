@@ -38,8 +38,8 @@
       <section class="e_body">
         <a :href="e.image" target="_blank">
           <img :src="e.image" class="e_img" />
-          <img :src="e.image" class="e_img" />
-          <img :src="e.image" class="e_img" />
+          <img :src="e.image" class="e_img notmob" />
+          <img :src="e.image" class="e_img notmob" />
         </a>
       </section>
     </article>
@@ -89,10 +89,9 @@ export default {
 <style lang="less" scoped>
 .ev_h {
   max-width: 1000px;
-  margin: 100px auto;
   #title {
     font-family: Bison;
-    font-size: 44px;
+    font-size: 40px;
   }
   #event {
     display: flex;
@@ -143,6 +142,18 @@ export default {
       margin-top: 20px;
       .e_img {
         width: 33.33%;
+      }
+    }
+  }
+  @media (max-width: 450px) {
+    #event {
+      .e_body {
+        .e_img {
+          width: 100%;
+        }
+        .notmob {
+          display: none;
+        }
       }
     }
   }

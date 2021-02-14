@@ -225,15 +225,18 @@ nav {
   }
   @media (max-width: 800px) {
     position: relative;
+    #bottom {
+      padding-left: 10px;
+    }
     #top {
       #links {
         flex-direction: column;
         width: ~'calc(100% - 143px)';
       }
       #radio {
-        margin-left: 5px;
+        margin-left: 10px;
         margin-top: 90px;
-        width: 100px;
+        width: 95px;
       }
       #more {
         .chaticon {
