@@ -258,7 +258,8 @@ export default {
       .dowPickerOption {
         display: inline-block;
         text-align: center;
-        margin-right: 10px;
+        margin-right: 30px;
+        margin-left: 30px;
         input[type='radio'] {
           display: none;
         }
@@ -289,6 +290,8 @@ export default {
         width: 100px;
         height: 280px;
         .dowPickerOption {
+          margin-right: 10px;
+          margin-left: 0px;
           label {
             font-size: 15px;
           }

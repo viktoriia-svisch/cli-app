@@ -89,6 +89,8 @@ export default {
 <style lang="less" scoped>
 .ev_h {
   max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
   #title {
     font-family: Bison;
     font-size: 40px;
