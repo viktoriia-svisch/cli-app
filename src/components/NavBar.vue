@@ -2,7 +2,10 @@
   <nav>
     <section id="top">
       <router-link :to="{path: '/'}"
-        ><img id="logo" src="../assets/imgs/odc.jpg"
+        ><img
+          id="logo"
+          :width="$parent.mix.length ? 45 : 80"
+          src="../assets/imgs/odc.jpg"
       /></router-link>
       <article id="radio" @click="triggerRadio">
         <span class="play">{{ icon }}</span
@@ -206,7 +209,6 @@ nav {
       position: absolute;
       top: 10px;
       left: 10px;
-      height: 80px;
     }
   }
   #bottom {

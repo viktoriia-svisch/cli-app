@@ -1,6 +1,15 @@
 <template>
   <main id="app">
     <NavBar />
+    <section id="mix">
+      <article v-html="mix"></article>
+      <img
+        v-if="mix.length"
+        id="closemix"
+        src="./assets/imgs/cross_icon.png"
+        @click="mix = ''"
+      />
+    </section>
     <router-view class="router" />
     <Chat v-if="chatting" />
     <Footer />
@@ -21,6 +30,7 @@ export default {
     return {
       chatting: false,
       msgs: [],
+      mix: '',
     };
   },
   sockets: {
@@ -44,8 +54,27 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: white;
   }
+  #mix {
+    position: fixed;
+    top: 61px;
+    width: ~'calc(100% - 60px)';
+    iframe {
+      height: 60px;
+    }
+    img {
+      cursor: pointer;
+      background-color: #fcfcfc;
+      position: absolute;
+      height: 58px;
+      top: 0px;
+      right: -60px;
+      border-top: 1px solid #d7d7d7;
+      border-bottom: 1px solid #d7d7d7;
+      border-right: 2px solid #d7d7d7;
+    }
+  }
   .router {
-    margin: 100px 30px 0px 30px;
+    margin: 150px 30px 0px 30px;
   }
   @media (max-width: 800px) {
     .router {

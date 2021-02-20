@@ -36,6 +36,7 @@ export default {
       const res = await axios.get(`${process.env.VUE_APP_API}/mix`, {
         params: {key: key},
       });
+      this.$parent.$parent.mix = res.data;
     },
     search(tag) {
       if (this.$route.path == '/search') {
