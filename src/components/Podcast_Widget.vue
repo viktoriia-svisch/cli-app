@@ -37,6 +37,8 @@ export default {
         params: {key: key},
       });
       this.$parent.$parent.mix = res.data;
+      if(window.innerWidth > 800)
+        this.$parent.$parent.mixh = 45;
     },
     search(tag) {
       if (this.$route.path == '/search') {

@@ -4,7 +4,7 @@
       <router-link :to="{path: '/'}"
         ><img
           id="logo"
-          :width="$parent.mix.length ? 45 : 80"
+          :width="$parent.mixh"
           src="../assets/imgs/odc.jpg"
       /></router-link>
       <article id="radio" @click="triggerRadio">

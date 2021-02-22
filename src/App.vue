@@ -7,7 +7,7 @@
         v-if="mix.length"
         id="closemix"
         src="./assets/imgs/cross_icon.png"
-        @click="mix = ''"
+        @click="rm_mix"
       />
     </section>
     <router-view class="router" />
@@ -31,7 +31,14 @@ export default {
       chatting: false,
       msgs: [],
       mix: '',
+      mixh: 80,
     };
+  },
+  methods: {
+    rm_mix() {
+      this.mix = '';
+      if (window.innerWidth > 800) this.mixh = 80;
+    },
   },
   sockets: {
     listen(msgs) {
@@ -77,6 +84,12 @@ body {
     margin: 150px 30px 0px 30px;
   }
   @media (max-width: 800px) {
+    #mix {
+      position: relative;
+      top: 0px;
+      img {
+      }
+    }
     .router {
       margin: 10px 30px 0 30px;
     }
