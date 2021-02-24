@@ -50,6 +50,15 @@ export default {
 </script>
 <style lang="less" scoped>
 #legalholder {
+  #guilink {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    &:hover {
+      text-decoration-line: underline;
+      text-decoration-style: dashed;
+    }
+  }
   #legaltable {
     margin: 0 auto;
     tr {
