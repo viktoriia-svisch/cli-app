@@ -1,10 +1,10 @@
 <template>
   <section id="index">
-    <Calendar />
     <h1 class="subtitle">Les derniers podcasts</h1>
     <section id="podcasts">
       <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
     </section>
+    <Calendar />
     <section id="more" v-if="more">
       <router-link :to="{path: '/podcasts'}" tag="h1" id="more"
         >Voir plus de podcasts</router-link
