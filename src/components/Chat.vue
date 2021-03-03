@@ -51,10 +51,25 @@
     </header>
     <section id="msg" v-chat-scroll>
       <span class="lmsg" v-for="(msg, i) in $parent.msgs" v-bind:key="i">
-        <span v-if="msg.help" class="lhelp">{{ msg.pseudo }}</span>
-        <span v-else class="lname">{{ msg.pseudo }}</span
-        >{{ msg.msg }}
-      </span>
+        <span v-if="msg.help">
+          <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
+            new Date(msg.ts).toLocaleTimeString('fr', {
+              hour: '2-digit',
+              minute: '2-digit',
+            })
+          }}</span>
+          <span class="lhelp">{{ msg.pseudo }}</span></span
+        >
+        <span v-else>
+          <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
+            new Date(msg.ts).toLocaleTimeString('fr', {
+              hour: '2-digit',
+              minute: '2-digit',
+            })
+          }}</span>
+          <span class="lname">{{ msg.pseudo }}</span></span
+        >{{ msg.msg }}</span
+      >
     </section>
     <section id="send">
       <form id="chatSend" v-on:submit.prevent="send_msg">
@@ -107,6 +122,7 @@ export default {
     this.pseudo = localStorage.getItem('username');
     if (this.pseudo === null) {
       const help = {
+        ts: new Date(),
         pseudo: this.$vuetify.t('$vuetify.chat.help'),
         msg: this.$vuetify.t('$vuetify.chat.help_msg'),
         help: true,
@@ -162,6 +178,10 @@ export default {
       font-family: Bison;
       font-size: 18px;
       margin-bottom: 6px;
+      .tmsg {
+        margin-right: 5px;
+        color: #636363;
+      }
       .lhelp {
         background-color: green;
         margin-right: 4px;
