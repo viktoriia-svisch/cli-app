@@ -7,13 +7,26 @@
     <article id="flexshows">
       <div class="dowPicker">
         <div class="dowPickerOption">
-          <input type="radio" name="dow" id="dow2" checked />
+          <input
+            type="radio"
+            name="dow"
+            id="dow2"
+            :checked="new Date().getDate() == week.getDate()"
+          />
           <label for="dow2" @click="disp_shows(0, 'monday')"
             >Lundi<br />{{ week.getDate() }}</label
           >
         </div>
         <div class="dowPickerOption">
-          <input type="radio" name="dow" id="dow3" />
+          <input
+            type="radio"
+            name="dow"
+            id="dow3"
+            :checked="
+              new Date().getDate() ==
+                new Date(week.valueOf() + 1000 * 3600 * 24).getDate()
+            "
+          />
           <label for="dow3" @click="disp_shows(0, 'tuesday')"
             >Mardi<br />{{
               new Date(week.valueOf() + 1000 * 3600 * 24).getDate()
@@ -21,7 +34,15 @@
           >
         </div>
         <div class="dowPickerOption">
-          <input type="radio" name="dow" id="dow4" />
+          <input
+            type="radio"
+            name="dow"
+            id="dow4"
+            :checked="
+              new Date().getDate() ==
+                new Date(week.valueOf() + 2000 * 3600 * 24).getDate()
+            "
+          />
           <label for="dow4" @click="disp_shows(0, 'wednesday')"
             >Mercredi<br />{{
               new Date(week.valueOf() + 2000 * 3600 * 24).getDate()
@@ -29,7 +50,15 @@
           >
         </div>
         <div class="dowPickerOption">
-          <input type="radio" name="dow" id="dow5" />
+          <input
+            type="radio"
+            name="dow"
+            id="dow5"
+            :checked="
+              new Date().getDate() ==
+                new Date(week.valueOf() + 3000 * 3600 * 24).getDate()
+            "
+          />
           <label for="dow5" @click="disp_shows(0, 'thursday')"
             >Jeudi<br />{{
               new Date(week.valueOf() + 3000 * 3600 * 24).getDate()
@@ -37,7 +66,15 @@
           >
         </div>
         <div class="dowPickerOption">
-          <input type="radio" name="dow" id="dow6" />
+          <input
+            type="radio"
+            name="dow"
+            id="dow6"
+            :checked="
+              new Date().getDate() ==
+                new Date(week.valueOf() + 4000 * 3600 * 24).getDate()
+            "
+          />
           <label for="dow6" @click="disp_shows(0, 'friday')"
             >Vendredi<br />{{
               new Date(week.valueOf() + 4000 * 3600 * 24).getDate()
@@ -45,7 +82,15 @@
           >
         </div>
         <div class="dowPickerOption">
-          <input type="radio" name="dow" id="dow7" />
+          <input
+            type="radio"
+            name="dow"
+            id="dow7"
+            :checked="
+              new Date().getDate() ==
+                new Date(week.valueOf() + 5000 * 3600 * 24).getDate()
+            "
+          />
           <label for="dow7" @click="disp_shows(0, 'saturday')"
             >Samedi<br />{{
               new Date(week.valueOf() + 5000 * 3600 * 24).getDate()
@@ -53,7 +98,15 @@
           >
         </div>
         <div class="dowPickerOption">
-          <input type="radio" name="dow" id="dow1" />
+          <input
+            type="radio"
+            name="dow"
+            id="dow1"
+            :checked="
+              new Date().getDate() ==
+                new Date(week.valueOf() + 6000 * 3600 * 24).getDate()
+            "
+          />
           <label for="dow1" @click="disp_shows(0, 'sunday')"
             >Dimanche<br />{{
               new Date(week.valueOf() + 6000 * 3600 * 24).getDate()
@@ -206,7 +259,14 @@ export default {
     const t = `${this.week.getFullYear()}-${this.week.getMonth() +
       1}-${this.week.getDate()}`;
     this.getCalendar(t, 0);
-                this.disp_shows(0, 'monday');
+                this.disp_shows(
+      0,
+      new Date()
+        .toLocaleDateString('en', {
+          weekday: 'long',
+        })
+        .toLowerCase(),
+    );
   },
 };
 </script>
