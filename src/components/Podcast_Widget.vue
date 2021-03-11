@@ -37,8 +37,7 @@ export default {
         params: {key: key},
       });
       this.$parent.$parent.mix = res.data;
-      if(window.innerWidth > 800)
-        this.$parent.$parent.mixh = 45;
+      if (window.innerWidth > 800) this.$parent.$parent.mixh = 45;
     },
     search(tag) {
       if (this.$route.path == '/search') {
@@ -127,11 +126,18 @@ export default {
     header {
       .miximg {
         width: 100%;
-        height: 150px;
+        height: 250px;
       }
     }
     .podinfo {
       height: initial;
+    }
+  }
+  @media (max-width: 250px) {
+    header {
+      .miximg {
+        height: 150px;
+      }
     }
   }
 }
