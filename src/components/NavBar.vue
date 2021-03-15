@@ -2,10 +2,7 @@
   <nav>
     <section id="top">
       <router-link :to="{path: '/'}"
-        ><img
-          id="logo"
-          :width="$parent.mixh"
-          src="../assets/imgs/odc.jpg"
+        ><img id="logo" :width="$parent.mixh" src="../assets/imgs/odc.jpg"
       /></router-link>
       <article id="radio" @click="triggerRadio">
         <span class="play">{{ icon }}</span
@@ -53,12 +50,22 @@
         <span v-if="!livestream">-</span> {{ title }}</span
       >
     </section>
+    <section id="mix" v-if="mix.length">
+      <article v-html="mix"></article>
+      <img
+        v-if="mix.length"
+        id="closemix"
+        src="../assets/imgs/cross_icon.png"
+        @click="rm_mix"
+      />
+    </section>
   </nav>
 </template>
 <script>
 import axios from 'axios';
 export default {
   name: 'NavBar',
+  props: ['mix'],
   data() {
     return {
       isPlaying: false,
@@ -72,6 +79,10 @@ export default {
     };
   },
   methods: {
+    rm_mix() {
+      this.$parent.mix = '';
+      if (window.innerWidth > 800) this.$parent.mixh = 80;
+    },
     triggerRadio() {
       if (!this.isPlaying) {
         this.radio.setAttribute(
@@ -133,6 +144,23 @@ nav {
     right: 0;
     margin-right: 5px;
     position: absolute;
+  }
+  #mix {
+    position: fixed;
+    top: 61px;
+    height: 60px;
+    width: ~'calc(100% - 60px)';
+    img {
+      cursor: pointer;
+      background-color: #fcfcfc;
+      position: absolute;
+      height: 58px;
+      top: 0px;
+      right: -60px;
+      border-top: 1px solid #d7d7d7;
+      border-bottom: 1px solid #d7d7d7;
+      border-right: 2px solid #d7d7d7;
+    }
   }
   #top {
     display: flex;
@@ -226,7 +254,12 @@ nav {
     }
   }
   @media (max-width: 800px) {
-    position: relative;
+    #mix {
+      position: relative;
+      top: 0px;
+      img {
+      }
+    }
     #bottom {
       padding-left: 10px;
     }
