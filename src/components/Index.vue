@@ -4,12 +4,12 @@
     <section id="podcasts">
       <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
     </section>
-    <Calendar />
     <section id="more" v-if="more">
       <router-link :to="{path: '/podcasts'}" tag="h1" id="more"
         >Voir plus de podcasts</router-link
       >
     </section>
+    <Calendar />
     <h1 class="subtitle" v-if="events.length">Les prochains evenements</h1>
     <article id="events">
       <section
