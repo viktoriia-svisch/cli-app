@@ -1,12 +1,21 @@
 <template>
   <main id="app">
     <NavBar :mix="mix" />
+    <iframe
+      id="youtubelive"
+      v-if="youtube"
+      :src="embed"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
     <router-view class="router" />
     <Chat v-if="chatting" />
     <Footer />
   </main>
 </template>
 <script>
+import gql from 'graphql-tag';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import Chat from '@/components/Chat';
@@ -20,12 +29,34 @@ export default {
   data() {
     return {
       chatting: false,
+      youtube: false,
+      embed: '',
       msgs: [],
       mix: '',
       mixh: 80,
     };
   },
-  methods: {},
+  methods: {
+    async getStream() {
+      await this.$apollo
+        .query({
+          query: gql`
+            query {
+              Stream {
+                link
+                embed
+              }
+            }
+          `,
+        })
+        .then(res => {
+          if(res.data.Stream.embed.length) {
+            this.embed = res.data.Stream.embed;
+            this.youtube = true;
+          }
+        });
+    },
+  },
   sockets: {
     listen(msgs) {
       this.msgs = msgs;
@@ -33,6 +64,9 @@ export default {
     msg(message) {
       this.msgs.push(message);
     },
+  },
+  mounted() {
+    this.getStream();
   },
 };
 </script>
