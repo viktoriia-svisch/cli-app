@@ -50,7 +50,7 @@ export default {
           `,
         })
         .then(res => {
-          if(res.data.Stream.embed.length) {
+          if (res.data.Stream.embed.length) {
             this.embed = res.data.Stream.embed;
             this.youtube = true;
           }
@@ -83,6 +83,10 @@ body {
   }
   iframe {
     height: 60px;
+  }
+  #youtubelive {
+    height: ~"calc(100vh - 50px)";
+    width: 100vw;
   }
   .router {
     margin: 150px 30px 0px 30px;
