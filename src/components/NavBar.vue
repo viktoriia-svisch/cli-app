@@ -4,10 +4,11 @@
       <router-link :to="{path: '/'}"
         ><img id="logo" :width="$parent.mixh" src="../assets/imgs/odc.jpg"
       /></router-link>
-      <article id="radio" @click="triggerRadio">
-        <span class="play">{{ icon }}</span
-        ><span class="title">{{ currentShow }}</span>
+      <article id="radio" @click="play">
+        <span class="play">{{ icon }}</span>
+        <span class="title">{{ currentShow }}</span>
       </article>
+      <audio ref="audioElm" :src="src"></audio>
       <article id="links">
         <router-link :to="{path: '/'}">Accueil</router-link>
         <router-link :to="{path: '/events'}">Evenements</router-link>
@@ -72,7 +73,7 @@ export default {
       radio: new Audio(),
       title: '',
       artist: '',
-      currentShow: 'Radio',
+      src: 'https:      currentShow: 'Radio',
       icon: '▶',
       timeout: null,
       livestream: false,
@@ -83,16 +84,14 @@ export default {
       this.$parent.mix = '';
       if (window.innerWidth > 800) this.$parent.mixh = 80;
     },
-    triggerRadio() {
+    play() {
       if (!this.isPlaying) {
-        this.radio.setAttribute(
-          'src',
-          `https:        );
-        this.radio.play();
+        this.$refs.audioElm.src = `${this.src}?t=${new Date().getTime()}`;
+        this.$refs.audioElm.play();
         this.icon = '■';
         this.isPlaying = true;
       } else {
-        this.radio.pause();
+        this.$refs.audioElm.pause();
         this.isPlaying = false;
         this.icon = '▶';
       }
