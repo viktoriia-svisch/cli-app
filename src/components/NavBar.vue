@@ -80,6 +80,9 @@ export default {
     };
   },
   methods: {
+    async getLive() {
+      const res = await axios.get('https:      console.log(res);
+    },
     rm_mix() {
       this.$parent.mix = '';
       if (window.innerWidth > 800) this.$parent.mixh = 80;
@@ -128,6 +131,7 @@ export default {
   },
   mounted() {
     this.checkTitle();
+    this.getLive();
   },
 };
 </script>

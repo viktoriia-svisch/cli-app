@@ -105,6 +105,7 @@
                 new Date(Number(show.starts_at)).toLocaleTimeString('fr-FR', {
                   hour: '2-digit',
                   minute: '2-digit',
+                  timeZone: 'UTC',
                 })
               }}
               a
@@ -112,6 +113,7 @@
                 new Date(Number(show.ends_at)).toLocaleTimeString('fr-FR', {
                   hour: '2-digit',
                   minute: '2-digit',
+                  timeZone: 'UTC',
                 })
               }}:</u
             >
