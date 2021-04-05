@@ -1,7 +1,7 @@
 <template>
   <nav>
     <section id="top">
-      <router-link :to="{path: '/'}"
+      <router-link :to="{ path: '/' }"
         ><img id="logo" :width="$parent.mixh" src="../assets/imgs/odc.jpg"
       /></router-link>
       <article id="radio" @click="play">
@@ -10,10 +10,10 @@
       </article>
       <audio ref="audioElm" :src="src"></audio>
       <article id="links">
-        <router-link :to="{path: '/'}">Accueil</router-link>
-        <router-link :to="{path: '/events'}">Evenements</router-link>
-        <router-link :to="{path: '/podcasts'}">Podcasts</router-link>
-        <router-link :to="{path: '/search'}">Recherche</router-link>
+        <router-link :to="{ path: '/' }">Accueil</router-link>
+        <router-link :to="{ path: '/events' }">Evenements</router-link>
+        <router-link :to="{ path: '/podcasts' }">Podcasts</router-link>
+        <router-link :to="{ path: '/search' }">Recherche</router-link>
       </article>
       <article id="more" class="right">
         <svg
@@ -63,63 +63,60 @@
   </nav>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'NavBar',
-  props: ['mix'],
+  name: "NavBar",
+  props: ["mix"],
   data() {
     return {
       isPlaying: false,
       radio: new Audio(),
-      title: '',
-      artist: '',
-      src: 'https:      currentShow: 'Radio',
-      icon: '▶',
+      title: "",
+      artist: "",
+      src: "https:      currentShow: "Radio",
+      icon: "▶",
       timeout: null,
-      livestream: false,
+      livestream: false
     };
   },
   methods: {
-    async getLive() {
-      const res = await axios.get('https:      console.log(res);
-    },
     rm_mix() {
-      this.$parent.mix = '';
+      this.$parent.mix = "";
       if (window.innerWidth > 800) this.$parent.mixh = 80;
     },
     play() {
       if (!this.isPlaying) {
         this.$refs.audioElm.src = `${this.src}?t=${new Date().getTime()}`;
         this.$refs.audioElm.play();
-        this.icon = '■';
+        this.icon = "■";
         this.isPlaying = true;
       } else {
         this.$refs.audioElm.pause();
         this.isPlaying = false;
-        this.icon = '▶';
+        this.icon = "▶";
       }
     },
     checkTitle() {
       axios
-        .get('https:        .then(res => {
-          if (res.data.current.type == 'livestream') {
+        .get("https:        .then(res => {
+          if (res.data.current.type == "livestream") {
             this.livestream = true;
-            this.artist = 'Live Radio';
-            this.title = '';
+            this.artist = "Live Radio";
+            this.title = "";
             this.timeout = setTimeout(this.checkTitle, 15 * 60000);
           } else {
             this.livestream = false;
-            const time = res.data.current.ends.replace(' ', 'T');
+            const time = res.data.current.ends.replace(" ", "T");
             const next = Math.floor(new Date(time).getTime() / 1000);
             const now = Math.floor(new Date().getTime() / 1000);
             this.timeout = setTimeout(this.checkTitle, (next - now - 5) * 1000);
             if (res.data.current.metadata.artist_name !== null)
               this.artist = res.data.current.metadata.artist_name
-                .replace('&#039;', "'")
-                .replace('amp;', '');
+                .replace("&#039;", "'")
+                .replace("amp;", "");
             this.title = res.data.current.metadata.track_title
-              .replace('&#039;', "'")
-              .replace('amp;', '');
+              .replace("&#039;", "'")
+              .replace("amp;", "");
             this.currentShow = res.data.currentShow[0].name;
           }
         })
@@ -127,12 +124,11 @@ export default {
           clearTimeout(this.timeout);
           this.timeout = null;
         });
-    },
+    }
   },
   mounted() {
     this.checkTitle();
-    this.getLive();
-  },
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -152,7 +148,7 @@ nav {
     position: fixed;
     top: 61px;
     height: 60px;
-    width: ~'calc(100% - 60px)';
+    width: ~"calc(100% - 60px)";
     img {
       cursor: pointer;
       background-color: #fcfcfc;
@@ -185,7 +181,7 @@ nav {
         ._mclink {
           height: 24px;
           width: 24px;
-          background: url('../assets/imgs/sprite.png') 1243px 360px;
+          background: url("../assets/imgs/sprite.png") 1243px 360px;
           background-size: auto auto;
           background-size: 430px;
           right: 63px;
@@ -193,7 +189,7 @@ nav {
         ._iglink {
           height: 24px;
           width: 24px;
-          background: url('../assets/imgs/sprite.png') 974px 355px;
+          background: url("../assets/imgs/sprite.png") 974px 355px;
           background-size: auto auto;
           background-size: 328px;
           right: 28px;
@@ -201,7 +197,7 @@ nav {
         ._fblink {
           height: 24px;
           width: 24px;
-          background: url('../assets/imgs/sprite.png') 903px 338px;
+          background: url("../assets/imgs/sprite.png") 903px 338px;
           background-size: auto auto;
           background-size: 313px;
           right: 0;
@@ -269,7 +265,7 @@ nav {
     #top {
       #links {
         flex-direction: column;
-        width: ~'calc(100% - 143px)';
+        width: ~"calc(100% - 143px)";
       }
       #radio {
         margin-left: 10px;

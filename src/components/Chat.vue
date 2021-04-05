@@ -6,7 +6,7 @@
         src="../assets/imgs/cross_icon.png"
         @click="$parent.chatting = false"
       />
-      <h1>{{ $vuetify.t('$vuetify.chat.title') }}</h1>
+      <h1>{{ $t("chat.title") }}</h1>
       <a href="https:        <svg
           class="anim"
           version="1.0"
@@ -53,18 +53,18 @@
       <span class="lmsg" v-for="(msg, i) in $parent.msgs" v-bind:key="i">
         <span v-if="msg.help">
           <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
-            new Date(msg.ts).toLocaleTimeString('fr', {
-              hour: '2-digit',
-              minute: '2-digit',
+            new Date(msg.ts).toLocaleTimeString("fr", {
+              hour: "2-digit",
+              minute: "2-digit"
             })
           }}</span>
           <span class="lhelp">{{ msg.pseudo }}</span></span
         >
         <span v-else>
           <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
-            new Date(msg.ts).toLocaleTimeString('fr', {
-              hour: '2-digit',
-              minute: '2-digit',
+            new Date(msg.ts).toLocaleTimeString("fr", {
+              hour: "2-digit",
+              minute: "2-digit"
             })
           }}</span>
           <span class="lname">{{ msg.pseudo }}</span></span
@@ -82,7 +82,7 @@
             name="listener"
             v-model="pseudo"
           />
-          <button type="submit">{{ $vuetify.t('$vuetify.chat.send') }}</button>
+          <button type="submit">{{ $t("chat.send") }}</button>
         </section>
         <textarea
           class="inputchat"
@@ -99,37 +99,37 @@
 </template>
 <script>
 export default {
-  name: 'Chat',
+  name: "Chat",
   data() {
     return {
       msgs: [],
-      pseudo: '',
-      message: '',
+      pseudo: "",
+      message: ""
     };
   },
   methods: {
     send_msg() {
-      if (this.message == '' || this.message.length < 2 || this.pseudo == '') {
-        this.message = '';
+      if (this.message == "" || this.message.length < 2 || this.pseudo == "") {
+        this.message = "";
         return;
       }
-      localStorage.setItem('username', this.pseudo);
-      this.$socket.emit('msg', {pseudo: this.pseudo, msg: this.message});
-      this.message = '';
-    },
+      localStorage.setItem("username", this.pseudo);
+      this.$socket.emit("msg", { pseudo: this.pseudo, msg: this.message });
+      this.message = "";
+    }
   },
   mounted() {
-    this.pseudo = localStorage.getItem('username');
+    this.pseudo = localStorage.getItem("username");
     if (this.pseudo === null) {
       const help = {
         ts: new Date(),
-        pseudo: this.$vuetify.t('$vuetify.chat.help'),
-        msg: this.$vuetify.t('$vuetify.chat.help_msg'),
-        help: true,
+        pseudo: this.$t("chat.help"),
+        msg: this.$t("chat.help_msg"),
+        help: true
       };
       this.$parent.msgs.push(help);
     }
-  },
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -138,7 +138,7 @@ export default {
   position: fixed;
   right: 0;
   z-index: 4;
-  height: ~'calc(100% - 61px)';
+  height: ~"calc(100% - 61px)";
   width: 350px;
   border-left: 1px solid white;
   background-color: black;
@@ -202,7 +202,7 @@ export default {
     }
     #pseudo {
       border: 1px solid;
-      width: 150px;
+      width: 145px;
       height: 30px;
       margin-right: 4px;
     }
