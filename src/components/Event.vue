@@ -6,20 +6,20 @@
         <ul>
           <li>
             <p class="time">
-              {{ new Date(Number(e.starts_at)).toLocaleDateString('fr', {}) }}
+              {{ new Date(Number(e.starts_at)).toLocaleDateString("fr", {}) }}
             </p>
             <p class="time">
               {{
-                new Date(Number(e.starts_at)).toLocaleTimeString('fr', {
-                  hour: '2-digit',
-                  minute: '2-digit',
+                new Date(Number(e.starts_at)).toLocaleTimeString("fr", {
+                  hour: "2-digit",
+                  minute: "2-digit"
                 })
               }}
               &rarr;
               {{
-                new Date(Number(e.ends_at)).toLocaleTimeString('fr', {
-                  hour: '2-digit',
-                  minute: '2-digit',
+                new Date(Number(e.ends_at)).toLocaleTimeString("fr", {
+                  hour: "2-digit",
+                  minute: "2-digit"
                 })
               }}
             </p>
@@ -46,44 +46,36 @@
   </section>
 </template>
 <script>
-import gql from 'graphql-tag';
+import graph from "@/graphaxios";
 export default {
-  name: 'Events',
+  name: "Events",
   data() {
     return {
       e: {
-        name: '',
-        genres: [],
-      },
+        name: "",
+        genres: []
+      }
     };
   },
   async mounted() {
-    await this.$apollo
-      .query({
-        query: gql`
-          query Event($id: String!) {
-            Event(id: $id) {
-              name
-              starts_at
-              ends_at
-              genres
-              image
-              facebook
-              description
-            }
-          }
-        `,
-        variables: {
-          id: this.$route.params.id,
-        },
-      })
-      .then(res => {
-        this.e = res.data.Event;
-      })
-      .catch(() => {
-        this.$router.push({path: '/'});
-      });
-  },
+    const res = await graph(
+      "Event",
+      `query Event($id: String!) {
+        Event(id: $id) {
+          name
+          starts_at
+          ends_at
+          genres
+          image
+          facebook
+          description
+        }
+      }`,
+      { id: this.$route.params.id }
+    );
+    if (res.Event) this.e = res.Event;
+    else this.$router.push({ path: "/" });
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -143,7 +135,7 @@ export default {
     .e_body {
       margin-top: 20px;
       .e_img {
-        width: 33.33%;
+        width: 32.98%;
       }
     }
   }

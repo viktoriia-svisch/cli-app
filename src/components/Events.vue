@@ -13,20 +13,18 @@
           <ul>
             <li>
               <p>
+                {{ new Date(Number(e.starts_at)).toLocaleDateString("fr", {}) }}
                 {{
-                  new Date(Number(e.starts_at)).toLocaleDateString('fr', {})
-                }}
-                {{
-                  new Date(Number(e.starts_at)).toLocaleTimeString('fr', {
-                    hour: '2-digit',
-                    minute: '2-digit',
+                  new Date(Number(e.starts_at)).toLocaleTimeString("fr", {
+                    hour: "2-digit",
+                    minute: "2-digit"
                   })
                 }}
                 &rarr;
                 {{
-                  new Date(Number(e.ends_at)).toLocaleTimeString('fr', {
-                    hour: '2-digit',
-                    minute: '2-digit',
+                  new Date(Number(e.ends_at)).toLocaleTimeString("fr", {
+                    hour: "2-digit",
+                    minute: "2-digit"
                   })
                 }}
               </p>
@@ -47,43 +45,41 @@
   </section>
 </template>
 <script>
-import gql from 'graphql-tag';
+import graph from "@/graphaxios";
 export default {
-  name: 'Events',
+  name: "Events",
   data() {
     return {
-      events: [],
+      events: []
     };
   },
   methods: {
     getEvent(id) {
-      this.$router.push({path: `/events/${id}`});
+      this.$router.push({ path: `/events/${id}` });
     },
     async getEvents() {
-      await this.$apollo
-        .query({
-          query: gql`
-            query Events {
-              Events {
-                id
-                name
-                starts_at
-                ends_at
-                genres
-                image
-                facebook
-              }
-            }
-          `,
-        })
-        .then(res => {
-          this.events = res.data.Events;
-        });
-    },
+      const res = await graph(
+        "Events",
+        `query Events { 
+          Events {
+            id
+            name
+            starts_at
+            ends_at
+            genres
+            image
+            facebook
+            __typename
+          }
+        }`,
+        {}
+      );
+      this.events = res.Events;
+    }
   },
-  mounted() {
+  async mounted() {
     this.getEvents();
-  },
+  }
 };
 </script>
 <style lang="less" scoped>

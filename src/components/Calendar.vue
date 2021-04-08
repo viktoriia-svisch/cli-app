@@ -2,7 +2,7 @@
   <section id="cal">
     <h1 id="title">Le Calendrier des emissions</h1>
     <h2>
-      Semaine du <u>{{ week.toLocaleDateString('fr') }}:</u>
+      Semaine du <u>{{ week.toLocaleDateString("fr") }}:</u>
     </h2>
     <article id="flexshows">
       <div class="dowPicker">
@@ -102,18 +102,18 @@
             <u
               >De
               {{
-                new Date(Number(show.starts_at)).toLocaleTimeString('fr-FR', {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  timeZone: 'UTC',
+                new Date(Number(show.starts_at)).toLocaleTimeString("fr-FR", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  timeZone: "UTC"
                 })
               }}
               a
               {{
-                new Date(Number(show.ends_at)).toLocaleTimeString('fr-FR', {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  timeZone: 'UTC',
+                new Date(Number(show.ends_at)).toLocaleTimeString("fr-FR", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  timeZone: "UTC"
                 })
               }}:</u
             >
@@ -129,7 +129,7 @@
             >
             <span v-if="show.redundancy"
               >Toutes les
-              {{ show.redundancy == 1 ? '' : show.redundancy }} semaines</span
+              {{ show.redundancy == 1 ? "" : show.redundancy }} semaines</span
             >
             <span v-else class="once">Emission speciale</span>
           </p>
@@ -139,15 +139,15 @@
   </section>
 </template>
 <script>
-import gql from 'graphql-tag';
+import graph from "@/graphaxios";
 export default {
-  name: 'Calendar',
+  name: "Calendar",
   data() {
     return {
       day_selected: null,
       week: new Date(),
       weekafter: null,
-      checked: '',
+      checked: "",
       shows: [],
       weeks: [
         {
@@ -157,7 +157,7 @@ export default {
           thursday: [],
           friday: [],
           saturday: [],
-          sunday: [],
+          sunday: []
         },
         {
           monday: [],
@@ -166,9 +166,9 @@ export default {
           thursday: [],
           friday: [],
           saturday: [],
-          sunday: [],
-        },
-      ],
+          sunday: []
+        }
+      ]
     };
   },
   methods: {
@@ -187,56 +187,49 @@ export default {
       this.checked = day;
     },
     async getCalendar(date, n) {
-      await this.$apollo
-        .query({
-          query: gql`
-            query Shows($start: String!) {
-              Shows(start: $start) {
-                id
-                name
-                starts_at
-                ends_at
-                redundancy
-                genres
-                dj
-              }
-            }
-          `,
-          variables: {
-            start: date,
-          },
-        })
-        .then(res => {
-          this.shows[n] = res.data.Shows;
-          for (let i = 0; i < res.data.Shows.length; i++) {
-            let e = new Date(Number(res.data.Shows[i].starts_at));
-            switch (e.getDay()) {
-              case 0:
-                this.weeks[n].sunday.push(res.data.Shows[i]);
-                break;
-              case 1:
-                this.weeks[n].monday.push(res.data.Shows[i]);
-                break;
-              case 2:
-                this.weeks[n].tuesday.push(res.data.Shows[i]);
-                break;
-              case 3:
-                this.weeks[n].wednesday.push(res.data.Shows[i]);
-                break;
-              case 4:
-                this.weeks[n].thursday.push(res.data.Shows[i]);
-                break;
-              case 5:
-                this.weeks[n].friday.push(res.data.Shows[i]);
-                break;
-              case 6:
-                this.weeks[n].saturday.push(res.data.Shows[i]);
-                break;
-            }
+      const res = await graph(
+        "Shows",
+        `query Shows($start: String!) {
+          Shows(start: $start) {
+            id
+            name
+            starts_at
+            ends_at
+            redundancy
+            genres
+            dj
           }
-        })
-        .catch();
-    },
+        }`,
+        { start: date }
+      );
+      this.shows[n] = res.Shows;
+      for (let i = 0; i < res.Shows.length; i++) {
+        let e = new Date(Number(res.Shows[i].starts_at));
+        switch (e.getDay()) {
+          case 0:
+            this.weeks[n].sunday.push(res.Shows[i]);
+            break;
+          case 1:
+            this.weeks[n].monday.push(res.Shows[i]);
+            break;
+          case 2:
+            this.weeks[n].tuesday.push(res.Shows[i]);
+            break;
+          case 3:
+            this.weeks[n].wednesday.push(res.Shows[i]);
+            break;
+          case 4:
+            this.weeks[n].thursday.push(res.Shows[i]);
+            break;
+          case 5:
+            this.weeks[n].friday.push(res.Shows[i]);
+            break;
+          case 6:
+            this.weeks[n].saturday.push(res.Shows[i]);
+            break;
+        }
+      }
+    }
   },
   async mounted() {
     this.getMonday(this.week);
@@ -246,13 +239,13 @@ export default {
       1}-${this.week.getDate()}`;
     this.getCalendar(t, 0);
                 const day = new Date()
-      .toLocaleDateString('en', {
-        weekday: 'long',
+      .toLocaleDateString("en", {
+        weekday: "long"
       })
       .toLowerCase();
     this.disp_shows(0, day);
     this.checked = day;
-  },
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -305,7 +298,7 @@ export default {
         text-align: center;
         margin-right: 30px;
         margin-left: 30px;
-        input[type='radio'] {
+        input[type="radio"] {
           display: none;
         }
         label {
@@ -314,7 +307,7 @@ export default {
           color: #a7a7a7;
           cursor: pointer;
         }
-        input[type='radio']:checked ~ label {
+        input[type="radio"]:checked ~ label {
           color: white;
           text-decoration: underline;
         }

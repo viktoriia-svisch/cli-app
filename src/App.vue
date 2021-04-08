@@ -15,47 +15,45 @@
   </main>
 </template>
 <script>
-import gql from 'graphql-tag';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
-import Chat from '@/components/Chat';
+import graph from "@/graphaxios";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
+import Chat from "@/components/Chat";
 export default {
-  name: 'app',
+  name: "app",
   components: {
     NavBar,
     Footer,
-    Chat,
+    Chat
   },
   data() {
     return {
       chatting: false,
       youtube: false,
-      embed: '',
+      embed: "",
       msgs: [],
-      mix: '',
-      mixh: 80,
+      mix: "",
+      mixh: 80
     };
   },
   methods: {
     async getStream() {
-      await this.$apollo
-        .query({
-          query: gql`
-            query {
-              Stream {
-                link
-                embed
-              }
-            }
-          `,
-        })
-        .then(res => {
-          if (res.data.Stream.embed.length) {
-            this.embed = res.data.Stream.embed;
-            this.youtube = true;
+      const res = await graph(
+        null,
+        `{
+          Stream {
+            link
+            embed
+            __typename
           }
-        });
-    },
+        }`,
+        {}
+      );
+      if (res.Stream.embed.length) {
+        this.embed = res.Stream.embed;
+        this.youtube = true;
+      }
+    }
   },
   sockets: {
     listen(msgs) {
@@ -63,15 +61,15 @@ export default {
     },
     msg(message) {
       this.msgs.push(message);
-    },
+    }
   },
   mounted() {
     this.getStream();
-  },
+  }
 };
 </script>
 <style lang="less">
-@import './assets/fonts/fonts.css';
+@import "./assets/fonts/fonts.css";
 body {
   margin: 0;
   background-color: black;

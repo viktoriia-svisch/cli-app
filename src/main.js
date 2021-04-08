@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import VueChatScroll from "vue-chat-scroll";
 import VueSocket from "vue-socket.io";
-import { createProvider } from "./vue-apollo";
 import VueI18n from "vue-i18n";
 import App from "./App.vue";
 import router from "./router";
@@ -27,6 +26,5 @@ Vue.use(
 new Vue({
   i18n,
   render: h => h(App),
-  apolloProvider: createProvider(),
   router
 }).$mount("#app");

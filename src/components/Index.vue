@@ -5,7 +5,7 @@
       <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
     </section>
     <section id="more" v-if="more">
-      <router-link :to="{path: '/podcasts'}" tag="h1" id="more"
+      <router-link :to="{ path: '/podcasts' }" tag="h1" id="more"
         >Voir plus de podcasts</router-link
       >
     </section>
@@ -23,20 +23,18 @@
           <ul>
             <li>
               <p>
+                {{ new Date(Number(e.starts_at)).toLocaleDateString("fr", {}) }}
                 {{
-                  new Date(Number(e.starts_at)).toLocaleDateString('fr', {})
-                }}
-                {{
-                  new Date(Number(e.starts_at)).toLocaleTimeString('fr', {
-                    hour: '2-digit',
-                    minute: '2-digit',
+                  new Date(Number(e.starts_at)).toLocaleTimeString("fr", {
+                    hour: "2-digit",
+                    minute: "2-digit"
                   })
                 }}
                 &rarr;
                 {{
-                  new Date(Number(e.ends_at)).toLocaleTimeString('fr', {
-                    hour: '2-digit',
-                    minute: '2-digit',
+                  new Date(Number(e.ends_at)).toLocaleTimeString("fr", {
+                    hour: "2-digit",
+                    minute: "2-digit"
                   })
                 }}
               </p>
@@ -61,23 +59,22 @@
   </section>
 </template>
 <script>
-import axios from 'axios';
-import gql from 'graphql-tag';
-import Podcast from '@/components/Podcast_Widget';
-import Calendar from '@/components/Calendar';
+import axios from "axios";
+import graph from "@/graphaxios";
+import Podcast from "@/components/Podcast_Widget";
+import Calendar from "@/components/Calendar";
 export default {
-  name: 'Index',
+  name: "Index",
   components: {
     Podcast,
-    Calendar,
+    Calendar
   },
   data() {
     return {
       events: [],
       podcasts: [],
-      shows: [],
-      next: '',
-      more: true,
+      next: "",
+      more: true
     };
   },
   methods: {
@@ -92,56 +89,32 @@ export default {
         .catch();
     },
     getEvent(id) {
-      this.$router.push({path: `/events/${id}`});
+      this.$router.push({ path: `/events/${id}` });
     },
     async getEvents() {
-      await this.$apollo
-        .query({
-          query: gql`
-            query Events {
-              Events {
-                id
-                name
-                starts_at
-                ends_at
-                genres
-                image
-                facebook
-              }
-            }
-          `,
-        })
-        .then(res => {
-          this.events = res.data.Events;
-        });
-    },
-    async getShows() {
-      const res = await this.$apollo.query({
-        query: gql`
-          query today_shows($start: String!) {
-            today_shows(start: $start) {
-              id
-              name
-              starts_at
-              ends_at
-              redundancy
-              genres
-              dj
-            }
+      const res = await graph(
+        "Events",
+        `query Events { 
+          Events {
+            id
+            name
+            starts_at
+            ends_at
+            genres
+            image
+            facebook
+            __typename
           }
-        `,
-        variables: {
-          start: '2019-01-13',
-        },
-      });
-      this.shows = res.data.today_shows;
-    },
+        }`,
+        {}
+      );
+      this.events = res.Events;
+    }
   },
   mounted() {
-    this.next = 'https:    this.getPodcasts();
+    this.next = "https:    this.getPodcasts();
     this.getEvents();
-    this.getShows();
-  },
+  }
 };
 </script>
 <style lang="less" scoped>

@@ -4,7 +4,7 @@
       <section
         class="miximg"
         :style="
-          `background: url(${pod.pictures.extra_large})
+          `background: url(${pod.pictures.large})
 					no-repeat center center; background-size: cover;`
         "
       >
