@@ -1,14 +1,6 @@
 <template>
   <main id="app">
     <NavBar :mix="mix" />
-    <iframe
-      id="youtubelive"
-      v-if="youtube"
-      :src="embed"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
     <router-view class="router" />
     <Chat v-if="chatting" />
     <Footer />

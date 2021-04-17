@@ -1,5 +1,13 @@
 <template>
   <section id="index">
+    <iframe
+      id="youtubelive"
+      v-if="youtube"
+      :src="$parent.embed"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
     <h1 class="subtitle">Les derniers podcasts</h1>
     <section id="podcasts">
       <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
