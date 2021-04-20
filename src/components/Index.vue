@@ -2,7 +2,7 @@
   <section id="index">
     <iframe
       id="youtubelive"
-      v-if="youtube"
+      v-if="$parent.youtube"
       :src="$parent.embed"
       frameborder="0"
       allow="autoplay; encrypted-media"
