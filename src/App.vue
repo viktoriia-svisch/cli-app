@@ -77,7 +77,7 @@ body {
   #youtubelive {
     height: ~"calc(100vh - 77px)";
     margin-top: -87px;
-    margin-left: -30px;
+    margin-left: -27px;
     width: ~"calc(100vw - 5px)";
   }
   .router {
@@ -89,6 +89,9 @@ body {
     }
   }
   @media (max-width: 400px) {
+    #youtubelive {
+      margin-left: 0;
+    }
     .router {
       margin: 240px 4px 0 4px;
     }
