@@ -5,6 +5,7 @@ import Event from "@/components/Event";
 import Events from "@/components/Events";
 import Search from "@/components/Search";
 import Mentions from "@/components/Mentions";
+import Podcast from "@/components/Podcast";
 import Podcasts from "@/components/Podcasts";
 Vue.use(Router);
 export default new Router({
@@ -22,6 +23,10 @@ export default new Router({
     {
       path: "/podcasts",
       component: Podcasts
+    },
+    {
+      path: "/podcasts/:id",
+      component: Podcast,
     },
     {
       path: "/events",

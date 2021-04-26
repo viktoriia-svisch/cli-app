@@ -1,7 +1,14 @@
 <template>
   <main id="app">
-    <NavBar :mix="mix" />
-    <router-view class="router" />
+    <NavBar />
+    <router-view
+      class="router"
+      :style="
+        `margin-top: ${
+          mix.length ? (window > 800 ? 150 : 240) : window > 800 ? 100 : 200
+        }px`
+      "
+    />
     <Chat v-if="chatting" />
     <Footer />
   </main>
@@ -22,6 +29,7 @@ export default {
     return {
       chatting: false,
       youtube: false,
+      window: window.innerWidth,
       embed: "",
       msgs: [],
       mix: "",
@@ -57,6 +65,16 @@ export default {
   },
   mounted() {
     this.getStream();
+    this.$nextTick(() => {
+      window.addEventListener("resize", () => {
+        this.window = window.innerWidth;
+        if (this.window > 800 && this.mix.length) {
+          this.mixh = 45;
+        } else if (this.window <= 800 && this.mix.length) {
+          this.mixh = 80;
+        }
+      });
+    });
   }
 };
 </script>

@@ -12,11 +12,13 @@
       </section>
     </header>
     <ul class="podinfo">
-      <li class="title">{{ pod.name }}</li>
-      <li class="time">{{ Math.floor(pod.audio_length / 60) }} min</li>
+      <li @click="toPodcast(pod.slug)">
+        <span class="title">{{ pod.name }}</span
+        ><br />
+        <span class="time">{{ Math.floor(pod.audio_length / 60) }} min</span>
+      </li>
       <li class="genres">
         <span
-          class="tag"
           v-for="tag in pod.tags"
           v-bind:key="tag.name"
           @click="search(tag.name.toLowerCase())"
@@ -27,28 +29,32 @@
   </section>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'Podcast_Widget',
-  props: ['pod'],
+  name: "Podcast_Widget",
+  props: ["pod"],
   methods: {
+    toPodcast(key) {
+      const tag = key.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      this.$router.push({ path: `/podcasts/${tag}` });
+    },
     async getAudio(key) {
       const res = await axios.get(`${process.env.VUE_APP_API}/mix`, {
-        params: {key: key},
+        params: { key: key }
       });
       this.$parent.$parent.mix = res.data;
       if (window.innerWidth > 800) this.$parent.$parent.mixh = 45;
     },
     search(tag) {
-      if (this.$route.path == '/search') {
+      if (this.$route.path == "/search") {
         this.$parent.searchQuery = tag;
         this.$parent.getGenre();
       } else {
-        localStorage.setItem('tag', tag);
-        this.$router.push({path: '/search'});
+        localStorage.setItem("tag", tag);
+        this.$router.push({ path: "/search" });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -97,6 +103,7 @@ export default {
         padding: 0px 2px 0px 2px;
         color: #ffffff80;
         cursor: pointer;
+        z-index: 1;
         &:hover {
           border: 1px solid white;
         }

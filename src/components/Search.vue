@@ -16,7 +16,7 @@ ce<template>
         type="text"
         v-model="searchQuery"
         @keyup.enter="getGenre"
-        placeholder="tag example: acid, house, reggae"
+        placeholder="tag example: acid, house, lundis"
         :disabled="disabled"
       />
     </header>
@@ -26,45 +26,48 @@ ce<template>
   </section>
 </template>
 <script>
-import axios from 'axios';
-import Podcast from '@/components/Podcast_Widget';
+import axios from "axios";
+import Podcast from "@/components/Podcast_Widget";
 export default {
-  name: 'Search',
+  name: "Search",
   components: {
-    Podcast,
+    Podcast
   },
-  props: ['tag'],
+  props: ["tag"],
   data() {
     return {
-      searchQuery: '',
+      searchQuery: "",
       disabled: false,
       shows: [],
-      next: 'https:    };
+      next: "https:    };
   },
   methods: {
     async getGenre() {
       if (this.searchQuery.length < 2) return;
       this.disabled = true;
       this.shows = [];
-      const reg = new RegExp(this.searchQuery, 'gmi');
+      const reg = new RegExp(this.searchQuery, "gmi");
       const res = await axios.get(this.next);
       this.disabled = false;
       for (let i = 0; i < 100; i++) {
         for (let j = 0; j < res.data.data[i].tags.length; j++)
-          if (res.data.data[i].tags[j].name.match(reg)) {
+          if (
+            res.data.data[i].tags[j].name.match(reg) ||
+            res.data.data[i].name.match(reg)
+          ) {
             this.shows = this.shows.concat(res.data.data[i]);
             break;
           }
       }
-    },
-  },
-  mounted() {
-    if (localStorage.getItem('tag')) {
-      this.searchQuery = localStorage.getItem('tag');
-      localStorage.removeItem('tag');
-      this.getGenre();
     }
   },
+  mounted() {
+    if (localStorage.getItem("tag")) {
+      this.searchQuery = localStorage.getItem("tag");
+      localStorage.removeItem("tag");
+      this.getGenre();
+    }
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -89,7 +92,7 @@ export default {
       color: #edffbc;
       left: 200px;
       bottom: 5px;
-      width: ~'calc(100% - 230px)';
+      width: ~"calc(100% - 230px)";
     }
     svg {
       fill: white;
@@ -112,7 +115,7 @@ export default {
       }
       input {
         left: 150px;
-        width: ~'calc(100% - 190px)';
+        width: ~"calc(100% - 190px)";
       }
     }
   }
@@ -123,7 +126,7 @@ export default {
       }
       input {
         left: 40px;
-        width: ~'calc(100% - 70px)';
+        width: ~"calc(100% - 70px)";
       }
     }
   }

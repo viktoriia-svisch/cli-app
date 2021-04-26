@@ -51,14 +51,9 @@
         <span v-if="!livestream">-</span> {{ title }}</span
       >
     </section>
-    <section id="mix" v-if="mix.length">
-      <article v-html="mix"></article>
-      <img
-        v-if="mix.length"
-        id="closemix"
-        src="../assets/imgs/cross_icon.png"
-        @click="rm_mix"
-      />
+    <section id="mix" v-if="$parent.mix.length">
+      <article v-html="$parent.mix"></article>
+      <img id="closemix" src="../assets/imgs/cross_icon.png" @click="rm_mix" />
     </section>
   </nav>
 </template>
@@ -66,7 +61,6 @@
 import axios from "axios";
 export default {
   name: "NavBar",
-  props: ["mix"],
   data() {
     return {
       isPlaying: false,
@@ -146,7 +140,7 @@ nav {
   }
   #mix {
     position: fixed;
-    top: 61px;
+    top: 60px;
     height: 60px;
     width: ~"calc(100% - 60px)";
     img {
