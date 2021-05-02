@@ -4,9 +4,6 @@
     <div id="backimg">
       <div id="backimg2"></div>
     </div>
-    <article>
-      <img :src="podcast.pictures.extra_large" />
-    </article>
     <header>
       <h1>{{ podcast.name }}</h1>
       <ul>
@@ -21,6 +18,9 @@
       <br />
     </header>
     <span class="listen" @click="getAudio(podcast.key)">▶ ecouter</span>
+    <article>
+      <img :src="podcast.pictures.extra_large" />
+    </article>
     <p>
       {{ podcast.description }}
     </p>
@@ -170,6 +170,62 @@ export default {
       top: 110px;
       z-index: 1;
       height: 600px;
+    }
+  }
+  @media (max-width: 1000px) {
+    margin: 10px;
+    #backimg {
+      display: none;
+    }
+    #background {
+      display: none;
+    }
+    header {
+      position: relative;
+      top: 0;
+      margin-bottom: 10px;
+    }
+    p {
+      width: ~"calc(100% - 50px)";
+      position: relative;
+      top: 0;
+    }
+    article {
+      margin-top: 0px;
+      img {
+        position: relative;
+        top: 10px;
+        left: 10px;
+      }
+    }
+    .listen {
+      position: relative;
+      font-size: 40px;
+      top: 0px;
+    }
+  }
+  @media (max-width: 600px) {
+    border: none;
+    margin: 0;
+    header {
+      ul {
+        flex-wrap: wrap;
+      }
+    }
+    p {
+      width: ~"calc(100% - 30px)";
+      margin-left: 0;
+    }
+    article {
+      img {
+        width: ~"calc(100% - 19px)";
+        height: initial;
+      }
+    }
+    .listen {
+      display: block;
+      width: ~"calc(100% - 35px)";
+      text-align: center;
     }
   }
 }
