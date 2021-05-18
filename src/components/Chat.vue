@@ -81,8 +81,7 @@
             type="text"
             name="listener"
             v-model="pseudo"
-          />
-          <button type="submit">{{ $t("chat.send") }}</button>
+          /><button type="submit">{{ $t("chat.send") }}</button>
         </section>
         <textarea
           class="inputchat"
@@ -202,9 +201,8 @@ export default {
     }
     #pseudo {
       border: 1px solid;
-      width: 145px;
       height: 30px;
-      margin-right: 4px;
+      padding-left: 5px;
     }
     button {
       background-color: white;
@@ -213,7 +211,7 @@ export default {
       cursor: pointer;
       bottom: 45px;
       right: 12px;
-      width: 172px;
+      width: 118px;
       height: 34px;
     }
     #message {
