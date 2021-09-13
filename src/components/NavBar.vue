@@ -8,7 +8,7 @@
         <span class="play">{{ icon }}</span>
         <span class="title">{{ currentShow }}</span>
       </article>
-      <audio ref="audioElm" :src="src"></audio>
+      <audio ref="audioElm" :src="src" preload="none"></audio>
       <article id="links">
         <router-link :to="{ path: '/' }">Accueil</router-link>
         <router-link :to="{ path: '/events' }">Evenements</router-link>
@@ -85,6 +85,7 @@ export default {
         this.icon = "■";
         this.isPlaying = true;
       } else {
+        this.$refs.audioElm.src = "";
         this.$refs.audioElm.pause();
         this.isPlaying = false;
         this.icon = "▶";
