@@ -19,7 +19,7 @@
     </header>
     <span class="listen" @click="getAudio(podcast.key)">▶ ecouter</span>
     <article>
-      <img :src="podcast.pictures.extra_large" />
+      <img v-if="podcast.pictures" :src="podcast.pictures.extra_large" />
     </article>
     <p>
       {{ podcast.description }}
@@ -91,7 +91,7 @@ export default {
       background-color: black;
       width: 82px;
       height: 644px;
-      top: 10px;
+      top: 8px;
     }
   }
   #background {

@@ -1,15 +1,8 @@
 <template>
   <section class="podcast">
     <header @click="getAudio(pod.key)">
-      <section
-        class="miximg"
-        :style="
-          `background: url(${pod.pictures.large})
-					no-repeat center center; background-size: cover;`
-        "
-      >
-        <img class="play_mix" src="../assets/imgs/play_icon.png" />
-      </section>
+      <img :src="podImage" class="miximg" />
+      <img class="play_mix" src="../assets/imgs/play_icon.png" />
     </header>
     <ul class="podinfo">
       <li @click="toPodcast(pod.slug)">
@@ -33,9 +26,16 @@ import axios from "axios";
 export default {
   name: "Podcast_Widget",
   props: ["pod"],
+  data() {
+    return {
+      observer: null,
+      podImage: "",
+      intersect: false
+    };
+  },
   methods: {
     toPodcast(key) {
-      const tag = key.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      const tag = key.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       this.$router.push({ path: `/podcasts/${tag}` });
     },
     async getAudio(key) {
@@ -54,6 +54,25 @@ export default {
         this.$router.push({ path: "/search" });
       }
     }
+  },
+  mounted() {
+    this.podImage = this.pod.pictures.thumbnail;
+    this.observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        const img = new Image();
+        const src = this.pod.pictures.large;
+        img.onload = () => {
+          this.podImage = src;
+          this.intersect = true;
+        };
+        img.src = src;
+        this.observer.disconnect();
+      }
+    }, {});
+    this.observer.observe(this.$el);
+  },
+  destroyed() {
+    this.observer.disconnect();
   }
 };
 </script>
@@ -63,9 +82,11 @@ export default {
   margin-left: 4px;
   margin-right: 4px;
   cursor: pointer;
+  border: 1px solid #ffffff80;
+  margin-bottom: 10px;
   &:hover {
+    border: 1px solid white;
     .podinfo {
-      border: 1px solid white;
       .genres {
         span {
           color: white;
@@ -83,8 +104,8 @@ export default {
     list-style-type: none;
     padding-left: 5px;
     padding-bottom: 5px;
-    border: 1px solid #ffffff80;
     margin-top: 0px;
+    margin-bottom: 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -111,19 +132,22 @@ export default {
     }
   }
   header {
+    position: relative;
+    height: 300px;
+    width: 400px;
+    overflow: hidden;
     .miximg {
-      height: 300px;
+      height: 400px;
       width: 400px;
-      position: relative;
       z-index: -1;
       opacity: 0.7;
-      .play_mix {
-        position: absolute;
-        bottom: 43%;
-        left: 43%;
-        height: 18%;
-        transform: rotate(90deg);
-      }
+    }
+    .play_mix {
+      position: absolute;
+      bottom: 43%;
+      left: 43%;
+      height: 18%;
+      transform: rotate(90deg);
     }
   }
   @media (max-width: 400px) {
