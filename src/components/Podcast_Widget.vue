@@ -1,7 +1,11 @@
 <template>
   <section class="podcast">
     <header @click="getAudio(pod.key)">
-      <img :src="podImage" class="miximg" />
+      <img
+        :src="podImage"
+        class="miximg"
+        :class="{ blurred: !intersect, noblurred: intersect }"
+      />
       <img class="play_mix" src="../assets/imgs/play_icon.png" />
     </header>
     <ul class="podinfo">
@@ -68,7 +72,7 @@ export default {
         img.src = src;
         this.observer.disconnect();
       }
-    }, {});
+    });
     this.observer.observe(this.$el);
   },
   destroyed() {
@@ -136,6 +140,12 @@ export default {
     height: 300px;
     width: 400px;
     overflow: hidden;
+    .blurred {
+      filter: blur(2px);
+    }
+    .noblurred {
+      transition: all 0.8s;
+    }
     .miximg {
       height: 400px;
       width: 400px;

@@ -19,7 +19,7 @@
     </header>
     <span class="listen" @click="getAudio(podcast.key)">▶ ecouter</span>
     <article>
-      <img v-if="podcast.pictures" :src="podcast.pictures.extra_large" />
+      <img :src="pic" :class="{ blurred: isBlurred, noblurred: !isBlurred }" />
     </article>
     <p>
       {{ podcast.description }}
@@ -33,7 +33,9 @@ export default {
   data() {
     return {
       key: "",
-      podcast: {}
+      podcast: {},
+      pic: "",
+      isBlurred: true
     };
   },
   methods: {
@@ -58,6 +60,14 @@ export default {
         .get(`${process.env.VUE_APP_API}/mix/${this.key}`)
         .then(res => {
           this.podcast = res.data;
+          this.pic = this.podcast.pictures.medium;
+          const img = new Image();
+          const src = this.podcast.pictures.extra_large;
+          img.onload = () => {
+            this.pic = src;
+            this.isBlurred = false;
+          };
+          img.src = src;
         })
         .catch(() => {
           this.$router.push({ path: "/" });
@@ -170,6 +180,12 @@ export default {
       top: 110px;
       z-index: 1;
       height: 600px;
+    }
+    .blurred {
+      filter: blur(2px);
+    }
+    .noblurred {
+      transition: all 1s;
     }
   }
   @media (max-width: 1000px) {
