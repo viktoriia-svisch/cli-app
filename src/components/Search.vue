@@ -1,4 +1,4 @@
-ce<template>
+<template>
   <section id="search">
     <header>
       <svg
@@ -23,6 +23,7 @@ ce<template>
     <section id="podcasts">
       <Podcast v-for="pod in shows" v-bind:key="pod.key" :pod="pod" />
     </section>
+    <section id="trackd"></section>
   </section>
 </template>
 <script>
@@ -39,17 +40,27 @@ export default {
       searchQuery: "",
       disabled: false,
       shows: [],
-      next: "https:    };
+      observer: null,
+      base: "https:      next: ""
+    };
   },
   methods: {
     async getGenre() {
-      if (this.searchQuery.length < 2) return;
-      this.disabled = true;
       this.shows = [];
+      console.log(this.shows);
+      this.next = this.base;
+      await this.getGenreRec();
+      this.observer.observe(this.$el.childNodes[4]);
+    },
+    async getGenreRec() {
+      console.log(this.next);
+      if (this.searchQuery.length < 2 || !this.next) return;
+      this.disabled = true;
       const reg = new RegExp(this.searchQuery, "gmi");
       const res = await axios.get(this.next);
       this.disabled = false;
-      for (let i = 0; i < 100; i++) {
+      this.next = res.data.paging.next;
+      for (let i = 0; i < res.data.data.length; i++) {
         for (let j = 0; j < res.data.data[i].tags.length; j++)
           if (
             res.data.data[i].tags[j].name.match(reg) ||
@@ -67,6 +78,16 @@ export default {
       localStorage.removeItem("tag");
       this.getGenre();
     }
+    this.observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!this.next) this.observer.unobserve(this.$el.childNodes[4]);
+        else this.getGenreRec();
+      });
+    });
+    this.observer.observe(this.$el.childNodes[4]);
+  },
+  destroyed() {
+    this.observer.disconnect();
   }
 };
 </script>

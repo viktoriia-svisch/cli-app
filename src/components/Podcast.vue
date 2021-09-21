@@ -185,7 +185,7 @@ export default {
       filter: blur(2px);
     }
     .noblurred {
-      transition: all 1s;
+      transition: all 0.2s;
     }
   }
   @media (max-width: 1000px) {

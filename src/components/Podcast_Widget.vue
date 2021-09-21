@@ -144,7 +144,7 @@ export default {
       filter: blur(2px);
     }
     .noblurred {
-      transition: all 0.8s;
+      transition: all 0.2s;
     }
     .miximg {
       height: 400px;
