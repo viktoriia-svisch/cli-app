@@ -46,14 +46,12 @@ export default {
   },
   methods: {
     async getGenre() {
-      this.shows = [];
-      console.log(this.shows);
       this.next = this.base;
-      await this.getGenreRec();
-      this.observer.observe(this.$el.childNodes[4]);
+      this.shows = await this.getGenreRec();
     },
     async getGenreRec() {
-      console.log(this.next);
+      this.observer.unobserve(this.$el.childNodes[4]);
+      let result = [];
       if (this.searchQuery.length < 2 || !this.next) return;
       this.disabled = true;
       const reg = new RegExp(this.searchQuery, "gmi");
@@ -66,25 +64,28 @@ export default {
             res.data.data[i].tags[j].name.match(reg) ||
             res.data.data[i].name.match(reg)
           ) {
-            this.shows = this.shows.concat(res.data.data[i]);
+            result = result.concat(res.data.data[i]);
             break;
           }
       }
+      this.observer.observe(this.$el.childNodes[4]);
+      return result;
     }
   },
   mounted() {
+    this.observer = new IntersectionObserver(entries => {
+      entries.forEach(async entry => {
+        if (!this.next) this.observer.unobserve(this.$el.childNodes[4]);
+        else if (entry.isIntersecting) {
+          this.shows = this.shows.concat(await this.getGenreRec());
+        }
+      });
+    });
     if (localStorage.getItem("tag")) {
       this.searchQuery = localStorage.getItem("tag");
       localStorage.removeItem("tag");
       this.getGenre();
     }
-    this.observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!this.next) this.observer.unobserve(this.$el.childNodes[4]);
-        else this.getGenreRec();
-      });
-    });
-    this.observer.observe(this.$el.childNodes[4]);
   },
   destroyed() {
     this.observer.disconnect();
