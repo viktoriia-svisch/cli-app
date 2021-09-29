@@ -7,24 +7,24 @@
         @click="$parent.chatting = false"
       />
       <h1>{{ $t("chat.title") }}</h1>
-      <a href="https:        <svg
-          class="anim"
-          version="1.0"
-          xmlns="http:          width="157.000000pt"
-          height="167.000000pt"
-          viewBox="0 0 157.000000
+      <svg
+        class="anim"
+        version="1.0"
+        xmlns="http:        width="157.000000pt"
+        height="167.000000pt"
+        viewBox="0 0 157.000000
             167.000000"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <g
-            transform="translate(0.000000,167.000000)
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <g
+          transform="translate(0.000000,167.000000)
 			scale(0.100000,-0.100000)"
-            stroke="none"
-            style="stroke-width: 20;stroke: white;stroke-dashoffset:24px;"
-            fill="white"
-          >
-            <path
-              d="M153 1570 c-42 -17 -43 -95 -2 -180 24 -50 84 -153 110
+          stroke="none"
+          style="stroke-width: 20;stroke: white;stroke-dashoffset:24px;"
+          fill="white"
+        >
+          <path
+            d="M153 1570 c-42 -17 -43 -95 -2 -180 24 -50 84 -153 110
 			-188 17 -22 16 -25 -15
 			-76 -70 -117 -100 -279 -76 -412 32 -180 161 -348 325 -425 106 -50 175
 			-63 295 -56 91 6 145 19 219 53 32 16 34 15 65 -13 17 -17 38 -35 46
@@ -44,10 +44,9 @@
 			20 -26 20 -36 0 -10 4 -20 9 -23 11 -7 35 -95 28 -102 -10 -11 -111 50 -199 121
 			l-87 69 36 31 c21 16 48 42
 			62 58 13 15 28 27 33 27 4 0 24 -25 43 -55z"
-            ></path>
-          </g>
-        </svg>
-      </a>
+          ></path>
+        </g>
+      </svg>
     </header>
     <section id="msg" v-chat-scroll>
       <span class="lmsg" v-for="(msg, i) in $parent.msgs" v-bind:key="i">
@@ -194,7 +193,7 @@ export default {
     }
   }
   #send {
-    width: 330px;
+    width: 340px;
     margin: 5px auto;
     .flexing {
       margin-bottom: 3px;
@@ -213,6 +212,7 @@ export default {
       right: 12px;
       width: 118px;
       height: 34px;
+      margin-left: 9px;
     }
     #message {
       width: 327px;

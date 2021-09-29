@@ -165,20 +165,18 @@ export default {
     margin-left: 0;
     margin-right: 0;
     header {
+      height: ~"calc(100vw - 8px)";
       .miximg {
-        width: 100%;
-        height: 250px;
+        width: ~"calc(100vw - 8px)";
+        height: ~"calc(100vw - 8px)";
+      }
+      .play_mix {
+        bottom: 40vw;
+        left: 41vw;
       }
     }
     .podinfo {
       height: initial;
-    }
-  }
-  @media (max-width: 250px) {
-    header {
-      .miximg {
-        height: 150px;
-      }
     }
   }
 }
