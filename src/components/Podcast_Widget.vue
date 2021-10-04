@@ -166,6 +166,7 @@ export default {
     margin-right: 0;
     header {
       height: ~"calc(100vw - 8px)";
+      width: 100%;
       .miximg {
         width: ~"calc(100vw - 8px)";
         height: ~"calc(100vw - 8px)";
