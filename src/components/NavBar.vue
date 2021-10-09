@@ -104,7 +104,10 @@ export default {
             const time = res.data.current.ends.replace(" ", "T");
             const next = Math.floor(new Date(time).getTime() / 1000);
             const now = Math.floor(new Date().getTime() / 1000);
-            this.timeout = setTimeout(this.checkTitle, (next - now - 5) * 1000);
+            this.timeout = setTimeout(
+              this.checkTitle,
+              (next - now - 5 + 3600) * 1000
+            );
             if (res.data.current.metadata.artist_name !== null)
               this.artist = res.data.current.metadata.artist_name
                 .replace("&#039;", "'")
