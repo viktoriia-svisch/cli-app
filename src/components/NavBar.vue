@@ -95,9 +95,19 @@ export default {
       axios
         .get("https:        .then(res => {
           if (res.data.current.type == "livestream") {
+            const t_shows = JSON.parse(localStorage.getItem("today_shows"));
+            let show = false;
+            console.log(t_shows);
+            for (let i = 0; i < t_shows.length; i++)
+              if (
+                Number(t_shows[i].starts_at) - 3600000 < new Date().getTime() &&
+                Number(t_shows[i].ends_at) > new Date().getTime()
+              ) {
+                this.title = `                show = true;
+              }
             this.livestream = true;
             this.artist = "Live Radio";
-            this.title = "";
+            if (!show) this.title = "";
             this.timeout = setTimeout(this.checkTitle, 15 * 60000);
           } else {
             this.livestream = false;

@@ -237,7 +237,7 @@ export default {
     this.getNextMonday(this.weekafter);
     const t = `${this.week.getFullYear()}-${this.week.getMonth() +
       1}-${this.week.getDate()}`;
-    this.getCalendar(t, 0);
+    await this.getCalendar(t, 0);
                 const day = new Date()
       .toLocaleDateString("en", {
         weekday: "long"
@@ -245,6 +245,7 @@ export default {
       .toLowerCase();
     this.disp_shows(0, day);
     this.checked = day;
+    localStorage.setItem("today_shows", JSON.stringify(this.weeks[0][day]));
   }
 };
 </script>
