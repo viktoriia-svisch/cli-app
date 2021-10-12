@@ -47,8 +47,8 @@
     </section>
     <section id="bottom">
       <span
-        ><span class="reddot" v-if="livestream">• </span>{{ artist }}
-        <span v-if="!livestream">-</span> {{ title }}</span
+        ><span class="reddot" v-if="livestream">• </span>
+        <span v-if="livestream">Live         }}<span v-if="!livestream">-</span>{{ title }}</span
       >
     </section>
     <section id="mix" v-if="$parent.mix.length">
@@ -103,10 +103,10 @@ export default {
                 Number(t_shows[i].starts_at) - 3600000 < new Date().getTime() &&
                 Number(t_shows[i].ends_at) > new Date().getTime()
               ) {
-                this.title = `                show = true;
+                this.artist = t_shows[i].dj;
+                this.title = `                 show = true;
               }
             this.livestream = true;
-            this.artist = "Live Radio";
             if (!show) this.title = "";
             this.timeout = setTimeout(this.checkTitle, 15 * 60000);
           } else {
