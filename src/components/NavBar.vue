@@ -48,7 +48,7 @@
     <section id="bottom">
       <span
         ><span class="reddot" v-if="livestream">• </span>
-        <span v-if="livestream">Live         }}<span v-if="!livestream">-</span>{{ title }}</span
+        <span v-if="livestream">Live         }}<span v-if="!livestream">- </span>{{ title }}</span
       >
     </section>
     <section id="mix" v-if="$parent.mix.length">
