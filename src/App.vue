@@ -32,7 +32,9 @@ export default {
       window: window.innerWidth,
       embed: "",
       msgs: [],
+      newmsg: false,
       mix: "",
+      ding: new Audio(require("@/assets/sounds/light.mp3")),
       mixh: 80
     };
   },
@@ -61,9 +63,20 @@ export default {
     },
     msg(message) {
       this.msgs.push(message);
+      if (
+        message.pseudo != localStorage.getItem("username") &&
+        !this.chatting
+      ) {
+        this.ding.play();
+        this.newmsg = true;
+        setTimeout(() => {
+          this.newmsg = false;
+        }, 5000);
+      }
     }
   },
   mounted() {
+    this.ding.volume = 0.3;
     this.getStream();
     this.$nextTick(() => {
       window.addEventListener("resize", () => {

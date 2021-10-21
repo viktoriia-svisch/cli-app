@@ -19,6 +19,7 @@
         <svg
           @click="$parent.chatting = !$parent.chatting"
           class="chaticon unselect"
+          :class="$parent.newmsg ? 'shaking' : ''"
           xmlns="http:          xmlns:xlink="http:          viewBox="0 0 16 16"
           version="1.1"
         >
@@ -97,7 +98,6 @@ export default {
           if (res.data.current.type == "livestream") {
             const t_shows = JSON.parse(localStorage.getItem("today_shows"));
             let show = false;
-            console.log(t_shows);
             for (let i = 0; i < t_shows.length; i++)
               if (
                 Number(t_shows[i].starts_at) - 3600000 < new Date().getTime() &&
@@ -107,7 +107,7 @@ export default {
                 this.title = `                 show = true;
               }
             this.livestream = true;
-            if (!show) this.title = "";
+            if (!show) this.title = "Tune In";
             this.timeout = setTimeout(this.checkTitle, 15 * 60000);
           } else {
             this.livestream = false;
@@ -146,7 +146,7 @@ nav {
   position: fixed;
   background-color: black;
   top: 0px;
-  z-index: 3;
+  z-index: 5;
   .right {
     right: 0;
     margin-right: 5px;
@@ -173,6 +173,9 @@ nav {
     display: flex;
     padding-top: 10px;
     #more {
+      .shaking {
+        animation: shake 0.5s infinite;
+      }
       .chaticon {
         position: absolute;
         fill: white;
@@ -314,6 +317,41 @@ nav {
         }
       }
     }
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translate(2px, 0px);
+  }
+  10% {
+    transform: translate(-2px, 0px);
+  }
+  20% {
+    transform: translate(0px, 0px);
+  }
+  30% {
+    transform: translate(0px, 0px);
+  }
+  40% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(0px, 0px);
+  }
+  60% {
+    transform: translate(0px, 0px);
+  }
+  70% {
+    transform: translate(0px, 0px);
+  }
+  80% {
+    transform: translate(0px, 0px);
+  }
+  90% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
   }
 }
 </style>
