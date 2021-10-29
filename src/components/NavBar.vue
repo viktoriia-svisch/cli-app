@@ -100,7 +100,7 @@ export default {
             let show = false;
             for (let i = 0; i < t_shows.length; i++)
               if (
-                Number(t_shows[i].starts_at) - 3600000 < new Date().getTime() &&
+                Number(t_shows[i].starts_at) < new Date().getTime() &&
                 Number(t_shows[i].ends_at) > new Date().getTime()
               ) {
                 this.artist = t_shows[i].dj;
@@ -112,12 +112,11 @@ export default {
           } else {
             this.livestream = false;
             const time = res.data.current.ends.replace(" ", "T");
-            const next = Math.floor(new Date(time).getTime() / 1000);
-            const now = Math.floor(new Date().getTime() / 1000);
-            this.timeout = setTimeout(
-              this.checkTitle,
-              (next - now - 5 + 3600) * 1000
-            );
+            let next = new Date(time);
+            next = next.getMinutes() * 60 + next.getSeconds();
+            let now = new Date();
+            now = now.getMinutes() * 60 + now.getSeconds();
+            this.timeout = setTimeout(this.checkTitle, (next - now - 5) * 1000);
             if (res.data.current.metadata.artist_name !== null)
               this.artist = res.data.current.metadata.artist_name
                 .replace("&#039;", "'")
