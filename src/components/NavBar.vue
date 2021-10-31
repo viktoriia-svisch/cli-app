@@ -116,7 +116,10 @@ export default {
             next = next.getMinutes() * 60 + next.getSeconds();
             let now = new Date();
             now = now.getMinutes() * 60 + now.getSeconds();
-            this.timeout = setTimeout(this.checkTitle, (next - now - 5) * 1000);
+            this.timeout = setTimeout(
+              this.checkTitle,
+              ((next < 10 ? now + 20 : next) - now - 5) * 1000
+            );
             if (res.data.current.metadata.artist_name !== null)
               this.artist = res.data.current.metadata.artist_name
                 .replace("&#039;", "'")

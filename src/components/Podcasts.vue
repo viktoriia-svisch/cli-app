@@ -48,6 +48,7 @@ export default {
     font-size: 40px;
   }
   #more {
+    margin-top: 14px;
     text-align: center;
     h1 {
       border: 3px solid #ffffff80;
@@ -64,10 +65,15 @@ export default {
     }
   }
   #podcasts {
-    display: flex;
-    flex-flow: wrap;
-    width: 100%;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(auto, auto);
+  }
+  @media (max-width: 400px) {
+    #podcasts {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
 </style>

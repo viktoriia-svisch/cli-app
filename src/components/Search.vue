@@ -123,11 +123,12 @@ export default {
     }
   }
   #podcasts {
-    display: flex;
-    flex-flow: wrap;
     width: 100%;
-    justify-content: center;
     margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(auto, auto);
   }
   @media (max-width: 700px) {
     header {
@@ -139,6 +140,11 @@ export default {
         left: 150px;
         width: ~"calc(100% - 190px)";
       }
+    }
+  }
+  @media (max-width: 400px) {
+    #podcasts {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
   @media (max-width: 400px) {

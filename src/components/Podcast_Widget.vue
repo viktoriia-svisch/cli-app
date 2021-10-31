@@ -82,12 +82,8 @@ export default {
 </script>
 <style lang="less" scoped>
 .podcast {
-  width: 400px;
-  margin-left: 4px;
-  margin-right: 4px;
   cursor: pointer;
   border: 1px solid #ffffff80;
-  margin-bottom: 10px;
   &:hover {
     border: 1px solid white;
     .podinfo {
@@ -113,7 +109,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 131px;
     .title {
     }
     .time {
@@ -137,8 +132,6 @@ export default {
   }
   header {
     position: relative;
-    height: 300px;
-    width: 400px;
     overflow: hidden;
     .blurred {
       filter: blur(2px);
@@ -147,10 +140,9 @@ export default {
       transition: all 0.2s;
     }
     .miximg {
-      height: 400px;
-      width: 400px;
       z-index: -1;
       opacity: 0.7;
+      width: 100%;
     }
     .play_mix {
       position: absolute;
@@ -161,7 +153,7 @@ export default {
     }
   }
   @media (max-width: 400px) {
-    width: 100%;
+    width: ~"calc(100% - 4px)";
     margin-left: 0;
     margin-right: 0;
     header {
