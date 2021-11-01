@@ -200,12 +200,6 @@ export default {
       }
     }
   }
-  #podcasts {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(auto, auto);
-  }
   #events {
     display: flex;
     flex-flow: wrap;

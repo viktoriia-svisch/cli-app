@@ -64,12 +64,6 @@ export default {
       }
     }
   }
-  #podcasts {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(auto, auto);
-  }
   @media (max-width: 400px) {
     #podcasts {
       grid-template-columns: repeat(1, 1fr);

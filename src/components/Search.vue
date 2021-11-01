@@ -125,10 +125,6 @@ export default {
   #podcasts {
     width: 100%;
     margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(auto, auto);
   }
   @media (max-width: 700px) {
     header {

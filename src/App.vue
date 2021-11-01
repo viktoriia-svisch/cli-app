@@ -102,6 +102,14 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: white;
   }
+  #podcasts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(auto, auto);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
   iframe {
     height: 60px;
   }
