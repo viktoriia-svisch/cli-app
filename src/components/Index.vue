@@ -17,7 +17,6 @@
         >Voir plus de podcasts</router-link
       >
     </section>
-    <Calendar />
     <h1 class="subtitle" v-if="events.length">Les prochains evenements</h1>
     <article id="events">
       <section
