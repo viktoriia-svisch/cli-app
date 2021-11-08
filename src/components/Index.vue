@@ -284,6 +284,11 @@ export default {
       }
     }
   }
+  @media (max-width: 700px) {
+    #podcasts {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   @media (max-width: 400px) {
     #podcasts {
       grid-template-columns: repeat(1, 1fr);

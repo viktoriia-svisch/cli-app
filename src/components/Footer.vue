@@ -28,7 +28,7 @@ footer {
   left: 0;
   display: flex;
   justify-content: center;
-  padding-top: 10px;
+  padding-top: 5px;
   background-color: black;
   border-top: 1px solid #ffffff80;
   .links {
@@ -44,6 +44,12 @@ footer {
   }
   .moto {
     margin-left: 12px;
+  }
+  @media (max-width: 700px) {
+    .links {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
   }
 }
 </style>

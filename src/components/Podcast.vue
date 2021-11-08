@@ -159,6 +159,7 @@ export default {
     }
   }
   .listen {
+    background-color: black;
     position: absolute;
     top: 150px;
     left: 10px;
@@ -212,6 +213,8 @@ export default {
         position: relative;
         top: 10px;
         left: 10px;
+        width: ~"calc(100% - 20px)";
+        height: ~"calc(100% - 20px)";
       }
     }
     .listen {
