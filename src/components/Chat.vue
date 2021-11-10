@@ -126,6 +126,7 @@ export default {
         help: true
       };
       this.$parent.msgs.push(help);
+      localStorage.setItem("username", "");
     }
   }
 };

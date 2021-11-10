@@ -77,7 +77,7 @@ export default {
       this.events = res.Events;
     }
   },
-  async mounted() {
+  mounted() {
     this.getEvents();
   }
 };
