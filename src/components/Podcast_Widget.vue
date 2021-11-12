@@ -10,9 +10,7 @@
     </header>
     <ul class="podinfo">
       <li @click="toPodcast(pod.slug)">
-        <span class="title">{{ pod.name }}</span
-        ><br />
-        <span class="time">{{ Math.floor(pod.audio_length / 60) }} min</span>
+        <span class="title">{{ pod.name }}</span>
       </li>
       <li class="genres">
         <span
@@ -21,6 +19,9 @@
           @click="search(tag.name.toLowerCase())"
           >{{ tag.name.toLowerCase() }}
         </span>
+      </li>
+      <li>
+        <span class="time">{{ pod.audio_length }}</span>
       </li>
     </ul>
   </section>
@@ -60,6 +61,11 @@ export default {
     }
   },
   mounted() {
+    const time = Math.floor(this.pod.audio_length / 60);
+    let minutes = Math.floor(time % 60);
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    this.pod.audio_length =
+      time < 60 ? `${minutes}min` : `${Math.floor(time / 60)}h ${minutes}min`;
     this.podImage = this.pod.pictures.thumbnail;
     this.observer = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
@@ -82,7 +88,6 @@ export default {
 </script>
 <style lang="less" scoped>
 .podcast {
-  cursor: pointer;
   border: 1px solid #ffffff80;
   &:hover {
     border: 1px solid white;
@@ -110,6 +115,13 @@ export default {
     flex-direction: column;
     justify-content: space-around;
     .title {
+      cursor: pointer;
+      display: block;
+      margin-right: 5px;
+      &:hover {
+        background-color: white;
+        color: black;
+      }
     }
     .time {
       color: #ffffff80;
@@ -142,7 +154,11 @@ export default {
     .miximg {
       z-index: -1;
       opacity: 0.7;
-      width: 100%;
+      width: ~"calc(100% - 10px)";
+      height: ~"calc(100% - 10px)";
+      margin-top: 5px;
+      margin-left: 5px;
+      cursor: pointer;
     }
     .play_mix {
       position: absolute;
