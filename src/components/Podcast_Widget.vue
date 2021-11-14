@@ -9,8 +9,9 @@
       <img class="play_mix" src="../assets/imgs/play_icon.png" />
     </header>
     <ul class="podinfo">
-      <li @click="toPodcast(pod.slug)">
+      <li class="lititle" @click="toPodcast(pod.slug)">
         <span class="title">{{ pod.name }}</span>
+        <span class="time">{{ pod.audio_length }}</span>
       </li>
       <li class="genres">
         <span
@@ -19,9 +20,6 @@
           @click="search(tag.name.toLowerCase())"
           >{{ tag.name.toLowerCase() }}
         </span>
-      </li>
-      <li>
-        <span class="time">{{ pod.audio_length }}</span>
       </li>
     </ul>
   </section>
@@ -98,11 +96,6 @@ export default {
         }
       }
     }
-    header {
-      .miximg {
-        opacity: 1;
-      }
-    }
   }
   .podinfo {
     font-family: SpaceMonoBold;
@@ -114,17 +107,26 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    .title {
+    .lititle {
       cursor: pointer;
-      display: block;
-      margin-right: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      .title {
+        display: block;
+      }
+      .time {
+        color: #ffffff80;
+      }
       &:hover {
         background-color: white;
-        color: black;
+        margin-right: 5px;
+        .title {
+          color: black;
+        }
+        .time {
+          color: #00000080;
+        }
       }
-    }
-    .time {
-      color: #ffffff80;
     }
     .genres {
       display: flex;
@@ -153,7 +155,7 @@ export default {
     }
     .miximg {
       z-index: -1;
-      opacity: 0.7;
+      opacity: 1;
       width: ~"calc(100% - 10px)";
       height: ~"calc(100% - 10px)";
       margin-top: 5px;
@@ -161,11 +163,21 @@ export default {
       cursor: pointer;
     }
     .play_mix {
+      display: none;
       position: absolute;
       bottom: 43%;
       left: 43%;
       height: 18%;
       transform: rotate(90deg);
+      cursor: pointer;
+    }
+    &:hover {
+      .miximg {
+        opacity: 0.3;
+      }
+      .play_mix {
+        display: initial;
+      }
     }
   }
   @media (max-width: 400px) {
