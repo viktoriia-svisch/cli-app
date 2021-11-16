@@ -1,9 +1,9 @@
 <template>
   <nav>
     <section id="top">
-      <router-link :to="{ path: '/' }"
-        ><img id="logo" :width="$parent.mixh" src="../assets/imgs/odc.jpg"
-      /></router-link>
+      <router-link :to="{ path: '/' }">
+        <img id="logo" :width="$parent.mixh" :src="$parent.logo" />
+      </router-link>
       <article id="radio" @click="play">
         <span class="play">{{ icon }}</span>
         <span class="title">{{ currentShow }}</span>

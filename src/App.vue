@@ -30,6 +30,7 @@ export default {
       chatting: false,
       youtube: false,
       window: window.innerWidth,
+      logo: require("./assets/imgs/odc.jpg"),
       embed: "",
       msgs: [],
       newmsg: false,
