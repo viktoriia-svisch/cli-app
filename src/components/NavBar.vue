@@ -2,12 +2,24 @@
   <nav>
     <section id="top">
       <router-link :to="{ path: '/' }">
-        <img id="logo" :width="$parent.mixh" :src="$parent.logo" />
+        <img id="logo" :src="$parent.logo" />
       </router-link>
-      <article id="radio" @click="play">
+      <article
+        class="pcplayer"
+        ref="player"
+        id="radio"
+        :class="loading ? 'blocked' : ''"
+        @click="play"
+      >
         <span class="play">{{ icon }}</span>
-        <span class="title">{{ currentShow }}</span>
+        <span class="title">{{ $parent.currentShow }}</span>
       </article>
+      <img
+        v-if="$parent.mix"
+        class="close_mix pcplayer"
+        src="../assets/imgs/cross_icon.png"
+        @click="rm_mix"
+      />
       <audio ref="audioElm" :src="src" preload="none"></audio>
       <article id="links">
         <router-link :to="{ path: '/' }">Accueil</router-link>
@@ -46,15 +58,29 @@
         </a>
       </article>
     </section>
-    <section id="bottom">
+    <section class="bottom bplayer">
+      <article
+        ref="player"
+        id="radio"
+        :class="loading ? 'blocked' : ''"
+        @click="play"
+      >
+        <span class="play">{{ icon }}</span>
+        <span class="title">{{ $parent.currentShow }}</span>
+      </article>
+      <img
+        v-if="$parent.mix"
+        class="close_mix"
+        src="../assets/imgs/cross_icon.png"
+        @click="rm_mix"
+      />
+    </section>
+    <section class="bottom bplaying">
       <span
         ><span class="reddot" v-if="livestream">• </span>
-        <span v-if="livestream">Live         }}<span v-if="!livestream">- </span>{{ title }}</span
+        <span v-if="livestream">Live         }}<span v-if="!livestream && !$parent.mix.length"> - </span
+        >{{ $parent.title }}</span
       >
-    </section>
-    <section id="mix" v-if="$parent.mix.length">
-      <article v-html="$parent.mix"></article>
-      <img id="closemix" src="../assets/imgs/cross_icon.png" @click="rm_mix" />
     </section>
   </nav>
 </template>
@@ -64,31 +90,37 @@ export default {
   name: "NavBar",
   data() {
     return {
-      isPlaying: false,
       radio: new Audio(),
-      title: "",
-      artist: "",
-      src: "https:      currentShow: "Radio",
-      icon: "▶",
-      timeout: null,
+      src: "https:      icon: "▶",
+      loading: false,
       livestream: false
     };
   },
   methods: {
     rm_mix() {
       this.$parent.mix = "";
-      if (window.innerWidth > 800) this.$parent.mixh = 80;
+      this.$parent.logo = require("../assets/imgs/odc.jpg");
+      this.checkTitle();
+      if (this.$parent.isPlaying) this.play();
     },
     play() {
-      if (!this.isPlaying) {
-        this.$refs.audioElm.src = `${this.src}?t=${new Date().getTime()}`;
-        this.$refs.audioElm.play();
+      if (this.loading) return;
+      if (!this.$parent.isPlaying) {
+        if (this.$parent.mix) {
+          this.$parent.mcwidget.play();
+        } else {
+          this.$refs.audioElm.src = `${this.src}?t=${new Date().getTime()}`;
+          this.$refs.audioElm.play();
+        }
         this.icon = "■";
-        this.isPlaying = true;
+        this.$parent.isPlaying = true;
       } else {
-        this.$refs.audioElm.src = "";
-        this.$refs.audioElm.pause();
-        this.isPlaying = false;
+        if (this.$parent.mix) {
+          this.$parent.mcwidget.pause();
+        } else {
+          this.$refs.audioElm.pause();
+        }
+        this.$parent.isPlaying = false;
         this.icon = "▶";
       }
     },
@@ -103,12 +135,12 @@ export default {
                 Number(t_shows[i].starts_at) < new Date().getTime() &&
                 Number(t_shows[i].ends_at) > new Date().getTime()
               ) {
-                this.artist = t_shows[i].dj;
-                this.title = `                 show = true;
+                this.$parent.artist = t_shows[i].dj;
+                this.$parent.title = `                 show = true;
               }
             this.livestream = true;
-            if (!show) this.title = "Tune In";
-            this.timeout = setTimeout(this.checkTitle, 15 * 60000);
+            if (!show) this.$parent.title = "Tune In";
+            this.$parent.timeout = setTimeout(this.checkTitle, 15 * 60000);
           } else {
             this.livestream = false;
             const time = res.data.current.ends.replace(" ", "T");
@@ -116,23 +148,23 @@ export default {
             next = next.getMinutes() * 60 + next.getSeconds();
             let now = new Date();
             now = now.getMinutes() * 60 + now.getSeconds();
-            this.timeout = setTimeout(
+            this.$parent.timeout = setTimeout(
               this.checkTitle,
               ((next < 10 ? now + 20 : next) - now - 5) * 1000
             );
             if (res.data.current.metadata.artist_name !== null)
-              this.artist = res.data.current.metadata.artist_name
+              this.$parent.artist = res.data.current.metadata.artist_name
                 .replace("&#039;", "'")
                 .replace("amp;", "");
-            this.title = res.data.current.metadata.track_title
+            this.$parent.title = res.data.current.metadata.track_title
               .replace("&#039;", "'")
               .replace("amp;", "");
-            this.currentShow = res.data.currentShow[0].name;
+            this.$parent.currentShow = res.data.currentShow[0].name;
           }
         })
         .catch(() => {
-          clearTimeout(this.timeout);
-          this.timeout = null;
+          clearTimeout(this.$parent.timeout);
+          this.$parent.timeout = null;
         });
     }
   },
@@ -145,10 +177,18 @@ export default {
 nav {
   width: 100%;
   font-weight: bold;
-  position: fixed;
+  position: sticky;
   background-color: black;
   top: 0px;
   z-index: 5;
+  .close_mix {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    background-color: #a20c0c;
+    padding: 1px;
+    cursor: pointer;
+  }
   .right {
     right: 0;
     margin-right: 5px;
@@ -246,14 +286,35 @@ nav {
       }
     }
     #logo {
+      width: 80px;
       position: absolute;
       top: 10px;
       left: 10px;
     }
   }
-  #bottom {
+  .bplayer {
+    border-top: 1px solid white;
+    margin-top: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: none;
+    width: 100%;
+    height: 25px;
+    position: relative;
+    #radio {
+      cursor: pointer;
+      margin-right: 100px;
+      .title {
+        position: absolute;
+        left: 30px;
+      }
+    }
+  }
+  .bplaying {
     background-color: white;
     color: black;
+  }
+  .bottom {
     padding-left: 100px;
     .reddot {
       color: red;
@@ -266,19 +327,34 @@ nav {
     }
   }
   @media (max-width: 800px) {
+    .pcplayer {
+      display: none;
+    }
+    .close_mix {
+      position: absolute;
+      right: 18px;
+      top: 7px;
+    }
     #mix {
       position: relative;
       top: 0px;
       img {
       }
     }
-    #bottom {
+    .bplayer {
+      display: block;
+    }
+    .bottom {
       padding-left: 10px;
     }
     #top {
       #links {
         flex-direction: column;
-        width: ~"calc(100% - 143px)";
+        width: ~"calc(100% - 175px)";
+        margin-left: 140px;
+      }
+      #logo {
+        width: 130px;
       }
       #radio {
         margin-left: 10px;

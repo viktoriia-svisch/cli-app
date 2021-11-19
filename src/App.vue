@@ -1,14 +1,8 @@
 <template>
   <main id="app">
-    <NavBar />
-    <router-view
-      class="router"
-      :style="
-        `margin-top: ${
-          mix.length ? (window > 800 ? 150 : 240) : window > 800 ? 100 : 200
-        }px`
-      "
-    />
+    <NavBar ref="navbar" />
+    <article v-html="mix" style="display: none"></article>
+    <router-view class="router" />
     <Chat v-if="chatting" />
     <Footer />
   </main>
@@ -34,7 +28,13 @@ export default {
       embed: "",
       msgs: [],
       newmsg: false,
+      isPlaying: false,
       mix: "",
+      timeout: null,
+      currentShow: "Radio",
+      title: "",
+      artist: "",
+      mcwidget: null,
       ding: new Audio(require("@/assets/sounds/light.mp3")),
       mixh: 80
     };
@@ -82,11 +82,6 @@ export default {
     this.$nextTick(() => {
       window.addEventListener("resize", () => {
         this.window = window.innerWidth;
-        if (this.window > 800 && this.mix.length) {
-          this.mixh = 45;
-        } else if (this.window <= 800 && this.mix.length) {
-          this.mixh = 80;
-        }
       });
     });
   }
@@ -111,6 +106,20 @@ body {
     max-width: 1400px;
     margin: 0 auto;
   }
+  .blocked {
+    opacity: 0.5;
+    position: relative;
+  }
+  .blocked:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: transparent;
+  }
   iframe {
     height: 60px;
   }
@@ -121,19 +130,14 @@ body {
     width: ~"calc(100vw - 5px)";
   }
   .router {
-    margin: 150px 30px 0px 30px;
-  }
-  @media (max-width: 800px) {
-    .router {
-      margin: 240px 30px 0 30px;
-    }
+    margin: 0px 30px 0px 30px;
   }
   @media (max-width: 400px) {
     #youtubelive {
       margin-left: 0;
     }
     .router {
-      margin: 240px 4px 0 4px;
+      margin: 0px 4px 0 4px;
     }
   }
 }

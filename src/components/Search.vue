@@ -94,6 +94,7 @@ export default {
 </script>
 <style lang="less" scoped>
 #search {
+  margin-top: 50px;
   header {
     position: relative;
     border-bottom: 2px solid white;

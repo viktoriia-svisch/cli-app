@@ -45,8 +45,25 @@ export default {
       const res = await axios.get(`${process.env.VUE_APP_API}/mix`, {
         params: { key: key }
       });
+            if (this.$parent.$parent.isPlaying) {
+        this.$parent.$parent.$refs.navbar.play();
+      }
+            this.$parent.$parent.$refs.navbar.loading = true;
       this.$parent.$parent.mix = res.data;
-      if (window.innerWidth > 800) this.$parent.$parent.mixh = 45;
+      this.$parent.$parent.title = this.pod.name;
+      this.$parent.$parent.artist = "";
+      this.$parent.$parent.currentShow = "Chargement...";
+      this.$parent.$parent.logo = this.podImage;
+      clearTimeout(this.$parent.$parent.timeout);
+      setTimeout(() => {
+        this.$parent.$parent.mcwidget = Mixcloud.PlayerWidget(
+          document.getElementsByTagName("iframe")[0]
+        );
+        this.$parent.$parent.mcwidget.ready.then(() => {
+                    this.$parent.$parent.currentShow = "Rediffusion";
+          this.$parent.$parent.$refs.navbar.loading = false;
+        });
+      }, 1000);
     },
     search(tag) {
       if (this.$route.path == "/search") {
@@ -181,16 +198,10 @@ export default {
     }
   }
   @media (max-width: 400px) {
-    width: ~"calc(100% - 4px)";
+    width: initial;
     margin-left: 0;
     margin-right: 0;
     header {
-      height: ~"calc(100vw - 8px)";
-      width: 100%;
-      .miximg {
-        width: ~"calc(100vw - 8px)";
-        height: ~"calc(100vw - 8px)";
-      }
       .play_mix {
         bottom: 40vw;
         left: 41vw;

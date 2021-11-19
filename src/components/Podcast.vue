@@ -53,7 +53,6 @@ export default {
         params: { key: key }
       });
       this.$parent.mix = res.data;
-      if (window.innerWidth > 800) this.$parent.mixh = 45;
     },
     async getPodcast() {
       await axios
