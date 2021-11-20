@@ -143,7 +143,6 @@ export default {
   background-color: black;
   #closechat {
     height: 40px;
-    background-color: white;
     cursor: pointer;
   }
   h1 {
