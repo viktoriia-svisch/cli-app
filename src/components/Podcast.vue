@@ -52,7 +52,25 @@ export default {
       const res = await axios.get(`${process.env.VUE_APP_API}/mix`, {
         params: { key: key }
       });
+            if (this.$parent.isPlaying) {
+        this.$parent.$refs.navbar.play();
+      }
+            this.$parent.$refs.navbar.loading = true;
       this.$parent.mix = res.data;
+      this.$parent.title = this.podcast.name;
+      this.$parent.artist = "";
+      this.$parent.currentShow = "Chargement...";
+      this.$parent.logo = this.pic;
+      clearTimeout(this.$parent.timeout);
+      setTimeout(() => {
+        this.$parent.mcwidget = Mixcloud.PlayerWidget(
+          document.getElementsByTagName("iframe")[0]
+        );
+        this.$parent.mcwidget.ready.then(() => {
+                    this.$parent.currentShow = "Rediffusion";
+          this.$parent.$refs.navbar.loading = false;
+        });
+      }, 1000);
     },
     async getPodcast() {
       await axios
