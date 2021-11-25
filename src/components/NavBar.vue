@@ -298,7 +298,6 @@ nav {
     padding-top: 5px;
     padding-bottom: 5px;
     display: none;
-    width: 100%;
     height: 25px;
     position: relative;
     #radio {
