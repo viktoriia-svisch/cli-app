@@ -36,7 +36,9 @@ export default {
       artist: "",
       mcwidget: null,
       ding: new Audio(require("@/assets/sounds/light.mp3")),
-      mixh: 80
+      mixh: 80,
+      print_shows: false,
+      print_events: false
     };
   },
   methods: {
@@ -56,6 +58,17 @@ export default {
         this.embed = res.Stream.embed;
         this.youtube = true;
       }
+    },
+    async getPrints() {
+      const res = await graph(
+        null,
+        `{
+          PrintShows
+          PrintEvents
+      }`
+      );
+      this.print_shows = res.PrintShows;
+      this.print_events = res.PrintEvents;
     }
   },
   sockets: {
@@ -79,6 +92,7 @@ export default {
   mounted() {
     this.ding.volume = 0.3;
     this.getStream();
+    this.getPrints();
     this.$nextTick(() => {
       window.addEventListener("resize", () => {
         this.window = window.innerWidth;
