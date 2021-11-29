@@ -28,6 +28,7 @@
         >
         <router-link :to="{ path: '/podcasts' }">Podcasts</router-link>
         <router-link :to="{ path: '/search' }">Recherche</router-link>
+        <span class="eventless" v-if="!$parent.print_events">o</span>
       </article>
       <article id="more" class="right">
         <svg
@@ -276,6 +277,13 @@ nav {
           border: 1px solid white;
         }
       }
+      .eventless {
+        display: none;
+        color: black;
+        margin-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 8px;
+      }
     }
     #radio {
       margin-left: 100px;
@@ -353,6 +361,9 @@ nav {
         flex-direction: column;
         width: ~"calc(100% - 175px)";
         margin-left: 140px;
+        .eventless {
+          display: initial;
+        }
       }
       #logo {
         width: 130px;
