@@ -1,6 +1,5 @@
 <template>
   <article id="spod">
-    <h1>Les podcasts des emissions passées</h1>
     <section id="podcasts">
       <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
     </section>
@@ -10,23 +9,23 @@
   </article>
 </template>
 <script>
-import axios from 'axios';
-import Podcast from '@/components/Podcast_Widget';
+import axios from "axios";
+import Podcast from "@/components/Podcast_Widget";
 export default {
-  name: 'Podcasts',
+  name: "Podcasts",
   components: {
-    Podcast,
+    Podcast
   },
   data() {
     return {
       podcasts: [],
-      next: '',
-      more: true,
+      next: "",
+      more: true
     };
   },
   methods: {
-    getPodcasts() {
-      axios
+    async getPodcasts() {
+      await axios
         .get(this.next)
         .then(res => {
           if (res.data.paging.next === undefined) this.more = false;
@@ -34,11 +33,12 @@ export default {
           this.next = res.data.paging.next;
         })
         .catch();
-    },
+    }
   },
-  mounted() {
-    this.next = 'https:    this.getPodcasts();
-  },
+  async mounted() {
+    this.next = "https:    await this.getPodcasts();
+    await this.getPodcasts();
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -62,16 +62,6 @@ export default {
         border: 3px solid white;
         color: white;
       }
-    }
-  }
-  @media (max-width: 700px) {
-    #podcasts {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 400px) {
-    #podcasts {
-      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

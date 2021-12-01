@@ -114,11 +114,10 @@ body {
   }
   #podcasts {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(auto, auto);
-    max-width: 1400px;
-    margin: 0 auto;
+    margin: 40px auto;
   }
   .blocked {
     opacity: 0.5;
@@ -146,12 +145,20 @@ body {
   .router {
     margin: 0px 30px 0px 30px;
   }
+  @media (max-width: 700px) {
+    #podcasts {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   @media (max-width: 400px) {
     #youtubelive {
       margin-left: 0;
     }
     .router {
       margin: 0px 4px 0 4px;
+    }
+    #podcasts {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

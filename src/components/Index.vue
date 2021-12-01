@@ -8,7 +8,6 @@
       allow="autoplay; encrypted-media"
       allowfullscreen
     ></iframe>
-    <h1 class="subtitle">Les derniers podcasts</h1>
     <section id="podcasts">
       <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
     </section>
@@ -283,16 +282,6 @@ export default {
           background-position: center center;
         }
       }
-    }
-  }
-  @media (max-width: 700px) {
-    #podcasts {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 400px) {
-    #podcasts {
-      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

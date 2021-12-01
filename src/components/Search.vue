@@ -124,7 +124,6 @@ export default {
     }
   }
   #podcasts {
-    width: 100%;
     margin-top: 20px;
   }
   @media (max-width: 700px) {
@@ -139,15 +138,7 @@ export default {
       }
     }
   }
-  @media (max-width: 700px) {
-    #podcasts {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
   @media (max-width: 400px) {
-    #podcasts {
-      grid-template-columns: repeat(1, 1fr);
-    }
     header {
       #title {
         font-size: 0px;
