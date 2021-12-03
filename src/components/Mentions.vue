@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <th>Mail</th>
-        <td>odysseefm@gmail.com</td>
+        <td>contact@odc.live</td>
       </tr>
       <tr>
         <th>Directeur de la publication</th>
@@ -50,6 +50,7 @@ export default {
 </script>
 <style lang="less" scoped>
 #legalholder {
+  margin-top: 30px;
   #guilink {
     font-weight: bold;
     text-decoration: none;

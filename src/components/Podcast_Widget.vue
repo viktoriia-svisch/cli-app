@@ -124,6 +124,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-right: 5px;
     .lititle {
       cursor: pointer;
       padding-left: 5px;
@@ -136,7 +137,6 @@ export default {
       }
       &:hover {
         background-color: white;
-        margin-right: 5px;
         .title {
           color: black;
         }

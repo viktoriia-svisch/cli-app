@@ -4,6 +4,9 @@
       <router-link :to="{path: '/mentions'}"
         ><b>Mentions legales</b></router-link
       >
+      <router-link :to="{path: '/propose_show'}"
+        ><b>Proposer une emission</b></router-link
+      >
     </div>
     <div class="moto">
       <span>
@@ -32,6 +35,8 @@ footer {
   background-color: black;
   border-top: 1px solid #ffffff80;
   .links {
+    display: flex;
+    flex-direction: column;
     a {
       font-weight: bold;
       text-decoration-line: underline;

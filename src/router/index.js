@@ -5,6 +5,7 @@ import Event from "@/components/Event";
 import Events from "@/components/Events";
 import Search from "@/components/Search";
 import Mentions from "@/components/Mentions";
+import SubmitShow from "@/components/SubmitShow";
 import Podcast from "@/components/Podcast";
 import Podcasts from "@/components/Podcasts";
 Vue.use(Router);
@@ -19,6 +20,10 @@ export default new Router({
     {
       path: "/mentions",
       component: Mentions
+    },
+    {
+      path: "/propose_show",
+      component: SubmitShow
     },
     {
       path: "/podcasts",
