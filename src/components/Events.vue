@@ -32,6 +32,7 @@ export default {
             name
             starts_at
             ends_at
+            description
             genres
             image
             facebook
@@ -56,7 +57,7 @@ export default {
   }
   #events {
     display: flex;
-    flex-flow: wrap;
+    flex-direction: column;
     justify-content: center;
   }
 }

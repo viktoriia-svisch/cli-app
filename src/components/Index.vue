@@ -71,6 +71,7 @@ export default {
             name
             starts_at
             ends_at
+            description
             genres
             image
             facebook

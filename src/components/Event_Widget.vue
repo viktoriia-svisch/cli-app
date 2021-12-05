@@ -1,7 +1,13 @@
 <template>
-  <section class="event" @click="getEvent(e.id)">
-    <header>
-      <h1>{{ e.name }}</h1>
+  <section
+    :class="`${e.description.length ? 'e_trig ' : ''}event`"
+    @click="switchDesc()"
+  >
+    <article class="e_body">
+      <section class="e_title">
+        <div class="e_img" :style="`background-image: url(${e.image})`"></div>
+        <h1>{{ e.name }}</h1>
+      </section>
       <ul>
         <li>
           <p>
@@ -28,10 +34,8 @@
           <span v-for="g in e.genres" v-bind:key="g">{{ g }}</span>
         </li>
       </ul>
-    </header>
-    <article class="e_body">
-      <div class="e_img" :style="`background-image: url(${e.image})`"></div>
     </article>
+    <h4 v-if="desc && e.description.length">{{ e.description }}</h4>
   </section>
 </template>
 <script>
@@ -39,92 +43,92 @@ import graph from "@/graphaxios";
 export default {
   name: "Event",
   props: ["e"],
+  data() {
+    return {
+      desc: false
+    };
+  },
   methods: {
-    getEvent(id) {
-      this.$router.push({ path: `/events/${id}` });
+    switchDesc() {
+      if (!this.desc) this.desc = true;
+      else this.desc = false;
     }
   }
 };
 </script>
 <style lang="less" scoped>
-.event {
-  width: 100%;
-  max-width: 400px;
-  margin: 10px;
-  border: 1px solid #ffffff80;
+.e_trig {
   cursor: pointer;
   &:hover {
-    border: 1px solid white;
-    header {
+    border: 1px solid #fff;
+    h1 {
       background-color: white;
-      border-bottom: 1px solid white;
-      h1 {
-        color: white;
-        background-color: black;
-      }
-      ul {
-        li {
-          a,
-          p,
-          span {
-            background-color: black;
-            color: white;
-          }
-        }
-      }
+      color: black;
     }
   }
-  header {
-    padding: 5px;
-    border-bottom: 1px solid #ffffff80;
-    h1 {
-      font-size: 34px;
-      color: black;
-      background-color: white;
-      font-family: Bison;
-      margin: 0;
-      padding-left: 5px;
-      padding-right: 5px;
+}
+.event {
+  width: 100%;
+  margin: 10px;
+  border: 1px solid #ffffff80;
+  h1 {
+    font-size: 34px;
+    text-decoration: underline;
+    color: white;
+    background-color: black;
+    font-family: Bison;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: table;
+  }
+  ul {
+    list-style-type: none;
+    font-family: SpaceMonoBold;
+    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 9px;
+    margin-bottom: 0px;
+    .right {
+      text-align: right;
       display: inline;
+      margin-top: 4px;
     }
-    ul {
-      list-style-type: none;
-      font-family: SpaceMonoBold;
-      padding-left: 0px;
-      display: flex;
-      flex-direction: column;
-      margin-top: 9px;
-      margin-bottom: 0px;
-      .right {
-        text-align: right;
-        display: inline;
-        margin-top: 4px;
+    li {
+      display: table;
+      margin-bottom: 3px;
+      a,
+      span,
+      p {
+        background-color: black;
+        color: white;
+        background-image: linear-gradient(to right, #3c3c4d, black);
+        margin: 0;
+        padding-left: 5px;
+        padding-right: 5px;
       }
-      li {
-        display: table;
-        margin-bottom: 3px;
-        a,
-        span,
-        p {
-          background-color: white;
-          color: black;
-          margin: 0;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-        span {
-          margin-left: 5px;
-        }
+      span {
+        margin-left: 5px;
       }
     }
   }
   .e_body {
-    .e_img {
-      height: 451px;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
+    display: flex;
+    justify-content: space-between;
+    .e_title {
+      display: flex;
+      .e_img {
+        height: 151px;
+        width: 110px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
     }
+  }
+  h4 {
+    margin: 5px;
   }
 }
 </style>

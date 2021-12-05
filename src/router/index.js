@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Index from "@/components/Index";
-import Event from "@/components/Event";
 import Events from "@/components/Events";
 import Search from "@/components/Search";
 import Mentions from "@/components/Mentions";
@@ -36,11 +35,6 @@ export default new Router({
     {
       path: "/events",
       component: Events
-    },
-    {
-      path: "/events/:id",
-      component: Event,
-      props: true
     },
     {
       path: "/",
