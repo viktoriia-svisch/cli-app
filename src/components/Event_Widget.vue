@@ -35,6 +35,7 @@
         </li>
       </ul>
     </article>
+    <span v-if="!desc && e.description.length" class="more">Plus d'infos</span>
     <h4 v-if="desc && e.description.length">{{ e.description }}</h4>
   </section>
 </template>
@@ -68,8 +69,10 @@ export default {
   }
 }
 .event {
+  position: relative;
   width: 100%;
-  margin: 10px;
+  max-width: 700px;
+  margin: 10px auto;
   border: 1px solid #ffffff80;
   h1 {
     font-size: 34px;
@@ -119,13 +122,22 @@ export default {
     .e_title {
       display: flex;
       .e_img {
-        height: 151px;
-        width: 110px;
+        height: 156px;
+        width: 111px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
       }
     }
+  }
+  .more {
+    background-color: #a81212;
+    font-weight: bold;
+    padding: 2px 3px 2px 3px;
+    margin-top: -2px;
+    position: absolute;
+    font-size: 15px;
+    top: 136px;
   }
   h4 {
     margin: 5px;

@@ -1,41 +1,41 @@
 <template>
-  <section id="legalholder">
+  <section id="prop">
     <h2>Proposer une emission:</h2>
-    <p>Les emissions proposees par ODC Live sont animees par des professionels
-    ainsi que des debutants.....</p>
+    <p>
+      Les emissions proposees par ODC Live sont animees par des professionels
+      ainsi que des debutants.<br />
+      Si vous etes interresses par la radio, n'hesitez pas a envoyer un mail a:
+    </p>
+    <h3><a href="mailto:contact@odc.live">contact@odc.live</a></h3>
+    <p>
+      Le sujet de l'email devra etre precede de la mention <b>[propos]</b> et
+      contenir soit en piece jointe soit via une URL
+      <b>un set que vous avez deja realise</b>.
+    </p>
+    <p>
+      Si le set est juge favorablement a une emission radio, l'equipe vous
+      recontactera dans les plus brefs delais.
+    </p>
   </section>
 </template>
 <script>
 export default {
-  name: 'mentions',
+  name: "submitshows"
 };
 </script>
 <style lang="less" scoped>
-#legalholder {
+#prop {
   margin-top: 30px;
-  #guilink {
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-    &:hover {
-      text-decoration-line: underline;
-      text-decoration-style: dashed;
+  p {
+    b {
+      background-color: #484873;
     }
   }
-  #legaltable {
-    margin: 0 auto;
-    tr {
-      height: 40px;
-      th {
-        text-align: inherit;
-        border-bottom: 1px solid white;
-      }
-      td {
-        padding-left: 10px;
-      }
-    }
-    #ovhlast {
-      border-bottom: none;
+  h3 {
+    text-align: center;
+    a {
+      color: white;
+      font-weight: bold;
     }
   }
 }

@@ -166,8 +166,7 @@ export default {
   }
   #events {
     display: flex;
-    flex-flow: wrap;
-    justify-content: center;
+    flex-direction: column;
   }
 }
 </style>

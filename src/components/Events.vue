@@ -58,7 +58,6 @@ export default {
   #events {
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 }
 </style>
