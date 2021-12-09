@@ -138,6 +138,7 @@ export default {
     position: absolute;
     font-size: 15px;
     top: 136px;
+    right: 0px;
   }
   h4 {
     margin: 5px;
