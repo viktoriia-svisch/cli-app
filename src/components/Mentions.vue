@@ -50,7 +50,8 @@ export default {
 </script>
 <style lang="less" scoped>
 #legalholder {
-  margin-top: 30px;
+  margin: 30px auto;
+  width: 900px;
   #guilink {
     font-weight: bold;
     text-decoration: none;
