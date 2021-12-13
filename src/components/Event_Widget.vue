@@ -5,10 +5,12 @@
   >
     <article class="e_body">
       <section class="e_title">
-        <div class="e_img" :style="`background-image: url(${e.image})`"></div>
-        <h1>{{ e.name }}</h1>
+        <img :src="e.image" class="e_logo" />
       </section>
       <ul>
+        <li class="right">
+          <h1>{{ e.name }}</h1>
+        </li>
         <li>
           <p>
             {{ new Date(Number(e.starts_at)).toLocaleDateString("fr", {}) }}
@@ -30,13 +32,15 @@
         <li v-if="e.facebook.length">
           <a :href="e.facebook" target="_blank">facebook</a>
         </li>
-        <li v-if="e.genres.length" class="right">
+        <li v-if="e.genres.length" class="right margin">
           <span v-for="g in e.genres" v-bind:key="g">{{ g }}</span>
         </li>
       </ul>
     </article>
     <span v-if="!desc && e.description.length" class="more">Plus d'infos</span>
-    <h4 v-if="desc && e.description.length">{{ e.description }}</h4>
+    <h4 v-if="desc && e.description.length">
+      <u>Plus d'infos:</u><br /><br />{{ e.description }}
+    </h4>
   </section>
 </template>
 <script>
@@ -62,18 +66,15 @@ export default {
   cursor: pointer;
   &:hover {
     border: 1px solid #fff;
-    h1 {
-      background-color: white;
-      color: black;
-    }
   }
 }
 .event {
   position: relative;
   width: 100%;
-  max-width: 700px;
+  max-width: 1000px;
   margin: 10px auto;
-  border: 1px solid #ffffff80;
+  border: 1px solid #313131;
+  padding: 5px;
   h1 {
     font-size: 34px;
     text-decoration: underline;
@@ -83,7 +84,6 @@ export default {
     margin: 0;
     padding-left: 5px;
     padding-right: 5px;
-    display: table;
   }
   ul {
     list-style-type: none;
@@ -91,11 +91,13 @@ export default {
     padding-left: 0px;
     display: flex;
     flex-direction: column;
-    margin-top: 9px;
+    margin-top: 0px;
     margin-bottom: 0px;
     .right {
       text-align: right;
       display: inline;
+    }
+    .margin {
       margin-top: 4px;
     }
     li {
@@ -121,12 +123,8 @@ export default {
     justify-content: space-between;
     .e_title {
       display: flex;
-      .e_img {
-        height: 156px;
-        width: 111px;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
+      .e_logo {
+        width: 400px;
       }
     }
   }
@@ -134,14 +132,13 @@ export default {
     background-color: #a81212;
     font-weight: bold;
     padding: 2px 3px 2px 3px;
-    margin-top: -2px;
     position: absolute;
     font-size: 15px;
-    top: 136px;
     right: 0px;
+    bottom: 0px;
   }
   h4 {
-    margin: 5px;
+    margin: 5px 0px 0px 0px;
   }
 }
 </style>
