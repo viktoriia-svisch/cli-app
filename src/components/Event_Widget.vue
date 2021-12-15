@@ -11,9 +11,16 @@
         <li class="right">
           <h1>{{ e.name }}</h1>
         </li>
-        <li>
-          <p>
-            {{ new Date(Number(e.starts_at)).toLocaleDateString("fr", {}) }}
+        <li class="right">
+          <p class="date">
+            {{
+              new Date(Number(e.starts_at)).toLocaleDateString("fr", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              })
+            }}
             {{
               new Date(Number(e.starts_at)).toLocaleTimeString("fr", {
                 hour: "2-digit",
@@ -29,10 +36,10 @@
             }}
           </p>
         </li>
-        <li v-if="e.facebook.length">
+        <li class="right" v-if="e.facebook.length">
           <a :href="e.facebook" target="_blank">facebook</a>
         </li>
-        <li v-if="e.genres.length" class="right margin">
+        <li v-if="e.genres.length" class="right">
           <span v-for="g in e.genres" v-bind:key="g">{{ g }}</span>
         </li>
       </ul>
@@ -97,8 +104,9 @@ export default {
       text-align: right;
       display: inline;
     }
-    .margin {
-      margin-top: 4px;
+    .date {
+      display: initial;
+      background-image: linear-gradient(to right, #9b0000, #200);
     }
     li {
       display: table;
@@ -108,13 +116,13 @@ export default {
       p {
         background-color: black;
         color: white;
-        background-image: linear-gradient(to right, #3c3c4d, black);
-        margin: 0;
+        margin: 0px 0px 0px 5px;
         padding-left: 5px;
         padding-right: 5px;
       }
+      a,
       span {
-        margin-left: 5px;
+        background-image: linear-gradient(to right, #3c3c4d, black);
       }
     }
   }
@@ -129,7 +137,7 @@ export default {
     }
   }
   .more {
-    background-color: #a81212;
+    background-color: #2d2d2d;
     font-weight: bold;
     padding: 2px 3px 2px 3px;
     position: absolute;
@@ -138,7 +146,22 @@ export default {
     bottom: 0px;
   }
   h4 {
-    margin: 5px 0px 0px 0px;
+    margin: 5px;
+  }
+  @media (max-width: 800px) {
+    .e_body {
+      flex-direction: column;
+      .e_title {
+        .e_logo {
+          width: 100%;
+        }
+      }
+    }
+    ul {
+      .right {
+        text-align: left;
+      }
+    }
   }
 }
 </style>
