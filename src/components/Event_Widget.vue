@@ -149,6 +149,7 @@ export default {
     margin: 5px;
   }
   @media (max-width: 800px) {
+    width: initial;
     .e_body {
       flex-direction: column;
       .e_title {

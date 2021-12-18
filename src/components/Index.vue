@@ -168,5 +168,10 @@ export default {
     display: flex;
     flex-direction: column;
   }
+  @media (max-width: 300px) {
+    #odc {
+      display: none;
+    }
+  }
 }
 </style>
