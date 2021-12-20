@@ -46,7 +46,8 @@
     </article>
     <span v-if="!desc && e.description.length" class="more">Plus d'infos</span>
     <h4 v-if="desc && e.description.length">
-      <u>Plus d'infos:</u><br /><br />{{ e.description }}
+      <u>Plus d'infos:</u><br />
+      <br />{{ e.description.replace(/\n/gmi, "<br />") }}
     </h4>
   </section>
 </template>
