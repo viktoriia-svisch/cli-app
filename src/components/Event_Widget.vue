@@ -47,7 +47,7 @@
     <span v-if="!desc && e.description.length" class="more">Plus d'infos</span>
     <h4 v-if="desc && e.description.length">
       <u>Plus d'infos:</u><br />
-      <br />{{ e.description.replace(/\n/gmi, "<br />") }}
+      <br />{{ e.description }}
     </h4>
   </section>
 </template>
@@ -148,6 +148,7 @@ export default {
   }
   h4 {
     margin: 5px;
+    white-space: pre;
   }
   @media (max-width: 800px) {
     width: initial;
