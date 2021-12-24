@@ -148,7 +148,7 @@ export default {
   }
   h4 {
     margin: 5px;
-    white-space: pre;
+    white-space: pre-line;
   }
   @media (max-width: 800px) {
     width: initial;
