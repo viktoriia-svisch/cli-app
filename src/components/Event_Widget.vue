@@ -78,8 +78,6 @@ export default {
 }
 .event {
   position: relative;
-  width: 100%;
-  max-width: 1000px;
   margin: 10px auto;
   border: 1px solid #313131;
   padding: 5px;
@@ -149,6 +147,9 @@ export default {
   h4 {
     margin: 5px;
     white-space: pre-line;
+  }
+  @media (max-width: 1250px) {
+    width: 100%;
   }
   @media (max-width: 800px) {
     width: initial;
