@@ -34,7 +34,6 @@ export default {
       currentShow: "Radio",
       title: "",
       artist: "",
-      mcwidget: null,
       ding: new Audio(require("@/assets/sounds/light.mp3")),
       mixh: 80,
       print_shows: false,

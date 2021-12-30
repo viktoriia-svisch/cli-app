@@ -17,7 +17,7 @@
       </ul>
       <br />
     </header>
-    <span class="listen" @click="getAudio(podcast.key)">▶ ecouter</span>
+    <span class="listen" @click="getAudio(podcast.url)">▶ ecouter</span>
     <article>
       <img :src="pic" :class="{ blurred: isBlurred, noblurred: !isBlurred }" />
     </article>
@@ -48,29 +48,8 @@ export default {
         this.$router.push({ path: "/search" });
       }
     },
-    async getAudio(key) {
-      const res = await axios.get(`${process.env.VUE_APP_API}/mix`, {
-        params: { key: key }
-      });
-            if (this.$parent.isPlaying) {
-        this.$parent.$refs.navbar.play();
-      }
-            this.$parent.$refs.navbar.loading = true;
-      this.$parent.mix = res.data;
-      this.$parent.title = this.podcast.name;
-      this.$parent.artist = "";
-      this.$parent.currentShow = "Chargement...";
-      this.$parent.logo = this.pic;
-      clearTimeout(this.$parent.timeout);
-      setTimeout(() => {
-        this.$parent.mcwidget = Mixcloud.PlayerWidget(
-          document.getElementsByTagName("iframe")[0]
-        );
-        this.$parent.mcwidget.ready.then(() => {
-                    this.$parent.currentShow = "Rediffusion";
-          this.$parent.$refs.navbar.loading = false;
-        });
-      }, 1000);
+    async getAudio(url) {
+      window.open(url, "_blank");
     },
     async getPodcast() {
       await axios

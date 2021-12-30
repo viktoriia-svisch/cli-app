@@ -109,20 +109,12 @@ export default {
     play() {
       if (this.loading) return;
       if (!this.$parent.isPlaying) {
-        if (this.$parent.mix) {
-          this.$parent.mcwidget.play();
-        } else {
-          this.$refs.audioElm.src = `${this.src}?t=${new Date().getTime()}`;
-          this.$refs.audioElm.play();
-        }
+        this.$refs.audioElm.src = `${this.src}?t=${new Date().getTime()}`;
+        this.$refs.audioElm.play();
         this.icon = "■";
         this.$parent.isPlaying = true;
       } else {
-        if (this.$parent.mix) {
-          this.$parent.mcwidget.pause();
-        } else {
-          this.$refs.audioElm.pause();
-        }
+        this.$refs.audioElm.pause();
         this.$parent.isPlaying = false;
         this.icon = "▶";
       }

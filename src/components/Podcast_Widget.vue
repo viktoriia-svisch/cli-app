@@ -1,6 +1,6 @@
 <template>
   <section class="podcast">
-    <header @click="getAudio(pod.key)">
+    <header @click="getAudio(pod.url)">
       <img
         :src="podImage"
         class="miximg"
@@ -41,29 +41,8 @@ export default {
       const tag = key.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       this.$router.push({ path: `/podcasts/${tag}` });
     },
-    async getAudio(key) {
-      const res = await axios.get(`${process.env.VUE_APP_API}/mix`, {
-        params: { key: key }
-      });
-            if (this.$parent.$parent.isPlaying) {
-        this.$parent.$parent.$refs.navbar.play();
-      }
-            this.$parent.$parent.$refs.navbar.loading = true;
-      this.$parent.$parent.mix = res.data;
-      this.$parent.$parent.title = this.pod.name;
-      this.$parent.$parent.artist = "";
-      this.$parent.$parent.currentShow = "Chargement...";
-      this.$parent.$parent.logo = this.podImage;
-      clearTimeout(this.$parent.$parent.timeout);
-      setTimeout(() => {
-        this.$parent.$parent.mcwidget = Mixcloud.PlayerWidget(
-          document.getElementsByTagName("iframe")[0]
-        );
-        this.$parent.$parent.mcwidget.ready.then(() => {
-                    this.$parent.$parent.currentShow = "Rediffusion";
-          this.$parent.$parent.$refs.navbar.loading = false;
-        });
-      }, 1000);
+    async getAudio(url) {
+      window.open(url, "_blank");
     },
     search(tag) {
       if (this.$route.path == "/search") {
