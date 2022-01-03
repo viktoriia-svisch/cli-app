@@ -125,10 +125,11 @@ export default {
           if (res.data.current.type == "livestream") {
             const t_shows = JSON.parse(localStorage.getItem("today_shows"));
             let show = false;
+            let DST = new Date().getTimezoneOffset() == -60 ? 0 : 3600000;
             for (let i = 0; i < t_shows.length; i++)
               if (
-                Number(t_shows[i].starts_at) < new Date().getTime() &&
-                Number(t_shows[i].ends_at) > new Date().getTime()
+                Number(t_shows[i].starts_at) < new Date().getTime() + offset &&
+                Number(t_shows[i].ends_at) > new Date().getTime() + offset
               ) {
                 this.$parent.artist = t_shows[i].dj;
                 this.$parent.title = `                 show = true;
