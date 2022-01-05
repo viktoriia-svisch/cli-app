@@ -128,8 +128,8 @@ export default {
             let DST = new Date().getTimezoneOffset() == -60 ? 0 : 3600000;
             for (let i = 0; i < t_shows.length; i++)
               if (
-                Number(t_shows[i].starts_at) < new Date().getTime() + offset &&
-                Number(t_shows[i].ends_at) > new Date().getTime() + offset
+                Number(t_shows[i].starts_at) < new Date().getTime() + DST &&
+                Number(t_shows[i].ends_at) > new Date().getTime() + DST
               ) {
                 this.$parent.artist = t_shows[i].dj;
                 this.$parent.title = `                 show = true;

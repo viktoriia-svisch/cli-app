@@ -1,7 +1,7 @@
 <template>
   <article id="spod">
     <section id="podcasts">
-      <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
+      <Podcast v-for="pod in podcasts" v-bind:key="pod.id" :pod="pod" />
     </section>
     <section id="more" v-if="more">
       <h1 id="more" @click="getPodcasts">en charger plus</h1>
@@ -20,25 +20,32 @@ export default {
     return {
       podcasts: [],
       next: "",
+      offset: 0,
       more: true
     };
   },
   methods: {
     async getPodcasts() {
+            if (!this.more) return;
       await axios
         .get(this.next)
         .then(res => {
-          if (res.data.paging.next === undefined) this.more = false;
-          this.podcasts = this.podcasts.concat(res.data.data);
-          this.next = res.data.paging.next;
+          console.log(res.data);
+          if (res.data.next_href === null) this.more = false;
+          this.podcasts = this.podcasts.concat(res.data.collection);
+          this.offset = res.data.next_href.substring(
+            res.data.next_href.indexOf("?offset") + 8
+          );
+          this.offset = this.offset.split("&")[0];
+          this.next = `${process.env.VUE_APP_API}/sounds/${this.offset}`;
         })
         .catch();
     }
   },
   async mounted() {
-    this.next = "https:    await this.getPodcasts();
+    this.next = `${process.env.VUE_APP_API}/sounds/${this.offset}`;
     await this.getPodcasts();
-  }
+      }
 };
 </script>
 <style lang="less" scoped>

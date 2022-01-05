@@ -10,15 +10,15 @@
     </header>
     <ul class="podinfo">
       <li class="lititle" @click="toPodcast(pod.slug)">
-        <span class="title">{{ pod.name }}</span>
+        <span class="title">{{ pod.title }}</span>
         <span class="time">{{ pod.audio_length }}</span>
       </li>
       <li class="genres">
         <span
-          v-for="tag in pod.tags"
+          v-for="tag in [pod.genre]"
           v-bind:key="tag.name"
-          @click="search(tag.name.toLowerCase())"
-          >{{ tag.name.toLowerCase() }}
+          @click="search(tag.toLowerCase())"
+          >{{ tag.toLowerCase() }}
         </span>
       </li>
     </ul>
@@ -55,21 +55,22 @@ export default {
     }
   },
   mounted() {
-    const time = Math.floor(this.pod.audio_length / 60);
+    const time = Math.floor(this.pod.full_duration / 60000);
     let minutes = Math.floor(time % 60);
     minutes = minutes < 10 ? `0${minutes}` : minutes;
     this.pod.audio_length =
       time < 60 ? `${minutes}min` : `${Math.floor(time / 60)}h ${minutes}min`;
-    this.podImage = this.pod.pictures.thumbnail;
+    this.podImage = this.pod.artwork_url;
+    let large = this.pod.artwork_url;
+    large = large.replace("-large", "-t500x500");
     this.observer = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         const img = new Image();
-        const src = this.pod.pictures.large;
         img.onload = () => {
-          this.podImage = src;
+          this.podImage = large;
           this.intersect = true;
         };
-        img.src = src;
+        img.src = large;
         this.observer.disconnect();
       }
     });
