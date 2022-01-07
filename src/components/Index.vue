@@ -63,17 +63,23 @@ export default {
       events: [],
       podcasts: [],
       next: "",
+      offset: 0,
       more: true
     };
   },
   methods: {
-    getPodcasts() {
-      axios
+    async getPodcasts() {
+            if (!this.more) return;
+      await axios
         .get(this.next)
         .then(res => {
-          if (res.data.paging.next === undefined) this.more = false;
-          this.podcasts = this.podcasts.concat(res.data.data);
-          this.next = res.data.paging.next;
+          if (res.data.next_href === null) this.more = false;
+          this.podcasts = this.podcasts.concat(res.data.collection);
+          this.offset = res.data.next_href.substring(
+            res.data.next_href.indexOf("?offset") + 8
+          );
+          this.offset = this.offset.split("&")[0];
+          this.next = `${process.env.VUE_APP_API}/sounds/${this.offset}`;
         })
         .catch();
     },
@@ -102,7 +108,8 @@ export default {
     }
   },
   mounted() {
-    this.next = "https:    this.getPodcasts();
+    this.next = `${process.env.VUE_APP_API}/sounds/${this.offset}`;
+    this.getPodcasts();
     this.getEvents();
   }
 };

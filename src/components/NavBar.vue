@@ -136,7 +136,7 @@ export default {
               }
             this.livestream = true;
             if (!show) this.$parent.title = "Tune In";
-            this.$parent.timeout = setTimeout(this.checkTitle, 15 * 60000);
+                        this.$parent.timeout = setTimeout(this.checkTitle, 60000);
           } else {
             this.livestream = false;
             const time = res.data.current.ends.replace(" ", "T");

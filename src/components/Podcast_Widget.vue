@@ -9,13 +9,13 @@
       <img class="play_mix" src="../assets/imgs/play_icon.png" />
     </header>
     <ul class="podinfo">
-      <li class="lititle" @click="toPodcast(pod.slug)">
+      <li class="lititle" @click="toPodcast(pod.id)">
         <span class="title">{{ pod.title }}</span>
         <span class="time">{{ pod.audio_length }}</span>
       </li>
       <li class="genres">
         <span
-          v-for="tag in [pod.genre]"
+          v-for="tag in pod.genres"
           v-bind:key="tag.name"
           @click="search(tag.toLowerCase())"
           >{{ tag.toLowerCase() }}
@@ -37,9 +37,8 @@ export default {
     };
   },
   methods: {
-    toPodcast(key) {
-      const tag = key.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      this.$router.push({ path: `/podcasts/${tag}` });
+    toPodcast(id) {
+      this.$router.push({ path: `/podcasts/${id}` });
     },
     async getAudio(url) {
       window.open(url, "_blank");
@@ -55,6 +54,11 @@ export default {
     }
   },
   mounted() {
+    this.pod.genres = this.pod.tag_list.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
+    this.pod.genres = this.pod.genres.map(g => {
+      if (g[0] == '"') return g.substring(1, g.length - 1);
+      return g;
+    });
     const time = Math.floor(this.pod.full_duration / 60000);
     let minutes = Math.floor(time % 60);
     minutes = minutes < 10 ? `0${minutes}` : minutes;

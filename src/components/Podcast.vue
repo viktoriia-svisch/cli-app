@@ -5,14 +5,10 @@
       <div id="backimg2"></div>
     </div>
     <header>
-      <h1>{{ podcast.name }}</h1>
+      <h1>{{ podcast.title }}</h1>
       <ul>
-        <li
-          v-for="tag in podcast.tags"
-          v-bind:key="tag.name"
-          @click="search(tag.name.toLowerCase())"
-        >
-          <span class="tag">{{ tag.name.toLowerCase() }}</span>
+        <li>
+          <span class="tag">{{ podcast.tag_list }}</span>
         </li>
       </ul>
       <br />
@@ -35,6 +31,7 @@ export default {
       key: "",
       podcast: {},
       pic: "",
+      audio_length: 0,
       isBlurred: true
     };
   },
@@ -53,17 +50,26 @@ export default {
     },
     async getPodcast() {
       await axios
-        .get(`${process.env.VUE_APP_API}/mix/${this.key}`)
+        .get(`${process.env.VUE_APP_API}/sounds/tracks/${this.key}`)
         .then(res => {
           this.podcast = res.data;
-          this.pic = this.podcast.pictures.medium;
+          this.pic = this.podcast.artwork_url;
           const img = new Image();
-          const src = this.podcast.pictures.extra_large;
+          const src = this.podcast.artwork_url;
+          let large = this.podcast.artwork_url;
+          large = large.replace("-large", "-t500x500");
           img.onload = () => {
-            this.pic = src;
+            this.pic = large;
             this.isBlurred = false;
           };
-          img.src = src;
+          img.src = large;
+          const time = Math.floor(this.podcast.full_duration / 60000);
+          let minutes = Math.floor(time % 60);
+          minutes = minutes < 10 ? `0${minutes}` : minutes;
+          this.audio_length =
+            time < 60
+              ? `${minutes}min`
+              : `${Math.floor(time / 60)}h ${minutes}min`;
         })
         .catch(() => {
           this.$router.push({ path: "/" });
@@ -72,6 +78,7 @@ export default {
   },
   mounted() {
     this.key = this.$route.params.id;
+    console.log(`${process.env.VUE_APP_API}/sounds/tracks/${this.key}`);
     this.getPodcast();
   }
 };
@@ -81,6 +88,7 @@ export default {
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
   position: relative;
   border-top: 5px dashed white;
   border-left: 5px dashed white;

@@ -30,7 +30,6 @@ export default {
       await axios
         .get(this.next)
         .then(res => {
-          console.log(res.data);
           if (res.data.next_href === null) this.more = false;
           this.podcasts = this.podcasts.concat(res.data.collection);
           this.offset = res.data.next_href.substring(
