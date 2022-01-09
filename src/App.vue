@@ -1,7 +1,6 @@
 <template>
   <main id="app">
     <NavBar ref="navbar" />
-    <article v-html="mix" style="display: none"></article>
     <router-view class="router" />
     <Chat v-if="chatting" />
     <Footer />
@@ -29,13 +28,11 @@ export default {
       msgs: [],
       newmsg: false,
       isPlaying: false,
-      mix: "",
       timeout: null,
       currentShow: "Radio",
       title: "",
       artist: "",
       ding: new Audio(require("@/assets/sounds/light.mp3")),
-      mixh: 80,
       print_shows: false,
       print_events: false
     };
@@ -105,6 +102,11 @@ export default {
 body {
   margin: 0;
   background-color: black;
+  iframe {
+    padding: 10px;
+    background-color: #f2f2f2;
+    width: ~"calc(100% - 20px)";
+  }
   #app {
     font-family: Kiona;
     -webkit-font-smoothing: antialiased;
@@ -131,9 +133,6 @@ body {
     bottom: 0;
     z-index: 1;
     background: transparent;
-  }
-  iframe {
-    height: 60px;
   }
   #youtubelive {
     height: ~"calc(100vh - 77px)";

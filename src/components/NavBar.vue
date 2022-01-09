@@ -14,12 +14,6 @@
         <span class="play">{{ icon }}</span>
         <span class="title">{{ $parent.currentShow }}</span>
       </article>
-      <img
-        v-if="$parent.mix"
-        class="close_mix pcplayer"
-        src="../assets/imgs/cross_icon.png"
-        @click="rm_mix"
-      />
       <audio ref="audioElm" :src="src" preload="none"></audio>
       <article id="links">
         <router-link :to="{ path: '/' }">Accueil</router-link>
@@ -71,18 +65,11 @@
         <span class="play">{{ icon }}</span>
         <span class="title">{{ $parent.currentShow }}</span>
       </article>
-      <img
-        v-if="$parent.mix"
-        class="close_mix"
-        src="../assets/imgs/cross_icon.png"
-        @click="rm_mix"
-      />
     </section>
     <section class="bottom bplaying">
       <span
         ><span class="reddot" v-if="livestream">• </span>
-        <span v-if="livestream">Live         }}<span v-if="!livestream && !$parent.mix.length"> - </span
-        >{{ $parent.title }}</span
+        <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ $parent.title }}</span
       >
     </section>
   </nav>
@@ -100,12 +87,6 @@ export default {
     };
   },
   methods: {
-    rm_mix() {
-      this.$parent.mix = "";
-      this.$parent.logo = require("../assets/imgs/odc.jpg");
-      this.checkTitle();
-      if (this.$parent.isPlaying) this.play();
-    },
     play() {
       if (this.loading) return;
       if (!this.$parent.isPlaying) {
@@ -177,35 +158,10 @@ nav {
   background-color: black;
   top: 0px;
   z-index: 5;
-  .close_mix {
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
-    background-color: #a20c0c;
-    padding: 1px;
-    cursor: pointer;
-  }
   .right {
     right: 0;
     margin-right: 5px;
     position: absolute;
-  }
-  #mix {
-    position: fixed;
-    top: 60px;
-    height: 60px;
-    width: ~"calc(100% - 60px)";
-    img {
-      cursor: pointer;
-      background-color: #fcfcfc;
-      position: absolute;
-      height: 58px;
-      top: 0px;
-      right: -60px;
-      border-top: 1px solid #d7d7d7;
-      border-bottom: 1px solid #d7d7d7;
-      border-right: 2px solid #d7d7d7;
-    }
   }
   #top {
     display: flex;
@@ -331,17 +287,6 @@ nav {
   @media (max-width: 800px) {
     .pcplayer {
       display: none;
-    }
-    .close_mix {
-      position: absolute;
-      right: 18px;
-      top: 7px;
-    }
-    #mix {
-      position: relative;
-      top: 0px;
-      img {
-      }
     }
     .bplayer {
       display: block;
