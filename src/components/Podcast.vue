@@ -13,7 +13,10 @@
       </ul>
       <br />
     </header>
-    <span class="listen" @click="getAudio(podcast.url)">▶ ecouter</span>
+    <span class="listen" @click="getAudio(podcast.id)">
+      <img height="30" src="../assets/imgs/play.svg" />
+      ecouter</span
+    >
     <article>
       <img :src="pic" :class="{ blurred: isBlurred, noblurred: !isBlurred }" />
     </article>
@@ -45,8 +48,8 @@ export default {
         this.$router.push({ path: "/search" });
       }
     },
-    async getAudio(url) {
-      window.open(url, "_blank");
+    getAudio(id) {
+      this.$emit('play_mix', id);
     },
     async getPodcast() {
       await axios

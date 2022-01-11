@@ -1,9 +1,27 @@
 <template>
   <main id="app">
     <NavBar ref="navbar" />
-    <router-view class="router" />
+    <router-view class="router" v-on:play_mix="play_mix" />
     <Chat v-if="chatting" />
     <Footer />
+    <section id="mix_frame" v-if="iframe_mix">
+      <iframe
+        width="100%"
+        height="20"
+        scrolling="no"
+        frameborder="no"
+        allow="autoplay"
+        :src="
+          `https:        "
+      >
+      </iframe>
+      <img
+        @click="close_mix"
+        src="./assets/imgs/cancel.svg"
+        height="20"
+        alt="Close the mix"
+      />
+    </section>
   </main>
 </template>
 <script>
@@ -34,10 +52,17 @@ export default {
       artist: "",
       ding: new Audio(require("@/assets/sounds/light.mp3")),
       print_shows: false,
-      print_events: false
+      print_events: false,
+      iframe_mix: ""
     };
   },
   methods: {
+    play_mix(id) {
+      this.iframe_mix = id;
+    },
+    close_mix() {
+      this.iframe_mix = "";
+    },
     async getStream() {
       const res = await graph(
         null,
@@ -102,10 +127,25 @@ export default {
 body {
   margin: 0;
   background-color: black;
-  iframe {
-    padding: 10px;
-    background-color: #f2f2f2;
-    width: ~"calc(100% - 20px)";
+  #mix_frame {
+    iframe {
+      padding: 10px;
+      margin-bottom: -4px;
+      background-color: #f2f2f2;
+      width: ~"calc(100% - 56px)";
+      position: fixed;
+      bottom: 0px;
+      z-index: 5;
+    }
+    img {
+      cursor: pointer;
+      height: 36px;
+      background-color: #f2f2f2;
+      position: fixed;
+      bottom: 0px;
+      right: 0;
+      z-index: 5;
+    }
   }
   #app {
     font-family: Kiona;

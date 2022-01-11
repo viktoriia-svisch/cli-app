@@ -1,6 +1,6 @@
 <template>
   <section class="podcast">
-    <header @click="getAudio(pod.url)">
+    <header @click="getAudio(pod.id)">
       <img
         :src="podImage"
         class="miximg"
@@ -40,8 +40,8 @@ export default {
     toPodcast(id) {
       this.$router.push({ path: `/podcasts/${id}` });
     },
-    async getAudio(url) {
-      window.open(url, "_blank");
+    getAudio(id) {
+      this.$emit('play_mix', id);
     },
     search(tag) {
       if (this.$route.path == "/search") {

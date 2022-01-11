@@ -9,7 +9,12 @@
       allowfullscreen
     ></iframe>
     <section id="podcasts">
-      <Podcast v-for="pod in podcasts" v-bind:key="pod.key" :pod="pod" />
+      <Podcast
+        v-for="pod in podcasts"
+        v-bind:key="pod.key"
+        :pod="pod"
+        v-on:play_mix="play_mix"
+      />
     </section>
     <section id="more" v-if="more">
       <router-link :to="{ path: '/podcasts' }" tag="h1" id="more"
@@ -68,6 +73,9 @@ export default {
     };
   },
   methods: {
+    play_mix(id) {
+      this.$emit("play_mix", id);
+    },
     async getPodcasts() {
             if (!this.more) return;
       await axios

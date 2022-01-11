@@ -1,7 +1,12 @@
 <template>
   <article id="spod">
     <section id="podcasts">
-      <Podcast v-for="pod in podcasts" v-bind:key="pod.id" :pod="pod" />
+      <Podcast
+        v-for="pod in podcasts"
+        v-bind:key="pod.id"
+        :pod="pod"
+        v-on:play_mix="play_mix"
+      />
     </section>
     <section id="more" v-if="more">
       <h1 id="more" @click="getPodcasts">en charger plus</h1>
@@ -25,6 +30,9 @@ export default {
     };
   },
   methods: {
+    play_mix(id) {
+      this.$emit("play_mix", id);
+    },
     async getPodcasts() {
             if (!this.more) return;
       await axios
