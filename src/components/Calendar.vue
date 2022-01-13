@@ -1,5 +1,5 @@
 <template>
-  <section id="cal">
+  <section id="cal" v-if="$parent.print_shows">
     <h1 id="title">Le Calendrier des emissions</h1>
     <h2>
       Semaine du <u>{{ week.toLocaleDateString("fr") }}:</u>
@@ -253,7 +253,6 @@ export default {
 #cal {
   h1,
   h2 {
-    margin: 10px auto;
     max-width: 1100px;
   }
   #title {

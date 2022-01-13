@@ -11,17 +11,22 @@
         :class="loading ? 'blocked' : ''"
         @click="play"
       >
-        <span class="play">{{ icon }}</span>
+        <img
+          class="play_remote"
+          src="../assets/imgs/stop.svg"
+          v-if="$parent.isPlaying"
+        />
+        <img class="play_remote" src="../assets/imgs/play.svg" v-else />
         <span class="title">{{ $parent.currentShow }}</span>
       </article>
       <audio ref="audioElm" :src="src" preload="none"></audio>
       <article id="links">
-        <router-link :to="{ path: '/' }">Accueil</router-link>
         <router-link v-if="$parent.print_events" :to="{ path: '/events' }"
           >Evenements</router-link
         >
         <router-link :to="{ path: '/podcasts' }">Podcasts</router-link>
         <router-link :to="{ path: '/search' }">Recherche</router-link>
+        <router-link :to="{ path: '/calendar' }">Calendrier</router-link>
         <span class="eventless" v-if="!$parent.print_events">o</span>
       </article>
       <article id="more" class="right">
@@ -62,7 +67,12 @@
         :class="loading ? 'blocked' : ''"
         @click="play"
       >
-        <span class="play">{{ icon }}</span>
+        <img
+          class="play_remote"
+          src="../assets/imgs/stop.svg"
+          v-if="$parent.isPlaying"
+        />
+        <img class="play_remote" src="../assets/imgs/play.svg" v-else />
         <span class="title">{{ $parent.currentShow }}</span>
       </article>
     </section>
@@ -81,8 +91,7 @@ export default {
   data() {
     return {
       radio: new Audio(),
-      src: "https:      icon: "▶",
-      loading: false,
+      src: "https:      loading: false,
       livestream: false
     };
   },
@@ -92,12 +101,10 @@ export default {
       if (!this.$parent.isPlaying) {
         this.$refs.audioElm.src = `${this.src}?t=${new Date().getTime()}`;
         this.$refs.audioElm.play();
-        this.icon = "■";
         this.$parent.isPlaying = true;
       } else {
         this.$refs.audioElm.pause();
         this.$parent.isPlaying = false;
-        this.icon = "▶";
       }
     },
     checkTitle() {
@@ -158,6 +165,12 @@ nav {
   background-color: black;
   top: 0px;
   z-index: 5;
+  .play_remote {
+    position: absolute;
+    top: 13px;
+    left: 98px;
+    height: 15px;
+  }
   .right {
     right: 0;
     margin-right: 5px;
@@ -287,6 +300,10 @@ nav {
   @media (max-width: 800px) {
     .pcplayer {
       display: none;
+    }
+    .play_remote {
+      top: 8px;
+      left: 10px;
     }
     .bplayer {
       display: block;

@@ -6,7 +6,7 @@
         class="miximg"
         :class="{ blurred: !intersect, noblurred: intersect }"
       />
-      <img class="play_mix" src="../assets/imgs/play_icon.png" />
+      <img class="play_mix" src="../assets/imgs/play.svg" />
     </header>
     <ul class="podinfo">
       <li class="lititle" @click="toPodcast(pod.id)">
@@ -169,7 +169,6 @@ export default {
       bottom: 43%;
       left: 43%;
       height: 18%;
-      transform: rotate(90deg);
       cursor: pointer;
     }
     &:hover {

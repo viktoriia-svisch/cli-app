@@ -23,7 +23,8 @@
     <section id="podcasts">
       <Podcast v-for="pod in shows" v-bind:key="pod.key" :pod="pod" />
     </section>
-    <section id="trackd"></section>
+    <section id="trackd">
+    </section>
   </section>
 </template>
 <script>
@@ -41,7 +42,9 @@ export default {
       disabled: false,
       shows: [],
       observer: null,
-      base: "https:      next: ""
+      offset: 0,
+      base: `${process.env.VUE_APP_API}/sounds/0`,
+      next: ""
     };
   },
   methods: {
@@ -50,6 +53,7 @@ export default {
       this.shows = await this.getGenreRec();
     },
     async getGenreRec() {
+      if (this.next == null) return;
       this.observer.unobserve(this.$el.childNodes[4]);
       let result = [];
       if (this.searchQuery.length < 2 || !this.next) return;
@@ -57,16 +61,23 @@ export default {
       const reg = new RegExp(this.searchQuery, "gmi");
       const res = await axios.get(this.next);
       this.disabled = false;
-      this.next = res.data.paging.next;
-      for (let i = 0; i < res.data.data.length; i++) {
-        for (let j = 0; j < res.data.data[i].tags.length; j++)
-          if (
-            res.data.data[i].tags[j].name.match(reg) ||
-            res.data.data[i].name.match(reg)
-          ) {
-            result = result.concat(res.data.data[i]);
-            break;
-          }
+            if (res.data.next_href) {
+        this.offset = res.data.next_href.substring(
+          res.data.next_href.indexOf("?offset") + 8
+        );
+        this.offset = this.offset.split("&")[0];
+        this.next = `${process.env.VUE_APP_API}/sounds/${this.offset}`;
+      } else {
+        this.next = null;
+      }
+            for (let i = 0; i < res.data.collection.length; i++) {
+        if (
+          res.data.collection[i].tag_list.match(reg) ||
+          res.data.collection[i].title.match(reg) ||
+          res.data.collection[i].genre.match(reg)
+        ) {
+          result = result.concat(res.data.collection[i]);
+        }
       }
       this.observer.observe(this.$el.childNodes[4]);
       return result;

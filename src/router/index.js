@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Index from "@/components/Index";
 import Events from "@/components/Events";
 import Search from "@/components/Search";
+import Calendar from "@/components/Calendar";
 import Mentions from "@/components/Mentions";
 import SubmitShow from "@/components/SubmitShow";
 import Podcast from "@/components/Podcast";
@@ -19,6 +20,10 @@ export default new Router({
     {
       path: "/mentions",
       component: Mentions
+    },
+    {
+      path: "/calendar",
+      component: Calendar
     },
     {
       path: "/propose_show",

@@ -8,20 +8,27 @@
       <h1>{{ podcast.title }}</h1>
       <ul>
         <li>
-          <span class="tag">{{ podcast.tag_list }}</span>
+          <span
+            class="tag"
+            v-for="tag in podcast.genres"
+            v-bind:key="tag.name"
+            @click="search(tag.toLowerCase())"
+            >{{ tag.toLowerCase() }}</span
+          >
         </li>
       </ul>
       <br />
     </header>
     <span class="listen" @click="getAudio(podcast.id)">
-      <img height="30" src="../assets/imgs/play.svg" />
+      <img src="../assets/imgs/play.svg" />
       ecouter</span
     >
     <article>
       <img :src="pic" :class="{ blurred: isBlurred, noblurred: !isBlurred }" />
     </article>
     <p>
-      {{ podcast.description }}
+      {{ podcast.description }}<br /><br />
+      {{ audio_length }}
     </p>
   </section>
 </template>
@@ -49,7 +56,7 @@ export default {
       }
     },
     getAudio(id) {
-      this.$emit('play_mix', id);
+      this.$emit("play_mix", id);
     },
     async getPodcast() {
       await axios
@@ -73,6 +80,13 @@ export default {
             time < 60
               ? `${minutes}min`
               : `${Math.floor(time / 60)}h ${minutes}min`;
+          this.podcast.genres = this.podcast.tag_list.match(
+            /(".*?"|[^"\s]+)+(?=\s*|\s*$)/g
+          );
+          this.podcast.genres = this.podcast.genres.map(g => {
+            if (g[0] == '"') return g.substring(1, g.length - 1);
+            return g;
+          });
         })
         .catch(() => {
           this.$router.push({ path: "/" });
@@ -81,7 +95,6 @@ export default {
   },
   mounted() {
     this.key = this.$route.params.id;
-    console.log(`${process.env.VUE_APP_API}/sounds/tracks/${this.key}`);
     this.getPodcast();
   }
 };
@@ -175,6 +188,9 @@ export default {
     border: 1px solid white;
     padding: 3px 7px 3px 7px;
     cursor: pointer;
+    img {
+      height: 21px;
+    }
     &:hover {
       background-color: white;
       color: black;
@@ -198,6 +214,11 @@ export default {
   }
   @media (max-width: 1000px) {
     margin: 10px;
+    .listen {
+      img {
+        height: 30px;
+      }
+    }
     #backimg {
       display: none;
     }
