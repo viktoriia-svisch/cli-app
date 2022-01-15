@@ -1,6 +1,5 @@
 <template>
-  <section id="cal" v-if="$parent.print_shows">
-    <h1 id="title">Le Calendrier des emissions</h1>
+  <section id="cal">
     <h2>
       Semaine du <u>{{ week.toLocaleDateString("fr") }}:</u>
     </h2>
@@ -13,7 +12,7 @@
             id="dow2"
             :checked="checked == 'monday'"
           />
-          <label for="dow2" @click="disp_shows(0, 'monday')"
+          <label for="dow2" @click="disp_shows('monday')"
             >Lundi<br />{{ week.getDate() }}</label
           >
         </div>
@@ -24,7 +23,7 @@
             id="dow3"
             :checked="checked == 'tuesday'"
           />
-          <label for="dow3" @click="disp_shows(0, 'tuesday')"
+          <label for="dow3" @click="disp_shows('tuesday')"
             >Mardi<br />{{
               new Date(week.valueOf() + 1000 * 3600 * 24).getDate()
             }}</label
@@ -37,7 +36,7 @@
             id="dow4"
             :checked="checked == 'wednesday'"
           />
-          <label for="dow4" @click="disp_shows(0, 'wednesday')"
+          <label for="dow4" @click="disp_shows('wednesday')"
             >Mercredi<br />{{
               new Date(week.valueOf() + 2000 * 3600 * 24).getDate()
             }}</label
@@ -50,7 +49,7 @@
             id="dow5"
             :checked="checked == 'thursday'"
           />
-          <label for="dow5" @click="disp_shows(0, 'thursday')"
+          <label for="dow5" @click="disp_shows('thursday')"
             >Jeudi<br />{{
               new Date(week.valueOf() + 3000 * 3600 * 24).getDate()
             }}</label
@@ -63,7 +62,7 @@
             id="dow6"
             :checked="checked == 'friday'"
           />
-          <label for="dow6" @click="disp_shows(0, 'friday')"
+          <label for="dow6" @click="disp_shows('friday')"
             >Vendredi<br />{{
               new Date(week.valueOf() + 4000 * 3600 * 24).getDate()
             }}</label
@@ -76,7 +75,7 @@
             id="dow7"
             :checked="checked == 'saturday'"
           />
-          <label for="dow7" @click="disp_shows(0, 'saturday')"
+          <label for="dow7" @click="disp_shows('saturday')"
             >Samedi<br />{{
               new Date(week.valueOf() + 5000 * 3600 * 24).getDate()
             }}</label
@@ -89,7 +88,7 @@
             id="dow1"
             :checked="checked == 'sunday'"
           />
-          <label for="dow1" @click="disp_shows(0, 'sunday')"
+          <label for="dow1" @click="disp_shows('sunday')"
             >Dimanche<br />{{
               new Date(week.valueOf() + 6000 * 3600 * 24).getDate()
             }}</label
@@ -142,51 +141,29 @@
 import graph from "@/graphaxios";
 export default {
   name: "Calendar",
+  props: ["week"],
   data() {
     return {
       day_selected: null,
-      week: new Date(),
-      weekafter: null,
       checked: "",
       shows: [],
-      weeks: [
-        {
-          monday: [],
-          tuesday: [],
-          wednesday: [],
-          thursday: [],
-          friday: [],
-          saturday: [],
-          sunday: []
-        },
-        {
-          monday: [],
-          tuesday: [],
-          wednesday: [],
-          thursday: [],
-          friday: [],
-          saturday: [],
-          sunday: []
-        }
-      ]
+      weeks: {
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+        sunday: []
+      }
     };
   },
   methods: {
-    getMonday(date) {
-      const day = date.getDay();
-      const diff = date.getDate() - day + (day == 0 ? -6 : 1);
-      return new Date(date.setDate(diff));
-    },
-    getNextMonday(date) {
-      const day = date.getDay();
-      const diff = date.getDate() - day + (day == 0 ? 1 : 7);
-      return new Date(date.setDate(diff));
-    },
-    disp_shows(week, day) {
-      this.day_selected = this.weeks[week][day];
+    disp_shows(day) {
+      this.day_selected = this.weeks[day];
       this.checked = day;
     },
-    async getCalendar(date, n) {
+    async getCalendar(date) {
       const res = await graph(
         "Shows",
         `query Shows($start: String!) {
@@ -202,50 +179,47 @@ export default {
         }`,
         { start: date }
       );
-      this.shows[n] = res.Shows;
+      this.shows = res.Shows;
       for (let i = 0; i < res.Shows.length; i++) {
         let e = new Date(Number(res.Shows[i].starts_at));
         switch (e.getDay()) {
           case 0:
-            this.weeks[n].sunday.push(res.Shows[i]);
+            this.weeks.sunday.push(res.Shows[i]);
             break;
           case 1:
-            this.weeks[n].monday.push(res.Shows[i]);
+            this.weeks.monday.push(res.Shows[i]);
             break;
           case 2:
-            this.weeks[n].tuesday.push(res.Shows[i]);
+            this.weeks.tuesday.push(res.Shows[i]);
             break;
           case 3:
-            this.weeks[n].wednesday.push(res.Shows[i]);
+            this.weeks.wednesday.push(res.Shows[i]);
             break;
           case 4:
-            this.weeks[n].thursday.push(res.Shows[i]);
+            this.weeks.thursday.push(res.Shows[i]);
             break;
           case 5:
-            this.weeks[n].friday.push(res.Shows[i]);
+            this.weeks.friday.push(res.Shows[i]);
             break;
           case 6:
-            this.weeks[n].saturday.push(res.Shows[i]);
+            this.weeks.saturday.push(res.Shows[i]);
             break;
         }
       }
     }
   },
   async mounted() {
-    this.getMonday(this.week);
-    this.weekafter = new Date();
-    this.getNextMonday(this.weekafter);
     const t = `${this.week.getFullYear()}-${this.week.getMonth() +
       1}-${this.week.getDate()}`;
-    await this.getCalendar(t, 0);
-                const day = new Date()
+    await this.getCalendar(t);
+    const day = new Date()
       .toLocaleDateString("en", {
         weekday: "long"
       })
       .toLowerCase();
-    this.disp_shows(0, day);
+    this.disp_shows(day);
     this.checked = day;
-    localStorage.setItem("today_shows", JSON.stringify(this.weeks[0][day]));
+    localStorage.setItem("today_shows", JSON.stringify(this.weeks[day]));
   }
 };
 </script>
@@ -266,7 +240,6 @@ export default {
       width: 1000px;
       margin: 30px auto;
       .show {
-        border-left: 1px solid #7e7e7e;
         padding-left: 10px;
         margin-bottom: 30px;
         p {
@@ -293,6 +266,7 @@ export default {
       width: 1000px;
       display: flex;
       justify-content: center;
+      border-right: 1px solid #7e7e7e;
       .dowPickerOption {
         display: inline-block;
         text-align: center;
