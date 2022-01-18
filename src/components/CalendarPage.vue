@@ -1,8 +1,27 @@
 <template>
   <section id="cal" v-if="$parent.print_shows">
     <h1 id="title">Le Calendrier des emissions</h1>
-    <Calendar v-if="week" :week="week" />
-    <Calendar v-if="weekafter" :week="weekafter" />
+    <div id="pick">
+      <span
+        :class="selected == 'week' ? 'selected' : ''"
+        @click="selected = 'week'"
+        >Semaine du
+        {{
+          `${week.getDate()}/${week.getMonth() + 1}/${week.getFullYear()}`
+        }}</span
+      >
+      <span
+        :class="selected == 'weekafter' ? 'selected' : ''"
+        @click="selected = 'weekafter'"
+        >Semaine du
+        {{
+          `${weekafter.getDate()}/${weekafter.getMonth() +
+            1}/${weekafter.getFullYear()}`
+        }}</span
+      >
+    </div>
+    <Calendar v-if="selected == 'week' && week" :week="week" />
+    <Calendar v-if="selected == 'weekafter' && weekafter" :week="weekafter" />
   </section>
 </template>
 <script>
@@ -15,7 +34,8 @@ export default {
   data() {
     return {
       week: null,
-      weekafter: null
+      weekafter: null,
+      selected: "week"
     };
   },
   methods: {
@@ -43,6 +63,22 @@ export default {
   #title {
     font-size: 40px;
     font-family: Bison;
+  }
+  #pick {
+    margin: 0 auto;
+    width: intrinsic; 
+    width: -moz-max-content; 
+    width: -webkit-max-content; 
+    border: 3px solid white;
+    span {
+      padding: 10px 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .selected {
+      background-color: white;
+      color: black;
+    }
   }
 }
 </style>
