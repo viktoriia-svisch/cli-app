@@ -21,8 +21,10 @@
         >Voir plus de podcasts</router-link
       >
     </section>
-    <h1 class="subtitle" v-if="events.length">Les prochains evenements</h1>
-    <article id="events">
+    <h1 class="subtitle" v-if="$parent.print_events && events.length">
+      Les prochains evenements
+    </h1>
+    <article v-if="$parent.print_events" id="events">
       <div>
         <Event
           v-for="(e, i) in events"
@@ -40,7 +42,7 @@
         />
       </div>
     </article>
-    <article id="events_mobile">
+    <article id="events_mobile" v-if="$parent.print_events">
       <Event v-for="e in events" v-bind:key="e.id" :e="e" />
     </article>
     <article id="odc">

@@ -1,7 +1,7 @@
 <template>
-  <section id="cal" v-if="$parent.print_shows">
+  <section id="cal">
     <h1 id="title">Le Calendrier des emissions</h1>
-    <div id="pick">
+    <div v-if="week && weekafter" id="pick">
       <span
         :class="selected == 'week' ? 'selected' : ''"
         @click="selected = 'week'"
@@ -20,8 +20,8 @@
         }}</span
       >
     </div>
-    <Calendar v-if="selected == 'week' && week" :week="week" />
-    <Calendar v-if="selected == 'weekafter' && weekafter" :week="weekafter" />
+    <Calendar v-if="week && selected == 'week'" :week="week" />
+    <Calendar v-if="weekafter && selected == 'weekafter'" :week="weekafter" />
   </section>
 </template>
 <script>

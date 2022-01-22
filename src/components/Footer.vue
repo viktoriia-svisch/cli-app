@@ -1,12 +1,13 @@
 <template>
   <footer>
     <div class="links">
-      <router-link :to="{path: '/mentions'}"
+      <router-link :to="{ path: '/mentions' }"
         ><b>Mentions legales</b></router-link
       >
-      <router-link :to="{path: '/propose_show'}"
+      <router-link :to="{ path: '/propose_show' }"
         ><b>Proposer une emission</b></router-link
       >
+      <router-link :to="{ path: '/archive' }"><b>Archives</b></router-link>
     </div>
     <div class="moto">
       <span>
@@ -19,7 +20,7 @@
 </template>
 <script>
 export default {
-  name: 'Footer',
+  name: "Footer"
 };
 </script>
 <style lang="less" scoped>

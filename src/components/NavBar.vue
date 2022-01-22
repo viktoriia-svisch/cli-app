@@ -26,7 +26,9 @@
         >
         <router-link :to="{ path: '/podcasts' }">Podcasts</router-link>
         <router-link :to="{ path: '/search' }">Recherche</router-link>
-        <router-link :to="{ path: '/calendar' }">Calendrier</router-link>
+        <router-link v-if="$parent.print_shows" :to="{ path: '/calendar' }"
+          >Calendrier</router-link
+        >
         <span class="eventless" v-if="!$parent.print_events">o</span>
       </article>
       <article id="more" class="right">

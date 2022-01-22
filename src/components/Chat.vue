@@ -136,7 +136,7 @@ export default {
   bottom: 0;
   position: fixed;
   right: 0;
-  z-index: 5;
+  z-index: 10;
   height: ~"calc(100% - 61px)";
   width: 350px;
   border-left: 1px solid white;
