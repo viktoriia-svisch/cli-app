@@ -8,6 +8,14 @@
         ><b>Proposer une emission</b></router-link
       >
       <router-link :to="{ path: '/archive' }"><b>Archives</b></router-link>
+      <span>
+        <a href="https:          >Instagram</a
+        >
+        <a href="https:          >Facebook</a
+        >
+        <a href="https:          >Soundcloud</a
+        >
+      </span>
     </div>
     <div class="moto">
       <span>
@@ -43,6 +51,7 @@ footer {
       text-decoration-line: underline;
       text-decoration-style: dashed;
       color: white;
+      margin-bottom: 10px;
       &:hover {
         text-decoration-style: dotted;
       }

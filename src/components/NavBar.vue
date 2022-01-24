@@ -3,6 +3,7 @@
     <section id="top">
       <router-link :to="{ path: '/' }">
         <img id="logo" :src="$parent.logo" />
+        <img id="logo_mb" src="../assets/imgs/logo.gif" />
       </router-link>
       <article
         class="pcplayer"
@@ -265,6 +266,12 @@ nav {
       top: 10px;
       left: 10px;
     }
+    #logo_mb {
+      width: 30px;
+      display: none;
+      margin-top: -5px;
+      margin-left: 8px;
+    }
   }
   .bplayer {
     border-top: 1px solid white;
@@ -299,7 +306,7 @@ nav {
       }
     }
   }
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     .pcplayer {
       display: none;
     }
@@ -315,15 +322,16 @@ nav {
     }
     #top {
       #links {
-        flex-direction: column;
-        width: ~"calc(100% - 175px)";
-        margin-left: 140px;
+        flex-flow: wrap;
         .eventless {
           display: initial;
         }
       }
       #logo {
-        width: 130px;
+        display: none;
+      }
+      #logo_mb {
+        display: initial;
       }
       #radio {
         margin-left: 10px;
@@ -331,26 +339,14 @@ nav {
         width: 95px;
       }
       #more {
+        position: relative;
         .chaticon {
           position: relative;
+          margin-left: 8px;
           left: 0;
         }
         a {
-          .network {
-            position: relative;
-          }
-          ._iglink {
-            right: 0px;
-            margin-bottom: 15px;
-          }
-          ._fblink {
-            right: 0px;
-          }
-          ._mclink {
-            right: 0px;
-            margin-bottom: 15px;
-            margin-top: 5px;
-          }
+          display: none;
         }
       }
     }
