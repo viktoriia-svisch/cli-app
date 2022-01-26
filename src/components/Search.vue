@@ -21,10 +21,14 @@
       />
     </header>
     <section id="podcasts">
-      <Podcast v-for="pod in shows" v-bind:key="pod.key" :pod="pod" />
+      <Podcast
+        v-for="pod in shows"
+        v-bind:key="pod.key"
+        :pod="pod"
+        v-on:play_mix="play_mix"
+      />
     </section>
-    <section id="trackd">
-    </section>
+    <section id="trackd"></section>
   </section>
 </template>
 <script>
@@ -48,15 +52,18 @@ export default {
     };
   },
   methods: {
+    play_mix(id) {
+      this.$emit("play_mix", id);
+    },
     async getGenre() {
       this.next = this.base;
+      this.shows = [];
       this.shows = await this.getGenreRec();
     },
     async getGenreRec() {
-      if (this.next == null) return;
       this.observer.unobserve(this.$el.childNodes[4]);
       let result = [];
-      if (this.searchQuery.length < 2 || !this.next) return;
+      if (this.searchQuery.length < 2 || !this.next) return result;
       this.disabled = true;
       const reg = new RegExp(this.searchQuery, "gmi");
       const res = await axios.get(this.next);
@@ -77,6 +84,7 @@ export default {
           res.data.collection[i].genre.match(reg)
         ) {
           result = result.concat(res.data.collection[i]);
+          console.log(result);
         }
       }
       this.observer.observe(this.$el.childNodes[4]);

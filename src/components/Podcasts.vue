@@ -52,6 +52,7 @@ export default {
   async mounted() {
     this.next = `${process.env.VUE_APP_API}/sounds/${this.offset}`;
     await this.getPodcasts();
+    await this.getPodcasts();
   }
 };
 </script>

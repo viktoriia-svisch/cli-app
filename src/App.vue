@@ -7,7 +7,7 @@
     <section id="mix_frame" v-if="iframe_mix">
       <iframe
         width="100%"
-        height="20"
+        height="115"
         scrolling="no"
         frameborder="no"
         allow="autoplay"
@@ -15,12 +15,7 @@
           `https:        "
       >
       </iframe>
-      <img
-        @click="close_mix"
-        src="./assets/imgs/cancel.svg"
-        height="20"
-        alt="Close the mix"
-      />
+      <span @click="close_mix">fermer</span>
     </section>
   </main>
 </template>
@@ -128,23 +123,36 @@ body {
   margin: 0;
   background-color: black;
   #mix_frame {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
     iframe {
       padding: 10px;
       margin-bottom: -4px;
       background-color: #f2f2f2;
       width: ~"calc(100% - 56px)";
-      position: fixed;
+      position: sticky;
       bottom: 0px;
       z-index: 5;
     }
-    img {
+    span {
       cursor: pointer;
-      height: 36px;
+      word-wrap: break-word;
+      width: 15px;
       background-color: #f2f2f2;
+      color: black;
+      font-weight: bold;
+      font-family: SpaceMono;
+      font-size: 13px;
+      border-left: 1px solid #e3e3e3;
+      padding: 8px 7px 7px 13px;
       position: fixed;
       bottom: 0px;
-      right: 0;
+      right: 0px;
       z-index: 5;
+      &:hover {
+        background-color: #e8e8e8;
+      }
     }
   }
   #app {

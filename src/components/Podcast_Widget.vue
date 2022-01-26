@@ -41,7 +41,7 @@ export default {
       this.$router.push({ path: `/podcasts/${id}` });
     },
     getAudio(id) {
-      this.$emit('play_mix', id);
+      this.$emit("play_mix", id);
     },
     search(tag) {
       if (this.$route.path == "/search") {
