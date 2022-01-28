@@ -266,7 +266,6 @@ export default {
       width: 1000px;
       display: flex;
       justify-content: center;
-      border-right: 1px solid #7e7e7e;
       .dowPickerOption {
         display: inline-block;
         text-align: center;
@@ -301,6 +300,7 @@ export default {
         flex-flow: column;
         width: 100px;
         height: 280px;
+        border-right: 1px solid #7e7e7e;
         .dowPickerOption {
           margin-right: 10px;
           margin-left: 0px;

@@ -113,7 +113,11 @@ export default {
     checkTitle() {
       axios
         .get("https:        .then(res => {
-          if (res.data.current.type == "livestream") {
+          if (res.data.current == null) {
+            this.livestream = true;
+            this.$parent.title = "Tune In";
+            this.$parent.timeout = setTimeout(this.checkTitle, 60000);
+          } else if (res.data.current.type == "livestream") {
             const t_shows = JSON.parse(localStorage.getItem("today_shows"));
             let show = false;
             let DST = new Date().getTimezoneOffset() == -60 ? 0 : 3600000;
