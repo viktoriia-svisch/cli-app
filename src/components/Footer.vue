@@ -7,7 +7,6 @@
       <router-link :to="{ path: '/propose_show' }"
         ><b>Proposer une emission</b></router-link
       >
-      <router-link :to="{ path: '/archive' }"><b>Archives</b></router-link>
       <span>
         <a href="https:          >Instagram</a
         >

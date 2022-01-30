@@ -22,16 +22,12 @@
       </article>
       <audio ref="audioElm" :src="src" preload="none"></audio>
       <article id="links">
-        <router-link v-if="$parent.print_events" :to="{ path: '/events' }"
-          >Evenements</router-link
-        >
         <router-link :to="{ path: '/podcasts' }">Podcasts</router-link>
         <router-link :to="{ path: '/search' }">Recherche</router-link>
         <router-link v-if="$parent.print_shows" :to="{ path: '/calendar' }"
           >Calendrier</router-link
         >
-        <span class="eventless" v-if="!$parent.print_events">o</span>
-      </article>
+        <a href="https:      </article>
       <article id="more" class="right">
         <svg
           @click="$parent.chatting = !$parent.chatting"

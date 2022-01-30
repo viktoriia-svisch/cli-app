@@ -1,14 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Index from "@/components/Index";
-import Events from "@/components/Events";
 import Search from "@/components/Search";
 import CalendarPage from "@/components/CalendarPage";
 import Mentions from "@/components/Mentions";
 import SubmitShow from "@/components/SubmitShow";
 import Podcast from "@/components/Podcast";
 import Podcasts from "@/components/Podcasts";
-import Archive from "@/components/Archive";
 Vue.use(Router);
 export default new Router({
   mode: "history",
@@ -17,10 +15,6 @@ export default new Router({
       path: "/search",
       component: Search,
       props: true
-    },
-    {
-      path: "/archive",
-      component: Archive
     },
     {
       path: "/mentions",
@@ -41,10 +35,6 @@ export default new Router({
     {
       path: "/podcasts/:id",
       component: Podcast,
-    },
-    {
-      path: "/events",
-      component: Events
     },
     {
       path: "/",
