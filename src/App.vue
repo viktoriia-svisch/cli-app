@@ -146,7 +146,7 @@ body {
       font-size: 13px;
       border-left: 1px solid #e3e3e3;
       padding: 8px 7px 7px 13px;
-      position: fixed;
+      position: absolute;
       bottom: 0px;
       right: 0px;
       z-index: 5;
