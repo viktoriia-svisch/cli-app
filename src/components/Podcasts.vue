@@ -44,7 +44,9 @@ export default {
             res.data.next_href.indexOf("?offset") + 8
           );
           this.offset = this.offset.split("&")[0];
-          this.next = `${process.env.VUE_APP_API}/sounds/${this.offset}`;
+          this.next = `${process.env.VUE_APP_API}/sounds/${
+            this.offset
+          }?t=${new Date().getTime()}`;
         })
         .catch();
     }

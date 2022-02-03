@@ -117,7 +117,9 @@ export default {
     }
   },
   mounted() {
-    this.next = `${process.env.VUE_APP_API}/sounds/${this.offset}`;
+    this.next = `${process.env.VUE_APP_API}/sounds/${
+      this.offset
+    }?t=${new Date().getTime()}`;
     this.getPodcasts();
     this.getEvents();
   }
