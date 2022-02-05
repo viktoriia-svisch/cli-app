@@ -80,5 +80,15 @@ export default {
       color: black;
     }
   }
+  @media (max-width: 500px) {
+    #pick {
+      width: inherit;
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: 14px;
+      }
+    }
+  }
 }
 </style>

@@ -84,7 +84,6 @@ export default {
           res.data.collection[i].genre.match(reg)
         ) {
           result = result.concat(res.data.collection[i]);
-          console.log(result);
         }
       }
       this.observer.observe(this.$el.childNodes[4]);

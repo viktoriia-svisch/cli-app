@@ -116,7 +116,7 @@ export default {
           } else if (res.data.current.type == "livestream") {
             const t_shows = JSON.parse(localStorage.getItem("today_shows"));
             let show = false;
-            let DST = new Date().getTimezoneOffset() == -60 ? 0 : 3600000;
+            let DST = new Date().getTimezoneOffset() == -60 ? 3600000 : 7200000;
             for (let i = 0; i < t_shows.length; i++)
               if (
                 Number(t_shows[i].starts_at) < new Date().getTime() + DST &&

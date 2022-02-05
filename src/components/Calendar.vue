@@ -181,7 +181,8 @@ export default {
       );
       this.shows = res.Shows;
       for (let i = 0; i < res.Shows.length; i++) {
-        let e = new Date(Number(res.Shows[i].starts_at));
+        let DST = new Date().getTimezoneOffset() == -60 ? 3600000 : 7200000;
+        let e = new Date(Number(res.Shows[i].starts_at) - DST);
         switch (e.getDay()) {
           case 0:
             this.weeks.sunday.push(res.Shows[i]);
