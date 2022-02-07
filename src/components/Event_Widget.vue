@@ -18,20 +18,23 @@
                 weekday: "long",
                 year: "numeric",
                 month: "long",
-                day: "numeric"
+                day: "numeric",
+                timeZone: "UTC"
               })
             }}
             {{
               new Date(Number(e.starts_at)).toLocaleTimeString("fr", {
                 hour: "2-digit",
-                minute: "2-digit"
+                minute: "2-digit",
+                timeZone: "UTC"
               })
             }}
             &rarr;
             {{
               new Date(Number(e.ends_at)).toLocaleTimeString("fr", {
                 hour: "2-digit",
-                minute: "2-digit"
+                minute: "2-digit",
+                timeZone: "UTC"
               })
             }}
           </p>
