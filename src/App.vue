@@ -3,6 +3,7 @@
     <NavBar ref="navbar" />
     <router-view class="router" v-on:play_mix="play_mix" />
     <Chat v-if="chatting" />
+    <Calendar v-if="week" :week="week" style="display: none" />
     <Footer />
     <section id="mix_frame" v-if="iframe_mix">
       <iframe
@@ -24,12 +25,14 @@ import graph from "@/graphaxios";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Chat from "@/components/Chat";
+import Calendar from "@/components/Calendar";
 export default {
   name: "app",
   components: {
     NavBar,
     Footer,
-    Chat
+    Chat,
+    Calendar
   },
   data() {
     return {
@@ -48,10 +51,16 @@ export default {
       ding: new Audio(require("@/assets/sounds/light.mp3")),
       print_shows: false,
       print_events: false,
-      iframe_mix: ""
+      iframe_mix: "",
+      week: null
     };
   },
   methods: {
+    getMonday(date) {
+      const day = date.getDay();
+      const diff = date.getDate() - day + (day == 0 ? -6 : 1);
+      return new Date(date.setDate(diff));
+    },
     play_mix(id) {
       this.iframe_mix = id;
     },
@@ -106,6 +115,8 @@ export default {
     }
   },
   mounted() {
+    let d = new Date();
+    this.week = this.getMonday(d);
     this.ding.volume = 0.3;
     this.getStream();
     this.getPrints();

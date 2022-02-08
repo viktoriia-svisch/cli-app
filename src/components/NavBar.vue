@@ -109,22 +109,24 @@ export default {
     checkTitle() {
       axios
         .get("https:        .then(res => {
-          if (res.data.current == null) {
-            this.livestream = true;
-            this.$parent.title = "Tune In";
-            this.$parent.timeout = setTimeout(this.checkTitle, 60000);
-          } else if (res.data.current.type == "livestream") {
+          if (
+            res.data.current == null ||
+            res.data.current.type == "livestream"
+          ) {
             const t_shows = JSON.parse(localStorage.getItem("today_shows"));
             let show = false;
-            let DST = new Date().getTimezoneOffset() == -60 ? 3600000 : 7200000;
-            for (let i = 0; i < t_shows.length; i++)
-              if (
-                Number(t_shows[i].starts_at) < new Date().getTime() + DST &&
-                Number(t_shows[i].ends_at) > new Date().getTime() + DST
-              ) {
+            for (let i = 0; i < t_shows.length; i++) {
+              let start = new Date(Number(t_shows[i].starts_at));
+              let end = new Date(Number(t_shows[i].ends_at));
+              let now = new Date();
+              let beg = 60 * start.getUTCHours() + start.getMinutes();
+              let stop = 60 * end.getUTCHours() + end.getMinutes();
+              let rn = 60 * now.getHours() + now.getMinutes();
+              if (beg <= rn && rn <= stop) {
                 this.$parent.artist = t_shows[i].dj;
                 this.$parent.title = `                 show = true;
               }
+            }
             this.livestream = true;
             if (!show) this.$parent.title = "Tune In";
                         this.$parent.timeout = setTimeout(this.checkTitle, 60000);

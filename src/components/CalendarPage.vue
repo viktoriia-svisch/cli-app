@@ -46,7 +46,7 @@ export default {
     },
     getNextMonday(date) {
       const day = date.getDay();
-      const diff = date.getDate() - day + (day == 0 ? 1 : 7);
+      const diff = date.getDate() - day + (day == 0 ? 2 : 8);
       return new Date(date.setDate(diff));
     }
   },
