@@ -20,8 +20,16 @@
         }}</span
       >
     </div>
-    <Calendar v-if="week && selected == 'week'" :week="week" />
-    <Calendar v-if="weekafter && selected == 'weekafter'" :week="weekafter" />
+    <Calendar
+      :style="`display: ${selected == 'week' ? 'initial' : 'none'}`"
+      v-if="week"
+      :week="week"
+    />
+    <Calendar
+      :style="`display: ${selected == 'week' ? 'none' : 'initial'}`"
+      v-if="weekafter"
+      :week="weekafter"
+    />
   </section>
 </template>
 <script>
@@ -39,22 +47,22 @@ export default {
     };
   },
   methods: {
-    getMonday(date) {
+    getMonday() {
+      let date = new Date();
       const day = date.getDay();
       const diff = date.getDate() - day + (day == 0 ? -6 : 1);
       return new Date(date.setDate(diff));
     },
-    getNextMonday(date) {
+    getNextMonday() {
+      let date = new Date();
       const day = date.getDay();
       const diff = date.getDate() - day + (day == 0 ? 2 : 8);
       return new Date(date.setDate(diff));
     }
   },
   mounted() {
-    let d = new Date();
-    this.week = this.getMonday(d);
-    d = new Date();
-    this.weekafter = this.getNextMonday(d);
+    this.week = this.getMonday();
+    this.weekafter = this.getNextMonday();
   }
 };
 </script>

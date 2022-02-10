@@ -4,7 +4,7 @@
       Semaine du <u>{{ week.toLocaleDateString("fr") }}:</u>
     </h2>
     <article id="flexshows">
-      <div class="dowPicker">
+      <form class="dowPicker">
         <div class="dowPickerOption">
           <input
             type="radio"
@@ -94,7 +94,7 @@
             }}</label
           >
         </div>
-      </div>
+      </form>
       <article id="shows">
         <section v-for="show in day_selected" v-bind:key="show.id" class="show">
           <h3>
