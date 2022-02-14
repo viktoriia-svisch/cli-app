@@ -153,6 +153,7 @@ export default {
       font-size: 40px;
       margin-bottom: 5px;
       margin-top: 5px;
+      width: 429px;
     }
     ul {
       list-style-type: none;
@@ -181,8 +182,9 @@ export default {
   .listen {
     background-color: black;
     position: absolute;
-    top: 150px;
-    left: 10px;
+    display: ruby;
+    top: 29px;
+    right: 10px;
     font-size: 30px;
     font-family: Bison;
     border: 1px solid white;
@@ -257,6 +259,7 @@ export default {
     header {
       ul {
         flex-wrap: wrap;
+        width: initial;
       }
     }
     p {
