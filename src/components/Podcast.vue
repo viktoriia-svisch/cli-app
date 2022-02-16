@@ -18,6 +18,10 @@
         </li>
       </ul>
       <br />
+      <p>
+        {{ podcast.description }}<br />
+        <b>{{ audio_length }}</b>
+      </p>
     </header>
     <span class="listen" @click="getAudio(podcast.id)">
       <img src="../assets/imgs/play.svg" />
@@ -26,10 +30,6 @@
     <article>
       <img :src="pic" :class="{ blurred: isBlurred, noblurred: !isBlurred }" />
     </article>
-    <p>
-      {{ podcast.description }}<br /><br />
-      {{ audio_length }}
-    </p>
   </section>
 </template>
 <script>
@@ -113,7 +113,7 @@ export default {
     height: 660px;
     width: 90px;
     background-color: white;
-    right: 0;
+    right: 15px;
     top: 80px;
     #backimg2 {
       position: absolute;
@@ -134,9 +134,7 @@ export default {
     z-index: 2;
     padding: 15px;
     position: absolute;
-    top: 225px;
-    margin-left: 10px;
-    width: 410px;
+    width: 420px;
   }
   header {
     background-color: white;
@@ -145,7 +143,7 @@ export default {
     margin-right: 10px;
     margin-top: 10px;
     position: absolute;
-    top: 0;
+    top: 19px;
     h1 {
       padding-left: 10px;
       padding-right: 10px;
@@ -184,7 +182,7 @@ export default {
     position: absolute;
     display: ruby;
     top: 29px;
-    right: 10px;
+    right: 15px;
     font-size: 30px;
     font-family: Bison;
     border: 1px solid white;
@@ -202,7 +200,7 @@ export default {
     margin-top: 20px;
     img {
       position: absolute;
-      right: 30px;
+      right: 45px;
       top: 110px;
       z-index: 1;
       height: 600px;
