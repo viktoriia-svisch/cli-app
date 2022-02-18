@@ -215,6 +215,10 @@ export default {
   @media (max-width: 1000px) {
     margin: 10px;
     .listen {
+      position: relative;
+      font-size: 40px;
+      top: 0px;
+      left: 10px;
       img {
         height: 30px;
       }
@@ -244,11 +248,6 @@ export default {
         width: ~"calc(100% - 20px)";
         height: ~"calc(100% - 20px)";
       }
-    }
-    .listen {
-      position: relative;
-      font-size: 40px;
-      top: 0px;
     }
   }
   @media (max-width: 600px) {
