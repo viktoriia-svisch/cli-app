@@ -233,6 +233,9 @@ export default {
       position: relative;
       top: 0;
       margin-bottom: 10px;
+      h1 {
+        width: initial;
+      }
     }
     p {
       width: ~"calc(100% - 50px)";

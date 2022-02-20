@@ -65,5 +65,10 @@ footer {
       margin-right: 10px;
     }
   }
+  @media (max-width: 350px) {
+    .moto {
+      display: none;
+    }
+  }
 }
 </style>
