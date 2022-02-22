@@ -163,6 +163,12 @@ export default {
       this.day_selected = this.weeks[day];
       this.checked = day;
     },
+    getMonday() {
+      let date = new Date();
+      const day = date.getDay();
+      const diff = date.getDate() - day + (day == 0 ? -6 : 1);
+      return new Date(date.setDate(diff));
+    },
     async getCalendar(date) {
       const res = await graph(
         "Shows",
@@ -220,7 +226,10 @@ export default {
       .toLowerCase();
     this.disp_shows(day);
     this.checked = day;
-    localStorage.setItem("today_shows", JSON.stringify(this.weeks[day]));
+    if (this.week.getDate() == this.getMonday().getDate()) {
+      localStorage.setItem("today_shows", JSON.stringify(this.weeks[day]));
+      this.$emit("refresh_title");
+    }
   }
 };
 </script>

@@ -3,7 +3,12 @@
     <NavBar ref="navbar" />
     <router-view class="router" v-on:play_mix="play_mix" />
     <Chat v-if="chatting" />
-    <Calendar v-if="week" :week="week" style="display: none" />
+    <Calendar
+      v-if="week"
+      :week="week"
+      style="display: none"
+      v-on:refresh_title="refresh_title"
+    />
     <Footer />
     <section id="mix_frame" v-if="iframe_mix">
       <iframe
@@ -56,10 +61,14 @@ export default {
     };
   },
   methods: {
-    getMonday(date) {
+    getMonday() {
+      let date = new Date();
       const day = date.getDay();
       const diff = date.getDate() - day + (day == 0 ? -6 : 1);
       return new Date(date.setDate(diff));
+    },
+    refresh_title() {
+      this.$children[0].checkTitle();
     },
     play_mix(id) {
       this.iframe_mix = id;
@@ -115,8 +124,7 @@ export default {
     }
   },
   mounted() {
-    let d = new Date();
-    this.week = this.getMonday(d);
+    this.week = this.getMonday();
     this.ding.volume = 0.3;
     this.getStream();
     this.getPrints();
