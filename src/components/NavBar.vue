@@ -90,7 +90,9 @@ export default {
   data() {
     return {
       radio: new Audio(),
-      src: "https:      loading: false,
+      radio: "",
+      src: "/radio/8000/radio.mp3",
+      loading: false,
       livestream: false
     };
   },
@@ -158,6 +160,8 @@ export default {
     }
   },
   mounted() {
+    this.radio = process.env.VUE_APP_RADIO;
+    this.src = `${this.radio}${this.src}`;
     this.checkTitle();
   }
 };
