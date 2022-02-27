@@ -110,10 +110,13 @@ export default {
     },
     checkTitle() {
       axios
-        .get("https:        .then(res => {
+        .get(`${this.radio}/api/nowplaying`)
+        .then(res => {
+          let odc_station = res.data[0];
+          console.log(odc_station.live);
           if (
-            res.data.current == null ||
-            res.data.current.type == "livestream"
+            odc_station.live.is_live ||
+            odc_station.now_playing.elapsed == null
           ) {
             const t_shows = JSON.parse(localStorage.getItem("today_shows"));
             let show = false;
@@ -134,23 +137,13 @@ export default {
                         this.$parent.timeout = setTimeout(this.checkTitle, 60000);
           } else {
             this.livestream = false;
-            const time = res.data.current.ends.replace(" ", "T");
-            let next = new Date(time);
-            next = next.getMinutes() * 60 + next.getSeconds();
-            let now = new Date();
-            now = now.getMinutes() * 60 + now.getSeconds();
+            const now_playing = odc_station.now_playing;
             this.$parent.timeout = setTimeout(
               this.checkTitle,
-              ((next < 10 ? now + 20 : next) - now - 5) * 1000
+              (now_playing.remaining + 3) * 1000
             );
-            if (res.data.current.metadata.artist_name !== null)
-              this.$parent.artist = res.data.current.metadata.artist_name
-                .replace("&#039;", "'")
-                .replace("amp;", "");
-            this.$parent.title = res.data.current.metadata.track_title
-              .replace("&#039;", "'")
-              .replace("amp;", "");
-            this.$parent.currentShow = res.data.currentShow[0].name;
+            this.$parent.artist = now_playing.song.artist;
+            this.$parent.title = now_playing.song.title;
           }
         })
         .catch(() => {
