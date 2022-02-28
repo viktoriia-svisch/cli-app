@@ -113,7 +113,6 @@ export default {
         .get(`${this.radio}/api/nowplaying`)
         .then(res => {
           let odc_station = res.data[0];
-          console.log(odc_station.live);
           if (
             odc_station.live.is_live ||
             odc_station.now_playing.elapsed == null
