@@ -25,6 +25,7 @@
   </section>
 </template>
 <script>
+import logo from "../assets/imgs/odc.jpg";
 import axios from "axios";
 export default {
   name: "Podcast_Widget",
@@ -65,20 +66,24 @@ export default {
     this.pod.audio_length =
       time < 60 ? `${minutes}min` : `${Math.floor(time / 60)}h ${minutes}min`;
     this.podImage = this.pod.artwork_url;
-    let large = this.pod.artwork_url;
-    large = large.replace("-large", "-t500x500");
-    this.observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        const img = new Image();
-        img.onload = () => {
-          this.podImage = large;
-          this.intersect = true;
-        };
-        img.src = large;
-        this.observer.disconnect();
-      }
-    });
-    this.observer.observe(this.$el);
+    if (this.podImage == null) {
+      this.podImage = logo;
+    } else {
+      let large = this.pod.artwork_url;
+      large = large.replace("-large", "-t500x500");
+      this.observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          const img = new Image();
+          img.onload = () => {
+            this.podImage = large;
+            this.intersect = true;
+          };
+          img.src = large;
+          this.observer.disconnect();
+        }
+      });
+      this.observer.observe(this.$el);
+    }
   },
   destroyed() {
     this.observer.disconnect();
