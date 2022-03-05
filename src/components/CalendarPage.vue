@@ -54,10 +54,9 @@ export default {
       return new Date(date.setDate(diff));
     },
     getNextMonday() {
-      let date = new Date();
-      const day = date.getDay();
-      const diff = date.getDate() - day + (day == 0 ? 2 : 8);
-      return new Date(date.setDate(diff));
+      let d = new Date();
+      d.setDate(d.getDate() + (1 + 7 - d.getDay()) % 7);
+      return d;
     }
   },
   mounted() {
