@@ -54,9 +54,13 @@ export default {
       return new Date(date.setDate(diff));
     },
     getNextMonday() {
-      let d = new Date();
-      d.setDate(d.getDate() + (1 + 7 - d.getDay()) % 7);
-      return d;
+      let today = getMonday();
+      let nextweek = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() + 7
+      );
+      return nextweek;
     }
   },
   mounted() {
