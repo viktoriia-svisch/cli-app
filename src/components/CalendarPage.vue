@@ -54,7 +54,7 @@ export default {
       return new Date(date.setDate(diff));
     },
     getNextMonday() {
-      let today = getMonday();
+      let today = this.getMonday();
       let nextweek = new Date(
         today.getFullYear(),
         today.getMonth(),
