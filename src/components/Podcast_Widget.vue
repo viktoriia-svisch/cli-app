@@ -56,10 +56,12 @@ export default {
   },
   mounted() {
     this.pod.genres = this.pod.tag_list.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
-    this.pod.genres = this.pod.genres.map(g => {
-      if (g[0] == '"') return g.substring(1, g.length - 1);
-      return g;
-    });
+    if (this.pod.genres != null) {
+      this.pod.genres = this.pod.genres.map(g => {
+        if (g[0] == '"') return g.substring(1, g.length - 1);
+        return g;
+      });
+    }
     const time = Math.floor(this.pod.full_duration / 60000);
     let minutes = Math.floor(time % 60);
     minutes = minutes < 10 ? `0${minutes}` : minutes;
