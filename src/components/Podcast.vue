@@ -10,6 +10,7 @@
         <li>
           <span
             class="tag"
+            v-if="podcast.genres.length"
             v-for="tag in podcast.genres"
             v-bind:key="tag.name"
             @click="search(tag.toLowerCase())"
