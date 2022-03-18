@@ -3,7 +3,7 @@
     <section class="nav flex">
       <img alt="ODC Live" src="../assets/imgs/logo.png" width="150" />
       <div class="flex menu">
-        <h1>Podcasts</h1>
+        <h1><router-link :to="{ path: '/podcasts' }">Podcasts</router-link></h1>
         <h1>Events</h1>
         <h1>Calendrier</h1>
       </div>

@@ -1,16 +1,14 @@
 <template>
   <div id="app">
     <NavBar />
-    <Index class="marged" />
+    <router-view />
   </div>
 </template>
 <script>
 import NavBar from "./components/NavBar.vue";
-import Index from "./components/Index.vue";
 export default {
   name: "App",
   components: {
-    Index,
     NavBar
   }
 };
