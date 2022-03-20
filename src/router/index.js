@@ -6,6 +6,10 @@ export default new Router({
   mode: "history",
   routes: [
     {
+      path: "/podcasts",
+      component: Index
+    },
+    {
       path: "/",
       component: Index
     },

@@ -6,6 +6,10 @@
         <div id="podcasts"></div>
         <section class="flex">
           <div>
+            <section id="podcasts">
+              <WidgetPodcast v-for="pod in podcasts" v-bind:key="pod.key"
+              :pod="pod"/>
+            </section>
             <input
               class="input"
               placeholder="Recherche"
@@ -24,17 +28,45 @@
   </main>
 </template>
 <script>
+import axios from "axios";
+import WidgetPodcast from "./WidgetPodcast.vue";
 export default {
   name: "Index",
+  components: {
+    WidgetPodcast
+  },
   data() {
     return {
-      search: ""
+      search: "",
+      podcasts: [],
+      next: "",
+      more: true,
+      offset: 0
     };
   },
   methods: {
     send_req() {
       alert(this.search);
+    },
+    async getPodcasts() {
+            if (!this.more) return;
+      await axios
+        .get(this.next)
+        .then(res => {
+          if (res.data.next_href === null) this.more = false;
+          this.podcasts = this.podcasts.concat(res.data.collection);
+          this.offset = res.data.next_href.substring(
+            res.data.next_href.indexOf("?offset") + 8
+          );
+        })
+        .catch();
     }
+  },
+  mounted() {
+    this.next = `${this.$config.VUE_APP_API}/sounds/${
+      this.offset
+    }?t=${new Date().getTime()}`;
+    this.getPodcasts();
   }
 };
 </script>
@@ -54,6 +86,13 @@ main {
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: right 10px top 6px;
+  }
+  #podcasts {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(auto, auto);
   }
   .flex {
     display: flex;
