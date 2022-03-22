@@ -29,6 +29,7 @@ nav {
   position: sticky;
   top: 0;
   width: 100%;
+  z-index: 3;
   .nav {
     width: 1200px;
     margin: 0 auto;

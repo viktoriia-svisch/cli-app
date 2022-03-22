@@ -20,7 +20,7 @@
             v-on:keyup.enter="send_req"
           />
           <div class="more" @click="getPodcasts">
-            <span class="subtitle">Afficher plus de podcasts</span>
+            <span class="subtitle">En voir plus</span>
             <img src="../assets/imgs/play_white.svg" width="30" />
           </div>
         </section>
@@ -42,6 +42,7 @@ export default {
       podcasts: [],
       next: "",
       more: true,
+      offset: 0
     };
   },
   methods: {
@@ -55,14 +56,20 @@ export default {
         .then(res => {
           if (res.data.next_href === null) this.more = false;
           this.podcasts = this.podcasts.concat(res.data.collection);
+          this.offset = res.data.next_href.substring(
+            res.data.next_href.indexOf("?offset") + 8
+          );
+          this.offset = this.offset.split("&")[0];
+          this.next = `${this.$config.VUE_APP_API}/sounds/${this.offset}`;
         })
         .catch();
     }
   },
   async mounted() {
-    this.next = `${
-      this.$config.VUE_APP_API
-    }/sounds/0?t=${new Date().getTime()}`;
+    this.next = `${this.$config.VUE_APP_API}/sounds/${
+      this.offset
+    }?t=${new Date().getTime()}`;
+    await this.getPodcasts();
     await this.getPodcasts();
   }
 };

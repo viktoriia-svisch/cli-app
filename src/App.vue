@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <NavBar />
-    <router-view class="marged" />
+    <section class="flex marged">
+      <router-view />
+      <section>droite</section>
+    </section>
   </div>
 </template>
 <script>
@@ -27,6 +30,10 @@ body {
   background-color: #7fbaf9;
   font-family: KionaBold;
   -webkit-font-smoothing: antialiased;
+  .flex {
+    display: flex;
+    justify-content: space-between;
+  }
   .marged {
     margin-top: 100px;
   }
