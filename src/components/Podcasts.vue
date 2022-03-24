@@ -76,8 +76,7 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   .input {
     max-width: 500px;
     padding: 12px 20px;

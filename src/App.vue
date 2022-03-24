@@ -35,7 +35,8 @@ body {
     justify-content: space-between;
   }
   .marged {
-    margin-top: 100px;
+    max-width: 1200px;
+    margin: 100px auto;
   }
   .subtitle {
     font-size: 20px;

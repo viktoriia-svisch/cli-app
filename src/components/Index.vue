@@ -19,7 +19,7 @@
             v-model="search"
             v-on:keyup.enter="send_req"
           />
-          <div class="more" @click="getPodcasts">
+          <div class="more" @click="$router.push({ path: '/podcasts' })">
             <span class="subtitle">Afficher plus de podcasts</span>
             <img src="../assets/imgs/play_white.svg" width="30" />
           </div>
@@ -41,7 +41,7 @@ export default {
       search: "",
       podcasts: [],
       next: "",
-      more: true,
+      more: true
     };
   },
   methods: {
@@ -69,8 +69,7 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   .input {
     max-width: 500px;
     padding: 12px 20px;
