@@ -3,16 +3,18 @@
     <NavBar />
     <section class="flex marged">
       <router-view />
-      <section>droite</section>
+      <Right />
     </section>
   </div>
 </template>
 <script>
 import NavBar from "./components/NavBar.vue";
+import Right from "./components/Right.vue";
 export default {
   name: "App",
   components: {
-    NavBar
+    NavBar,
+    Right
   }
 };
 </script>
