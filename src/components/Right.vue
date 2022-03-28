@@ -1,6 +1,5 @@
 <template>
   <aside>
-    <span class="subtitle">La chatroom</span>
     <Chat />
   </aside>
 </template>

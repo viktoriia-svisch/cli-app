@@ -1,11 +1,139 @@
 <template>
-  <section>
-    Le bon chat
+  <section id="chat">
+    <span class="subtitle">La chatroom</span>
+    <section id="msg" v-chat-scroll>
+      <span class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
+        <span v-if="msg.help">
+          <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
+            new Date(msg.ts).toLocaleTimeString("fr", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })
+          }}</span>
+          <span class="lhelp">{{ msg.pseudo }}:</span></span
+        >
+        <span v-else>
+          <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
+            new Date(msg.ts).toLocaleTimeString("fr", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })
+          }}</span>
+          <span class="lname">{{ msg.pseudo }}:</span></span
+        >{{ msg.msg }}</span
+      >
+    </section>
+    <section id="send">
+      <form id="chatSend" v-on:submit.prevent="send_msg">
+        <input
+          class="inputchat"
+          id="pseudo"
+          placeholder="Pseudonyme"
+          type="text"
+          name="listener"
+          v-model="pseudo"
+        />
+        <textarea
+          class="inputchat"
+          id="message"
+          style="resize: none;"
+          placeholder="Message"
+          name="message"
+          rows="1"
+          v-model="message"
+          v-on:keyup.enter="send_msg"
+        ></textarea>
+      </form>
+    </section>
   </section>
 </template>
 <script>
 export default {
-  name: "Chat"
+  name: "Chat",
+  data() {
+    return {
+      msgs: [],
+      pseudo: "",
+      message: ""
+    };
+  },
+  methods: {
+    send_msg() {
+      if (this.message == "" || this.message.length < 2 || this.pseudo == "") {
+        this.message = "";
+        return;
+      }
+      localStorage.setItem("username", this.pseudo);
+      this.$socket.emit("msg", { pseudo: this.pseudo, msg: this.message });
+      this.message = "";
+    }
+  },
+  sockets: {
+    listen(msgs) {
+      this.msgs = this.msgs.concat(msgs);
+    },
+    msg(message) {
+      this.msgs = this.msgs.concat(message);
+    }
+  },
+  mounted() {
+    this.pseudo = localStorage.getItem("username");
+    if (this.pseudo === null) {
+      const help = {
+        ts: new Date(),
+        pseudo: "Help",
+        msg:
+          "Dont be shy, join in the conversation by typing your name and message!",
+        help: true
+      };
+      this.msgs = this.msgs.concat(help);
+      localStorage.setItem("username", "");
+    }
+  }
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+#chat {
+  width: 330px;
+  .inputchat {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-family: KionaBold;
+    border-radius: 0px;
+    border: 0px;
+    color: white;
+    background-color: #ffffff40;
+    background-image: url("../assets/imgs/play_white.svg");
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: right 10px top 6px;
+  }
+  #msg {
+    margin-top: 15px;
+    .lmsg {
+      display: block;
+      font-family: Kiona;
+      .tmsg {
+        background-color: #00000030;
+        display: inline-block;
+        width: 45px;
+        padding-top: 0px;
+        padding-left: 6px;
+        padding-bottom: 1px;
+        margin-right: 10px;
+      }
+      .lhelp {
+        background-color: #2a771430;
+        margin-right: 20px;
+        font-family: KionaBold;
+      }
+      .lname {
+        margin-right: 20px;
+        font-family: KionaBold;
+      }
+    }
+  }
+}
+</style>

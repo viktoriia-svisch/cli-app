@@ -113,5 +113,10 @@ main {
     display: flex;
     justify-content: space-between;
   }
+  @media (max-width: 1200px) {
+    #podcasts {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 }
 </style>
