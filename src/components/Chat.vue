@@ -20,7 +20,7 @@
             })
           }}</span>
           <span class="lname">{{ msg.pseudo }}:</span></span
-        >{{ msg.msg }}</span
+        ><span class="mmsg">{{ msg.msg }}</span></span
       >
     </section>
     <section id="send">
@@ -112,6 +112,8 @@ export default {
   }
   #msg {
     margin-top: 15px;
+    overflow: auto;
+    height: 350px;
     .lmsg {
       display: block;
       font-family: Kiona;
@@ -123,6 +125,9 @@ export default {
         padding-left: 6px;
         padding-bottom: 1px;
         margin-right: 10px;
+      }
+      .mmsg {
+        letter-spacing: -1px;
       }
       .lhelp {
         background-color: #2a771430;
