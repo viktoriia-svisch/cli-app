@@ -1,6 +1,6 @@
 <template>
   <main>
-    <span class="subtitle">Tous les podcasts</span>
+    <span class="subtitle">Recherche: {{ query }}</span>
     <div id="podcasts"></div>
     <section class="flex">
       <div>
@@ -16,11 +16,11 @@
             class="input"
             placeholder="Recherche"
             type="text"
-            v-model="search"
+            v-model="query"
             v-on:keyup.enter="sendQuery"
           />
-          <div class="more" @click="getPodcasts">
-            <span class="subtitle">En voir plus</span>
+          <div class="more" @click="searchPodcasts" v-if="more">
+            <span class="subtitle">En chercher plus</span>
             <img src="../assets/imgs/play_white.svg" width="30" />
           </div>
         </section>
@@ -38,39 +38,46 @@ export default {
   },
   data() {
     return {
-      search: "",
+      query: "",
       podcasts: [],
-      next: "",
+      searching: false,
+      url: "",
       more: true,
       offset: 0
     };
   },
   methods: {
     sendQuery() {
-      this.$router.push({ path: `/search/${this.search}` });
+      this.$router.push({ path: `/search/${this.query}` });
     },
-    async getPodcasts() {
+    async searchPodcasts() {
+            if (this.searching) return;
+      this.searching = true;
             if (!this.more) return;
+      const params = {
+        search: this.query,
+        offset: this.offset
+      };
       await axios
-        .get(this.next)
+        .post(this.url, params)
         .then(res => {
-          if (res.data.next_href === null) this.more = false;
-          this.podcasts = this.podcasts.concat(res.data.collection);
-          this.offset = res.data.next_href.substring(
-            res.data.next_href.indexOf("?offset") + 8
-          );
-          this.offset = this.offset.split("&")[0];
-          this.next = `${this.$config.VUE_APP_API}/sounds/${this.offset}`;
+          if (res.data.collection.length == 0) this.more = false;
+          res.data.collection.map(pod => {
+            if (pod.user && pod.user.permalink == "odc-live") {
+              this.podcasts = this.podcasts.concat(pod);
+            }
+          });
         })
         .catch();
+      this.offset += 20;
+      this.searching = false;
     }
   },
   async mounted() {
-    this.next = `${this.$config.VUE_APP_API}/sounds/${
-      this.offset
-    }?t=${new Date().getTime()}`;
-    await this.getPodcasts();
-    await this.getPodcasts();
+    this.query = this.$route.params.query;
+    this.url = `${this.$config.VUE_APP_API}/sounds/search`;
+    await this.searchPodcasts();
+    console.log(this.$route.params.query);
   }
 };
 </script>

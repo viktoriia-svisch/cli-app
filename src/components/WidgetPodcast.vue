@@ -1,6 +1,6 @@
 <template>
   <section id="podcast" @click="play_podcast">
-    <img :src="pod.artwork_url.replace('-large', '-t500x500')" class="podimg" />
+    <img :src="podImg" class="podimg" />
     <span id="title">{{ pod.title }}</span>
   </section>
 </template>
@@ -10,10 +10,23 @@ export default {
   props: {
     pod: null
   },
+  data() {
+    return {
+      podImg: ""
+    };
+  },
   methods: {
     play_podcast() {
       alert(this.pod.title);
     }
+  },
+  beforeMount() {
+    if (!this.pod.artwork_url) {
+      this.podImg = this.pod.avatar_url;
+    } else {
+      this.podImg = this.pod.artwork_url;
+    }
+    this.podImg = this.podImg.replace("-large", "-t500x500");
   }
 };
 </script>

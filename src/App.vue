@@ -2,7 +2,7 @@
   <div id="app">
     <NavBar />
     <section class="flex marged">
-      <router-view />
+      <router-view :key="$route.fullPath" />
       <Right />
     </section>
   </div>

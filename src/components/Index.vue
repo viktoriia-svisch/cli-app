@@ -1,6 +1,6 @@
 <template>
   <main>
-    <span class="subtitle">Tous les podcasts</span>
+    <span class="subtitle">Les derniers podcasts</span>
     <div id="podcasts"></div>
     <section class="flex">
       <div>
@@ -17,7 +17,7 @@
             placeholder="Recherche"
             type="text"
             v-model="search"
-            v-on:keyup.enter="send_req"
+            v-on:keyup.enter="sendQuery"
           />
           <div class="more" @click="$router.push({ path: '/podcasts' })">
             <span class="subtitle">Afficher plus de podcasts</span>
@@ -45,8 +45,8 @@ export default {
     };
   },
   methods: {
-    send_req() {
-      alert(this.search);
+    sendQuery() {
+      this.$router.push({ path: `/search/${this.search}` });
     },
     async getPodcasts() {
             if (!this.more) return;
