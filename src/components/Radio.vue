@@ -4,7 +4,8 @@
     <img src="../assets/imgs/play.svg" class="playBtn" v-if="!isPlaying" />
     <img src="../assets/imgs/stop.svg" class="playBtn" v-else />
     <span class="reddot">•</span>
-    <div class="title">Live   </section>
+    <div class="title">Nostalgia is a Weapon - Label focus berceuse heroique</div>
+  </section>
 </template>
 <script>
 export default {

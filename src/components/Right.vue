@@ -1,15 +1,25 @@
 <template>
   <aside>
     <Chat />
+    <TimeTable class="timetable" />
   </aside>
 </template>
 <script>
 import Chat from "./Chat.vue";
+import TimeTable from "./TimeTable";
 export default {
   name: "right",
   components: {
-    Chat
+    Chat,
+    TimeTable
   }
 };
 </script>
-<style></style>
+<style lang="less" scoped>
+aside {
+  margin-left: 20px;
+  .timetable {
+    margin-top: 60px;
+  }
+}
+</style>

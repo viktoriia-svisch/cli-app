@@ -7,7 +7,9 @@
       <div class="flex menu">
         <router-link :to="{ path: '/podcasts' }"><h1>Podcasts</h1></router-link>
         <h1>Events</h1>
-        <h1>Calendrier</h1>
+        <router-link :to="{ path: '/calendar' }"
+          ><h1>Calendrier</h1></router-link
+        >
       </div>
       <Radio />
       <div class="more">•••</div>
