@@ -140,5 +140,9 @@ export default {
       }
     }
   }
+  @media (max-width: 770px) {
+    max-width: 330px;
+    margin: 60px auto 0px auto;
+  }
 }
 </style>

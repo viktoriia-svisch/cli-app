@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavBar />
-    <section class="flex marged">
+    <section class="main_section flex_center marged">
       <router-view :key="$route.fullPath" />
       <Right />
     </section>
@@ -36,6 +36,10 @@ body {
     display: flex;
     justify-content: space-between;
   }
+  .flex_center {
+    display: flex;
+    justify-content: center;
+  }
   .marged {
     max-width: 1200px;
     margin: 100px auto;
@@ -44,7 +48,10 @@ body {
     font-size: 20px;
     color: white;
   }
-  #app {
+  @media (max-width: 770px) {
+    .main_section {
+      flex-direction: column-reverse;
+    }
   }
 }
 </style>

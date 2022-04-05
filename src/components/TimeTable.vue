@@ -19,11 +19,10 @@
           {{ show.redundancy == 1 ? "" : show.redundancy }} semaines</span
         >
         <span v-else class="side">Emission speciale</span><br />
-        <span
-          class="genre side"
-          v-for="genre in show.genres"
-          v-bind:key="genre"
-          >{{ genre }}</span
+        <span class="genre side" v-for="genre in show.genres" v-bind:key="genre"
+          ><router-link :to="{ path: '/search/' + genre }">{{
+            genre
+          }}</router-link></span
         >
       </section>
     </article>
@@ -102,18 +101,19 @@ export default {
         background-color: #00000020;
         padding: 2px 4px 2px 4px;
         cursor: pointer;
+        a {
+          color: white;
+          text-decoration: none;
+        }
         &:hover {
           background-color: #00000080;
         }
       }
     }
   }
-}
-@media (max-width: 1000px) {
-  #shows {
-    .show {
-      margin-bottom: 0px;
-    }
+  @media (max-width: 770px) {
+    max-width: 330px;
+    margin: 60px auto 0px auto;
   }
 }
 </style>

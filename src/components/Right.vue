@@ -21,5 +21,8 @@ aside {
   .timetable {
     margin-top: 60px;
   }
+  @media (max-width: 770px) {
+    margin-left: 0px;
+  }
 }
 </style>

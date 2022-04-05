@@ -1,40 +1,29 @@
 <template>
   <main>
     <span class="subtitle">Recherche: {{ query }}</span>
-    <div id="podcasts"></div>
+    <PodcastList :pods="podcasts" />
     <section class="flex">
-      <div>
-        <section id="podcasts">
-          <WidgetPodcast
-            v-for="pod in podcasts"
-            v-bind:key="pod.key"
-            :pod="pod"
-          />
-        </section>
-        <section class="flex">
-          <input
-            class="input"
-            placeholder="Recherche"
-            type="text"
-            v-model="query"
-            v-on:keyup.enter="sendQuery"
-          />
-          <div class="more" @click="searchPodcasts" v-if="more">
-            <span class="subtitle">En chercher plus</span>
-            <img src="../assets/imgs/play_white.svg" width="30" />
-          </div>
-        </section>
+      <input
+        class="input"
+        placeholder="Recherche"
+        type="text"
+        v-model="query"
+        v-on:keyup.enter="sendQuery"
+      />
+      <div class="more" @click="searchPodcasts" v-if="more">
+        <span class="subtitle">En chercher plus</span>
+        <img src="../assets/imgs/play_white.svg" width="30" />
       </div>
     </section>
   </main>
 </template>
 <script>
 import axios from "axios";
-import WidgetPodcast from "./WidgetPodcast.vue";
+import PodcastList from "./PodcastList.vue";
 export default {
   name: "Index",
   components: {
-    WidgetPodcast
+    PodcastList
   },
   data() {
     return {
@@ -100,6 +89,7 @@ main {
     background-position: right 10px top 6px;
   }
   .more {
+    max-width: 475px;
     background-color: #00000080;
     position: relative;
     height: 34px;
@@ -116,16 +106,10 @@ main {
       right: 5px;
     }
   }
-  #podcasts {
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(auto, auto);
-  }
-  .flex {
-    display: flex;
-    justify-content: space-between;
+  @media (max-width: 1000px) {
+    .flex {
+      flex-direction: column;
+    }
   }
 }
 </style>
