@@ -50,6 +50,7 @@ nav {
       margin: 0px;
       padding: 28px 30px 0px 30px;
       color: black;
+      cursor: pointer;
     }
     a {
       text-decoration: none;
