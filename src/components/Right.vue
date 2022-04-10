@@ -18,6 +18,7 @@ export default {
 <style lang="less" scoped>
 aside {
   margin-left: 20px;
+  margin-right: 20px;
   .timetable {
     margin-top: 60px;
   }

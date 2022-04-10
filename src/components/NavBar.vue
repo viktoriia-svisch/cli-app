@@ -60,10 +60,10 @@ nav {
     }
   }
   .more {
+    margin: 23px 10px 0px 10px;
     letter-spacing: -4px;
-    margin-top: 20px;
     font-size: 24px;
-    margin-right: 10px;
+    cursor: pointer;
   }
   @media (max-width: 1200px) {
     .nav {

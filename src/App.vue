@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" :style="'background-color:' + color">
     <NavBar />
+    <input type="color" v-model="color" />
     <section class="main_section flex_center marged">
       <router-view :key="$route.fullPath" />
       <Right />
@@ -15,6 +16,11 @@ export default {
   components: {
     NavBar,
     Right
+  },
+  data() {
+    return {
+      color: "#7fbaf9"
+    };
   }
 };
 </script>
@@ -29,9 +35,11 @@ export default {
 }
 body {
   margin: 0;
-  background-color: #7fbaf9;
   font-family: KionaBold;
   -webkit-font-smoothing: antialiased;
+  #app {
+    min-height: 100vh;
+  }
   .flex {
     display: flex;
     justify-content: space-between;
@@ -42,11 +50,16 @@ body {
   }
   .marged {
     max-width: 1200px;
-    margin: 100px auto;
+    margin: 100px auto 0px auto;
   }
   .subtitle {
     font-size: 20px;
     color: white;
+  }
+  @media (max-width: 1200px) {
+    .main_section {
+      margin-left: 20px;
+    }
   }
   @media (max-width: 770px) {
     .main_section {

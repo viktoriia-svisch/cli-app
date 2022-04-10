@@ -1,7 +1,11 @@
 <template>
   <section id="podcast" @click="play_podcast">
     <img :src="podImg" class="podimg" />
-    <span id="title">{{ pod.title }}</span>
+    <span
+      id="title"
+      :style="'background-color:' + $parent.$parent.$parent.color"
+      >{{ pod.title }}</span
+    >
   </section>
 </template>
 <script>
@@ -21,6 +25,7 @@ export default {
     }
   },
   beforeMount() {
+    console.log(this.$parent.$parent.$parent);
     if (!this.pod.artwork_url) {
       this.podImg = this.pod.avatar_url;
     } else {

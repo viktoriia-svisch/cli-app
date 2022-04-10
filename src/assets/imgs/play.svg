@@ -28,11 +28,6 @@
      transform="translate(0,-247)"
      id="layer1">
     <path
-       transform="matrix(0.31975647,0,0,0.32026047,28.515265,194.59901)"
-       d="m 103.56548,356.72023 -201.08334,0 -10e-7,-201.08334 201.083341,0 z"
-       id="path910"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.16499996;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <path
        d="m 39.309526,273.56546 -24.946429,14.40283 0,-28.80566 z"
        id="path912"
        style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.16499996;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
