@@ -59,6 +59,7 @@ body {
   @media (max-width: 1200px) {
     .main_section {
       margin-left: 20px;
+      margin-right: 20px;
     }
   }
   @media (max-width: 770px) {
