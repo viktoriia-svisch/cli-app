@@ -94,6 +94,7 @@ export default {
 </script>
 <style lang="less" scoped>
 #chat {
+  color: white;
   .inputchat {
     width: 100%;
     padding: 12px 20px;

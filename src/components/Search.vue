@@ -66,7 +66,6 @@ export default {
     this.query = this.$route.params.query;
     this.url = `${this.$config.VUE_APP_API}/sounds/search`;
     await this.searchPodcasts();
-    console.log(this.$route.params.query);
   }
 };
 </script>
@@ -90,12 +89,15 @@ main {
   }
   .more {
     max-width: 475px;
-    background-color: #00000080;
+    background-color: #00000040;
     position: relative;
     height: 34px;
     padding: 8px 5px 0px 20px;
     margin-top: 8px;
     cursor: pointer;
+    &:hover {
+      background-color: #00000080;
+    }
     span {
       margin-right: 40px;
     }

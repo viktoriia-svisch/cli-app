@@ -11,7 +11,7 @@
           ><h1>Calendrier</h1></router-link
         >
       </div>
-      <Radio />
+      <Radio :today_shows="today_shows" />
       <div class="more">•••</div>
     </section>
   </nav>
@@ -20,6 +20,7 @@
 import Radio from "./Radio.vue";
 export default {
   name: "NavBar",
+  props: ["today_shows"],
   components: {
     Radio
   }

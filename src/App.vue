@@ -1,6 +1,6 @@
 <template>
   <div id="app" :style="'background-color:' + color">
-    <NavBar />
+    <NavBar :today_shows="today_shows" />
     <input type="color" v-model="color" />
     <section class="main_section flex_center marged">
       <router-view :key="$route.fullPath" />
@@ -19,7 +19,8 @@ export default {
   },
   data() {
     return {
-      color: "#7fbaf9"
+      color: "#7fbaf9",
+      today_shows: []
     };
   }
 };

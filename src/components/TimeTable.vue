@@ -72,12 +72,12 @@ export default {
           this.today_shows.push(res.Shows[i]);
         }
       }
+      this.$parent.$parent.today_shows = this.today_shows;
     }
   },
   async mounted() {
     let date = new Date().toISOString();
     date = date.slice(0, 10);
-    console.log(date);
     await this.getCalendar(date);
       }
 };

@@ -25,7 +25,6 @@ export default {
     }
   },
   beforeMount() {
-    console.log(this.$parent.$parent.$parent);
     if (!this.pod.artwork_url) {
       this.podImg = this.pod.avatar_url;
     } else {

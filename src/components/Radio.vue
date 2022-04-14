@@ -15,6 +15,15 @@
 import axios from "axios";
 export default {
   name: "Radio",
+  props: ["today_shows"],
+  watch: {
+    today_shows: function(newVal, oldVal) {
+            console.log("Prop changed: ", newVal, " | was: ", oldVal);
+      this.radio = this.$config.VUE_APP_RADIO;
+      this.src = `${this.radio}${this.src}`;
+      this.checkTitle();
+    }
+  },
   data() {
     return {
       isPlaying: false,
@@ -45,7 +54,7 @@ export default {
             odc_station.live.is_live ||
             odc_station.now_playing.elapsed == null
           ) {
-            const t_shows = JSON.parse(localStorage.getItem("today_shows"));
+            const t_shows = this.today_shows;
             let show = false;
             for (let i = 0; i < t_shows.length; i++) {
               let start = new Date(Number(t_shows[i].starts_at));
@@ -78,11 +87,6 @@ export default {
           this.timeout = null;
         });
     }
-  },
-  mounted() {
-    this.radio = this.$config.VUE_APP_RADIO;
-    this.src = `${this.radio}${this.src}`;
-    this.checkTitle();
   }
 };
 </script>
