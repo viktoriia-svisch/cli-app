@@ -102,10 +102,29 @@ export default {
     margin-top: -14px;
     line-height: 75px;
     text-align: center;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
     .live_info {
       display: inline-block;
       vertical-align: middle;
       line-height: normal;
+      padding-left: 100%;
+      animation: marquee 15s linear infinite;
+    }
+    &:hover {
+      .live_info {
+        animation-play-state: paused;
+      }
+    }
+    @keyframes marquee {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(-100%, 0);
+      }
     }
   }
   .playBtn {
@@ -121,6 +140,11 @@ export default {
   @keyframes live {
     50% {
       opacity: 0;
+    }
+  }
+  @media (max-width: 1200px) {
+    .title {
+      width: 150px;
     }
   }
 }
