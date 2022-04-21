@@ -1,11 +1,7 @@
 <template>
   <section id="podcast" @click="play_podcast">
     <img :src="podImg" class="podimg" />
-    <span
-      id="title"
-      :style="'background-color:' + $parent.$parent.$parent.color"
-      >{{ pod.title }}</span
-    >
+    <span id="title">{{ pod.tag_list }}</span>
   </section>
 </template>
 <script>
@@ -37,31 +33,26 @@ export default {
 <style lang="less" scoped>
 #podcast {
   position: relative;
+  display: grid;
   #title {
     width: 192px;
-    position: absolute;
     bottom: 4px;
     padding: 2px 4px 2px 4px;
-    left: 0px;
     color: white;
     display: initial;
-    background-color: #7fbaf9;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .podimg {
     width: 200px;
     cursor: pointer;
     opacity: 0.5;
-  }
-}
-#podcast:hover {
-  .podimg {
-    transition: all 0.2s;
-    opacity: 1;
-  }
-  #title {
-    transition: all 0.2s;
-    display: none;
-    background: none;
+    &:hover {
+      transition: all 0.2s;
+      opacity: 1;
+    }
   }
 }
 </style>

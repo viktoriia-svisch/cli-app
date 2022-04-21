@@ -3,7 +3,7 @@ import Router from "vue-router";
 import Index from "@/components/Index";
 import Podcasts from "@/components/Podcasts";
 import Search from "@/components/Search";
-import Calendar from "@/components/Calendar";
+import CalendarPage from "@/components/CalendarPage";
 Vue.use(Router);
 const router = new Router({
   mode: "history",
@@ -17,7 +17,7 @@ const router = new Router({
     },
     {
       path: "/calendar",
-      component: Calendar,
+      component: CalendarPage,
       meta: {
         title: "ODC Live - Calendrier"
       }
