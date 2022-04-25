@@ -1,7 +1,9 @@
 <template>
   <aside>
-    <Chat />
-    <TimeTable class="timetable" />
+    <div class="sticked">
+      <Chat />
+      <TimeTable />
+    </div>
   </aside>
 </template>
 <script>
@@ -19,8 +21,13 @@ export default {
 aside {
   margin-left: 20px;
   margin-right: 20px;
+  .sticked {
+    position: sticky;
+    top: 202px;
+  }
   .timetable {
-    margin-top: 60px;
+    margin-top: 20px;
+    top: 572px;
   }
   @media (max-width: 770px) {
     margin-left: 0px;

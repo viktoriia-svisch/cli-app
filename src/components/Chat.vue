@@ -25,14 +25,6 @@
     </section>
     <section id="send">
       <form id="chatSend" v-on:submit.prevent="send_msg">
-        <input
-          class="inputchat"
-          id="pseudo"
-          placeholder="Pseudonyme"
-          type="text"
-          name="listener"
-          v-model="pseudo"
-        />
         <textarea
           class="inputchat"
           id="message"
@@ -97,6 +89,7 @@ export default {
   color: white;
   .inputchat {
     width: 100%;
+    height: 45px;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -113,7 +106,7 @@ export default {
   #msg {
     margin-top: 15px;
     overflow: auto;
-    height: 350px;
+    height: 250px;
     .lmsg {
       display: block;
       font-family: Kiona;

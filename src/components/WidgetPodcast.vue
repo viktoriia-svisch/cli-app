@@ -24,7 +24,6 @@ export default {
   methods: {
     play_podcast() {
       alert(this.pod.title);
-      console.log(this.pod.genre);
     }
   },
   beforeMount() {
@@ -62,7 +61,7 @@ export default {
     .genre {
       font-size: 15px;
       margin-right: 10px;
-      background-color: #00000020;
+      background-color: rgba(43,43,43,.23);
       padding: 2px 4px 2px 4px;
       cursor: pointer;
       a {

@@ -40,6 +40,7 @@ body {
   -webkit-font-smoothing: antialiased;
   #app {
     min-height: 100vh;
+    padding-bottom: 100px;
   }
   .flex {
     display: flex;

@@ -18,7 +18,7 @@ export default {
   props: ["today_shows"],
   watch: {
     today_shows: function(newVal, oldVal) {
-            console.log("Prop changed: ", newVal, " | was: ", oldVal);
+            newVal; oldVal;
       this.radio = this.$config.VUE_APP_RADIO;
       this.src = `${this.radio}${this.src}`;
       this.checkTitle();
