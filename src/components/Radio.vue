@@ -92,7 +92,7 @@ export default {
 </script>
 <style lang="less" scoped>
 #radio {
-  margin-top: 14px;
+  margin-top: 17px;
   cursor: pointer;
   .flex {
     display: flex;

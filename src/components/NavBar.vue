@@ -13,7 +13,11 @@
       </div>
       <Radio :today_shows="today_shows" />
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
-      <div class="more">•••</div>
+      <div class="more" @click="second = !second">•••</div>
+    </section>
+    <section class="second" :style="`display: ${second ? 'block' : 'none'}`">
+      <div class="main">
+        <a href="https:        <a href="https:        <a href="https:        <a href="https:      </div>
     </section>
     <section
       id="search_sec"
@@ -40,7 +44,8 @@ export default {
   data() {
     return {
       hiddenSearch: true,
-      search: ""
+      search: "",
+      second: false
     };
   },
   methods: {
@@ -88,6 +93,26 @@ nav {
       background-position: right 10px top 6px;
     }
   }
+  .second {
+    width: initial;
+    position: sticky;
+    top: 79px;
+    z-index: 3;
+    .main {
+      border-top: 2px solid;
+      margin: 0 auto;
+      text-align: right;
+      padding: 2px;
+      a {
+        color: black;
+        text-decoration: none;
+        padding: 2px 10px 2px 10px;
+        &:hover {
+          background-color: #ddd;
+        }
+      }
+    }
+  }
   .nav {
     width: 1200px;
     margin: 0 auto;
@@ -126,7 +151,9 @@ nav {
     cursor: pointer;
   }
   @media (max-width: 1200px) {
-    .nav, #search_sec {
+    .nav,
+    .second,
+    #search_sec {
       width: 100%;
     }
   }
