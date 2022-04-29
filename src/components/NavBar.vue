@@ -6,7 +6,7 @@
       /></router-link>
       <div class="flex menu">
         <router-link :to="{ path: '/podcasts' }"><h1>Podcasts</h1></router-link>
-        <h1>Events</h1>
+        <router-link :to="{ path: '/events' }"><h1>Events</h1></router-link>
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
@@ -103,6 +103,7 @@ nav {
       margin: 0 auto;
       text-align: right;
       padding: 2px;
+      width: 1200px;
       a {
         color: black;
         text-decoration: none;
@@ -153,6 +154,7 @@ nav {
   @media (max-width: 1200px) {
     .nav,
     .second,
+    .main,
     #search_sec {
       width: 100%;
     }

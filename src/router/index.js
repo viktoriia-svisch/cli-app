@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Index from "@/components/Index";
+import Events from "@/components/Events";
 import Podcasts from "@/components/Podcasts";
 import Search from "@/components/Search";
 import CalendarPage from "@/components/CalendarPage";
@@ -28,6 +29,10 @@ const router = new Router({
       meta: {
         title: "ODC Live - Recherche"
       }
+    },
+    {
+      path: "/events",
+      component: Events
     },
     {
       path: "/",
