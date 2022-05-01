@@ -55,7 +55,7 @@ body {
     margin: 100px auto 0px auto;
   }
   .subtitle {
-    font-size: 20px;
+    font-size: 24px;
     color: white;
   }
   @media (max-width: 1200px) {

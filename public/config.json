@@ -3,5 +3,5 @@
   "VUE_APP_RADIO": "https://radio.odc.live",
   "VUE_APP_CHAT": "http://localhost:8080",
   "VUE_APP_API": "http://localhost:8081",
-  "VUE_APP_GRAPHQL_HTTP": "https://api.odc.live/graphql"
+  "VUE_APP_GRAPHQL_HTTP": "http://localhost:8081/graphql"
 }
