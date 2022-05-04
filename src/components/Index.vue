@@ -78,8 +78,8 @@ main {
     background-color: #00000040;
     position: relative;
     height: 34px;
-    padding: 8px 5px 0px 20px;
-    margin-top: 8px;
+    padding: 5px 5px 0px 20px;
+    margin-top: 5px;
     cursor: pointer;
     &:hover {
       background-color: #00000080;

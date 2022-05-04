@@ -87,9 +87,8 @@ export default {
   color: white;
   #shows {
     .show {
-      padding: 5px 10px 1px 10px;
-      margin-top: 15px;
-      margin-bottom: 15px;
+      padding: 5px 10px 8px 10px;
+      margin-bottom: 8px;
       background-color: #2b2b2b3b;
       .side {
         font-family: Kiona;
