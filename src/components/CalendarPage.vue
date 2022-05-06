@@ -1,7 +1,7 @@
 <template>
   <section id="calendars">
     <span class="subtitle">Le calendrier</span>
-    <h3>Cette semaine</h3>
+    <h3 @click="changeWeek('+')">Semaine du {{ week }}</h3>
     <section class="week">
       <div class="day" v-for="day in days" v-bind:key="day.val">
         {{ day.title }}
@@ -57,11 +57,12 @@ export default {
         friday: [],
         saturday: [],
         sunday: []
-      }
+      },
+      week: String
     };
   },
   methods: {
-    async getCalendar(date) {
+    async getCalendar() {
       const res = await graph(
         this.$config,
         "Shows",
@@ -76,8 +77,15 @@ export default {
             dj
           }
         }`,
-        { start: date }
+        { start: this.week }
       );
+            this.weeks.monday = [];
+      this.weeks.tuesday = [];
+      this.weeks.wednesday = [];
+      this.weeks.thursday = [];
+      this.weeks.friday = [];
+      this.weeks.saturday = [];
+      this.weeks.sunday = [];
       this.shows = res.Shows;
       for (let i = 0; i < res.Shows.length; i++) {
         let DST = new Date().getTimezoneOffset() == -60 ? 3600000 : 7200000;
@@ -106,18 +114,30 @@ export default {
             break;
         }
       }
+    },
+    async changeWeek(sign) {
+      let date = new Date(this.week);
+      if (sign == "+") {
+        date.setDate(date.getDate() + 7);
+      } else {
+        date.setDate(date.getDate() - 7);
+      }
+      date = date.toISOString();
+      this.week = date.slice(0, 10);
+      await this.getCalendar();
     }
   },
   async mounted() {
-    let date = new Date().toISOString();
-    date = date.slice(0, 10);
-    await this.getCalendar(date);
+    this.week = new Date().toISOString();
+    this.week = this.week.slice(0, 10);
+    await this.getCalendar();
   }
 };
 </script>
 <style lang="less" scoped>
 #calendars {
   .week {
+    min-width: 450px;
     .day {
       padding: 0px 4px 4px 4px;
       margin-bottom: 10px;
