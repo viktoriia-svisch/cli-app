@@ -107,6 +107,7 @@ export default {
     margin-top: 15px;
     overflow: auto;
     height: 250px;
+    background-color: #2b2b2b3b;
     .lmsg {
       display: block;
       font-family: Kiona;

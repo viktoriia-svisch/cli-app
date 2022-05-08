@@ -2,7 +2,10 @@
   <section id="podcast">
     <img :src="podImg" class="podimg" @click="play_podcast" />
     <span id="title">
-      <span class="genre side" v-for="genre in pod.genres" v-bind:key="genre"
+      <span
+        class="genre"
+        v-for="genre in pod.genres.slice(0, 2)"
+        v-bind:key="genre"
         ><router-link :to="{ path: '/search/' + genre }">{{
           genre
         }}</router-link></span
@@ -47,23 +50,22 @@ export default {
 #podcast {
   position: relative;
   display: grid;
-  background-color: #ffffff40;
+  background-color: #2b2b2b3b;
   #title {
-    width: 192px;
     bottom: 4px;
-    padding: 5px 4px 5px 4px;
-    color: white;
-    display: initial;
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     .genre {
       font-size: 15px;
-      margin-right: 10px;
-      background-color: rgba(43,43,43,.23);
-      padding: 2px 4px 2px 4px;
+      padding: 5px 8px 5px 8px;
       cursor: pointer;
+      font-family: KionaBold;
+      letter-spacing: -1px;
+      text-align: center;
       a {
         color: white;
         text-decoration: none;
@@ -71,10 +73,6 @@ export default {
       &:hover {
         background-color: #00000080;
       }
-    }
-    .side {
-      font-family: Kiona;
-      letter-spacing: -1px;
     }
   }
   .podimg {
