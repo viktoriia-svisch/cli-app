@@ -69,6 +69,7 @@ export default {
       a {
         color: white;
         text-decoration: none;
+        display: block;
       }
       &:hover {
         background-color: #00000080;

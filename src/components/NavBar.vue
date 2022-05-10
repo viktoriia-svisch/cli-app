@@ -153,10 +153,13 @@ nav {
   }
   @media (max-width: 1200px) {
     .nav,
-    .second,
-    .main,
     #search_sec {
       width: 100%;
+    }
+    .second {
+      .main {
+        width: 100%;
+      }
     }
   }
   @media (max-width: 900px) {
