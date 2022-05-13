@@ -1,26 +1,18 @@
 <template>
   <div id="app" :style="'background-color:' + color">
-    <NavBar :today_shows="today_shows" />
-    <input type="color" v-model="color" />
-    <section class="main_section flex_center marged">
-      <router-view :key="$route.fullPath" />
-      <Right />
-    </section>
+    <Fullscreen />
   </div>
 </template>
 <script>
-import NavBar from "./components/NavBar.vue";
-import Right from "./components/Right.vue";
+import Fullscreen from "./components/Fullscreen.vue";
 export default {
   name: "App",
   components: {
-    NavBar,
-    Right
+    Fullscreen,
   },
   data() {
     return {
-      color: "#7fbaf9",
-      today_shows: []
+      color: "#936A54",
     };
   }
 };

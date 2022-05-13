@@ -18,7 +18,8 @@ export default {
   props: ["today_shows"],
   watch: {
     today_shows: function(newVal, oldVal) {
-            newVal; oldVal;
+            newVal;
+      oldVal;
       this.radio = this.$config.VUE_APP_RADIO;
       this.src = `${this.radio}${this.src}`;
       this.checkTitle();
@@ -87,6 +88,14 @@ export default {
           this.timeout = null;
         });
     }
+  },
+  mounted() {
+    window.addEventListener("keydown", event => {
+            if (event.keyCode == 32 && event.target == document.body) {
+        event.preventDefault();
+        this.play();
+      }
+    });
   }
 };
 </script>

@@ -159,6 +159,7 @@ nav {
     .second {
       .main {
         width: 100%;
+        padding: 2px 0px 2px 0px;
       }
     }
   }
