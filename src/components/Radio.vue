@@ -156,5 +156,13 @@ export default {
       width: 150px;
     }
   }
+  @media (max-width: 730px) {
+    width: calc(100% - 125px);
+    margin-left: 20px;
+    justify-content: flex-start;
+    .title {
+      width: ~"calc(100% - 100px)";
+    }
+  }
 }
 </style>

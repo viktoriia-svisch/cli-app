@@ -1,19 +1,28 @@
 <template>
   <div id="app" :style="'background-color:' + color">
-    <Fullscreen />
+    <Fullscreen v-if="innerWidth >= 730" />
+    <Mobile v-else />
   </div>
 </template>
 <script>
 import Fullscreen from "./components/Fullscreen.vue";
+import Mobile from "./components/Mobile.vue";
 export default {
   name: "App",
   components: {
     Fullscreen,
+    Mobile
   },
   data() {
     return {
       color: "#936A54",
+      innerWidth: window.innerWidth,
     };
+  },
+  mounted() {
+    window.addEventListener("resize", () => {
+      this.innerWidth = window.innerWidth;
+    });
   }
 };
 </script>
@@ -59,6 +68,9 @@ body {
   @media (max-width: 770px) {
     .main_section {
       flex-direction: column-reverse;
+    }
+    .marged {
+      margin: 70px auto 0px auto;
     }
   }
 }
