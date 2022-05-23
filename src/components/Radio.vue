@@ -6,8 +6,10 @@
     <span class="reddot">•</span>
     <div class="title">
       <span class="live_info">
-        <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}</span
-      >
+        <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}
+        <span style="margin-left: 15px"></span>
+        <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}
+      </span>
     </div>
   </section>
 </template>
@@ -119,8 +121,8 @@ export default {
       display: inline-block;
       vertical-align: middle;
       line-height: normal;
-      padding-left: 100%;
-      animation: marquee 15s linear infinite;
+      --end-percent: ~"calc(-50% - 11px)";
+      animation: marquee 6s linear infinite;
     }
     &:hover {
       .live_info {
@@ -132,7 +134,7 @@ export default {
         transform: translate(0, 0);
       }
       100% {
-        transform: translate(-100%, 0);
+        transform: translate(var(--end-percent), 0);
       }
     }
   }
