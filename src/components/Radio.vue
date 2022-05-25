@@ -9,6 +9,8 @@
         <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}
         <span style="margin-left: 15px"></span>
         <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}
+        <span style="margin-left: 15px"></span>
+        <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}
       </span>
     </div>
   </section>
@@ -121,7 +123,7 @@ export default {
       display: inline-block;
       vertical-align: middle;
       line-height: normal;
-      --end-percent: ~"calc(-50% - 11px)";
+      --end-percent: ~"calc(-33% - 9px)";
       animation: marquee 6s linear infinite;
     }
     &:hover {
