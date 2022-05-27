@@ -15,10 +15,24 @@
         <img src="../assets/imgs/play_white.svg" width="30" />
       </div>
     </section>
+    <section id="events_sec" v-if="events.length">
+      <span class="subtitle">Nos giga TEUFS</span>
+      <div class="events">
+        <a
+          class="event"
+          v-for="event in events"
+          v-bind:key="event.id"
+          :href="event.facebook"
+        >
+          <img :src="event.image" />
+        </a>
+      </div>
+    </section>
   </main>
 </template>
 <script>
 import axios from "axios";
+import graph from "@/graphaxios";
 import PodcastList from "./PodcastList.vue";
 export default {
   name: "Index",
@@ -29,6 +43,7 @@ export default {
     return {
       search: "",
       podcasts: [],
+      events: [],
       next: "",
       more: true
     };
@@ -46,6 +61,27 @@ export default {
           this.podcasts = this.podcasts.concat(res.data.collection);
         })
         .catch();
+    },
+    async getEvents() {
+      const res = await graph(
+        this.$config,
+        "Events",
+        `query Events { 
+          Events {
+            id
+            name
+            starts_at
+            ends_at
+            description
+            genres
+            image
+            facebook
+            __typename
+          }
+        }`,
+        {}
+      );
+      this.events = this.events.concat(res.Events);
     }
   },
   async mounted() {
@@ -53,6 +89,7 @@ export default {
       this.$config.VUE_APP_API
     }/sounds/0?t=${new Date().getTime()}`;
     await this.getPodcasts();
+    await this.getEvents();
   }
 };
 </script>
@@ -73,6 +110,21 @@ main {
     background-size: 30px 30px;
     background-position: right 10px top 6px;
   }
+  #events_sec {
+    .events {
+      width: 830px;
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+      grid-auto-rows: minmax(auto, auto);
+      .event {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
   .more {
     max-width: 475px;
     background-color: #00000040;
@@ -92,6 +144,13 @@ main {
       position: absolute;
       top: 5px;
       right: 5px;
+    }
+  }
+  @media (max-width: 1200px) {
+    #events_sec {
+      .events {
+        width: ~"calc(100% - 50px)";
+      }
     }
   }
   @media (max-width: 1000px) {
