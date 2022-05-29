@@ -1,7 +1,11 @@
 <template>
   <nav>
     <section id="topnav">
-      <span id="burger" @click="second = !second">burger</span>
+      <img
+        id="burger"
+        @click="second = !second"
+        src="../../assets/imgs/menu.png"
+      />
       <img
         id="logo"
         alt="ODC Live"
@@ -11,10 +15,11 @@
     </section>
     <section id="bottomnav">
       <Radio :today_shows="today_shows" />
-      <span>chat</span>
+      <img id="chaticon" src="../../assets/imgs/chat.svg" />
     </section>
     <section id="second" :style="`left: ${second ? '0' : '-300px'}`">
       <img
+        id="back"
         src="../../assets/imgs/back.png"
         width="30"
         @click="second = !second"
@@ -64,8 +69,10 @@ nav {
     }
     #burger {
       position: absolute;
-      left: 23px;
-      top: 23px;
+      left: 0;
+      top: 0;
+      padding: 18px;
+      width: 33px;
     }
   }
   #bottomnav {
@@ -76,6 +83,14 @@ nav {
     position: fixed;
     bottom: 0;
     display: flex;
+    #chaticon {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding: 15px;
+      width: 40px;
+      height: 40px;
+    }
   }
   #second {
     z-index: 4;
@@ -85,6 +100,10 @@ nav {
     width: 300px;
     background-color: black;
     transition: 0.5s;
+    #back {
+      padding: 18px;
+      width: 33px;
+    }
   }
 }
 </style>
