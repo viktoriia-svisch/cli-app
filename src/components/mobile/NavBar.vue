@@ -62,7 +62,7 @@ nav {
     height: 70px;
     background-color: white;
     position: fixed;
-    top: 0;
+    top: -1px;
     display: flex;
     justify-content: center;
     #logo {
@@ -81,7 +81,7 @@ nav {
     height: 70px;
     background-color: white;
     position: fixed;
-    bottom: 0;
+    bottom: -1px;
     display: flex;
     #chaticon {
       position: absolute;
