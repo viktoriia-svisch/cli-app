@@ -17,13 +17,28 @@
       <Radio :today_shows="today_shows" />
       <img id="chaticon" src="../../assets/imgs/chat.svg" />
     </section>
-    <section id="second" :style="`left: ${second ? '0' : '-300px'}`">
+    <section id="second" :style="`left: ${second ? '0' : '-75%'}`">
       <img
         id="back"
         src="../../assets/imgs/back.png"
         width="30"
         @click="second = !second"
       />
+      <img
+        id="logo_white"
+        alt="ODC Live"
+        src="../../assets/imgs/logo_white.png"
+        width="140"
+      />
+      <div id="link_sec">
+        <h3 @click="toURL('/podcasts')">Podcasts</h3>
+        <h3 @click="toURL('/events')">Events</h3>
+        <h3 @click="toURL('/calendar')">Calendar</h3>
+        <h3>Proposer un show</h3>
+        <br />
+        <h3>Merch</h3>
+        <h3>About</h3>
+      </div>
     </section>
   </nav>
 </template>
@@ -41,6 +56,10 @@ export default {
     };
   },
   methods: {
+    toURL(dest) {
+      this.$router.push(dest);
+      this.second = false;
+    },
     sendQuery() {
       this.$router.push({ path: `/search/${this.search}` });
     },
@@ -93,16 +112,32 @@ nav {
     }
   }
   #second {
+    position: relative;
     z-index: 4;
     position: fixed;
     top: 0;
     height: 100%;
-    width: 300px;
+    width: 75%;
     background-color: black;
     transition: 0.5s;
+    color: white;
+    #link_sec {
+      padding-left: 18px;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
     #back {
+      position: absolute;
+      left: 0;
+      top: 0;
       padding: 18px;
       width: 33px;
+    }
+    #logo_white {
+      display: block;
+      margin: auto;
     }
   }
 }
