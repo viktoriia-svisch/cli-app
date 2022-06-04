@@ -3,8 +3,8 @@
   "short_name": "ODC Live",
   "icons": [
     {
-      "src": "odc.png",
-      "sizes": "192x192",
+      "src": "logo.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
