@@ -94,12 +94,14 @@ export default {
     }
   },
   mounted() {
-    this.isPlaying = !this.$refs.audioElm.paused;
     window.addEventListener("keydown", event => {
             if (event.keyCode == 32 && event.target == document.body) {
         event.preventDefault();
         this.play();
       }
+    });
+    window.addEventListener("focus", () => {
+      this.isPlaying = !this.$refs.audioElm.paused;
     });
   }
 };
