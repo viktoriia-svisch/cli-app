@@ -13,7 +13,10 @@
       </div>
       <Radio :today_shows="today_shows" />
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
-      <div class="more" @click="second = !second">•••</div>
+      <div class="more" @click="second = !second">
+        <img v-if="second == false" width=60 src="../assets/imgs/more.png" />
+        <img v-else width=60 src="../assets/imgs/back_black.png" />
+      </div>
     </section>
     <section class="second" :style="`display: ${second ? 'block' : 'none'}`">
       <div class="main">
