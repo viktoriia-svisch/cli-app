@@ -40,6 +40,11 @@
         <h3>About</h3>
       </div>
     </section>
+    <section
+      id="second_shadow"
+      :style="`display: ${second ? 'initial' : 'none'}`"
+      @click="second = !second"
+    ></section>
   </nav>
 </template>
 <script>
@@ -139,6 +144,14 @@ nav {
       display: block;
       margin: auto;
     }
+  }
+  #second_shadow {
+    z-index: 4;
+    width: 25%;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }
 </style>
