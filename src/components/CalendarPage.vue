@@ -1,7 +1,12 @@
 <template>
   <section id="calendars">
     <span class="subtitle">Le calendrier</span>
-    <h3 @click="changeWeek('+')">Semaine du {{ week }}</h3>
+    <h3>
+      Semaine du
+      {{ `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}` }}
+    </h3>
+    <h3 class="chgWeek" @click="changeWeek('-')">Semaine précédente</h3>
+    <h3 class="chgWeek" @click="changeWeek('+')">Semaine suivante</h3>
     <section class="week">
       <div class="day" v-for="day in days" v-bind:key="day.val">
         {{ day.title }}
@@ -58,7 +63,8 @@ export default {
         saturday: [],
         sunday: []
       },
-      week: String
+      week: String,
+      date: null
     };
   },
   methods: {
@@ -122,13 +128,15 @@ export default {
       } else {
         date.setDate(date.getDate() - 7);
       }
+      this.date = date;
       date = date.toISOString();
       this.week = date.slice(0, 10);
       await this.getCalendar();
     }
   },
   async mounted() {
-    this.week = new Date().toISOString();
+    this.date = new Date();
+    this.week = this.date.toISOString();
     this.week = this.week.slice(0, 10);
     await this.getCalendar();
   }
@@ -136,6 +144,11 @@ export default {
 </script>
 <style lang="less" scoped>
 #calendars {
+  .chgWeek {
+    background-color: #ffffff2e;
+    color: white;
+    cursor: pointer;
+  }
   .week {
     min-width: 450px;
     .day {

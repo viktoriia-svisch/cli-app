@@ -15,8 +15,8 @@ export default {
   },
   data() {
     return {
-      color: "#936A54",
-      innerWidth: window.innerWidth,
+      color: "#8BAABD",
+      innerWidth: window.innerWidth
     };
   },
   mounted() {
@@ -66,6 +66,10 @@ body {
     }
   }
   @media (max-width: 770px) {
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
     .main_section {
       flex-direction: column-reverse;
     }

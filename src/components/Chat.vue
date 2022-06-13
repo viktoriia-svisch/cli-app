@@ -1,6 +1,6 @@
 <template>
   <section id="chat">
-    <span class="subtitle">La chatroom</span>
+    <span class="subtitle">La chatroom {{pseudo}}</span>
     <section id="msg" v-chat-scroll>
       <span class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
         <span v-if="msg.help">
@@ -51,6 +51,10 @@ export default {
   },
   methods: {
     send_msg() {
+      if (this.pseudo.length == 0) {
+        alert("no!");
+        return;
+      }
       if (this.message == "" || this.message.length < 2 || this.pseudo == "") {
         this.message = "";
         return;
