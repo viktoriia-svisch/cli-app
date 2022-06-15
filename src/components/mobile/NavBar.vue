@@ -26,6 +26,7 @@
       />
       <img
         id="logo_white"
+        @click="toURL('/')"
         alt="ODC Live"
         src="../../assets/imgs/logo_white.png"
         width="140"

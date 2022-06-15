@@ -149,13 +149,21 @@ main {
   @media (max-width: 1200px) {
     #events_sec {
       .events {
-        width: ~"calc(100% - 50px)";
+        width: 500px;
       }
     }
   }
   @media (max-width: 1000px) {
     .flex {
       flex-direction: column;
+    }
+  }
+  @media (max-width: 500px) {
+    #events_sec {
+      .events {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
   <section id="radio" class="flex" @click="play">
     <audio ref="audioElm" :src="src" preload="none"></audio>
     <img src="../assets/imgs/play.svg" class="playBtn" v-if="!isPlaying" />
-    <img src="../assets/imgs/stop.svg" class="playBtn" v-else />
+    <img src="../assets/imgs/stop.png" class="playBtn" v-else />
     <span class="reddot">•</span>
     <div class="title">
       <span class="live_info">
