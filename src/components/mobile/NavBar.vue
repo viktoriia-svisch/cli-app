@@ -15,7 +15,11 @@
     </section>
     <section id="bottomnav">
       <Radio :today_shows="today_shows" />
-      <img id="chaticon" src="../../assets/imgs/chat.svg" />
+      <img
+        id="chaticon"
+        src="../../assets/imgs/chat.svg"
+        @click="chat = !chat"
+      />
     </section>
     <section id="second" :style="`left: ${second ? '0' : '-75%'}`">
       <img
@@ -37,14 +41,35 @@
         <h3 @click="toURL('/calendar')">Calendar</h3>
         <h3>Proposer un show</h3>
         <br />
-        <h3>Merch</h3>
         <h3>About</h3>
+        <h3><a href="https:        <h3>
+          <a href="https:        </h3>
+        <h3>
+          <a href="https:            >soundcloud</a
+          >
+        </h3>
+        <h3>
+          <a href="https:        </h3>
       </div>
     </section>
     <section
       id="second_shadow"
       :style="`display: ${second ? 'initial' : 'none'}`"
       @click="second = !second"
+    ></section>
+    <section id="chat_box" :style="`right: ${chat ? '0' : '-75%'}`">
+      <img
+        id="logo_white"
+        @click="toURL('/')"
+        alt="ODC Live"
+        src="../../assets/imgs/logo_white.png"
+        width="140"
+      />
+    </section>
+    <section
+      id="chat_shadow"
+      :style="`display: ${chat ? 'initial' : 'none'}`"
+      @click="chat = !chat"
     ></section>
   </nav>
 </template>
@@ -58,7 +83,8 @@ export default {
   },
   data() {
     return {
-      second: false
+      second: false,
+      chat: false
     };
   },
   methods: {
@@ -116,6 +142,25 @@ nav {
       width: 40px;
       height: 40px;
     }
+  }
+  #chat_box {
+    position: relative;
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 75%;
+    background-color: black;
+    transition: 0.5s;
+    color: white;
+  }
+  #chat_shadow {
+    z-index: 4;
+    width: 25%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
   #second {
     position: relative;
