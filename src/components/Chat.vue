@@ -1,6 +1,6 @@
 <template>
   <section id="chat">
-    <span class="subtitle">La chatroom {{pseudo}}</span>
+    <span class="subtitle">La chatroom</span>
     <section id="msg" v-chat-scroll>
       <span class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
         <span v-if="msg.help">
@@ -26,6 +26,16 @@
     <section id="send">
       <form id="chatSend" v-on:submit.prevent="send_msg">
         <textarea
+          v-if="!hiddenPseudo"
+          class="inputchat"
+          id="pseudo"
+          placeholder="Pseudonyme"
+          style="resize: none;"
+          type="text"
+          name="listener"
+          v-model="pseudo"
+        ></textarea>
+        <textarea
           class="inputchat"
           id="message"
           style="resize: none;"
@@ -46,19 +56,20 @@ export default {
     return {
       msgs: [],
       pseudo: "",
+      hiddenPseudo: true,
       message: ""
     };
   },
   methods: {
     send_msg() {
       if (this.pseudo.length == 0) {
-        alert("no!");
         return;
       }
       if (this.message == "" || this.message.length < 2 || this.pseudo == "") {
         this.message = "";
         return;
       }
+      this.hiddenPseudo = true;
       localStorage.setItem("username", this.pseudo);
       this.$socket.emit("msg", { pseudo: this.pseudo, msg: this.message });
       this.message = "";
@@ -84,6 +95,9 @@ export default {
       };
       this.msgs = this.msgs.concat(help);
       localStorage.setItem("username", "");
+      this.hiddenPseudo = false;
+    } else {
+      this.hiddenPseudo = true;
     }
   }
 };
@@ -91,21 +105,25 @@ export default {
 <style lang="less" scoped>
 #chat {
   color: white;
-  .inputchat {
-    width: 100%;
-    height: 45px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    font-family: KionaBold;
-    border-radius: 0px;
-    border: 0px;
-    color: white;
-    background-color: #ffffff40;
-    background-image: url("../assets/imgs/play_white.svg");
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
-    background-position: right 10px top 6px;
+  max-width: 300px;
+  #chatSend {
+    margin-top: 4px;
+    .inputchat {
+      width: 100%;
+      height: 45px;
+      padding: 12px 20px;
+      margin: 4px 0;
+      box-sizing: border-box;
+      font-family: KionaBold;
+      border-radius: 0px;
+      border: 0px;
+      color: white;
+      background-color: #ffffff40;
+      background-image: url("../assets/imgs/play_white.svg");
+      background-repeat: no-repeat;
+      background-size: 30px 30px;
+      background-position: right 10px top 6px;
+    }
   }
   #msg {
     margin-top: 15px;
