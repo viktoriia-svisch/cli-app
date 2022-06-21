@@ -57,6 +57,7 @@ export default {
       msgs: [],
       pseudo: "",
       hiddenPseudo: true,
+      localUser: "user_v2",
       message: ""
     };
   },
@@ -70,7 +71,7 @@ export default {
         return;
       }
       this.hiddenPseudo = true;
-      localStorage.setItem("username", this.pseudo);
+      localStorage.setItem(this.localUser, this.pseudo);
       this.$socket.emit("msg", { pseudo: this.pseudo, msg: this.message });
       this.message = "";
     }
@@ -84,7 +85,7 @@ export default {
     }
   },
   mounted() {
-    this.pseudo = localStorage.getItem("username");
+    this.pseudo = localStorage.getItem(this.localUser);
     if (this.pseudo === null) {
       const help = {
         ts: new Date(),
@@ -94,7 +95,7 @@ export default {
         help: true
       };
       this.msgs = this.msgs.concat(help);
-      localStorage.setItem("username", "");
+      localStorage.setItem(this.localUser, "");
       this.hiddenPseudo = false;
     } else {
       this.hiddenPseudo = true;
