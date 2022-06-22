@@ -2,8 +2,14 @@
   <nav>
     <section class="nav flex">
       <router-link :to="{ path: '/' }"
-        ><img alt="ODC Live" src="../assets/imgs/logo.png" width="150"
-      /></router-link>
+        ><img
+          v-if="$route.path != '/events'"
+          alt="ODC Live"
+          src="../assets/imgs/logo.png"
+          height="75"
+        />
+        <img v-else src="../assets/imgs/events.png" height="75" />
+      </router-link>
       <div class="flex menu">
         <router-link :to="{ path: '/podcasts' }"><h1>Podcasts</h1></router-link>
         <router-link :to="{ path: '/events' }"><h1>Events</h1></router-link>
@@ -14,8 +20,8 @@
       <Radio :today_shows="today_shows" />
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
       <div class="more" @click="second = !second">
-        <img v-if="second == false" width=60 src="../assets/imgs/more.png" />
-        <img v-else width=60 src="../assets/imgs/back_black.png" />
+        <img v-if="second == false" width="60" src="../assets/imgs/more.png" />
+        <img v-else width="60" src="../assets/imgs/back_black.png" />
       </div>
     </section>
     <section class="second" :style="`display: ${second ? 'block' : 'none'}`">
