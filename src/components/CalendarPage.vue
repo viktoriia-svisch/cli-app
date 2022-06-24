@@ -1,15 +1,22 @@
 <template>
   <section id="calendars">
     <span class="subtitle">Le calendrier</span>
-    <h3>
+    <h3 v-if="date">
       Semaine du
       {{ `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}` }}
     </h3>
     <h3 class="chgWeek" @click="changeWeek('-')">Semaine précédente</h3>
     <h3 class="chgWeek" @click="changeWeek('+')">Semaine suivante</h3>
-    <section class="week">
-      <div class="day" v-for="day in days" v-bind:key="day.val">
+    <section class="week" v-if="date">
+      <div class="day" v-for="(day, k) in days" v-bind:key="day.val">
         {{ day.title }}
+        {{
+          `${new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + k
+          ).toLocaleDateString("en-GB")}`
+        }}
         <section
           v-for="show in weeks[day.val]"
           v-bind:key="show.id"
@@ -151,6 +158,10 @@ export default {
   }
   .week {
     min-width: 450px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(auto, auto);
     .day {
       padding: 0px 4px 4px 4px;
       margin-bottom: 10px;
