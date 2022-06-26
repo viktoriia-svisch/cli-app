@@ -41,7 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
   #app {
     min-height: 100vh;
-    padding-bottom: 100px;
+    padding-bottom: 10px;
   }
   .flex {
     display: flex;
@@ -53,7 +53,7 @@ body {
   }
   .marged {
     max-width: 1200px;
-    margin: 100px auto 0px auto;
+    margin: 10px auto 0px auto;
   }
   .subtitle {
     font-size: 24px;

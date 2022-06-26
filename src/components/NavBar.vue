@@ -16,6 +16,8 @@
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
+        <a href="https:          ><h1>Shop</h1></a
+        >
       </div>
       <Radio :today_shows="today_shows" />
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
@@ -118,7 +120,7 @@ nav {
         text-decoration: none;
         padding: 2px 10px 2px 10px;
         &:hover {
-          background-color: #ddd;
+          background-color: #9191912e;
         }
       }
     }
@@ -147,7 +149,7 @@ nav {
       text-decoration: none;
     }
     a:hover {
-      background-color: #ddd;
+      background-color: #9191912e;
     }
   }
   .search {
