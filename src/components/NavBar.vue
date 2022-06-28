@@ -16,8 +16,6 @@
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
-        <a href="https:          ><h1>Shop</h1></a
-        >
       </div>
       <Radio :today_shows="today_shows" />
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
@@ -27,8 +25,27 @@
       </div>
     </section>
     <section class="second" :style="`display: ${second ? 'block' : 'none'}`">
+      <img
+        id="back"
+        src="../assets/imgs/back.png"
+        width="60"
+        @click="second = !second"
+      />
       <div class="main">
-        <a href="https:        <a href="https:        <a href="https:        <a href="https:      </div>
+        <h3 @click="toURL('/propose_show')">Proposer un show</h3>
+        <h3>
+          <a href="https:            >Soundcloud</a
+          >
+        </h3>
+        <h3>
+          <a href="https:        </h3>
+        <h3>
+          <a href="https:        </h3>
+        <h3>
+          <a href="https:        </h3>
+        <br />
+        <h3>About</h3>
+      </div>
     </section>
     <section
       id="search_sec"
@@ -50,16 +67,20 @@ export default {
   name: "NavBar",
   props: ["today_shows"],
   components: {
-    Radio
+    Radio,
   },
   data() {
     return {
       hiddenSearch: true,
       search: "",
-      second: false
+      second: false,
     };
   },
   methods: {
+    toURL(dest) {
+      this.$router.push(dest);
+      this.second = false;
+    },
     sendQuery() {
       this.$router.push({ path: `/search/${this.search}` });
     },
@@ -69,8 +90,8 @@ export default {
       } else {
         this.hiddenSearch = true;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -105,22 +126,30 @@ nav {
     }
   }
   .second {
-    width: initial;
-    position: sticky;
-    top: 79px;
-    z-index: 3;
+    color: white;
+    z-index: 4;
+    position: fixed;
+    top: -2px;
+    right: 0;
+    height: ~"calc(100% + 2px)";
+    width: 450px;
+    background-color: #000;
+    transition: 0.5s;
+    #back {
+      position: absolute;
+      right: 10px;
+    }
     .main {
-      border-top: 2px solid;
-      margin: 0 auto;
-      text-align: right;
+      margin: 40px 20px 0px 20px;
       padding: 2px;
-      width: 1200px;
-      a {
-        color: black;
-        text-decoration: none;
-        padding: 2px 10px 2px 10px;
-        &:hover {
-          background-color: #9191912e;
+      h3 {
+        padding: 4px 10px 4px 10px;
+        a {
+          color: white;
+          text-decoration: none;
+          &:hover {
+            background-color: #9191912e;
+          }
         }
       }
     }

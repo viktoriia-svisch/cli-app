@@ -16,7 +16,7 @@
       </div>
     </section>
     <section id="events_sec" v-if="events.length">
-      <span class="subtitle">Nos giga TEUFS</span>
+      <span class="subtitle">Nos prochains évènements</span>
       <div class="events">
         <a
           class="event"
