@@ -20,7 +20,7 @@
       <Radio :today_shows="today_shows" />
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
       <div class="more" @click="second = !second">
-        <img v-if="second == false" width="60" src="../assets/imgs/more.png" />
+        <img v-if="second == false" width="60" src="../assets/imgs/menu.png" />
         <img v-else width="60" src="../assets/imgs/back_black.png" />
       </div>
     </section>
@@ -136,6 +136,7 @@ nav {
     background-color: #000;
     transition: 0.5s;
     #back {
+      top: 10px;
       position: absolute;
       right: 10px;
     }
@@ -144,6 +145,7 @@ nav {
       padding: 2px;
       h3 {
         padding: 4px 10px 4px 10px;
+        cursor: pointer;
         a {
           color: white;
           text-decoration: none;
@@ -186,7 +188,7 @@ nav {
     cursor: pointer;
   }
   .more {
-    margin: 23px 10px 0px 10px;
+    margin: 10px 10px 0px 10px;
     letter-spacing: -4px;
     font-size: 24px;
     cursor: pointer;
