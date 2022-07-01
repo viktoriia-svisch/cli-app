@@ -20,15 +20,15 @@
       <Radio :today_shows="today_shows" />
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
       <div class="more" @click="second = !second">
-        <img v-if="second == false" width="60" src="../assets/imgs/menu.png" />
-        <img v-else width="60" src="../assets/imgs/back_black.png" />
+        <img v-if="second == false" width="40" src="../assets/imgs/menu.png" />
+        <img v-else width="40" src="../assets/imgs/back_black.png" />
       </div>
     </section>
     <section class="second" :style="`display: ${second ? 'block' : 'none'}`">
       <img
         id="back"
         src="../assets/imgs/back.png"
-        width="60"
+        width="40"
         @click="second = !second"
       />
       <div class="main">
@@ -136,12 +136,13 @@ nav {
     background-color: #000;
     transition: 0.5s;
     #back {
-      top: 10px;
+      cursor: pointer;
+      top: 18px;
       position: absolute;
       right: 10px;
     }
     .main {
-      margin: 40px 20px 0px 20px;
+      margin: 80px 20px 0px 20px;
       padding: 2px;
       h3 {
         padding: 4px 10px 4px 10px;
@@ -188,7 +189,7 @@ nav {
     cursor: pointer;
   }
   .more {
-    margin: 10px 10px 0px 10px;
+    margin: 18px 10px 0px 10px;
     letter-spacing: -4px;
     font-size: 24px;
     cursor: pointer;
