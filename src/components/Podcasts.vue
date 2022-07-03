@@ -1,6 +1,7 @@
 <template>
   <main>
     <span class="subtitle">Tous les podcasts</span>
+    <p>filtres</p>
     <PodcastList :pods="podcasts" />
     <section class="flex">
       <input
@@ -23,7 +24,7 @@ import PodcastList from "./PodcastList.vue";
 export default {
   name: "Index",
   components: {
-    PodcastList
+    PodcastList,
   },
   data() {
     return {
@@ -31,7 +32,7 @@ export default {
       podcasts: [],
       next: "",
       more: true,
-      offset: 0
+      offset: 0,
     };
   },
   methods: {
@@ -42,7 +43,7 @@ export default {
             if (!this.more) return;
       await axios
         .get(this.next)
-        .then(res => {
+        .then((res) => {
           if (res.data.next_href === null) this.more = false;
           this.podcasts = this.podcasts.concat(res.data.collection);
           this.offset = res.data.next_href.substring(
@@ -52,7 +53,7 @@ export default {
           this.next = `${this.$config.VUE_APP_API}/sounds/${this.offset}`;
         })
         .catch();
-    }
+    },
   },
   async mounted() {
     this.next = `${this.$config.VUE_APP_API}/sounds/${
@@ -60,11 +61,12 @@ export default {
     }?t=${new Date().getTime()}`;
     await this.getPodcasts();
     await this.getPodcasts();
-  }
+  },
 };
 </script>
 <style lang="less" scoped>
 main {
+  width: 830px;
   .input {
     max-width: 500px;
     padding: 12px 20px;
@@ -100,6 +102,9 @@ main {
       top: 5px;
       right: 5px;
     }
+  }
+  @media (max-width: 1000px) {
+    width: initial;
   }
   @media (max-width: 1000px) {
     .flex {

@@ -59,7 +59,7 @@ export default {
         { val: "thursday", title: "Jeudi" },
         { val: "friday", title: "Vendredi" },
         { val: "saturday", title: "Samedi" },
-        { val: "sunday", title: "Dimanche" }
+        { val: "sunday", title: "Dimanche" },
       ],
       weeks: {
         monday: [],
@@ -68,10 +68,10 @@ export default {
         thursday: [],
         friday: [],
         saturday: [],
-        sunday: []
+        sunday: [],
       },
       week: String,
-      date: null
+      date: null,
     };
   },
   methods: {
@@ -139,14 +139,14 @@ export default {
       date = date.toISOString();
       this.week = date.slice(0, 10);
       await this.getCalendar();
-    }
+    },
   },
   async mounted() {
     this.date = new Date();
     this.week = this.date.toISOString();
     this.week = this.week.slice(0, 10);
     await this.getCalendar();
-  }
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -157,7 +157,7 @@ export default {
     cursor: pointer;
   }
   .week {
-    min-width: 450px;
+    width: 830px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
@@ -188,6 +188,12 @@ export default {
           }
         }
       }
+    }
+  }
+  @media (max-width: 1000px) {
+    .week {
+      width: initial;
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

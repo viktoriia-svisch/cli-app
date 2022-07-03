@@ -11,19 +11,19 @@ export default {
   name: "App",
   components: {
     Fullscreen,
-    Mobile
+    Mobile,
   },
   data() {
     return {
-      color: "#8BAABD",
-      innerWidth: window.innerWidth
+      color: "#972EE1",
+      innerWidth: window.innerWidth,
     };
   },
   mounted() {
     window.addEventListener("resize", () => {
       this.innerWidth = window.innerWidth;
     });
-  }
+  },
 };
 </script>
 <style lang="less">
