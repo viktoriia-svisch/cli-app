@@ -37,7 +37,7 @@ import PodcastList from "./PodcastList.vue";
 export default {
   name: "Index",
   components: {
-    PodcastList
+    PodcastList,
   },
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
       podcasts: [],
       events: [],
       next: "",
-      more: true
+      more: true,
     };
   },
   methods: {
@@ -56,7 +56,7 @@ export default {
             if (!this.more) return;
       await axios
         .get(this.next)
-        .then(res => {
+        .then((res) => {
           if (res.data.next_href === null) this.more = false;
           this.podcasts = this.podcasts.concat(res.data.collection);
         })
@@ -82,7 +82,7 @@ export default {
         {}
       );
       this.events = this.events.concat(res.Events);
-    }
+    },
   },
   async mounted() {
     this.next = `${
@@ -90,11 +90,12 @@ export default {
     }/sounds/0?t=${new Date().getTime()}`;
     await this.getPodcasts();
     await this.getEvents();
-  }
+  },
 };
 </script>
 <style lang="less" scoped>
 main {
+  width: 830px;
   .input {
     max-width: 500px;
     padding: 12px 20px;
@@ -147,6 +148,7 @@ main {
     }
   }
   @media (max-width: 1200px) {
+    width: initial;
     #events_sec {
       .events {
         width: 500px;
