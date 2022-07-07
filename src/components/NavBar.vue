@@ -24,7 +24,7 @@
         <img v-else width="40" src="../assets/imgs/back_black.png" />
       </div>
     </section>
-    <section class="second" :style="`display: ${second ? 'block' : 'none'}`">
+    <section class="second" :style="`right: ${second ? '0' : '-450px'}`">
       <img
         id="back"
         src="../assets/imgs/back.png"
