@@ -140,9 +140,15 @@ export default {
       this.week = date.slice(0, 10);
       await this.getCalendar();
     },
+    getMonday() {
+      let date = new Date();
+      const day = date.getDay();
+      const diff = date.getDate() - day + (day == 0 ? -6 : 1);
+      return new Date(date.setDate(diff));
+    },
   },
   async mounted() {
-    this.date = new Date();
+    this.date = this.getMonday();
     this.week = this.date.toISOString();
     this.week = this.week.slice(0, 10);
     await this.getCalendar();
