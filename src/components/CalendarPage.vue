@@ -22,8 +22,26 @@
           v-bind:key="show.id"
           class="show"
         >
-          <span> {{ show.name }}</span
-          ><br />
+          <span> {{ show.name }} </span>
+          <u
+            >De
+            {{
+              new Date(Number(show.starts_at)).toLocaleTimeString("fr-FR", {
+                hour: "2-digit",
+                minute: "2-digit",
+                timeZone: "UTC",
+              })
+            }}
+            a
+            {{
+              new Date(Number(show.ends_at)).toLocaleTimeString("fr-FR", {
+                hour: "2-digit",
+                minute: "2-digit",
+                timeZone: "UTC",
+              })
+            }}:</u
+          >
+          <br />
           <span v-if="show.dj.length"
             ><span class="side">Animee par</span> {{ show.dj }}</span
           ><br />
