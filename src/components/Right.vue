@@ -1,5 +1,5 @@
 <template>
-  <aside>
+  <aside v-if="$route.path != '/events'">
     <div class="sticked">
       <Chat />
       <TimeTable />
@@ -13,8 +13,8 @@ export default {
   name: "right",
   components: {
     Chat,
-    TimeTable
-  }
+    TimeTable,
+  },
 };
 </script>
 <style lang="less" scoped>

@@ -1,14 +1,130 @@
 <template>
   <main>
-    <span class="subtitle">ODC Events</span>
-    <img src="../assets/imgs/events.png" width=400 />
-    <p>ODC Events est le nouvel outil d'ODC permettant...</p>
-    <p>Pour plus d'informations, nous contacter a: fixer une adresse mail</p>
+    <div id="img1" class="img">
+      <img src="../assets/imgs/events/1.jpg" />
+      <div class="text" id="bloc1">
+        <img src="../assets/imgs/events/logo.png" />
+        <p>
+          Fort de son expérience dans le monde culturel en tant que Webradio,
+          ODC propose ses services professionnels dans l’organisation
+          d’événements 360° ainsi que dans l’audiovisuel.
+        </p>
+      </div>
+      <div class="text" id="bloc2">
+        <p>
+          Odc Event est une structure portée par
+          <span class="imp">Luc Leroy</span> (programmateur),
+          <span class="imp">Lucas Karst</span> (vidéaste),
+          <span class="imp">Léo Pallot</span> (graphiste) ainsi que
+          <span class="imp">Maxime Hoffart</span> (technicien du son). <br />
+          Leurs qualités techniques mais aussi leurs connaissances du milieu
+          culturel alsacien permettent de vous proposer des événements sur
+          mesures et clés en main mais aussi un accompagnement plus spécifique
+          sur leurs services ou compétences proposés.
+        </p>
+      </div>
+    </div>
+    <div id="img2" class="img">
+      <img src="../assets/imgs/events/2.jpg" />
+      <div class="text" id="bloc1">
+        <h2>Nos projets, clients et partenaires</h2>
+        <p>
+          La Bibliothèque U2-U3, Colors Festival, Contre temps, Festival
+          Exhibitrnic, Le Graffalgar, La Grenze, L’institut supérieur des arts
+          appliqués (LISAA), Les Jardins des deux rives Strasbourg, Le Shadok,
+          La Kulture, Librairie Kléber, Le Mini Maker Fair, les musées de la
+          ville de strasbourg,NL Contest, L’Ososphère, Cinéma Odyssée, Le Palais
+          Rohan, Pelpass festival, Radio en Construction & Redbull.
+        </p>
+      </div>
+    </div>
+    <div id="img3" class="img">
+      <img src="../assets/imgs/events/3.jpg" />
+      <div class="text" id="bloc1">
+        <h2>Services & Compétences</h2>
+        <p>
+          <span class="imp">Service captation radio et vidéo</span><br /><br />
+          · Live Streaming vidéo : jusqu’à 4 axes disponibles, plans aériens au
+          drone, en direct sur Youtube, Facebook ou sur serveur dédié.<br />
+          · Live Streaming radio sur <span class="imp">www.odc.live</span> ou
+          sur votre propre serveur.<br />
+          · Location de Matériel DJ, Vidéo & Radio, + d’infos par mail.<br />
+          · Photographie d’événement : mise en valeur de vos artistes ou
+          produits.
+        </p>
+      </div>
+    </div>
   </main>
 </template>
 <script>
 export default {
-  name: "Events"
+  name: "Events",
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+main {
+  width: 1100px;
+  .img {
+    position: relative;
+    width: inherit;
+    margin-bottom: -4px;
+    img {
+      width: inherit;
+    }
+    .text {
+      position: absolute;
+      background-color: white;
+      padding: 20px;
+      h2 {
+        margin-top: 7px;
+      }
+      p {
+        font-size: 16px;
+        font-family: KionaBold;
+        margin: 0;
+        .imp {
+          font-family: KionaBold;
+        }
+      }
+    }
+  }
+  #img1 {
+    #bloc1 {
+      top: 80px;
+      width: 500px;
+      img {
+        width: 300px;
+        margin-top: 8px;
+        margin-bottom: 16px;
+      }
+    }
+    #bloc2 {
+      p {
+        font-family: Kiona;
+      }
+      bottom: 120px;
+      right: 0px;
+      width: 700px;
+    }
+  }
+  #img2 {
+    #bloc1 {
+      bottom: 120px;
+      width: 700px;
+      p {
+        font-family: Kiona;
+      }
+    }
+  }
+  #img3 {
+    #bloc1 {
+      width: 475px;
+      top: 120px;
+      right: 0px;
+      p {
+        font-family: Kiona;
+      }
+    }
+  }
+}
+</style>
