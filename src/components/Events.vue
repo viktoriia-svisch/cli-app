@@ -53,7 +53,22 @@
           produits.
         </p>
       </div>
+      <div class="text" id="bloc2">
+        <p>
+          <span class="imp">Service de production événementiel</span
+          ><br /><br />
+          . Catalogue de lieux atypiques, classiques et contemporains<br />
+          . Musique sur mesure : DJ Sets, concerts, showcases...<br />
+          . Service de bar et de catering<br />
+          . Animations : workshops & live radio<br />
+          . Community management, création de contenus
+        </p>
+      </div>
     </div>
+    <div class="img" id="img4">
+      <img src="../assets/imgs/events/4.jpg" />
+    </div>
+    <p><a href="mailto:contact@odc.live">Nous contacter</a></p>
   </main>
 </template>
 <script>
@@ -121,6 +136,13 @@ main {
       width: 475px;
       top: 120px;
       right: 0px;
+      p {
+        font-family: Kiona;
+      }
+    }
+    #bloc2 {
+      bottom: 120px;
+      left: 0;
       p {
         font-family: Kiona;
       }
