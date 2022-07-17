@@ -1,7 +1,6 @@
 <template>
   <main>
     <NavBar :today_shows="today_shows" />
-    <input type="color" v-model="$parent.color" />
     <section class="main_section flex_center marged">
       <router-view :key="$route.fullPath" />
       <Right />

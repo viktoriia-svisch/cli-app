@@ -1,10 +1,14 @@
 <template>
-  <div id="app" :style="'background-color:' + color">
+  <div
+    id="app"
+    :style="'background-color:' + color + '; background-image: url(' + bg + ')'"
+  >
     <Fullscreen v-if="innerWidth >= 730" />
     <Mobile v-else />
   </div>
 </template>
 <script>
+import axios from "axios";
 import Fullscreen from "./components/Fullscreen.vue";
 import Mobile from "./components/Mobile.vue";
 export default {
@@ -15,7 +19,8 @@ export default {
   },
   data() {
     return {
-      color: "#972EE1",
+      color: "#5D58C9",
+      bg: this.$config.VUE_APP_API + "/upload/background",
       innerWidth: window.innerWidth,
     };
   },
@@ -23,6 +28,11 @@ export default {
     window.addEventListener("resize", () => {
       this.innerWidth = window.innerWidth;
     });
+    axios
+      .get(this.$config.VUE_APP_API + "/upload/color?t=${new Date().getTime()}")
+      .then((response) => {
+        this.color = response.data.color;
+      });
   },
 };
 </script>
@@ -42,6 +52,8 @@ body {
   #app {
     min-height: 100vh;
     padding-bottom: 10px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
   .flex {
     display: flex;
