@@ -24,7 +24,10 @@
           v-bind:key="event.id"
           :href="event.facebook"
         >
-          <img :src="event.image" />
+          <div>
+            <img :src="event.image" />
+          </div>
+          <p>{{ event.name }}</p>
         </a>
       </div>
     </section>
@@ -120,8 +123,25 @@ main {
       grid-gap: 10px;
       grid-auto-rows: minmax(auto, auto);
       .event {
-        img {
-          width: 100%;
+        div {
+          height: 240px;
+          width: 410px;
+          overflow: hidden;
+          img {
+            height: 100%;
+          }
+        }
+        p {
+          margin: 0;
+          padding: 8px;
+          background-color: #2b2b2b3b;
+          color: white;
+          text-align: center;
+        }
+        &:hover {
+          p {
+            background-color: #00000080;
+          }
         }
       }
     }
