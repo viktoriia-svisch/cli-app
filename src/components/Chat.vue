@@ -106,7 +106,7 @@ export default {
 <style lang="less" scoped>
 #chat {
   color: white;
-  max-width: 300px;
+  width: 300px;
   #chatSend {
     margin-top: 4px;
     .inputchat {

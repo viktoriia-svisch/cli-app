@@ -171,7 +171,18 @@ main {
     width: initial;
     #events_sec {
       .events {
-        width: 500px;
+        width: initial;
+        display: flex;
+        flex-direction: column;
+        .event {
+          div {
+            width: 100%;
+            img {
+              height: initial;
+              width: 100%;
+            }
+          }
+        }
       }
     }
   }
