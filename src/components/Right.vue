@@ -1,5 +1,5 @@
 <template>
-  <aside v-if="$route.path != '/events'">
+  <aside :style="`display: ${$route.path != '/events' ? 'initial' : 'none'}`">
     <div class="sticked">
       <Chat />
       <TimeTable />
