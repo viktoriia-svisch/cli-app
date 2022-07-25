@@ -2,7 +2,7 @@
   <aside :style="`display: ${$route.path != '/events' ? 'initial' : 'none'}`">
     <div class="sticked">
       <Chat />
-      <TimeTable />
+      <TimeTable class="timetable" />
     </div>
   </aside>
 </template>
@@ -27,7 +27,6 @@ aside {
   }
   .timetable {
     margin-top: 20px;
-    top: 572px;
   }
   @media (max-width: 770px) {
     margin-left: 0px;

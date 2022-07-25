@@ -115,6 +115,7 @@ main {
     background-position: right 10px top 6px;
   }
   #events_sec {
+    margin-top: 20px;
     .events {
       width: 830px;
       margin-top: 10px;

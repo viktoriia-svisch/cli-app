@@ -2,26 +2,20 @@
   <section id="chat">
     <span class="subtitle">La chatroom</span>
     <section id="msg" v-chat-scroll>
-      <span class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
-        <span v-if="msg.help">
+      <tr class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
+        <td class="tmsg">
           <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
             new Date(msg.ts).toLocaleTimeString("fr", {
               hour: "2-digit",
-              minute: "2-digit"
+              minute: "2-digit",
             })
           }}</span>
-          <span class="lhelp">{{ msg.pseudo }}:</span></span
-        >
-        <span v-else>
-          <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
-            new Date(msg.ts).toLocaleTimeString("fr", {
-              hour: "2-digit",
-              minute: "2-digit"
-            })
-          }}</span>
-          <span class="lname">{{ msg.pseudo }}:</span></span
-        ><span class="mmsg">{{ msg.msg }}</span></span
-      >
+        </td>
+        <td>
+          <span class="lname">{{ msg.pseudo }}</span>
+          <span class="lmsg">{{ msg.msg }}</span>
+        </td>
+      </tr>
     </section>
     <section id="send">
       <form id="chatSend" v-on:submit.prevent="send_msg">
@@ -58,7 +52,7 @@ export default {
       pseudo: "",
       hiddenPseudo: true,
       localUser: "user_v2",
-      message: ""
+      message: "",
     };
   },
   methods: {
@@ -74,7 +68,7 @@ export default {
       localStorage.setItem(this.localUser, this.pseudo);
       this.$socket.emit("msg", { pseudo: this.pseudo, msg: this.message });
       this.message = "";
-    }
+    },
   },
   sockets: {
     listen(msgs) {
@@ -82,7 +76,7 @@ export default {
     },
     msg(message) {
       this.msgs = this.msgs.concat(message);
-    }
+    },
   },
   mounted() {
     this.pseudo = localStorage.getItem(this.localUser);
@@ -92,7 +86,7 @@ export default {
         pseudo: "Help",
         msg:
           "Dont be shy, join in the conversation by typing your name and message!",
-        help: true
+        help: true,
       };
       this.msgs = this.msgs.concat(help);
       localStorage.setItem(this.localUser, "");
@@ -100,7 +94,7 @@ export default {
     } else {
       this.hiddenPseudo = true;
     }
-  }
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -129,10 +123,9 @@ export default {
   #msg {
     margin-top: 15px;
     overflow: auto;
-    height: 250px;
+    height: 290px;
     background-color: #2b2b2b3b;
     .lmsg {
-      display: block;
       font-family: Kiona;
       .tmsg {
         background-color: #00000030;
