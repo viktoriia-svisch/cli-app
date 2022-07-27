@@ -3,13 +3,13 @@
     <span class="subtitle">La chatroom</span>
     <section id="msg" v-chat-scroll>
       <tr class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
-        <td class="tmsg">
-          <span class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">{{
+        <td class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">
+          {{
             new Date(msg.ts).toLocaleTimeString("fr", {
               hour: "2-digit",
               minute: "2-digit",
             })
-          }}</span>
+          }}
         </td>
         <td>
           <span class="lname">{{ msg.pseudo }}</span>
