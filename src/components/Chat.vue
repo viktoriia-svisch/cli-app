@@ -80,7 +80,7 @@ export default {
   },
   mounted() {
     this.pseudo = localStorage.getItem(this.localUser);
-    if (this.pseudo === null) {
+    if (this.pseudo === null || this.pseudo == "") {
       const help = {
         ts: new Date(),
         pseudo: "Help",
