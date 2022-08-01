@@ -16,6 +16,8 @@
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
+        <a href="https:          ><h1>Shop</h1></a
+        >
       </div>
       <Radio :today_shows="today_shows" />
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
@@ -65,7 +67,19 @@
 import Radio from "./Radio.vue";
 export default {
   name: "NavBar",
-  props: ["today_shows"],
+  props: ["today_shows", "color"],
+  watch: {
+    color: (newCol) => {
+      const css = `.menu a:hover {background-color: ${newCol}80;}`;
+      const style = document.createElement("style");
+      if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+      } else {
+        style.appendChild(document.createTextNode(css));
+      }
+      document.getElementsByTagName("head")[0].appendChild(style);
+    },
+  },
   components: {
     Radio,
   },
@@ -179,9 +193,6 @@ nav {
     }
     a {
       text-decoration: none;
-    }
-    a:hover {
-      background-color: #9191912e;
     }
   }
   .search {

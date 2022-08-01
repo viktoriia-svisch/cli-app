@@ -3,7 +3,7 @@
     id="app"
     :style="'background-color:' + color + '; background-image: url(' + bg + ')'"
   >
-    <Fullscreen v-if="innerWidth >= 730" />
+    <Fullscreen v-if="innerWidth >= 730" :color="color" />
     <Mobile v-else />
   </div>
 </template>
