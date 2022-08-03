@@ -12,7 +12,7 @@
         v-on:keyup.enter="sendQuery"
       />
       <div class="more" @click="getPodcasts">
-        <span class="subtitle">En voir plus</span>
+        <span class="voirplus">En voir plus</span>
         <img src="../assets/imgs/play_white.svg" width="30" />
       </div>
     </section>
@@ -83,12 +83,13 @@ main {
     background-position: right 10px top 6px;
   }
   .more {
+    position: relative;
     max-width: 475px;
     background-color: #00000040;
     position: relative;
     height: 34px;
     padding: 8px 5px 0px 20px;
-    margin-top: 8px;
+    margin-top: 5px;
     cursor: pointer;
     &:hover {
       background-color: #00000080;

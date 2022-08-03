@@ -71,6 +71,12 @@ body {
     font-size: 24px;
     color: white;
   }
+  .voirplus {
+    position: absolute;
+    top: 9px;
+    font-size: 16px;
+    color: white;
+  }
   @media (max-width: 1200px) {
     .main_section {
       margin-left: 20px;
