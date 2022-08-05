@@ -69,7 +69,7 @@ main {
   width: 830px;
   .input {
     max-width: 500px;
-    padding: 12px 20px;
+    padding: 10px 20px;
     margin: 8px 0;
     box-sizing: border-box;
     font-family: KionaBold;
@@ -80,10 +80,11 @@ main {
     background-image: url("../assets/imgs/play_white.svg");
     background-repeat: no-repeat;
     background-size: 30px 30px;
-    background-position: right 10px top 6px;
+    background-position: right 10px top 3px;
   }
   .more {
     position: relative;
+    width: 250px;
     max-width: 475px;
     background-color: #00000040;
     position: relative;
@@ -101,11 +102,14 @@ main {
       width: 30px;
       position: absolute;
       top: 5px;
-      right: 5px;
+      right: 10px;
     }
   }
   @media (max-width: 1000px) {
     width: initial;
+    .more {
+      width: initial;
+    }
   }
   @media (max-width: 1000px) {
     .flex {
