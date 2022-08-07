@@ -1,12 +1,26 @@
 <template>
   <section id="calendars">
     <span class="subtitle">Le calendrier</span>
-    <h3 v-if="date">
-      Semaine du
-      {{ `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}` }}
-    </h3>
-    <h3 class="chgWeek" @click="changeWeek('-')">Semaine précédente</h3>
-    <h3 class="chgWeek" @click="changeWeek('+')">Semaine suivante</h3>
+    <article class="week_header">
+      <h3 class="chgWeek" @click="changeWeek('-')">
+        <img id="prec" src="../assets/imgs/play_white.svg" />
+        Semaine précédente
+      </h3>
+      <h3 v-if="date">
+        Semaine du
+        {{
+          `${new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+          ).toLocaleDateString("en-GB")}`
+        }}
+      </h3>
+      <h3 class="chgWeek" @click="changeWeek('+')">
+        Semaine suivante
+        <img src="../assets/imgs/play_white.svg" />
+      </h3>
+    </article>
     <section class="week" v-if="date">
       <div class="day" v-for="(day, k) in days" v-bind:key="day.val">
         {{ day.title }}
@@ -175,10 +189,29 @@ export default {
 </script>
 <style lang="less" scoped>
 #calendars {
-  .chgWeek {
-    background-color: #ffffff2e;
-    color: white;
-    cursor: pointer;
+  color: white;
+  .week_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .chgWeek {
+      padding: 5px 4px 2px 4px;
+      background-color: #ffffff2e;
+      cursor: pointer;
+      font-size: 15px;
+      img {
+        position: relative;
+        top: 3px;
+        width: 15px;
+      }
+      #prec {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+    }
   }
   .week {
     width: 830px;
@@ -212,6 +245,14 @@ export default {
           }
         }
       }
+    }
+  }
+  @media (max-width: 1200px) {
+    .week_header {
+      flex-direction: column;
+    }
+    .week {
+      width: 630px;
     }
   }
   @media (max-width: 1000px) {
