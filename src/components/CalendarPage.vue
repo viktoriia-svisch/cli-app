@@ -231,6 +231,8 @@ export default {
           letter-spacing: -1px;
         }
         .genre {
+          position: relative;
+          top: 1px;
           font-size: 15px;
           margin-right: 10px;
           background-color: #00000020;
