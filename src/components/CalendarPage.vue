@@ -36,7 +36,6 @@
           v-bind:key="show.id"
           class="show"
         >
-          <span> {{ show.name }} </span>
           <u
             >De
             {{
@@ -55,6 +54,7 @@
               })
             }}:</u
           >
+          <span> {{ show.name }} </span>
           <br />
           <span v-if="show.dj.length"
             ><span class="side">Animee par</span> {{ show.dj }}</span
