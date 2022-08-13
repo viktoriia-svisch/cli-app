@@ -54,6 +54,7 @@ body {
     padding-bottom: 10px;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: cover;
   }
   .flex {
     display: flex;

@@ -23,10 +23,15 @@
       <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
       <div class="more" @click="second = !second">
         <img v-if="second == false" width="40" src="../assets/imgs/menu.png" />
-        <img v-else width="40" src="../assets/imgs/back_black.png" />
+        <img
+          v-else
+          width="40"
+          src="../assets/imgs/back_black.png"
+          style="position: relative; top: 5px;"
+        />
       </div>
     </section>
-    <section class="second" :style="`right: ${second ? '0' : '-450px'}`">
+    <section class="second" :style="`right: ${second ? '0' : '-350px'}`">
       <img
         id="back"
         src="../assets/imgs/back.png"
@@ -146,7 +151,7 @@ nav {
     top: -2px;
     right: 0;
     height: ~"calc(100% + 2px)";
-    width: 450px;
+    width: 350px;
     background-color: #000;
     transition: 0.5s;
     #back {
