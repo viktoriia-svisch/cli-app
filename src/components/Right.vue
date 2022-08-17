@@ -23,7 +23,7 @@ aside {
   margin-right: 20px;
   .sticked {
     position: sticky;
-    top: 112px;
+    top: 89px;
   }
   .timetable {
     margin-top: 20px;
