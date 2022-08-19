@@ -221,7 +221,6 @@ export default {
     grid-auto-rows: minmax(auto, auto);
     .day {
       padding: 0px 4px 4px 4px;
-      margin-bottom: 10px;
       background-color: #ffffff40;
       .show {
         padding: 5px 10px 1px 10px;

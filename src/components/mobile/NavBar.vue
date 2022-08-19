@@ -6,12 +6,7 @@
         @click="second = !second"
         src="../../assets/imgs/menu.png"
       />
-      <img
-        id="logo"
-        alt="ODC Live"
-        src="../../assets/imgs/logo.png"
-        width="140"
-      />
+      <img id="logo" alt="ODC Live" src="../../assets/imgs/logo.png" />
     </section>
     <section id="bottomnav">
       <Radio :today_shows="today_shows" />
@@ -79,12 +74,12 @@ export default {
   name: "NavBar",
   props: ["today_shows"],
   components: {
-    Radio
+    Radio,
   },
   data() {
     return {
       second: false,
-      chat: false
+      chat: false,
     };
   },
   methods: {
@@ -101,8 +96,8 @@ export default {
       } else {
         this.hiddenSearch = true;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -117,6 +112,7 @@ nav {
     display: flex;
     justify-content: center;
     #logo {
+      height: 100%;
     }
     #burger {
       position: absolute;
@@ -145,7 +141,7 @@ nav {
   }
   #chat_box {
     position: relative;
-    z-index: 4;
+    z-index: 5;
     position: fixed;
     top: 0;
     height: 100%;
@@ -156,15 +152,16 @@ nav {
   }
   #chat_shadow {
     z-index: 4;
-    width: 25%;
+    background-color: #00000040;
+    width: 100%;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
   }
   #second {
     position: relative;
-    z-index: 4;
+    z-index: 5;
     position: fixed;
     top: 0;
     height: 100%;
@@ -193,9 +190,10 @@ nav {
   }
   #second_shadow {
     z-index: 4;
-    width: 25%;
+    width: 100%;
+    background-color: #00000040;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
   }

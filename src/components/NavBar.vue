@@ -16,7 +16,7 @@
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
-        <a href="https:          ><h1>Shop</h1></a
+        <a id="bigshop" href="https:          ><h1>Shop</h1></a
         >
       </div>
       <Radio :today_shows="today_shows" />
@@ -54,6 +54,11 @@
         <h3>About</h3>
       </div>
     </section>
+    <section
+      id="second_shadow"
+      :style="`display: ${second ? 'initial' : 'none'}`"
+      @click="second = !second"
+    ></section>
     <section
       id="search_sec"
       :style="`display: ${hiddenSearch ? 'none' : 'initial'}`"
@@ -144,9 +149,18 @@ nav {
       background-position: right 10px top 6px;
     }
   }
+  #second_shadow {
+    z-index: 4;
+    width: ~"calc(100% - 0px)";
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #00000040;
+  }
   .second {
     color: white;
-    z-index: 4;
+    z-index: 5;
     position: fixed;
     top: -2px;
     right: 0;
@@ -209,6 +223,15 @@ nav {
     letter-spacing: -4px;
     font-size: 24px;
     cursor: pointer;
+  }
+  @media (max-width: 1200px) {
+    .nav {
+      .menu {
+        #bigshop {
+          display: none;
+        }
+      }
+    }
   }
   @media (max-width: 1200px) {
     .nav,
