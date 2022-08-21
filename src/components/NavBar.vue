@@ -20,7 +20,21 @@
         >
       </div>
       <Radio :today_shows="today_shows" />
-      <img src="../assets/imgs/search.svg" class="search" @click="searchVis" />
+      <section id="search_sec">
+        <img
+          src="../assets/imgs/search.svg"
+          class="search"
+          @click="searchVis"
+        />
+        <input
+          :style="`display: ${hiddenSearch ? 'none' : 'initial'}`"
+          class="input"
+          placeholder="Recherche"
+          type="text"
+          v-model="search"
+          v-on:keyup.enter="sendQuery"
+        />
+      </section>
       <div class="more" @click="second = !second">
         <img v-if="second == false" width="40" src="../assets/imgs/menu.png" />
         <img
@@ -59,18 +73,6 @@
       :style="`display: ${second ? 'initial' : 'none'}`"
       @click="second = !second"
     ></section>
-    <section
-      id="search_sec"
-      :style="`display: ${hiddenSearch ? 'none' : 'initial'}`"
-    >
-      <input
-        class="input"
-        placeholder="Recherche"
-        type="text"
-        v-model="search"
-        v-on:keyup.enter="sendQuery"
-      />
-    </section>
   </nav>
 </template>
 <script>
@@ -126,23 +128,27 @@ nav {
   width: 100%;
   z-index: 3;
   #search_sec {
-    position: absolute;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    width: 1200px;
+    position: relative;
+    .search {
+      margin-left: 10px;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      top: 27px;
+    }
     .input {
       position: absolute;
-      right: 0;
+      right: 35px;
+      top: 11px;
       max-width: 500px;
       padding: 12px 20px;
       margin: 8px 0;
-      box-sizing: border-box;
       font-family: KionaBold;
       border-radius: 0px;
       border: 0px;
-      color: white;
-      background-color: #ffffff40;
+      color: black;
+      background-color: #e8e8e8;
       background-image: url("../assets/imgs/play_white.svg");
       background-repeat: no-repeat;
       background-size: 30px 30px;
@@ -214,10 +220,6 @@ nav {
       text-decoration: none;
     }
   }
-  .search {
-    margin-left: 10px;
-    cursor: pointer;
-  }
   .more {
     margin: 18px 10px 0px 10px;
     letter-spacing: -4px;
@@ -237,6 +239,10 @@ nav {
     .nav,
     #search_sec {
       width: 100%;
+      .input {
+        left: -186px;
+        max-width: 150px;
+      }
     }
     .second {
       .main {
