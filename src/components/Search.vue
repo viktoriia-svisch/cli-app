@@ -1,15 +1,9 @@
 <template>
   <main>
     <span class="subtitle">Recherche: {{ query }}</span>
+    <Filters />
     <PodcastList :pods="podcasts" />
     <section class="flex">
-      <input
-        class="input"
-        placeholder="Recherche"
-        type="text"
-        v-model="query"
-        v-on:keyup.enter="sendQuery"
-      />
       <div class="more" @click="searchPodcasts" v-if="more">
         <span class="subtitle">En chercher plus</span>
         <img src="../assets/imgs/play_white.svg" width="30" />
@@ -20,10 +14,12 @@
 <script>
 import axios from "axios";
 import PodcastList from "./PodcastList.vue";
+import Filters from "./Filters.vue";
 export default {
   name: "Index",
   components: {
-    PodcastList
+    PodcastList,
+    Filters,
   },
   data() {
     return {
@@ -32,26 +28,23 @@ export default {
       searching: false,
       url: "",
       more: true,
-      offset: 0
+      offset: 0,
     };
   },
   methods: {
-    sendQuery() {
-      this.$router.push({ path: `/search/${this.query}` });
-    },
     async searchPodcasts() {
             if (this.searching) return;
       this.searching = true;
             if (!this.more) return;
       const params = {
         search: this.query,
-        offset: this.offset
+        offset: this.offset,
       };
       await axios
         .post(this.url, params)
-        .then(res => {
+        .then((res) => {
           if (res.data.collection.length == 0) this.more = false;
-          res.data.collection.map(pod => {
+          res.data.collection.map((pod) => {
             if (pod.user && pod.user.permalink == "odc-live") {
               this.podcasts = this.podcasts.concat(pod);
             }
@@ -60,13 +53,13 @@ export default {
         .catch();
       this.offset += 20;
       this.searching = false;
-    }
+    },
   },
   async mounted() {
     this.query = this.$route.params.query;
     this.url = `${this.$config.VUE_APP_API}/sounds/search`;
     await this.searchPodcasts();
-  }
+  },
 };
 </script>
 <style lang="less" scoped>

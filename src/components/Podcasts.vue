@@ -1,16 +1,10 @@
 <template>
   <main>
     <span class="subtitle">Tous les podcasts</span>
-    <p>filtres</p>
+    <br />
+    <Filters />
     <PodcastList :pods="podcasts" />
     <section class="flex">
-      <input
-        class="input"
-        placeholder="Recherche"
-        type="text"
-        v-model="search"
-        v-on:keyup.enter="sendQuery"
-      />
       <div class="more" @click="getPodcasts">
         <span class="voirplus">En voir plus</span>
         <img src="../assets/imgs/play_white.svg" width="30" />
@@ -21,10 +15,12 @@
 <script>
 import axios from "axios";
 import PodcastList from "./PodcastList.vue";
+import Filters from "./Filters.vue";
 export default {
   name: "Index",
   components: {
     PodcastList,
+    Filters,
   },
   data() {
     return {
@@ -36,9 +32,6 @@ export default {
     };
   },
   methods: {
-    sendQuery() {
-      this.$router.push({ path: `/search/${this.search}` });
-    },
     async getPodcasts() {
             if (!this.more) return;
       await axios
@@ -67,21 +60,7 @@ export default {
 <style lang="less" scoped>
 main {
   width: 830px;
-  .input {
-    max-width: 500px;
-    padding: 10px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    font-family: KionaBold;
-    border-radius: 0px;
-    border: 0px;
-    color: white;
-    background-color: #ffffff40;
-    background-image: url("../assets/imgs/play_white.svg");
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
-    background-position: right 10px top 3px;
-  }
+  color: white;
   .more {
     position: relative;
     width: 250px;
