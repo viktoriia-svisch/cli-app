@@ -64,6 +64,7 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
+  width: 830px;
   .input {
     max-width: 500px;
     padding: 12px 20px;
@@ -101,6 +102,7 @@ main {
     }
   }
   @media (max-width: 1000px) {
+    width: initial;
     .flex {
       flex-direction: column;
     }
