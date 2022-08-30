@@ -17,22 +17,22 @@
 export default {
   name: "WidgetPodcast",
   props: {
-    pod: null
+    pod: null,
   },
   data() {
     return {
-      podImg: ""
+      podImg: "",
     };
   },
   methods: {
     play_podcast() {
-      alert(this.pod.title);
-    }
+      this.$parent.$parent.$emit("podcast", this.pod.id);
+    },
   },
   beforeMount() {
     this.pod.genres = this.pod.tag_list.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
     if (this.pod.genres != null) {
-      this.pod.genres = this.pod.genres.map(g => {
+      this.pod.genres = this.pod.genres.map((g) => {
         if (g[0] == '"') return g.substring(1, g.length - 1);
         return g;
       });
@@ -43,7 +43,7 @@ export default {
       this.podImg = this.pod.artwork_url;
     }
     this.podImg = this.podImg.replace("-large", "-t500x500");
-  }
+  },
 };
 </script>
 <style lang="less" scoped>

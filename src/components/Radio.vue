@@ -19,7 +19,7 @@
 import axios from "axios";
 export default {
   name: "Radio",
-  props: ["today_shows"],
+  props: ["today_shows", "iframe_update"],
   watch: {
     today_shows: function(newVal, oldVal) {
             newVal;
@@ -27,7 +27,12 @@ export default {
       this.radio = this.$config.VUE_APP_RADIO;
       this.src = `${this.radio}${this.src}`;
       this.checkTitle();
-    }
+    },
+    iframe_update: function(newVal) {
+      if (newVal != "" && this.isPlaying == true) {
+        this.play();
+      }
+    },
   },
   data() {
     return {
@@ -36,7 +41,7 @@ export default {
       radio: "",
       title: "",
       artist: "",
-      src: "/radio/8000/radio.mp3"
+      src: "/radio/8000/radio.mp3",
     };
   },
   methods: {
@@ -53,7 +58,7 @@ export default {
     checkTitle() {
       axios
         .get(`${this.radio}/api/nowplaying`)
-        .then(res => {
+        .then((res) => {
           let odc_station = res.data[0];
           if (
             odc_station.live.is_live ||
@@ -91,10 +96,10 @@ export default {
           clearTimeout(this.timeout);
           this.timeout = null;
         });
-    }
+    },
   },
   mounted() {
-    window.addEventListener("keydown", event => {
+    window.addEventListener("keydown", (event) => {
             if (event.keyCode == 32 && event.target == document.body) {
         event.preventDefault();
         this.play();
@@ -103,7 +108,7 @@ export default {
     window.addEventListener("focus", () => {
       this.isPlaying = !this.$refs.audioElm.paused;
     });
-  }
+  },
 };
 </script>
 <style lang="less" scoped>

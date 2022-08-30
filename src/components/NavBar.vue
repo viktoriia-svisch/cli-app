@@ -19,7 +19,26 @@
         <a id="bigshop" href="https:          ><h1>Shop</h1></a
         >
       </div>
-      <Radio :today_shows="today_shows" />
+      <Radio
+        :today_shows="today_shows"
+        :iframe_update="iframe_mix"
+        :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
+      />
+      <section
+        id="mix_frame"
+        v-if="iframe_mix"
+        :style="`top: ${hiddenSearch ? '20px' : '1px'}`"
+      >
+        <iframe
+          height="20"
+          scrolling="no"
+          frameborder="no"
+          allow="autoplay"
+          :src="
+            `https:          "
+        ></iframe>
+        <img src="../assets/imgs/cross_icon.png" @click="close_mix" />
+      </section>
       <section id="search_sec">
         <img
           src="../assets/imgs/search.svg"
@@ -27,7 +46,11 @@
           @click="searchVis"
         />
         <input
-          :style="`display: ${hiddenSearch ? 'none' : 'initial'}`"
+          :style="
+            `display: ${hiddenSearch ? 'none' : 'initial'};
+            bottom: ${iframe_mix != '' ? '-8px' : '13px'}
+          `
+          "
           class="input"
           placeholder="Recherche"
           type="text"
@@ -79,7 +102,7 @@
 import Radio from "./Radio.vue";
 export default {
   name: "NavBar",
-  props: ["today_shows", "color"],
+  props: ["today_shows", "color", "iframe_mix"],
   watch: {
     color: (newCol) => {
       const css = `.menu a:hover {background-color: ${newCol}80;}`;
@@ -103,6 +126,9 @@ export default {
     };
   },
   methods: {
+    close_mix() {
+      this.$parent.iframe_mix = "";
+    },
     toURL(dest) {
       this.$router.push(dest);
       this.second = false;
@@ -138,11 +164,12 @@ nav {
       top: 27px;
     }
     .input {
+      z-index: 5;
       position: absolute;
-      right: 35px;
-      top: 11px;
+      right: 49px;
+      width: 260px;
       max-width: 500px;
-      padding: 12px 20px;
+      padding: 10px 20px;
       margin: 8px 0;
       font-family: KionaBold;
       border-radius: 0px;
@@ -152,7 +179,7 @@ nav {
       background-image: url("../assets/imgs/play_white.svg");
       background-repeat: no-repeat;
       background-size: 30px 30px;
-      background-position: right 10px top 6px;
+      background-position: right 10px top 4px;
     }
   }
   #second_shadow {
@@ -197,10 +224,43 @@ nav {
     }
   }
   .nav {
+    position: relative;
     width: 1200px;
     margin: 0 auto;
     left: 0;
     right: 0;
+    #mix_frame {
+      position: relative;
+      top: 20px;
+      z-index: 5;
+      width: 300px;
+      iframe {
+        padding: 10px;
+        margin-bottom: -4px;
+        background-color: #f2f2f2;
+        width: ~"calc(100% - 56px)";
+        position: sticky;
+        bottom: 0px;
+        z-index: 5;
+      }
+      img {
+        cursor: pointer;
+        width: 25px;
+        background-color: #f2f2f2;
+        color: black;
+        font-weight: bold;
+        font-family: SpaceMono;
+        font-size: 13px;
+        border-left: 1px solid #e3e3e3;
+        padding: 8px 7px 7px 13px;
+        position: absolute;
+        right: 0px;
+        z-index: 3;
+        &:hover {
+          background-color: #e8e8e8;
+        }
+      }
+    }
   }
   .flex {
     display: flex;
