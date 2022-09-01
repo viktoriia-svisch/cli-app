@@ -23,6 +23,7 @@
           v-for="event in events"
           v-bind:key="event.id"
           :href="event.facebook"
+          target="_blank"
         >
           <div>
             <img :src="event.image" />
