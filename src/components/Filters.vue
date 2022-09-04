@@ -8,9 +8,9 @@
       v-on:keyup.enter="sendQuery"
     />
     <section id="filters">
-      <p>
+      <span>
         filtres:
-      </p>
+      </span>
       <span class="filter" @click="pushQuery('selecta')">selecta</span>
       <span class="filter" @click="pushQuery('ambient')">ambient</span>
       <span class="filter" @click="pushQuery('house')">house</span>
@@ -57,6 +57,7 @@ article {
     background-position: right 10px top 3px;
   }
   #filters {
+    margin: 5px 0px 13px 0px;
     .filter {
       margin-right: 10px;
       position: relative;
