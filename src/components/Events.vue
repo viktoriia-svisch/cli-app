@@ -64,11 +64,18 @@
           . Community management, création de contenus
         </p>
       </div>
+      <div class="text" id="bloc3">
+        <p class="contact">
+          <span class="imp"
+            ><a href="mailto:contact@odc.live">Nous contacter</a></span
+          >
+          sur
+          <span class="imp"
+            ><a href="mailto:contact@odc.live">contact@odc.live</a></span
+          >
+        </p>
+      </div>
     </div>
-    <div class="img" id="img4">
-      <img src="../assets/imgs/events/4.jpg" />
-    </div>
-    <p><a href="mailto:contact@odc.live">Nous contacter</a></p>
   </main>
 </template>
 <script>
@@ -79,6 +86,13 @@ export default {
 <style lang="less" scoped>
 main {
   width: 1100px;
+  .contact {
+    text-align: center;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
   .img {
     position: relative;
     width: inherit;
@@ -141,8 +155,15 @@ main {
       }
     }
     #bloc2 {
-      bottom: 120px;
+      bottom: 220px;
       left: 0;
+      p {
+        font-family: Kiona;
+      }
+    }
+    #bloc3 {
+      bottom: 120px;
+      right: 0;
       p {
         font-family: Kiona;
       }
