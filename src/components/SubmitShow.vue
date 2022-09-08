@@ -27,16 +27,19 @@
 </template>
 <script>
 export default {
-  name: "submitshows"
+  name: "submitshows",
 };
 </script>
 <style lang="less" scoped>
 #prop {
   margin: 30px auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  color: white;
   img {
     width: 400px;
+    align-self: center;
   }
   article {
     width: 700px;
@@ -55,7 +58,6 @@ export default {
     }
   }
   @media (max-width: 1150px) {
-    flex-direction: column;
     article,
     img {
       margin: 0 auto;

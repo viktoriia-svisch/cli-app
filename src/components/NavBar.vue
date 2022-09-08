@@ -76,6 +76,12 @@
         @click="second = !second"
       />
       <div class="main">
+        <h3 @click="toURL('/podcasts')">Podcasts</h3>
+        <h3 @click="toURL('/events')">Events</h3>
+        <h3 @click="toURL('/calendar')">Calendrier</h3>
+        <h3>
+          <a href="https:        </h3>
+        <br />
         <h3 @click="toURL('/propose_show')">Proposer un show</h3>
         <h3>
           <a href="https:            >Soundcloud</a
@@ -85,10 +91,8 @@
           <a href="https:        </h3>
         <h3>
           <a href="https:        </h3>
-        <h3>
-          <a href="https:        </h3>
         <br />
-        <h3>About</h3>
+        <h3 @click="toURL('/About')">About</h3>
       </div>
     </section>
     <section
