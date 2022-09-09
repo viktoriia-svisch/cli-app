@@ -16,7 +16,7 @@
         @click="chat = !chat"
       />
     </section>
-    <section id="second" :style="`left: ${second ? '0' : '-75%'}`">
+    <section id="second" :style="`left: ${second ? '0' : '-100%'}`">
       <img
         id="back"
         src="../../assets/imgs/back.png"
@@ -33,18 +33,21 @@
       <div id="link_sec">
         <h3 @click="toURL('/podcasts')">Podcasts</h3>
         <h3 @click="toURL('/events')">Events</h3>
-        <h3 @click="toURL('/calendar')">Calendar</h3>
-        <h3>Proposer un show</h3>
-        <br />
-        <h3>About</h3>
-        <h3><a href="https:        <h3>
-          <a href="https:        </h3>
+        <h3 @click="toURL('/calendar')">Calendrier</h3>
         <h3>
-          <a href="https:            >soundcloud</a
+          <a href="https:        </h3>
+        <br />
+        <h3 @click="toURL('/propose_show')">Proposer un show</h3>
+        <h3>
+          <a href="https:            >Soundcloud</a
           >
         </h3>
         <h3>
           <a href="https:        </h3>
+        <h3>
+          <a href="https:        </h3>
+        <br />
+        <h3>About</h3>
       </div>
     </section>
     <section
@@ -52,13 +55,19 @@
       :style="`display: ${second ? 'initial' : 'none'}`"
       @click="second = !second"
     ></section>
-    <section id="chat_box" :style="`right: ${chat ? '0' : '-75%'}`">
+    <section id="chat_box" :style="`right: ${chat ? '0' : '-100%'}`">
       <img
         id="logo_white"
         @click="toURL('/')"
         alt="ODC Live"
         src="../../assets/imgs/logo_white.png"
         width="140"
+      />
+      <img
+        id="back"
+        src="../../assets/imgs/back.png"
+        width="30"
+        @click="chat = !chat"
       />
     </section>
     <section
@@ -147,8 +156,19 @@ nav {
     height: 100%;
     width: 75%;
     background-color: black;
-    transition: 0.5s;
+    transition: 0.7s;
     color: white;
+    #back {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 18px;
+      width: 33px;
+    }
+    #logo_white {
+      display: block;
+      margin: auto;
+    }
   }
   #chat_shadow {
     z-index: 4;
@@ -167,7 +187,7 @@ nav {
     height: 100%;
     width: 75%;
     background-color: black;
-    transition: 0.5s;
+    transition: 0.7s;
     color: white;
     #link_sec {
       padding-left: 18px;
@@ -196,6 +216,41 @@ nav {
     position: fixed;
     right: 0;
     top: 0;
+  }
+  @media (max-width: 350px) {
+    #second {
+      width: 100%;
+    }
+    #chat_box {
+      width: 100%;
+    }
+  }
+  @media (max-height: 530px) {
+    #second {
+      #link_sec {
+        h3 {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  @media (max-height: 430px) {
+    #second {
+      #link_sec {
+        h3 {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  @media (max-height: 390px) {
+    #second {
+      #link_sec {
+        h3 {
+          font-size: 10px;
+        }
+      }
+    }
   }
 }
 </style>
