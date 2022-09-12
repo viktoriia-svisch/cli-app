@@ -69,6 +69,7 @@
         width="30"
         @click="chat = !chat"
       />
+      <Chat />
     </section>
     <section
       id="chat_shadow"
@@ -79,11 +80,13 @@
 </template>
 <script>
 import Radio from "../Radio.vue";
+import Chat from "../Chat.vue";
 export default {
   name: "NavBar",
   props: ["today_shows"],
   components: {
     Radio,
+    Chat,
   },
   data() {
     return {

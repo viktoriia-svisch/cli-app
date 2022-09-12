@@ -1,6 +1,6 @@
 <template>
   <section id="chat">
-    <span class="subtitle">La chatroom</span>
+    <span class="subtitle" id="chat_title">La chatroom</span>
     <section id="msg" v-chat-scroll>
       <tr class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
         <td class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">
@@ -153,6 +153,25 @@ export default {
   @media (max-width: 770px) {
     max-width: 330px;
     margin: 60px auto 0px auto;
+  }
+  @media (max-width: 730px) {
+    max-width: initial;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    #chat_title {
+      display: none;
+    }
+    #send {
+      position: absolute;
+      bottom: 88px;
+      width: 100%;
+    }
+    #msg {
+      height: ~"calc(100% - 200px)";
+      margin-top: 0px;
+    }
   }
 }
 </style>
