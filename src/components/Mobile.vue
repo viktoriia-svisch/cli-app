@@ -3,7 +3,7 @@
     <NavBar :today_shows="today_shows" />
     <section class="main_section flex_center marged">
       <router-view :key="$route.fullPath" />
-      <Right />
+      <Right style="display: none" />
     </section>
   </main>
 </template>
@@ -14,13 +14,19 @@ export default {
   name: "Mobile",
   components: {
     NavBar,
-    Right
+    Right,
   },
   data() {
     return {
-      today_shows: []
+      today_shows: [],
     };
-  }
+  },
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+main {
+  .main_section {
+    margin-bottom: 80px;
+  }
+}
+</style>

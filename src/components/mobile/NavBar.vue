@@ -47,7 +47,7 @@
         <h3>
           <a href="https:        </h3>
         <br />
-        <h3>About</h3>
+        <h3 @click="toURL('/about')">About</h3>
       </div>
     </section>
     <section
