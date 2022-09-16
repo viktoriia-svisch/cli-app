@@ -13,7 +13,7 @@
             date.getFullYear(),
             date.getMonth(),
             date.getDate()
-          ).toLocaleDateString("en-GB")}`
+          ).toLocaleDateString("fr-FR")}`
         }}
       </h3>
       <h3 class="chgWeek" @click="changeWeek('+')">
@@ -29,7 +29,7 @@
             date.getFullYear(),
             date.getMonth(),
             date.getDate() + k
-          ).toLocaleDateString("en-GB")}`
+          ).toLocaleDateString("fr-FR")}`
         }}
         <section
           v-for="show in weeks[day.val]"
@@ -173,10 +173,9 @@ export default {
       await this.getCalendar();
     },
     getMonday() {
-      let date = new Date();
-      const day = date.getDay();
-      const diff = date.getDate() - day + (day == 0 ? -6 : 1);
-      return new Date(date.setDate(diff));
+      const curr = new Date();
+      const first = curr.getDate() - curr.getDay() + 1;
+      return new Date(curr.setDate(first));
     },
   },
   async mounted() {

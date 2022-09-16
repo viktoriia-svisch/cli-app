@@ -29,7 +29,7 @@ export default {
       this.innerWidth = window.innerWidth;
     });
     axios
-      .get(this.$config.VUE_APP_API + "/upload/color?t=${new Date().getTime()}")
+      .get(`${this.$config.VUE_APP_API}/upload/color?t=${new Date().getTime()}`)
       .then((response) => {
         this.color = response.data.color;
       });
