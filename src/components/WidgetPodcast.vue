@@ -1,6 +1,11 @@
 <template>
   <section id="podcast">
-    <img :src="podImg" class="podimg" @click="play_podcast" />
+    <img
+      :src="podImg"
+      class="podimg"
+      @click="play_podcast"
+      :title="pod.title"
+    />
     <span id="title">
       <span
         class="genre"

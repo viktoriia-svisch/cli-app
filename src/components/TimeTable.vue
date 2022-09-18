@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       shows: [],
-      today_shows: []
+      today_shows: [],
     };
   },
   methods: {
@@ -43,7 +43,7 @@ export default {
       return new Date(Number(ts)).toLocaleTimeString("fr-FR", {
         hour: "2-digit",
         minute: "2-digit",
-        timeZone: "UTC"
+        timeZone: "UTC",
       });
     },
     async getCalendar(date) {
@@ -73,18 +73,19 @@ export default {
         }
       }
       this.$parent.$parent.today_shows = this.today_shows;
-    }
+    },
   },
   async mounted() {
     let date = new Date().toISOString();
     date = date.slice(0, 10);
     await this.getCalendar(date);
-      }
+      },
 };
 </script>
 <style lang="less" scoped>
 #tim {
   color: white;
+  width: 300px;
   #shows {
     .show {
       padding: 5px 10px 8px 10px;
@@ -113,6 +114,11 @@ export default {
   @media (max-width: 770px) {
     max-width: 330px;
     margin: 60px auto 0px auto;
+  }
+  @media (max-width: 730px) {
+    max-width: initial;
+    margin: 0;
+    width: 100%;
   }
 }
 </style>
