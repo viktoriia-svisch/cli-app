@@ -42,8 +42,9 @@ export default {
 article {
   color: white;
   .input {
+    width: 300px;
     max-width: 500px;
-    padding: 10px 20px;
+    padding: 6px 17px;
     margin: 8px 0;
     box-sizing: border-box;
     font-family: KionaBold;
@@ -53,7 +54,7 @@ article {
     background-color: #ffffff40;
     background-image: url("../assets/imgs/play_white.svg");
     background-repeat: no-repeat;
-    background-size: 30px 30px;
+    background-size: 16px 24px;
     background-position: right 10px top 3px;
   }
   #filters {
