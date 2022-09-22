@@ -70,10 +70,10 @@
     </section>
     <section class="second" :style="`right: ${second ? '0' : '-350px'}`">
       <img
-        id="back"
-        src="../assets/imgs/back.png"
-        width="40"
-        @click="second = !second"
+        id="logo_white"
+        alt="ODC Live"
+        src="../assets/imgs/logo_white.png"
+        width="140"
       />
       <div class="main">
         <h3 @click="toURL('/podcasts')">Podcasts</h3>
@@ -205,6 +205,11 @@ nav {
     width: 350px;
     background-color: #000;
     transition: 0.5s;
+    #logo_white {
+      display: block;
+      margin: auto;
+      width: 185px;
+    }
     #back {
       cursor: pointer;
       top: 18px;
@@ -212,7 +217,7 @@ nav {
       right: 10px;
     }
     .main {
-      margin: 80px 20px 0px 20px;
+      margin: 0px 20px 0px 20px;
       padding: 2px;
       h3 {
         padding: 4px 10px 4px 10px;

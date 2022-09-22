@@ -171,6 +171,7 @@ nav {
     #logo_white {
       display: block;
       margin: auto;
+      width: 160px;
     }
   }
   #chat_shadow {
@@ -209,6 +210,7 @@ nav {
     #logo_white {
       display: block;
       margin: auto;
+      width: 160px;
     }
   }
   #second_shadow {
