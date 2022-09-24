@@ -236,7 +236,7 @@ nav {
     position: relative;
     width: 1200px;
     margin: 0 auto;
-    left: 0;
+    left: -14px;
     right: 0;
     #mix_frame {
       position: relative;
