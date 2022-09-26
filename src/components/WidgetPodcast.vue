@@ -77,7 +77,7 @@ export default {
         display: block;
       }
       &:hover {
-        background-color: #00000080;
+        background-color: #000000a0;
       }
     }
   }

@@ -37,11 +37,23 @@
     </table>
     <br /><br />
     <p>
-      Creation et mise en service du site par Guillaume Kessibi
+      Création et mise en service du site par Guillaume Kessibi
       <small>
-        <a id="guilink" href="https:      </small>
+        (<a class="outlink" href="https:          >kessibi.fr</a
+        >)
+      </small>
+      et Léo Pallot
+      <small>
+        (<a class="outlink" href="https:          >leopallot.com</a
+        >)
+      </small>
     </p>
-    <p>Photos de ODC Events prises par Amandine</p>
+    <p>
+      Photos de ODC Events prises par Ataraxie Photographie
+      <small>
+        (<a class="outlink" href="https:        >)
+      </small>
+    </p>
   </section>
 </template>
 <script>
@@ -53,7 +65,7 @@ export default {
 #legalholder {
   color: white;
   width: 830px;
-  #guilink {
+  .outlink {
     font-weight: bold;
     text-decoration: none;
     color: white;
