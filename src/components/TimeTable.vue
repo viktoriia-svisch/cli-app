@@ -87,6 +87,7 @@ export default {
   color: white;
   width: 300px;
   #shows {
+    margin-top: 17px;
     .show {
       padding: 5px 10px 8px 10px;
       margin-bottom: 8px;
@@ -96,10 +97,12 @@ export default {
         letter-spacing: -1px;
       }
       .genre {
+        position: relative;
+        top: 4px;
         font-size: 15px;
         margin-right: 10px;
         background-color: #00000020;
-        padding: 2px 4px 2px 4px;
+        padding: 0px 4px 2px 4px;
         cursor: pointer;
         a {
           color: white;

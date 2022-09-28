@@ -67,18 +67,20 @@ main {
     max-width: 475px;
     background-color: #00000040;
     position: relative;
-    height: 34px;
-    padding: 8px 5px 0px 20px;
+    height: 24px;
+    padding: 5px 5px 0px 20px;
     margin-top: 5px;
     cursor: pointer;
     &:hover {
       background-color: #00000080;
     }
     span {
+      position: relative;
+      top: -1px;
       margin-right: 40px;
     }
     img {
-      width: 30px;
+      width: 17px;
       position: absolute;
       top: 5px;
       right: 10px;

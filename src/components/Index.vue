@@ -102,7 +102,7 @@ main {
   width: 830px;
   .input {
     max-width: 500px;
-    padding: 10px 20px;
+    padding: 6px 17px;
     margin: 8px 0;
     box-sizing: border-box;
     font-family: KionaBold;
@@ -112,7 +112,7 @@ main {
     background-color: #ffffff40;
     background-image: url("../assets/imgs/play_white.svg");
     background-repeat: no-repeat;
-    background-size: 30px 30px;
+    background-size: 16px 24px;
     background-position: right 10px top 3px;
   }
   #events_sec {
@@ -154,7 +154,7 @@ main {
     width: 250px;
     background-color: #00000040;
     position: relative;
-    height: 34px;
+    height: 24px;
     padding: 5px 5px 0px 20px;
     margin-top: 5px;
     cursor: pointer;
@@ -162,10 +162,12 @@ main {
       background-color: #00000080;
     }
     span {
+      position: relative;
+      top: -1px;
       margin-right: 40px;
     }
     img {
-      width: 30px;
+      width: 17px;
       position: absolute;
       top: 5px;
       right: 10px;

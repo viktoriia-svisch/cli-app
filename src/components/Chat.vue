@@ -19,7 +19,7 @@
     </section>
     <section id="send">
       <form id="chatSend" v-on:submit.prevent="send_msg">
-        <textarea
+        <input
           v-if="!hiddenPseudo"
           class="inputchat"
           id="pseudo"
@@ -28,8 +28,8 @@
           type="text"
           name="listener"
           v-model="pseudo"
-        ></textarea>
-        <textarea
+        />
+        <input
           class="inputchat"
           id="message"
           style="resize: none;"
@@ -38,7 +38,7 @@
           rows="1"
           v-model="message"
           v-on:keyup.enter="send_msg"
-        ></textarea>
+        />
       </form>
     </section>
   </section>
@@ -105,8 +105,7 @@ export default {
     margin-top: 4px;
     .inputchat {
       width: 100%;
-      height: 45px;
-      padding: 12px 20px;
+      padding: 6px 17px;
       margin: 4px 0;
       box-sizing: border-box;
       font-family: KionaBold;
@@ -116,8 +115,8 @@ export default {
       background-color: #ffffff40;
       background-image: url("../assets/imgs/play_white.svg");
       background-repeat: no-repeat;
-      background-size: 30px 30px;
-      background-position: right 10px top 6px;
+      background-size: 16px 24px;
+      background-position: right 10px top 3px;
     }
   }
   #msg {

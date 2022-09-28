@@ -230,11 +230,11 @@ export default {
         }
         .genre {
           position: relative;
-          top: 1px;
+          top: 4px;
           font-size: 15px;
           margin-right: 10px;
           background-color: #00000020;
-          padding: 2px 4px 2px 4px;
+          padding: 0px 4px 2px 4px;
           cursor: pointer;
           a {
             color: white;
