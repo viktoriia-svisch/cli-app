@@ -1,8 +1,8 @@
 <template>
   <main>
-    <NavBar :today_shows="today_shows" />
+    <NavBar :today_shows="today_shows" :iframe_mix="iframe_mix" />
     <section class="main_section flex_center marged">
-      <router-view :key="$route.fullPath" />
+      <router-view :key="$route.fullPath" v-on:podcast="iframe_set" />
       <Right style="display: none" />
     </section>
   </main>
@@ -19,7 +19,13 @@ export default {
   data() {
     return {
       today_shows: [],
+      iframe_mix: "",
     };
+  },
+  methods: {
+    iframe_set(id) {
+      this.iframe_mix = id;
+    },
   },
 };
 </script>

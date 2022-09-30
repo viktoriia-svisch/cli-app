@@ -132,7 +132,7 @@ export default {
       vertical-align: middle;
       line-height: normal;
       --end-percent: ~"calc(-33% - 9px)";
-      animation: marquee 6s linear infinite;
+      animation: marquee 10s linear infinite;
     }
     &:hover {
       .live_info {
