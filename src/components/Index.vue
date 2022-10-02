@@ -102,7 +102,7 @@ main {
   width: 830px;
   .input {
     max-width: 500px;
-    padding: 6px 17px;
+    padding: 5px 17px 6px 17px;
     margin: 8px 0;
     box-sizing: border-box;
     font-family: KionaBold;
@@ -113,7 +113,7 @@ main {
     background-image: url("../assets/imgs/play_white.svg");
     background-repeat: no-repeat;
     background-size: 16px 24px;
-    background-position: right 10px top 3px;
+    background-position: right 10px top 2px;
   }
   #events_sec {
     margin-top: 20px;
@@ -125,6 +125,7 @@ main {
       grid-gap: 10px;
       grid-auto-rows: minmax(auto, auto);
       .event {
+        text-decoration: none;
         div {
           height: 240px;
           width: 410px;

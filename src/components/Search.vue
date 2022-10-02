@@ -5,7 +5,7 @@
     <PodcastList :pods="podcasts" />
     <section class="flex">
       <div class="more" @click="searchPodcasts" v-if="more">
-        <span class="subtitle">En chercher plus</span>
+        <span class="moretitle">En chercher plus</span>
         <img src="../assets/imgs/play_white.svg" width="30" />
       </div>
     </section>
@@ -81,13 +81,18 @@ main {
     background-position: right 10px top 6px;
   }
   .more {
+    position: relative;
+    width: 250px;
     max-width: 475px;
     background-color: #00000040;
     position: relative;
-    height: 34px;
-    padding: 8px 5px 0px 20px;
-    margin-top: 8px;
+    height: 24px;
+    padding: 5px 5px 0px 20px;
+    margin-top: 5px;
     cursor: pointer;
+    .moretitle {
+      color: white;
+    }
     &:hover {
       background-color: #00000080;
     }
@@ -95,10 +100,10 @@ main {
       margin-right: 40px;
     }
     img {
-      width: 30px;
+      width: 17px;
       position: absolute;
       top: 5px;
-      right: 5px;
+      right: 10px;
     }
   }
   @media (max-width: 1000px) {

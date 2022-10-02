@@ -15,10 +15,7 @@
         src="../../assets/imgs/chat.svg"
         @click="chat = !chat"
       />
-      <section
-        id="mix_frame"
-        v-if="iframe_mix"
-      >
+      <section id="mix_frame" v-if="iframe_mix">
         <iframe
           height="20"
           scrolling="no"
@@ -172,7 +169,7 @@ nav {
       top: 15px;
       left: 30px;
       z-index: 5;
-      width: 350px;
+      width: ~"calc(100% - 100px)";
       iframe {
         padding: 10px;
         margin-bottom: -4px;

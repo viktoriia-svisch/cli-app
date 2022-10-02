@@ -44,7 +44,7 @@ article {
   .input {
     width: 300px;
     max-width: 500px;
-    padding: 6px 17px;
+    padding: 5px 17px 6px 17px;
     margin: 8px 0;
     box-sizing: border-box;
     font-family: KionaBold;
@@ -55,7 +55,7 @@ article {
     background-image: url("../assets/imgs/play_white.svg");
     background-repeat: no-repeat;
     background-size: 16px 24px;
-    background-position: right 10px top 3px;
+    background-position: right 10px top 2px;
   }
   #filters {
     margin: 5px 0px 13px 0px;

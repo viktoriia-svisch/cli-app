@@ -105,7 +105,7 @@ export default {
     margin-top: 4px;
     .inputchat {
       width: 100%;
-      padding: 6px 17px;
+      padding: 5px 17px 6px 17px;
       margin: 4px 0;
       box-sizing: border-box;
       font-family: KionaBold;
@@ -116,7 +116,7 @@ export default {
       background-image: url("../assets/imgs/play_white.svg");
       background-repeat: no-repeat;
       background-size: 16px 24px;
-      background-position: right 10px top 3px;
+      background-position: right 10px top 2px;
     }
   }
   #msg {
