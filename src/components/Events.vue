@@ -169,5 +169,20 @@ main {
       }
     }
   }
+  @media (max-width: 1100px) {
+    width: 100%;
+    .img {
+      .text {
+        position: relative;
+        width: initial !important;
+        top: initial !important;
+        bottom: initial !important;
+        right: initial !important;
+        left: initial !important;
+        margin-bottom: 4px;
+      }
+      margin-bottom: 2px;
+    }
+  }
 }
 </style>
