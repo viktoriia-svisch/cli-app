@@ -324,6 +324,9 @@ nav {
     .menu {
       display: none;
     }
+    .nav {
+      left: 5px;
+    }
   }
 }
 </style>

@@ -7,7 +7,7 @@
       v-model="search"
       v-on:keyup.enter="sendQuery"
     />
-    <section id="filters">
+    <p id="filters">
       <span>
         filtres:
       </span>
@@ -15,8 +15,8 @@
       <span class="filter" @click="pushQuery('ambient')">ambient</span>
       <span class="filter" @click="pushQuery('house')">house</span>
       <span class="filter" @click="pushQuery('rap')">rap</span>
-      <span class="filter" @click="pushQuery('dnb')">dnb</span>
-    </section>
+      <span class="filter" @click="pushQuery('talk')">talk</span>
+    </p>
   </article>
 </template>
 <script>
@@ -59,8 +59,11 @@ article {
   }
   #filters {
     margin: 5px 0px 13px 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(auto, auto);
     .filter {
-      margin-right: 10px;
       position: relative;
       padding: 2px 4px 2px 20px;
       cursor: pointer;
@@ -74,6 +77,16 @@ article {
       width: 8px;
       height: 8px;
       background-image: url("../assets/imgs/square.png");
+    }
+  }
+  @media (max-width: 1000px) {
+    #filters {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 300px) {
+    .input {
+      width: 100%;
     }
   }
 }

@@ -6,7 +6,15 @@
         @click="second = !second"
         src="../../assets/imgs/menu.png"
       />
-      <img id="logo" alt="ODC Live" src="../../assets/imgs/logo.png" />
+      <router-link :to="{ path: '/' }"
+        ><img
+          v-if="$route.path != '/events'"
+          class="logo"
+          alt="ODC Live"
+          src="../../assets/imgs/logo.png"
+        />
+        <img v-else class="logo" src="../../assets/imgs/events.png" />
+      </router-link>
     </section>
     <section id="bottomnav">
       <Radio :today_shows="today_shows" :iframe_update="iframe_mix" />
@@ -137,8 +145,11 @@ nav {
     top: -1px;
     display: flex;
     justify-content: center;
-    #logo {
-      height: 100%;
+    a {
+      width: 158px;
+      .logo {
+        height: 100%;
+      }
     }
     #burger {
       position: absolute;
