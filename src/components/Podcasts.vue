@@ -69,7 +69,7 @@ main {
     position: relative;
     height: 24px;
     padding: 5px 5px 0px 20px;
-    margin-top: 5px;
+    margin-top: 10px;
     cursor: pointer;
     &:hover {
       background-color: #00000080;

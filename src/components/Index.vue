@@ -1,7 +1,9 @@
 <template>
   <main>
     <span class="subtitle">Les derniers podcasts</span>
-    <PodcastList :pods="podcasts" />
+    <PodcastList :pods="podcasts" class="desktop_pods" />
+    <PodcastListMobile :pods="podcasts" class="mobile_pods" />
+    <TimeTable class="timetable" />
     <section class="flex">
       <input
         class="input"
@@ -38,10 +40,14 @@
 import axios from "axios";
 import graph from "@/graphaxios";
 import PodcastList from "./PodcastList.vue";
+import PodcastListMobile from "./mobile/PodcastList.vue";
+import TimeTable from "./TimeTable";
 export default {
   name: "Index",
   components: {
     PodcastList,
+    PodcastListMobile,
+    TimeTable,
   },
   data() {
     return {
@@ -100,6 +106,12 @@ export default {
 <style lang="less" scoped>
 main {
   width: 830px;
+  .timetable {
+    display: none;
+  }
+  .mobile_pods {
+    display: none;
+  }
   .input {
     max-width: 500px;
     padding: 5px 17px 6px 17px;
@@ -157,7 +169,7 @@ main {
     position: relative;
     height: 24px;
     padding: 5px 5px 0px 20px;
-    margin-top: 5px;
+    margin-top: 10px;
     cursor: pointer;
     &:hover {
       background-color: #00000080;
@@ -199,6 +211,20 @@ main {
     }
     .flex {
       flex-direction: column;
+    }
+  }
+  @media (max-width: 730px) {
+    .timetable {
+      display: initial;
+    }
+    .desktop_pods {
+      display: none;
+    }
+    .mobile_pods {
+      display: flex;
+      width: 100%;
+      overflow-x: scroll;
+      overflow-y: hidden;
     }
   }
   @media (max-width: 500px) {

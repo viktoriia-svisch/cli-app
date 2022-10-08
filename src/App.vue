@@ -66,7 +66,7 @@ body {
   }
   .marged {
     max-width: 1200px;
-    margin: 10px auto 0px auto;
+    margin: 10px auto 40px auto;
   }
   .subtitle {
     font-size: 24px;
