@@ -24,9 +24,12 @@ export default {
     today_shows: function(newVal, oldVal) {
             newVal;
       oldVal;
-      this.radio = this.$config.VUE_APP_RADIO;
-      this.src = `${this.radio}${this.src}`;
-      this.checkTitle();
+      if (!this.updated) {
+        this.updated = true;
+        this.radio = this.$config.VUE_APP_RADIO;
+        this.src = `${this.radio}${this.src}`;
+        this.checkTitle();
+      }
     },
     iframe_update: function(newVal) {
       if (newVal != "" && this.isPlaying == true) {
@@ -36,6 +39,7 @@ export default {
   },
   data() {
     return {
+      updated: false,
       isPlaying: false,
       livestream: false,
       radio: "",
