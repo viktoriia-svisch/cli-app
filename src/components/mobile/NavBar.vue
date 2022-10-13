@@ -11,9 +11,15 @@
           v-if="$route.path != '/events'"
           class="logo"
           alt="ODC Live"
+          height="70"
           src="../../assets/imgs/logo.png"
         />
-        <img v-else class="logo" src="../../assets/imgs/events.png" />
+        <img
+          v-else
+          class="logo"
+          src="../../assets/imgs/events.png"
+          height="70"
+        />
       </router-link>
     </section>
     <section id="bottomnav">
