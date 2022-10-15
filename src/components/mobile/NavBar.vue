@@ -12,6 +12,7 @@
           class="logo"
           alt="ODC Live"
           height="70"
+          width="158"
           src="../../assets/imgs/logo.png"
         />
         <img
@@ -19,6 +20,7 @@
           class="logo"
           src="../../assets/imgs/events.png"
           height="70"
+          width="158"
         />
       </router-link>
     </section>
