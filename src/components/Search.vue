@@ -80,30 +80,33 @@ main {
     background-size: 30px 30px;
     background-position: right 10px top 6px;
   }
-  .more {
-    position: relative;
-    width: 250px;
-    max-width: 475px;
-    background-color: #00000040;
-    position: relative;
-    height: 24px;
-    padding: 5px 5px 0px 20px;
-    margin-top: 5px;
-    cursor: pointer;
-    .moretitle {
-      color: white;
-    }
-    &:hover {
-      background-color: #00000080;
-    }
-    span {
-      margin-right: 40px;
-    }
-    img {
-      width: 17px;
-      position: absolute;
-      top: 5px;
-      right: 10px;
+  .flex {
+    justify-content: right;
+    .more {
+      position: relative;
+      width: 250px;
+      max-width: 475px;
+      background-color: #00000040;
+      position: relative;
+      height: 24px;
+      padding: 5px 5px 0px 20px;
+      margin-top: 5px;
+      cursor: pointer;
+      .moretitle {
+        color: white;
+      }
+      &:hover {
+        background-color: #00000080;
+      }
+      span {
+        margin-right: 40px;
+      }
+      img {
+        width: 17px;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+      }
     }
   }
   @media (max-width: 1000px) {
