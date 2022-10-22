@@ -35,10 +35,12 @@ export default {
       if (newVal != "" && this.isPlaying == true) {
         this.play();
       }
+      this.canPlay = newVal != "" ? false : true;
     },
   },
   data() {
     return {
+      canPlay: true,
       updated: false,
       isPlaying: false,
       livestream: false,
@@ -50,7 +52,7 @@ export default {
   },
   methods: {
     play() {
-      if (!this.isPlaying) {
+      if (!this.isPlaying && this.canPlay) {
         this.$refs.audioElm.src = `${this.src}?t=${new Date().getTime()}`;
         this.$refs.audioElm.play();
         this.isPlaying = true;

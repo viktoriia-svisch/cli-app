@@ -242,7 +242,7 @@ nav {
       position: relative;
       top: 20px;
       z-index: 5;
-      width: 300px;
+      width: 100%;
       iframe {
         padding: 10px;
         margin-bottom: -4px;
