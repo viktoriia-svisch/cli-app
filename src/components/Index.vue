@@ -225,6 +225,7 @@ main {
       width: 100%;
       overflow-x: scroll;
       overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
     }
   }
   @media (max-width: 500px) {
