@@ -1,10 +1,23 @@
 <template>
-  <div
-    id="app"
-    :style="'background-color:' + color + '; background-image: url(' + bg + ')'"
-  >
-    <Fullscreen v-if="innerWidth >= 730" :color="color" />
-    <Mobile v-else />
+  <div id="app">
+    <div
+      v-if="innerWidth >= 730"
+      class="bg"
+      :style="
+        'background-color:' + color + '; background-image: url(' + bg + ')'
+      "
+    >
+      <Fullscreen :color="color" />
+    </div>
+    <div
+      v-else
+      class="bg"
+      :style="
+        'background-color:' + color + '; background-image: url(' + bg_mb + ')'
+      "
+    >
+      <Mobile />
+    </div>
   </div>
 </template>
 <script>
@@ -21,6 +34,7 @@ export default {
     return {
       color: "#5D58C9",
       bg: this.$config.VUE_APP_API + "/upload/background",
+      bg_mb: this.$config.VUE_APP_API + "/upload/background_mobile",
       innerWidth: window.innerWidth,
     };
   },
@@ -52,9 +66,12 @@ body {
   #app {
     min-height: 100vh;
     padding-bottom: 10px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    .bg {
+      min-height: inherit;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
   }
   .flex {
     display: flex;
