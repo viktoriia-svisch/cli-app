@@ -64,13 +64,12 @@ body {
   font-family: KionaBold;
   -webkit-font-smoothing: antialiased;
   #app {
-    min-height: 100vh;
-    padding-bottom: 10px;
     .bg {
-      min-height: inherit;
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
+      padding-bottom: 50px;
+      min-height: ~"calc(100vh - 50px)";
     }
   }
   .flex {
@@ -83,7 +82,7 @@ body {
   }
   .marged {
     max-width: 1200px;
-    margin: 10px auto 40px auto;
+    margin: 10px auto 0px auto;
   }
   .subtitle {
     font-size: 24px;
@@ -106,6 +105,12 @@ body {
     -moz-user-select: none; 
     -ms-user-select: none; 
     user-select: none; 
+    #app {
+      .bg {
+        min-height: ~"calc(100vh - 100px)";
+        padding-bottom: 15px;
+      }
+    }
     .main_section {
       flex-direction: column-reverse;
     }
