@@ -66,7 +66,7 @@ body {
   #app {
     .bg {
       background-repeat: no-repeat;
-      background-attachment: fixed;
+      background-attachment: scroll;
       background-size: cover;
       padding-bottom: 50px;
       min-height: ~"calc(100vh - 50px)";

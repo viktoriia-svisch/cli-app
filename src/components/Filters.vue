@@ -9,7 +9,7 @@
     />
     <p id="filters">
       <span>
-        filtres:
+        filtres - 
       </span>
       <span class="filter" @click="pushQuery('selecta')">selecta</span>
       <span class="filter" @click="pushQuery('ambient')">ambient</span>
@@ -58,30 +58,41 @@ article {
     background-position: right 10px top 2px;
   }
   #filters {
-    margin: 5px 0px 13px 0px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(auto, auto);
+    margin: 15px 0px 13px 0px;
+    display: flex;
+    justify-content: space-between;
     .filter {
       position: relative;
       padding: 2px 4px 2px 20px;
       cursor: pointer;
+      text-align: center;
       background-color: #ffffff40;
+      width: 100px;
     }
     .filter::before {
       content: "";
       position: absolute;
       top: 8px;
-      left: 5px;
+      left: 10px;
       width: 8px;
       height: 8px;
       background-image: url("../assets/imgs/square.png");
     }
   }
-  @media (max-width: 1000px) {
+  @media (max-width: 1100px) {
+    #filters {
+      display: grid;      
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+      grid-auto-rows: minmax(auto, auto);
+    }
+  }
+  @media (max-width: 500px) {
     #filters {
       grid-template-columns: repeat(2, 1fr);
+      .filter {
+        width: initial;
+      } 
     }
   }
   @media (max-width: 300px) {
