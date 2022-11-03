@@ -1,21 +1,10 @@
 <template>
-  <div id="app">
-    <div
-      v-if="innerWidth >= 730"
-      class="bg"
-      :style="
-        'background-color:' + color + '; background-image: url(' + bg + ')'
-      "
-    >
+  <div id="app" :style="'background-color:' + color + ';'">
+    <img class="bg_img" :src="innerWidth >= 730 ? bg : bg_mb" />
+    <div v-if="innerWidth >= 730" class="bg">
       <Fullscreen :color="color" />
     </div>
-    <div
-      v-else
-      class="bg"
-      :style="
-        'background-color:' + color + '; background-image: url(' + bg_mb + ')'
-      "
-    >
+    <div v-else class="bg">
       <Mobile />
     </div>
   </div>
@@ -64,10 +53,17 @@ body {
   font-family: KionaBold;
   -webkit-font-smoothing: antialiased;
   #app {
+    .bg_img {
+      position: fixed;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
     .bg {
-      background-repeat: no-repeat;
-      background-attachment: scroll;
-      background-size: cover;
+      position: relative;
+      z-index: 1;
       padding-bottom: 50px;
       min-height: ~"calc(100vh - 50px)";
     }
