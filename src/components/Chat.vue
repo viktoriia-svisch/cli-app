@@ -64,6 +64,15 @@ export default {
         this.message = "";
         return;
       }
+      if (this.message[0] == "!") {
+        const expr = /^!pseudo\s((?!!pseudo).*)/g;
+        const matches = expr.exec(this.message);
+        if (matches != null) {
+          this.pseudo = matches[1];
+          localStorage.setItem(this.localUser, this.pseudo);
+        }
+        this.message = "";
+        return;       }
       this.hiddenPseudo = true;
       localStorage.setItem(this.localUser, this.pseudo);
       this.$socket.emit("msg", { pseudo: this.pseudo, msg: this.message });

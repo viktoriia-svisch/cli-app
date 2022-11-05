@@ -54,6 +54,10 @@
         (<a class="outlink" href="https:        >)
       </small>
     </p>
+    <p>
+      Il est possible de changer de pseudonyme dans le chat avec la commande
+      !pseudo nouveau_pseudo
+    </p>
   </section>
 </template>
 <script>
