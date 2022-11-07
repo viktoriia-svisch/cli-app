@@ -155,6 +155,7 @@ export default {
       .lname {
         margin-right: 20px;
         font-family: KionaBold;
+        display: block;
       }
     }
   }
