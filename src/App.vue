@@ -22,8 +22,14 @@ export default {
   data() {
     return {
       color: "#5D58C9",
-      bg: this.$config.VUE_APP_API + "/upload/background",
-      bg_mb: this.$config.VUE_APP_API + "/upload/background_mobile",
+      bg:
+        this.$config.VUE_APP_API +
+        "/upload/background?t=" +
+        new Date().getTime(),
+      bg_mb:
+        this.$config.VUE_APP_API +
+        "/upload/background_mobile?t=" +
+        new Date().getTime(),
       innerWidth: window.innerWidth,
     };
   },
