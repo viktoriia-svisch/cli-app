@@ -5,6 +5,7 @@
       v-for="pod in pods"
       v-bind:key="pod.key"
       :pod="pod"
+      :nb_tags="0"
     />
   </section>
 </template>

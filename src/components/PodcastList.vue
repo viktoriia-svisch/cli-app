@@ -5,6 +5,7 @@
       v-for="pod in pods"
       v-bind:key="pod.key"
       :pod="pod"
+      :nb_tags="innerWidth >= 730 ? 2 : 1"
     />
   </section>
 </template>
@@ -13,9 +14,19 @@ import WidgetPodcast from "./WidgetPodcast.vue";
 export default {
   name: "PodcastList",
   components: {
-    WidgetPodcast
+    WidgetPodcast,
   },
-  props: ["pods"]
+  props: ["pods"],
+  data() {
+    return {
+      innerWidth: window.innerWidth,
+    };
+  },
+  mounted() {
+    window.addEventListener("resize", () => {
+      this.innerWidth = window.innerWidth;
+    });
+  },
 };
 </script>
 <style lang="less" scoped>

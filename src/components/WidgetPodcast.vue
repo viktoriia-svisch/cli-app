@@ -9,7 +9,7 @@
     <span id="title">
       <span
         class="genre"
-        v-for="genre in pod.genres.slice(0, 2)"
+        v-for="genre in pod.genres.slice(0, nb_tags)"
         v-bind:key="genre"
         ><router-link :to="{ path: '/search/' + genre }">{{
           genre
@@ -23,6 +23,7 @@ export default {
   name: "WidgetPodcast",
   props: {
     pod: null,
+    nb_tags: Number,
   },
   data() {
     return {

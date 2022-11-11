@@ -21,6 +21,26 @@
         <img src="../assets/imgs/play_white.svg" />
       </h3>
     </article>
+    <h3 v-if="date" class="mobile_week_title">
+      Semaine du
+      {{
+        `${new Date(
+          date.getFullYear(),
+          date.getMonth(),
+          date.getDate()
+        ).toLocaleDateString("fr-FR")}`
+      }}
+    </h3>
+    <article class="mobile_week_header">
+      <h3 class="chgWeek" @click="changeWeek('-')">
+        <img id="prec" src="../assets/imgs/play_white.svg" />
+        Précédente
+      </h3>
+      <h3 class="chgWeek" @click="changeWeek('+')">
+        Suivante
+        <img src="../assets/imgs/play_white.svg" />
+      </h3>
+    </article>
     <section class="week" v-if="date">
       <div class="day" v-for="(day, k) in days" v-bind:key="day.val">
         {{ day.title }}
@@ -189,7 +209,8 @@ export default {
 <style lang="less" scoped>
 #calendars {
   color: white;
-  .week_header {
+  .week_header,
+  .mobile_week_header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -200,7 +221,7 @@ export default {
       font-size: 15px;
       img {
         position: relative;
-        top: 3px;
+        top: 2px;
         width: 15px;
       }
       #prec {
@@ -212,6 +233,9 @@ export default {
       }
     }
   }
+  .mobile_week_header, .mobile_week_title{
+    display: none;
+  }
   .week {
     width: 830px;
     display: grid;
@@ -219,10 +243,10 @@ export default {
     grid-gap: 10px;
     grid-auto-rows: minmax(auto, auto);
     .day {
-      padding: 0px 4px 4px 4px;
+      padding: 10px 4px 20px 4px;
       background-color: #ffffff40;
       .show {
-        padding: 5px 10px 1px 10px;
+        padding: 5px 10px 1px 0px;
         margin-top: 15px;
         .side {
           font-family: Kiona;
@@ -249,7 +273,10 @@ export default {
   }
   @media (max-width: 1200px) {
     .week_header {
-      flex-direction: column;
+      display: none;
+    }
+    .mobile_week_header, .mobile_week_title {
+      display: flex;
     }
     .week {
       width: 630px;
