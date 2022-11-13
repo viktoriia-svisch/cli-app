@@ -120,5 +120,21 @@ body {
       margin: 70px auto 0px auto;
     }
   }
+  @media (max-width: 430px) {
+    .podcasts {
+      .podcast {
+        .podimg {
+          width: 100% !important;
+        }
+      }
+    }
+    .mobile_pods {
+      .podcast {
+        .podimg {
+          width: 230px !important;
+        }
+      }
+    }
+  }
 }
 </style>

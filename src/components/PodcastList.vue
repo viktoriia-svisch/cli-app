@@ -51,8 +51,5 @@ export default {
   @media (max-width: 650px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: 430px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
 }
 </style>
