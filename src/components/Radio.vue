@@ -26,8 +26,11 @@ export default {
       oldVal;
       if (!this.updated) {
         this.updated = true;
-        this.radio = this.$config.VUE_APP_RADIO;
-        this.src = `${this.radio}${this.src}`;
+        this.radio = this.$config.VUE_APP_RADIO.base_url;
+        const listen_ep = this.$config.VUE_APP_RADIO.listen_ep;
+        const now_ep = this.$config.VUE_APP_RADIO.now_ep;
+        this.src = `${this.radio}${listen_ep}`;
+        this.now = `${this.radio}${now_ep}`;
         this.checkTitle();
       }
     },
@@ -47,7 +50,8 @@ export default {
       radio: "",
       title: "",
       artist: "",
-      src: "/radio/8000/radio.mp3",
+      src: "",
+      now: "",
     };
   },
   methods: {
@@ -63,7 +67,7 @@ export default {
     },
     checkTitle() {
       axios
-        .get(`${this.radio}/api/nowplaying`)
+        .get(`${this.now}`)
         .then((res) => {
           let odc_station = res.data[0];
           if (

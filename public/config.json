@@ -1,7 +1,11 @@
 {
   "NODE_ENV": "production",
-  "VUE_APP_RADIO": "https://radio.odc.live",
-  "VUE_APP_CHAT": "http://localhost:8080",
-  "VUE_APP_API": "http://localhost:8081",
-  "VUE_APP_GRAPHQL_HTTP": "http://localhost:8081/graphql"
+  "VUE_APP_RADIO": {
+    "base_url": "https://radio.odc.live",
+    "listen_ep": "/radio/8000/radio.mp3",
+    "now_ep": "/api/nowplaying"
+  },
+  "VUE_APP_CHAT": "https://chat.odc.live",
+  "VUE_APP_API": "https://api.odc.live",
+  "VUE_APP_GRAPHQL_HTTP": "https://api.odc.live/graphql"
 }
