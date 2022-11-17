@@ -1,4 +1,4 @@
-FROM node:10.9.0-alpine AS build-env
+FROM node:15.4.0-alpine3.12 AS build-env
 WORKDIR /app
 ADD . /app
 RUN cd /app && npm i && npm run build
