@@ -26,11 +26,8 @@ export default {
       oldVal;
       if (!this.updated) {
         this.updated = true;
-        this.radio = this.$config.VUE_APP_RADIO.base_url;
-        const listen_ep = this.$config.VUE_APP_RADIO.listen_ep;
-        const now_ep = this.$config.VUE_APP_RADIO.now_ep;
-        this.src = `${this.radio}${listen_ep}`;
-        this.now = `${this.radio}${now_ep}`;
+        this.src = this.$config.VUE_APP_RADIO.listen_ep;
+        this.now = this.$config.VUE_APP_RADIO.now_ep;
         this.checkTitle();
       }
     },
@@ -47,7 +44,6 @@ export default {
       updated: false,
       isPlaying: false,
       livestream: false,
-      radio: "",
       title: "",
       artist: "",
       src: "",
