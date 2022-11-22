@@ -63,7 +63,7 @@ export default {
     },
     checkTitle() {
       axios
-        .get(`${this.now}`)
+        .get(`${this.now}?t=${new Date().getTime()}`)
         .then((res) => {
           let odc_station = res.data[0];
           if (
