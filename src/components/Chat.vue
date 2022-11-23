@@ -1,7 +1,7 @@
 <template>
   <section id="chat">
     <span class="subtitle" id="chat_title">La chatroom</span>
-    <section id="msg" v-chat-scroll>
+    <section id="msg" ref="msg">
       <tr class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
         <td class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">
           {{
@@ -78,13 +78,21 @@ export default {
       this.$socket.emit("msg", { pseudo: this.pseudo, msg: this.message });
       this.message = "";
     },
+    rcv_msgs(msgs) {
+      this.msgs = this.msgs.concat(msgs);
+      setTimeout(() => {
+        console.log(this.$refs.msg);
+        this.$refs.msg.scrollTop = this.$refs.msg.scrollHeight;
+      }, 100);
+    },
   },
   sockets: {
     listen(msgs) {
-      this.msgs = this.msgs.concat(msgs);
+      console.log(this);
+      this.rcv_msgs(msgs);
     },
     msg(message) {
-      this.msgs = this.msgs.concat(message);
+      this.rcv_msgs(message);
     },
   },
   mounted() {
