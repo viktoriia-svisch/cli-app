@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Shop from "@/components/Shop";
 import Index from "@/components/Index";
 import Events from "@/components/Events";
 import Podcasts from "@/components/Podcasts";
@@ -11,6 +12,13 @@ Vue.use(Router);
 const router = new Router({
   mode: "history",
   routes: [
+    {
+      path: "/shop",
+      component: Shop,
+      meta: {
+        title: "ODC Live - Shop",
+      },
+    },
     {
       path: "/podcasts",
       component: Podcasts,
