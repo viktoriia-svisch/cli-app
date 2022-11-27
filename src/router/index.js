@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Shop from "@/components/Shop";
+import ShopMerch from "@/components/ShopMerch";
 import Index from "@/components/Index";
 import Events from "@/components/Events";
 import Podcasts from "@/components/Podcasts";
@@ -15,6 +16,13 @@ const router = new Router({
     {
       path: "/shop",
       component: Shop,
+      meta: {
+        title: "ODC Live - Shop",
+      },
+    },
+    {
+      path: "/shop/:type/:merch",
+      component: ShopMerch,
       meta: {
         title: "ODC Live - Shop",
       },

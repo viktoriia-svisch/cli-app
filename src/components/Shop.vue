@@ -2,8 +2,12 @@
   <section id="shop">
     <span class="subtitle">Notre merch</span>
     <div class="merch" v-for="obj in shop_data.data" v-bind:key="obj.url">
-      <div id="img" :style="`background-image: url('${obj.img_url}')`"></div>
-      <h3>{{ obj.name }}</h3>
+      <div
+        id="img"
+        @click="toURL(`/shop/${obj.url}`)"
+        :style="`background-image: url('${obj.img_url}')`"
+      ></div>
+      <h3 @click="toURL(`/shop/${obj.url}`)">{{ obj.name }}</h3>
     </div>
   </section>
 </template>
@@ -15,6 +19,11 @@ export default {
     return {
       shop_data: shopdata,
     };
+  },
+  methods: {
+    toURL(dest) {
+      this.$router.push(dest);
+    },
   },
 };
 </script>

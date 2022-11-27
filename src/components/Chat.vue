@@ -81,14 +81,12 @@ export default {
     rcv_msgs(msgs) {
       this.msgs = this.msgs.concat(msgs);
       setTimeout(() => {
-        console.log(this.$refs.msg);
         this.$refs.msg.scrollTop = this.$refs.msg.scrollHeight;
       }, 100);
     },
   },
   sockets: {
     listen(msgs) {
-      console.log(this);
       this.rcv_msgs(msgs);
     },
     msg(message) {

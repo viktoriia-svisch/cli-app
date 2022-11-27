@@ -16,8 +16,7 @@
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
-        <a id="bigshop" href="https:          ><h1>Shop</h1></a
-        >
+        <router-link id="bigshop" :to="{ path: '/shop' }"><h1>Shop</h1></router-link>
       </div>
       <Radio
         :today_shows="today_shows"
@@ -80,8 +79,6 @@
         <h3 @click="toURL('/events')">Events</h3>
         <h3 @click="toURL('/calendar')">Calendrier</h3>
         <h3 @click="toURL('/shop')">Shop</h3>
-        <h3>
-          <a href="https:        </h3>
         <br />
         <h3 @click="toURL('/propose_show')">Proposer un show</h3>
         <h3>
@@ -304,8 +301,6 @@ nav {
         }
       }
     }
-  }
-  @media (max-width: 1200px) {
     .nav,
     #search_sec {
       width: 100%;
