@@ -3,11 +3,8 @@
     <span v-if="found_merch" class="subtitle">Shop - {{ merch.name }}</span>
     <article v-if="found_merch">
       <img :src="merch.img_url" />
-      <p>
-        <span>{{ merch.price }} - </span>
-        <a target="_blank" :href="`https:          >Plus d'infos sur notre bandcamp</a
-        >
-      </p>
+      <a target="_blank" :href="`https:        >{{ merch.price }} - Plus d'infos sur notre bandcamp</a
+      >
     </article>
   </section>
 </template>
@@ -57,13 +54,11 @@ export default {
     img {
       width: 100%;
     }
-    p {
-      a {
-        color: white;
-        text-align: center;
-        display: block;
-        margin: 10px 0px 10px 0px;
-      }
+    a {
+      color: white;
+      text-align: center;
+      display: block;
+      margin: 10px 0px 10px 0px;
     }
   }
   @media (max-width: 1150px) {
