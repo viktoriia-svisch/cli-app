@@ -92,6 +92,7 @@ export default {
       padding: 5px 10px 8px 10px;
       margin-bottom: 8px;
       background-color: #2b2b2b3b;
+      word-break: break-all;
       .side {
         font-family: Kiona;
         letter-spacing: -1px;

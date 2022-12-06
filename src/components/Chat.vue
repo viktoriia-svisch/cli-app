@@ -141,6 +141,7 @@ export default {
     background-color: #2b2b2b3b;
     .lmsg {
       font-family: Kiona;
+      word-break: break-all;
       .tmsg {
         background-color: #00000030;
         display: inline-block;
