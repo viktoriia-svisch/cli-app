@@ -16,9 +16,12 @@
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
-        <router-link id="bigshop" :to="{ path: '/shop' }"><h1>Shop</h1></router-link>
+        <router-link id="bigshop" :to="{ path: '/shop' }"
+          ><h1>Shop</h1></router-link
+        >
       </div>
       <Radio
+        ref="radio"
         :today_shows="today_shows"
         :iframe_update="iframe_mix"
         :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
@@ -29,6 +32,7 @@
         :style="`top: ${hiddenSearch ? '20px' : '1px'}`"
       >
         <iframe
+          ref="sc_iframe"
           height="20"
           scrolling="no"
           frameborder="no"
@@ -102,6 +106,7 @@
 </template>
 <script>
 import Radio from "./Radio.vue";
+import "../assets/js/soundcloud.js";
 export default {
   name: "NavBar",
   props: ["today_shows", "color", "iframe_mix"],
@@ -145,6 +150,20 @@ export default {
         this.hiddenSearch = true;
       }
     },
+  },
+  mounted() {
+    window.addEventListener("keydown", (event) => {
+            if (event.keyCode == 32 && event.target == document.body) {
+        event.preventDefault();
+        if (this.iframe_mix) {
+          SC.Widget(this.$refs.sc_iframe).toggle();         } else {
+          this.$refs.radio.play();
+        }
+      }
+    });
+    window.addEventListener("focus", () => {
+      this.$refs.radio.isPlaying = this.$refs.radio.$refs.audioElm.paused;
+    });
   },
 };
 </script>
