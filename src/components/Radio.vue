@@ -5,12 +5,18 @@
     <img src="../assets/imgs/stop.png" class="playBtn" v-else />
     <span class="reddot">•</span>
     <div class="title">
-      <span class="live_info">
-        <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}
+      <span class="live_info" v-if="titleVisible">
+        <span v-if="livestream">Live         <span>{{ artist }}</span>
+        <span class="dash" v-if="!livestream"> - </span>
+        <span class="show_title" >{{ title }}</span>
         <span style="margin-left: 15px"></span>
-        <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}
+        <span v-if="livestream">Live         <span>{{ artist }}</span>
+        <span class="dash" v-if="!livestream"> - </span>
+        <span class="show_title" >{{ title }}</span>
         <span style="margin-left: 15px"></span>
-        <span v-if="livestream">Live         }}<span v-if="!livestream"> - </span>{{ title }}
+        <span v-if="livestream">Live         <span>{{ artist }}</span>
+        <span class="dash" v-if="!livestream"> - </span>
+        <span class="show_title" >{{ title }}</span>
       </span>
     </div>
   </section>
@@ -36,6 +42,7 @@ export default {
         this.play();
       }
       this.canPlay = newVal != "" ? false : true;
+      this.titleVisible = newVal != "" ? false : true;
     },
   },
   data() {
@@ -48,6 +55,7 @@ export default {
       artist: "",
       src: "",
       now: "",
+      titleVisible: true,
     };
   },
   methods: {
@@ -168,7 +176,34 @@ export default {
     margin-left: 20px;
     justify-content: flex-start;
     .title {
-      width: ~"calc(100% - 100px)";
+      margin-bottom: 5px;
+      white-space: initial;
+      width: initial;
+      .live_info {
+        animation: initial;
+        display: block;
+        font-size: 11px;
+        text-align: left;
+        --end-percent: ~"calc(-20% - 11px)";
+        animation: marquee_mobile 5s linear infinite;
+        span {
+          display: block;
+        }
+        .dash {
+          display: none;
+        }
+        .show_title {
+          color: #7d7d7d;
+        }
+      }
+      @keyframes marquee_mobile {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(0, var(--end-percent));
+        }
+      }
     }
   }
 }

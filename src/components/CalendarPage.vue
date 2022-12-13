@@ -84,14 +84,16 @@
             {{ show.redundancy == 1 ? "" : show.redundancy }} semaines</span
           >
           <span v-else class="side">Emission speciale</span><br />
-          <span
-            class="genre side"
-            v-for="genre in show.genres"
-            v-bind:key="genre"
-            ><router-link :to="{ path: '/search/' + genre }">{{
-              genre
-            }}</router-link></span
-          >
+          <div class="genreHld">
+            <span
+              class="genre side"
+              v-for="genre in show.genres"
+              v-bind:key="genre"
+              ><router-link :to="{ path: '/search/' + genre }">{{
+                genre
+              }}</router-link></span
+            >
+          </div>
         </section>
       </div>
     </section>
@@ -233,7 +235,8 @@ export default {
       }
     }
   }
-  .mobile_week_header, .mobile_week_title{
+  .mobile_week_header,
+  .mobile_week_title {
     display: none;
   }
   .week {
@@ -252,20 +255,26 @@ export default {
           font-family: Kiona;
           letter-spacing: -1px;
         }
-        .genre {
-          position: relative;
-          top: 4px;
-          font-size: 15px;
-          margin-right: 10px;
-          background-color: #00000020;
-          padding: 0px 4px 2px 4px;
-          cursor: pointer;
-          a {
-            color: white;
-            text-decoration: none;
-          }
-          &:hover {
-            background-color: #00000080;
+        .genreHld {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 10px;
+          grid-auto-rows: minmax(auto, auto);
+          .genre {
+            position: relative;
+            top: 4px;
+            font-size: 15px;
+            margin-right: 10px;
+            background-color: #00000020;
+            padding: 0px 4px 2px 4px;
+            cursor: pointer;
+            a {
+              color: white;
+              text-decoration: none;
+            }
+            &:hover {
+              background-color: #00000080;
+            }
           }
         }
       }
@@ -275,7 +284,8 @@ export default {
     .week_header {
       display: none;
     }
-    .mobile_week_header, .mobile_week_title {
+    .mobile_week_header,
+    .mobile_week_title {
       display: flex;
     }
     .week {
