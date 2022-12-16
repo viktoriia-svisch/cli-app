@@ -162,7 +162,7 @@ export default {
       }
     });
     window.addEventListener("focus", () => {
-      this.$refs.radio.isPlaying = this.$refs.radio.$refs.audioElm.paused;
+      this.$refs.radio.isPlaying = !this.$refs.radio.$refs.audioElm.paused;
     });
   },
 };
