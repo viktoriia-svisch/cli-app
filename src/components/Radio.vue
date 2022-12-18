@@ -76,7 +76,8 @@ export default {
           let odc_station = res.data[0];
           if (
             odc_station.live.is_live ||
-            odc_station.now_playing.elapsed == null
+            odc_station.now_playing.elapsed == null ||
+            odc_station.now_playing.song.title == "Stream Offline"
           ) {
             const t_shows = this.today_shows;
             let show = false;
