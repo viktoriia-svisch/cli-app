@@ -33,9 +33,12 @@ export default {
       this.sendQuery();
     },
     sendQuery() {
-      this.$router.push({ path: `/search/${this.search}` });
+      this.$router.push({ path: `/search/${this.search}` }).catch(()=>{});
     },
   },
+  mounted() {
+    this.search = this.$route.params.query;
+  }
 };
 </script>
 <style lang="less" scoped>
