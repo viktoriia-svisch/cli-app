@@ -15,6 +15,12 @@
           genre
         }}</router-link></span
       >
+      <div class="share" @click="share_mix">
+        <div class="innershare">
+          <span>{{ share_msg }}</span>
+          <img src="../assets/imgs/copy_icon.png" />
+        </div>
+      </div>
     </span>
   </section>
 </template>
@@ -28,9 +34,24 @@ export default {
   data() {
     return {
       podImg: "",
+      share_msg: "partager",
     };
   },
   methods: {
+    share_mix() {
+            var input = document.createElement("input");
+      input.setAttribute("value", "testestests");
+      document.body.appendChild(input);
+      input.select();
+      var result = document.execCommand("copy");
+      document.body.removeChild(input);
+      if (result == true) {
+        this.share_msg = "copié";
+        setTimeout(() => {
+          this.share_msg = "partager";
+        }, 1000);
+      }
+    },
     play_podcast() {
       this.$parent.$parent.$emit("podcast", this.pod.id);
     },
@@ -56,7 +77,6 @@ export default {
 #podcast {
   position: relative;
   display: grid;
-  background-color: #2b2b2b3b;
   #title {
     bottom: 4px;
     display: flex;
@@ -72,6 +92,8 @@ export default {
       font-family: KionaBold;
       letter-spacing: -1px;
       text-align: center;
+      background-color: #2b2b2b3b;
+      margin-top: 5px;
       a {
         color: white;
         text-decoration: none;
@@ -79,6 +101,29 @@ export default {
       }
       &:hover {
         background-color: #000000a0;
+      }
+    }
+    .share {
+      font-size: 15px;
+      padding: 5px 8px 5px 8px;
+      cursor: pointer;
+      font-family: KionaBold;
+      letter-spacing: -1px;
+      text-align: center;
+      background-color: #dbdbdb3b;
+      margin-top: 5px;
+      color: white;
+      &:hover {
+        background-color: #dddddda1;
+      }
+      .innershare {
+        display: flex;
+        justify-content: space-around;
+        width: 110px;
+        margin: 0 auto;
+        span {
+          width: 65px;
+        }
       }
     }
   }
