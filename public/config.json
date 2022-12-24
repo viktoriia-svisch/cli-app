@@ -4,6 +4,7 @@
     "listen_ep": "https://radio.odc.live/radio/8000/radio.mp3",
     "now_ep": "https://radio.odc.live/api/nowplaying"
   },
+  "VUE_APP_WEB": "https://odc.live",
   "VUE_APP_CHAT": "https://chat.odc.live",
   "VUE_APP_API": "https://api.odc.live",
   "VUE_APP_GRAPHQL_HTTP": "https://api.odc.live/graphql"

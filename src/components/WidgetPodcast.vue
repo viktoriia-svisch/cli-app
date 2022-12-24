@@ -40,7 +40,10 @@ export default {
   methods: {
     share_mix() {
             var input = document.createElement("input");
-      input.setAttribute("value", "testestests");
+      input.setAttribute(
+        "value",
+        `${this.$config.VUE_APP_WEB}/p/${this.pod.id}`
+      );
       document.body.appendChild(input);
       input.select();
       var result = document.execCommand("copy");
