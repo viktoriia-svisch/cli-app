@@ -32,6 +32,11 @@ export default {
       this.iframe_mix = id;
     },
   },
+  mounted() {
+    if (this.$route.params.mix_id) {
+      this.iframe_mix = this.$route.params.mix_id;
+    }
+  },
 };
 </script>
 <style lang="less" scoped></style>

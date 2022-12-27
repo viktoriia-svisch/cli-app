@@ -70,6 +70,10 @@ const router = new Router({
       },
     },
     {
+      path: "/p/:mix_id",
+      component: Index,
+    },
+    {
       path: "/",
       component: Index,
     },
