@@ -56,7 +56,7 @@ export default {
       }
     },
     play_podcast() {
-      this.$parent.$parent.$emit("podcast", this.pod.id);
+      this.$parent.$parent.$emit("podcast", this.pod);
     },
   },
   beforeMount() {
@@ -73,6 +73,7 @@ export default {
       this.podImg = this.pod.artwork_url;
     }
     this.podImg = this.podImg.replace("-large", "-t500x500");
+    this.pod.podImg = this.podImg;
   },
 };
 </script>

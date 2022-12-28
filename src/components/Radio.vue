@@ -119,6 +119,7 @@ export default {
 #radio {
   margin-top: 17px;
   cursor: pointer;
+  width: 282px;
   .flex {
     display: flex;
     justify-content: space-between;

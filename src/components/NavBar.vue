@@ -26,21 +26,38 @@
         :iframe_update="iframe_mix"
         :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
       />
-      <section
-        id="mix_frame"
-        v-if="iframe_mix"
-        :style="`top: ${hiddenSearch ? '20px' : '1px'}`"
-      >
+      <section id="mix_frame" v-if="iframe_mix">
         <iframe
           ref="sc_iframe"
-          height="20"
+          height="0"
           scrolling="no"
           frameborder="no"
           allow="autoplay"
           :src="
             `https:          "
         ></iframe>
-        <img src="../assets/imgs/cross_icon.png" @click="close_mix" />
+        <div id="mix_frame_inner">
+          <img
+            src="../assets/imgs/play.svg"
+            class="playBtn"
+            v-if="!isPlaying"
+            @click="toggleSound"
+          />
+          <img
+            src="../assets/imgs/stop.png"
+            class="playBtn"
+            v-else
+            @click="toggleSound"
+          />
+          <span class="title_mix">{{ iframe_mix.title }}</span>
+          <div>
+            <img
+              class="close_mix"
+              src="../assets/imgs/cross_icon.png"
+              @click="close_mix"
+            />
+          </div>
+        </div>
       </section>
       <section id="search_sec">
         <img
@@ -130,10 +147,12 @@ export default {
       hiddenSearch: true,
       search: "",
       second: false,
+      isPlaying: false,
     };
   },
   methods: {
     close_mix() {
+      this.isPlaying = false;
       this.$parent.iframe_mix = "";
     },
     toURL(dest) {
@@ -150,15 +169,19 @@ export default {
         this.hiddenSearch = true;
       }
     },
+    toggleSound() {
+      if (this.iframe_mix) {
+        SC.Widget(this.$refs.sc_iframe).toggle();         this.isPlaying = !this.isPlaying;
+      } else {
+        this.$refs.radio.play();
+      }
+    },
   },
   mounted() {
     window.addEventListener("keydown", (event) => {
             if (event.keyCode == 32 && event.target == document.body) {
         event.preventDefault();
-        if (this.iframe_mix) {
-          SC.Widget(this.$refs.sc_iframe).toggle();         } else {
-          this.$refs.radio.play();
-        }
+        this.toggleSound();
       }
     });
   },
@@ -253,34 +276,44 @@ nav {
     left: -14px;
     right: 0;
     #mix_frame {
+      border: 10px solid;
       position: relative;
-      top: 20px;
       z-index: 5;
-      width: 100%;
+      width: 262px;
+      height: 59px;
       iframe {
-        padding: 10px;
-        margin-bottom: -4px;
-        background-color: #f2f2f2;
-        width: ~"calc(100% - 56px)";
-        position: sticky;
-        bottom: 0px;
-        z-index: 5;
-      }
-      img {
-        cursor: pointer;
-        width: 25px;
-        background-color: #f2f2f2;
-        color: black;
-        font-weight: bold;
-        font-family: SpaceMono;
-        font-size: 13px;
-        border-left: 1px solid #e3e3e3;
-        padding: 8px 7px 7px 13px;
+        width: 0px;
         position: absolute;
-        right: 0px;
-        z-index: 3;
-        &:hover {
-          background-color: #e8e8e8;
+        bottom: 0;
+        right: 0;
+      }
+      #mix_frame_inner {
+        display: flex;
+        .playBtn {
+          margin-top: 8px;
+          height: 40px;
+          cursor: pointer;
+        }
+        .pod_mix {
+        }
+        .title_mix {
+          font-size: 13px;
+          margin-top: 12px;
+          height: 30px;
+          overflow: hidden;
+        }
+        div {
+          .close_mix {
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+            padding: 5px 5px 5px 5px;
+            z-index: 3;
+            margin-top: 10px;
+            &:hover {
+              background-color: #e8e8e8;
+            }
+          }
         }
       }
     }

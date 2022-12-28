@@ -28,8 +28,8 @@ export default {
     };
   },
   methods: {
-    iframe_set(id) {
-      this.iframe_mix = id;
+    iframe_set(pod) {
+      this.iframe_mix = pod;
     },
   },
   mounted() {
