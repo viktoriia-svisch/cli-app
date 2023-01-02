@@ -37,6 +37,21 @@
 export default {
   name: "IframeSC",
   props: ["iframe_mix"],
+  watch: {
+    iframe_mix: function(newMix) {
+      this.isPlaying = false;
+            if (newMix != "") {
+        setTimeout(() => {
+                    SC.Widget(this.$refs.sc_iframe).unbind(SC.Widget.Events.READY);
+          setTimeout(() => {
+                        SC.Widget(this.$refs.sc_iframe).bind(
+              SC.Widget.Events.READY,               this.toggleSound
+            );
+          }, 1000);
+        }, 1000);
+      }
+    },
+  },
   data() {
     return {
       isPlaying: false,
@@ -44,6 +59,7 @@ export default {
   },
   methods: {
     close_mix() {
+            SC.Widget(this.$refs.sc_iframe).unbind(SC.Widget.Events.READY);
       this.isPlaying = false;
       this.$parent.$parent.iframe_mix = "";
     },
@@ -73,10 +89,12 @@ export default {
   width: 262px;
   height: 59px;
   iframe {
-    width: 0px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    width: 500px;
+    position: fixed;
+    bottom: 200px;
+    left: -200px;
+    height: 100px;
+    transform: rotate(-90deg);
   }
   #mix_frame_inner {
     display: flex;
