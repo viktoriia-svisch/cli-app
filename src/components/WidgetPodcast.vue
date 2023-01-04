@@ -56,7 +56,11 @@ export default {
       }
     },
     play_podcast() {
-      this.$parent.$parent.$emit("podcast", this.pod);
+      this.$parent.$parent.$emit("podcast", "");
+      setTimeout(() => {
+        this.pod.autoplay = true;
+        this.$parent.$parent.$emit("podcast", this.pod);
+      }, 300);
     },
   },
   beforeMount() {

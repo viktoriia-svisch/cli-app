@@ -22,7 +22,7 @@
         v-else
         @click="toggleSound"
       />
-      <span class="title_mix">{{ iframe_mix.title }}</span>
+      <span @click="toggleSound" class="title_mix">{{ iframe_mix.title }}</span>
       <div>
         <img
           class="close_mix"
@@ -42,12 +42,14 @@ export default {
       this.isPlaying = false;
             if (newMix != "") {
         setTimeout(() => {
-                    SC.Widget(this.$refs.sc_iframe).unbind(SC.Widget.Events.READY);
-          setTimeout(() => {
-                        SC.Widget(this.$refs.sc_iframe).bind(
-              SC.Widget.Events.READY,               this.toggleSound
-            );
-          }, 1000);
+                    SC.Widget(this.$refs.sc_iframe).bind(
+            SC.Widget.Events.READY,             () => {
+              if (this.iframe_mix.autoplay) {
+                this.toggleSound();
+              }
+                            SC.Widget(this.$refs.sc_iframe).unbind(SC.Widget.Events.READY);
+            }
+          );
         }, 1000);
       }
     },
@@ -72,6 +74,11 @@ export default {
     },
   },
   mounted() {
+    window.addEventListener("focus", () => {
+            SC.Widget(this.$refs.sc_iframe).isPaused((paused) => {
+        this.isPlaying = !paused;
+      });
+    });
     window.addEventListener("keydown", (event) => {
             if (event.keyCode == 32 && event.target == document.body) {
         event.preventDefault();
@@ -83,17 +90,17 @@ export default {
 </script>
 <style lang="less" scoped>
 #mix_frame {
-  border: 10px solid;
+  border: 10px solid #db2916;
   position: relative;
   z-index: 5;
   width: 262px;
   height: 59px;
   iframe {
-    width: 500px;
+    width: 400px;
     position: fixed;
-    bottom: 200px;
-    left: -200px;
-    height: 100px;
+    top: 280px;
+    left: -180px;
+    height: 20px;
     transform: rotate(-90deg);
   }
   #mix_frame_inner {
@@ -103,13 +110,12 @@ export default {
       height: 40px;
       cursor: pointer;
     }
-    .pod_mix {
-    }
     .title_mix {
       font-size: 13px;
       margin-top: 12px;
       height: 30px;
       overflow: hidden;
+      cursor: pointer;
     }
     div {
       .close_mix {

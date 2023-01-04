@@ -8,15 +8,15 @@
       <span class="live_info" v-if="titleVisible">
         <span v-if="livestream">Live         <span>{{ artist }}</span>
         <span class="dash" v-if="!livestream"> - </span>
-        <span class="show_title" >{{ title }}</span>
+        <span class="show_title">{{ title }}</span>
         <span style="margin-left: 15px"></span>
         <span v-if="livestream">Live         <span>{{ artist }}</span>
         <span class="dash" v-if="!livestream"> - </span>
-        <span class="show_title" >{{ title }}</span>
+        <span class="show_title">{{ title }}</span>
         <span style="margin-left: 15px"></span>
         <span v-if="livestream">Live         <span>{{ artist }}</span>
         <span class="dash" v-if="!livestream"> - </span>
-        <span class="show_title" >{{ title }}</span>
+        <span class="show_title">{{ title }}</span>
       </span>
     </div>
   </section>
