@@ -25,23 +25,17 @@
       </router-link>
     </section>
     <section id="bottomnav">
-      <Radio :today_shows="today_shows" :iframe_update="iframe_mix" />
+      <Radio
+        :today_shows="today_shows"
+        :iframe_update="iframe_mix"
+        :style="`display: ${iframe_mix ? 'none' : 'flex'}`"
+      />
       <img
         id="chaticon"
         src="../../assets/imgs/chat.svg"
         @click="chat = !chat"
       />
-      <section id="mix_frame" v-if="iframe_mix">
-        <iframe
-          height="20"
-          scrolling="no"
-          frameborder="no"
-          allow="autoplay"
-          :src="
-            `https:          "
-        ></iframe>
-        <img src="../../assets/imgs/cross_icon.png" @click="close_mix" />
-      </section>
+      <IframeSC :iframe_mix="iframe_mix" />
     </section>
     <section id="second" :style="`left: ${second ? '0' : '-100%'}`">
       <img
@@ -107,12 +101,14 @@
 <script>
 import Radio from "../Radio.vue";
 import Chat from "../Chat.vue";
+import IframeSC from "../IframeSC.vue";
 export default {
   name: "NavBar",
   props: ["today_shows", "iframe_mix"],
   components: {
     Radio,
     Chat,
+    IframeSC,
   },
   data() {
     return {
@@ -181,39 +177,6 @@ nav {
       padding: 15px;
       width: 40px;
       height: 40px;
-    }
-    #mix_frame {
-      position: absolute;
-      top: 15px;
-      left: 30px;
-      z-index: 5;
-      width: ~"calc(100% - 100px)";
-      iframe {
-        padding: 10px;
-        margin-bottom: -4px;
-        background-color: #f2f2f2;
-        width: ~"calc(100% - 56px)";
-        position: sticky;
-        bottom: 0px;
-        z-index: 5;
-      }
-      img {
-        cursor: pointer;
-        width: 25px;
-        background-color: #f2f2f2;
-        color: black;
-        font-weight: bold;
-        font-family: SpaceMono;
-        font-size: 13px;
-        border-left: 1px solid #e3e3e3;
-        padding: 8px 7px 7px 13px;
-        position: absolute;
-        right: 0px;
-        z-index: 3;
-        &:hover {
-          background-color: #e8e8e8;
-        }
-      }
     }
   }
   #chat_box {

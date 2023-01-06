@@ -8,6 +8,7 @@
   </main>
 </template>
 <script>
+import axios from "axios";
 import NavBar from "./mobile/NavBar.vue";
 import Right from "./Right.vue";
 export default {
@@ -23,9 +24,21 @@ export default {
     };
   },
   methods: {
-    iframe_set(id) {
-      this.iframe_mix = id;
+    iframe_set(pod) {
+      this.iframe_mix = pod;
     },
+  },
+  async mounted() {
+    const id = this.$route.params.mix_id;
+    if (id) {
+      await axios
+        .get(`${this.$config.VUE_APP_API}/sounds/tracks/${id}`)
+        .then((res) => {
+          this.iframe_mix = res.data;
+          this.iframe_mix.autoplay = false;
+        })
+        .catch(this.$router.push({ path: "/" }));
+    }
   },
 };
 </script>
