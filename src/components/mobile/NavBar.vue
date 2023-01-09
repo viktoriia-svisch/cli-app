@@ -177,6 +177,8 @@ nav {
       padding: 15px;
       width: 40px;
       height: 40px;
+      z-index: 2;
+      background-color: white;
     }
   }
   #chat_box {

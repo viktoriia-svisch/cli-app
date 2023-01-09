@@ -39,18 +39,7 @@
       :style="`display: ${showMore ? 'initial' : 'none'}`"
       @click="showMore = !showMore"
     ></section>
-    <section
-      class="more_info"
-      :style="`bottom: ${showMore ? '68px' : '-220px'}`"
-    >
-      <div>
-        <img :src="iframe_mix.podImg" />
-        <span
-          >{{ iframe_mix.title }}<br /><br /><i
-            >{{ Math.round(iframe_mix.duration / 60000) }} min</i
-          ><br /><br />{{ iframe_mix.description.slice(0, 150) }}...</span
-        >
-      </div>
+    <section class="more_info" :style="`bottom: ${showMore ? '68px' : '0px'}`">
       <iframe
         ref="sc_iframe"
         height="0"
@@ -99,17 +88,27 @@ export default {
     },
     toggleSound() {
       if (this.iframe_mix) {
-        SC.Widget(this.$refs.sc_iframe).toggle();         this.isPlaying = !this.isPlaying;
+        if (this.$refs.sc_iframe) {
+          SC.Widget(this.$refs.sc_iframe).toggle();                     SC.Widget(this.$refs.sc_iframe).isPaused((paused) => {
+            this.isPlaying = !paused;
+          });
+        }
       } else {
-        this.$parent.$refs.radio.play();
+        if (this.$parent.$refs.radio) {
+          this.$parent.$refs.radio.play();
+        } else {
+          this.$parent.$parent.$refs.radio.play();
+        }
       }
     },
   },
   mounted() {
     window.addEventListener("focus", () => {
-            SC.Widget(this.$refs.sc_iframe).isPaused((paused) => {
-        this.isPlaying = !paused;
-      });
+      if (this.$refs.sc_iframe) {
+                SC.Widget(this.$refs.sc_iframe).isPaused((paused) => {
+          this.isPlaying = !paused;
+        });
+      }
     });
     window.addEventListener("keydown", (event) => {
             if (event.keyCode == 32 && event.target == document.body) {
@@ -124,7 +123,6 @@ export default {
 #mix_frame {
   border: 10px solid #db2916;
   position: relative;
-  z-index: 5;
   width: 262px;
   height: 59px;
   .more_info {
@@ -194,9 +192,9 @@ export default {
       }
     }
     #more_info_shadow {
-      z-index: 2;
+      z-index: 1;
       width: ~"calc(100% - 0px)";
-      height: ~"calc(100% - 140px)";
+      height: ~"calc(100% - 138px)";
       position: fixed;
       left: 0;
       top: 69px;
@@ -207,21 +205,8 @@ export default {
       top: initial;
       left: 0;
       width: 100vw;
-      z-index: 2;
-      div {
-        padding-top: 7px;
-        padding-bottom: 7px;
-        img {
-          width: ~"calc(50% - 15px)";
-          margin-left: 7px;
-        }
-        span {
-          width: ~"calc(50% - 15px)";
-          position: absolute;
-          right: 7px;
-          font-size: 12px;
-        }
-      }
+      z-index: 1;
+      padding-top: 8px;
       iframe {
         width: inherit;
         height: 20px;
