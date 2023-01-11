@@ -39,7 +39,7 @@
       :style="`display: ${showMore ? 'initial' : 'none'}`"
       @click="showMore = !showMore"
     ></section>
-    <section class="more_info" :style="`bottom: ${showMore ? '68px' : '0px'}`">
+    <section class="more_info" :style="`opacity: ${showMore ? '1' : '0'}`">
       <iframe
         ref="sc_iframe"
         height="0"
@@ -96,7 +96,7 @@ export default {
       } else {
         if (this.$parent.$refs.radio) {
           this.$parent.$refs.radio.play();
-        } else {
+        } else if (this.$parent.$parent.$refs.radio) {
           this.$parent.$parent.$refs.radio.play();
         }
       }
@@ -207,6 +207,7 @@ export default {
       width: 100vw;
       z-index: 1;
       padding-top: 8px;
+      bottom: 69px;
       iframe {
         width: inherit;
         height: 20px;
