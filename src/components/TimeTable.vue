@@ -115,11 +115,7 @@ export default {
       }
     }
   }
-  @media (max-width: 770px) {
-    max-width: 330px;
-    margin: 60px auto 0px auto;
-  }
-  @media (max-width: 730px) {
+  @media (max-width: 815px) {
     max-width: initial;
     margin: 0;
     width: 100%;

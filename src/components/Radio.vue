@@ -173,7 +173,7 @@ export default {
       width: 150px;
     }
   }
-  @media (max-width: 730px) {
+  @media (max-width: 815px) {
     width: calc(100% - 125px);
     margin-left: 20px;
     justify-content: flex-start;

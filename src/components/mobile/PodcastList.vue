@@ -35,7 +35,7 @@ export default {
   @media (max-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: 770px) {
+  @media (max-width: 815px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 650px) {

@@ -5,7 +5,7 @@
       v-for="pod in pods"
       v-bind:key="pod.key"
       :pod="pod"
-      :nb_tags="innerWidth >= 730 ? 2 : 1"
+      :nb_tags="innerWidth >= 815 ? 2 : 1"
     />
   </section>
 </template>
@@ -45,7 +45,7 @@ export default {
   @media (max-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: 770px) {
+  @media (max-width: 815px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 650px) {

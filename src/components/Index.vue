@@ -213,7 +213,7 @@ main {
       flex-direction: column;
     }
   }
-  @media (max-width: 730px) {
+  @media (max-width: 815px) {
     .timetable {
       display: initial;
     }

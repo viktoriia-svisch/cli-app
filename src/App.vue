@@ -1,7 +1,7 @@
 <template>
   <div id="app" :style="'background-color:' + color + ';'">
-    <img class="bg_img" :src="innerWidth >= 730 ? bg : bg_mb" />
-    <div v-if="innerWidth >= 730" class="bg">
+    <img class="bg_img" :src="innerWidth >= 815 ? bg : bg_mb" />
+    <div v-if="innerWidth >= 815" class="bg">
       <Fullscreen :color="color" />
     </div>
     <div v-else class="bg">
@@ -102,7 +102,7 @@ body {
       margin-right: 20px;
     }
   }
-  @media (max-width: 770px) {
+  @media (max-width: 815px) {
     -webkit-user-select: none; 
     -moz-user-select: none; 
     -ms-user-select: none; 

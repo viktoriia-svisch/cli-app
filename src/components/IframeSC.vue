@@ -181,8 +181,11 @@ export default {
       }
       .title_mix {
         margin-top: 12px;
+        width: ~"calc(100% - 110px)";
       }
       div {
+        position: absolute;
+        right: 0;
         .close_mix {
           margin-top: 10px;
         }

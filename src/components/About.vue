@@ -94,7 +94,7 @@ export default {
       border-bottom: none;
     }
   }
-  @media (max-width: 770px) {
+  @media (max-width: 815px) {
     width: initial;
     #legaltable {
       margin: 0;
