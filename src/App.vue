@@ -84,11 +84,13 @@ body {
   }
   .marged {
     max-width: 1200px;
-    margin: 10px auto 0px auto;
+    margin: 20px auto 0px auto;
   }
   .subtitle {
     font-size: 24px;
     color: white;
+    margin-bottom: 10px;
+    display: inline-block;
   }
   .voirplus {
     position: absolute;

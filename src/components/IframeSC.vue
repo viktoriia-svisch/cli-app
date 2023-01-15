@@ -128,12 +128,13 @@ export default {
   .more_info {
     background-color: white;
     position: fixed;
-    top: 280px;
-    left: -180px;
-    transform: rotate(-90deg);
+    left: 0px;
     transition: 0.5s;
+    width: 100%;
+    top: 79px;
     iframe {
-      width: 400px;
+      width: ~"calc(100% + 125px)";
+      margin-left: -21px;
       height: 20px;
     }
   }
@@ -168,6 +169,7 @@ export default {
         width: 25px;
         height: 25px;
         padding: 5px 5px 5px 5px;
+        margin-top: 11px;
       }
     }
   }
