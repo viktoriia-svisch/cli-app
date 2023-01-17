@@ -61,6 +61,7 @@ export default {
       this.isPlaying = false;
       this.showMore = true;
             if (newMix != "") {
+        document.title = `ODC Live - ${newMix.title}`;
         setTimeout(() => {
                     SC.Widget(this.$refs.sc_iframe).bind(
             SC.Widget.Events.READY,             () => {
@@ -89,6 +90,7 @@ export default {
     toggleSound() {
       if (this.iframe_mix) {
         if (this.$refs.sc_iframe) {
+          document.title = `ODC Live - ${this.iframe_mix.title}`;
           SC.Widget(this.$refs.sc_iframe).toggle();                     SC.Widget(this.$refs.sc_iframe).isPaused((paused) => {
             this.isPlaying = !paused;
           });
