@@ -61,7 +61,14 @@ export default {
       this.isPlaying = false;
       this.showMore = true;
             if (newMix != "") {
+                if (!newMix.artwork_url) {
+          newMix.podImg = newMix.avatar_url;
+        } else {
+          newMix.podImg = newMix.artwork_url;
+        }
+        newMix.podImg = newMix.podImg.replace("-large", "-t500x500");
         document.title = `ODC Live - ${newMix.title}`;
+        this.setMetadata();
         setTimeout(() => {
                     SC.Widget(this.$refs.sc_iframe).bind(
             SC.Widget.Events.READY,             () => {
@@ -82,6 +89,20 @@ export default {
     };
   },
   methods: {
+    setMetadata() {
+      const title = document.createElement("meta");
+      title.setAttribute("property", "og:title");
+      title.setAttribute("content", this.iframe_mix.title);
+      const desc = document.createElement("meta");
+      desc.setAttribute("property", "og:description");
+      desc.setAttribute("content", this.iframe_mix.description);
+      const img = document.createElement("meta");
+      img.setAttribute("property", "og:image");
+      img.setAttribute("content", this.iframe_mix.podImg);
+      document.getElementsByTagName("head")[0].appendChild(title);
+      document.getElementsByTagName("head")[0].appendChild(desc);
+      document.getElementsByTagName("head")[0].appendChild(img);
+    },
     close_mix() {
             SC.Widget(this.$refs.sc_iframe).unbind(SC.Widget.Events.READY);
       this.isPlaying = false;
