@@ -37,7 +37,9 @@ export default {
           this.iframe_mix = res.data;
           this.iframe_mix.autoplay = false;
         })
-        .catch(this.$router.push({ path: "/" }));
+        .catch(() => {
+          this.$router.push({ path: "/" });
+        });
     }
   },
 };
