@@ -1,5 +1,9 @@
 <template>
-  <section id="mix_frame" v-if="iframe_mix">
+  <section
+    id="mix_frame"
+    :style="`border-color: ${color}`"
+    v-if="iframe_mix"
+  >
     <div id="mix_frame_inner">
       <img
         src="../assets/imgs/play.svg"
@@ -53,6 +57,7 @@
   </section>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "IframeSC",
   props: ["iframe_mix"],
@@ -86,6 +91,7 @@ export default {
     return {
       isPlaying: false,
       showMore: true,
+      color: "#000000"
     };
   },
   methods: {
@@ -139,14 +145,19 @@ export default {
         this.toggleSound();
       }
     });
+    axios
+      .get(`${this.$config.VUE_APP_API}/upload/color?t=${new Date().getTime()}`)
+      .then((response) => {
+        this.color = response.data.color;
+      });
   },
 };
 </script>
 <style lang="less" scoped>
 #mix_frame {
-  border: 10px solid #db2916;
+  border: 6px solid;
   position: relative;
-  width: 262px;
+  width: 266px;
   height: 59px;
   .more_info {
     background-color: white;
