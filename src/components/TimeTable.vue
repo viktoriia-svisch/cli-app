@@ -6,7 +6,7 @@
         <span class="side">
           <u
             >De {{ enhanceDate(show.starts_at) }} à
-            {{ enhanceDate(show.ends_at) }}</u
+            {{ enhanceDate(show.ends_at) }}:</u
           ></span
         >
         <span> {{ show.name }}</span
@@ -42,8 +42,7 @@ export default {
     enhanceDate(ts) {
       return new Date(Number(ts)).toLocaleTimeString("fr-FR", {
         hour: "2-digit",
-        minute: "2-digit",
-        timeZone: "UTC",
+                timeZone: "UTC",
       });
     },
     async getCalendar(date) {
@@ -92,18 +91,21 @@ export default {
       padding: 5px 10px 8px 10px;
       margin-bottom: 8px;
       background-color: #2b2b2b3b;
-      word-break: break-all;
+      word-break: break-word;
       .side {
         font-family: Kiona;
         letter-spacing: -1px;
       }
       .genre {
+        display: block;
+        margin-top: 7px;
+        text-align: center;
         position: relative;
         top: 4px;
         font-size: 15px;
         margin-right: 10px;
         background-color: #00000020;
-        padding: 0px 4px 2px 4px;
+        padding: 5px 10px 2px 10px;
         cursor: pointer;
         a {
           color: white;

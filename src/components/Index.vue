@@ -114,7 +114,7 @@ main {
   }
   .input {
     max-width: 500px;
-    padding: 5px 17px 6px 17px;
+    padding: 10px 17px 6px 17px;
     margin: 8px 0;
     box-sizing: border-box;
     font-family: KionaBold;
@@ -168,7 +168,7 @@ main {
     background-color: #00000040;
     position: relative;
     height: 24px;
-    padding: 5px 5px 0px 20px;
+    padding: 8px 5px 0px 20px;
     margin-top: 10px;
     cursor: pointer;
     &:hover {

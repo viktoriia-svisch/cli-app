@@ -236,7 +236,7 @@ nav {
       padding-right: 30px;
       padding-top: 20px;
       margin: 0px;
-      padding: 28px 30px 0px 30px;
+      padding: 30px 30px 0px 30px;
       color: black;
       cursor: pointer;
     }

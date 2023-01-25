@@ -1,5 +1,5 @@
 <template>
-  <section id="podcast">
+  <section id="podcast" v-if="pod.genres">
     <img
       :src="podImg"
       class="podimg"
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       podImg: "",
-      share_msg: "partager",
+      share_msg: "Partager",
     };
   },
   methods: {
@@ -49,9 +49,9 @@ export default {
       var result = document.execCommand("copy");
       document.body.removeChild(input);
       if (result == true) {
-        this.share_msg = "copié";
+        this.share_msg = "Copié";
         setTimeout(() => {
-          this.share_msg = "partager";
+          this.share_msg = "Partager";
         }, 1000);
       }
     },
@@ -68,7 +68,7 @@ export default {
     if (this.pod.genres != null) {
       this.pod.genres = this.pod.genres.map((g) => {
         if (g[0] == '"') return g.substring(1, g.length - 1);
-        return g;
+        return g.toLowerCase();
       });
     }
     if (!this.pod.artwork_url) {
@@ -95,10 +95,9 @@ export default {
     text-overflow: ellipsis;
     .genre {
       font-size: 15px;
-      padding: 5px 8px 5px 8px;
+      padding: 10px 8px 5px 8px;
       cursor: pointer;
       font-family: KionaBold;
-      letter-spacing: -1px;
       text-align: center;
       background-color: #2b2b2b3b;
       margin-top: 5px;
@@ -113,7 +112,7 @@ export default {
     }
     .share {
       font-size: 15px;
-      padding: 5px 8px 5px 8px;
+      padding: 15px 8px 5px 8px;
       cursor: pointer;
       font-family: KionaBold;
       letter-spacing: -1px;
@@ -131,6 +130,11 @@ export default {
         margin: 0 auto;
         span {
           width: 65px;
+        }
+        img {
+          margin-top: -3px;
+          margin-bottom: 5px;
+          width: 20px;
         }
       }
     }

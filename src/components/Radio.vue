@@ -157,6 +157,7 @@ export default {
     height: 40px;
   }
   .reddot {
+    margin-top: 7px;
     margin-left: 10px;
     margin-right: 20px;
     color: red;

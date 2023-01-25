@@ -47,7 +47,7 @@ article {
   .input {
     width: 300px;
     max-width: 500px;
-    padding: 5px 17px 6px 17px;
+    padding: 10px 17px 6px 17px;
     margin: 8px 0;
     box-sizing: border-box;
     font-family: KionaBold;
@@ -66,7 +66,7 @@ article {
     justify-content: space-between;
     .filter {
       position: relative;
-      padding: 2px 4px 2px 20px;
+      padding: 5px 4px 2px 20px;
       cursor: pointer;
       text-align: center;
       background-color: #ffffff40;

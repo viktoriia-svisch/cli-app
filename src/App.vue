@@ -48,11 +48,11 @@ export default {
 <style lang="less">
 @font-face {
   font-family: Kiona;
-  src: url("./assets/fonts/Kiona.woff");
+  src: url("./assets/fonts/nexa_light.otf");
 }
 @font-face {
   font-family: KionaBold;
-  src: url("./assets/fonts/KionaBold.woff");
+  src: url("./assets/fonts/nexa_bold.otf");
 }
 body {
   margin: 0;
@@ -93,6 +93,7 @@ body {
     display: inline-block;
   }
   .voirplus {
+    padding-top: 8px;
     position: absolute;
     top: 9px;
     font-size: 16px;
