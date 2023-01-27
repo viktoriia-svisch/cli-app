@@ -6,17 +6,17 @@
     <span class="reddot">•</span>
     <div class="title">
       <span class="live_info" v-if="titleVisible">
-        <span v-if="livestream">Live         <span>{{ artist }}</span>
+        <span v-if="livestream">Live         <span class="invis">{{ artist }}</span>
         <span class="dash" v-if="!livestream"> - </span>
-        <span class="show_title">{{ title }}</span>
+        <span class="show_title invis">{{ title }}</span>
         <span style="margin-left: 15px"></span>
         <span v-if="livestream">Live         <span>{{ artist }}</span>
         <span class="dash" v-if="!livestream"> - </span>
         <span class="show_title">{{ title }}</span>
         <span style="margin-left: 15px"></span>
-        <span v-if="livestream">Live         <span>{{ artist }}</span>
-        <span class="dash" v-if="!livestream"> - </span>
-        <span class="show_title">{{ title }}</span>
+        <span v-if="livestream">Live         <span class="invis">{{ artist }}</span>
+        <span class="dash invis" v-if="!livestream"> - </span>
+        <span class="show_title invis">{{ title }}</span>
       </span>
     </div>
   </section>
@@ -182,13 +182,15 @@ export default {
       margin-bottom: 5px;
       white-space: initial;
       width: initial;
+      .invis {
+        color: white !important;
+      } 
       .live_info {
+        margin-top: -2px;
         animation: initial;
         display: block;
         font-size: 11px;
         text-align: left;
-        --end-percent: ~"calc(-20% - 11px)";
-        animation: marquee_mobile 5s linear infinite;
         span {
           display: block;
         }
@@ -197,14 +199,6 @@ export default {
         }
         .show_title {
           color: #7d7d7d;
-        }
-      }
-      @keyframes marquee_mobile {
-        0% {
-          transform: translate(0, 0);
-        }
-        100% {
-          transform: translate(0, var(--end-percent));
         }
       }
     }
