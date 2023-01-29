@@ -145,7 +145,7 @@ export default {
       .tmsg {
         background-color: #00000030;
         display: inline-block;
-        width: 45px;
+        width: 48px;
         padding: 5px 4px 1px 5px;
         margin-left: 5px;
         margin-right: 10px;
