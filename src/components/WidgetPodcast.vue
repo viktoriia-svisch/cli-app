@@ -67,8 +67,8 @@ export default {
     this.pod.genres = this.pod.tag_list.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
     if (this.pod.genres != null) {
       this.pod.genres = this.pod.genres.map((g) => {
-        if (g[0] == '"') return g.substring(1, g.length - 1);
-        return g.toLowerCase();
+        if (g[0] == '"') return g.substring(1, g.length - 1).toUpperCase();
+        else return g.toUpperCase();
       });
     }
     if (!this.pod.artwork_url) {
