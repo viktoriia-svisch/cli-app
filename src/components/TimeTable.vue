@@ -92,12 +92,12 @@ export default {
       margin-bottom: 8px;
       background-color: #2b2b2b3b;
       word-break: break-word;
+      padding-bottom: 12px;
       .side {
         font-family: Kiona;
         letter-spacing: -1px;
       }
       .genre {
-        display: block;
         margin-top: 7px;
         text-align: center;
         position: relative;

@@ -52,7 +52,7 @@ export default {
 }
 @font-face {
   font-family: KionaBold;
-  src: url("./assets/fonts/nexa_bold.otf");
+  src: url("./assets/fonts/nexa_heavy.otf");
 }
 body {
   margin: 0;
@@ -84,7 +84,7 @@ body {
   }
   .marged {
     max-width: 1200px;
-    margin: 20px auto 0px auto;
+    margin: 50px auto 0px auto;
   }
   .subtitle {
     font-size: 24px;

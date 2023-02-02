@@ -98,7 +98,7 @@ export default {
   props: ["today_shows", "color", "iframe_mix"],
   watch: {
     color: (newCol) => {
-      const css = `.menu a:hover {background-color: ${newCol}35;}`;
+      const css = `.menu a:hover {color: ${newCol}35;}`;
       const style = document.createElement("style");
       if (style.styleSheet) {
         style.styleSheet.cssText = css;

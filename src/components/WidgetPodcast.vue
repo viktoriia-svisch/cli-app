@@ -89,6 +89,7 @@ export default {
     bottom: 4px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
