@@ -70,7 +70,7 @@ main {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    font-family: KionaBold;
+    font-family: NexaBold;
     border-radius: 0px;
     border: 0px;
     color: white;

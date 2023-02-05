@@ -6,7 +6,7 @@
         <img id="prec" src="../assets/imgs/play_white.svg" />
         Semaine précédente
       </h3>
-      <h3 v-if="date">
+      <h3 class="semaine_title" v-if="date">
         Semaine du
         {{
           `${new Date(
@@ -214,11 +214,15 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    .semaine_title {
+      font-family: NexaHeavy;
+    }
     .chgWeek {
-      padding: 5px 4px 2px 4px;
+      padding: 5px 10px 2px 10px;
       background-color: #ffffff2e;
       cursor: pointer;
       font-size: 15px;
+      font-family: NexaBold;
       img {
         position: relative;
         top: 2px;
@@ -246,25 +250,26 @@ export default {
     .day {
       padding: 10px 4px 20px 4px;
       background-color: #ffffff40;
+      font-family: NexaHeavy;
       .show {
         padding: 5px 10px 1px 0px;
         margin-top: 15px;
+        u {
+          font-family: NexaBold;
+        }
         .side {
-          font-family: Kiona;
+          font-family: Nexa;
           letter-spacing: -1px;
         }
         .genreHld {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-gap: 10px;
-          grid-auto-rows: minmax(auto, auto);
           .genre {
+            font-family: NexaBold;
             position: relative;
             top: 4px;
             font-size: 15px;
             margin-right: 10px;
             background-color: #00000020;
-            padding: 0px 4px 2px 4px;
+            padding: 5px 10px 2px 10px;
             cursor: pointer;
             text-align: center;
             padding-top: 5px;
@@ -287,6 +292,7 @@ export default {
     .mobile_week_header,
     .mobile_week_title {
       display: flex;
+      font-family: NexaHeavy;
     }
     .week {
       width: 630px;

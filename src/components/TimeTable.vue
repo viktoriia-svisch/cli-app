@@ -94,7 +94,7 @@ export default {
       word-break: break-word;
       padding-bottom: 12px;
       .side {
-        font-family: Kiona;
+        font-family: NexaBold;
         letter-spacing: -1px;
       }
       .genre {

@@ -162,7 +162,7 @@ nav {
       max-width: 500px;
       padding: 10px 20px;
       margin: 8px 0;
-      font-family: KionaBold;
+      font-family: NexaBold;
       border-radius: 0px;
       border: 0px;
       color: black;

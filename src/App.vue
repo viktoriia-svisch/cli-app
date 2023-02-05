@@ -47,16 +47,24 @@ export default {
 </script>
 <style lang="less">
 @font-face {
-  font-family: Kiona;
+  font-family: NexaLight;
   src: url("./assets/fonts/nexa_light.otf");
 }
 @font-face {
-  font-family: KionaBold;
+  font-family: NexaRegular;
+  src: url("./assets/fonts/nexa_regular.otf");
+}
+@font-face {
+  font-family: NexaBold;
+  src: url("./assets/fonts/nexa_bold.otf");
+}
+@font-face {
+  font-family: NexaHeavy;
   src: url("./assets/fonts/nexa_heavy.otf");
 }
 body {
   margin: 0;
-  font-family: KionaBold;
+  font-family: NexaRegular;
   -webkit-font-smoothing: antialiased;
   #app {
     .bg_img {
@@ -91,6 +99,7 @@ body {
     color: white;
     margin-bottom: 10px;
     display: inline-block;
+    font-family: NexaHeavy;
   }
   .voirplus {
     padding-top: 8px;

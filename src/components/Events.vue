@@ -109,10 +109,10 @@ main {
       }
       p {
         font-size: 16px;
-        font-family: KionaBold;
+        font-family: NexaBold;
         margin: 0;
         .imp {
-          font-family: KionaBold;
+          font-family: NexaBold;
         }
       }
     }
@@ -129,7 +129,7 @@ main {
     }
     #bloc2 {
       p {
-        font-family: Kiona;
+        font-family: NexaBold;
       }
       bottom: 120px;
       right: 0px;
@@ -141,7 +141,7 @@ main {
       bottom: 120px;
       width: 700px;
       p {
-        font-family: Kiona;
+        font-family: NexaBold;
       }
     }
   }
@@ -151,21 +151,21 @@ main {
       top: 120px;
       right: 0px;
       p {
-        font-family: Kiona;
+        font-family: NexaBold;
       }
     }
     #bloc2 {
       bottom: 220px;
       left: 0;
       p {
-        font-family: Kiona;
+        font-family: NexaBold;
       }
     }
     #bloc3 {
       bottom: 120px;
       right: 0;
       p {
-        font-family: Kiona;
+        font-family: NexaBold;
       }
     }
   }
