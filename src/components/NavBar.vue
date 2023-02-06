@@ -161,16 +161,12 @@ nav {
       width: 260px;
       max-width: 500px;
       padding: 10px 20px;
-      margin: 8px 0;
+      margin: 12px 0;
       font-family: NexaBold;
       border-radius: 0px;
       border: 0px;
       color: black;
       background-color: #e8e8e8;
-      background-image: url("../assets/imgs/play_white.svg");
-      background-repeat: no-repeat;
-      background-size: 30px 30px;
-      background-position: right 10px top 4px;
     }
   }
   #second_shadow {
@@ -228,6 +224,7 @@ nav {
   }
   .flex {
     display: flex;
+    font-family: NexaBold;
     justify-content: space-between;
   }
   .menu {

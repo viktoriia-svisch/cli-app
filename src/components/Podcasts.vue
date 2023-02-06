@@ -7,7 +7,6 @@
     <section class="flex">
       <div class="more" @click="getPodcasts">
         <span class="voirplus">En voir plus</span>
-        <img src="../assets/imgs/play_white.svg" width="30" />
       </div>
     </section>
   </main>
@@ -78,7 +77,7 @@ main {
       }
       span {
         position: relative;
-        top: -1px;
+        top: 2px;
         margin-right: 40px;
       }
       img {

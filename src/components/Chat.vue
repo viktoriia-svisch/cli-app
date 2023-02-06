@@ -128,10 +128,6 @@ export default {
       border: 0px;
       color: white;
       background-color: #ffffff40;
-      background-image: url("../assets/imgs/play_white.svg");
-      background-repeat: no-repeat;
-      background-size: 16px 24px;
-      background-position: right 10px top 2px;
     }
   }
   #msg {

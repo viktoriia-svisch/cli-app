@@ -258,7 +258,7 @@ export default {
           font-family: NexaBold;
         }
         .side {
-          font-family: Nexa;
+          font-family: NexaRegular;
           letter-spacing: -1px;
         }
         .genreHld {

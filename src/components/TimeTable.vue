@@ -9,10 +9,11 @@
             {{ enhanceDate(show.ends_at) }}:</u
           ></span
         >
-        <span> {{ show.name }}</span
+        <span class="show_name"> {{ show.name }}</span
         ><br />
         <span v-if="show.dj.length"
-          ><span class="side">Animee par</span> {{ show.dj }}</span
+          ><span class="side">Animee par</span>
+          <span class="artist_name">{{ show.dj }}</span></span
         ><br />
         <span class="side" v-if="show.redundancy"
           >Toutes les
@@ -93,6 +94,12 @@ export default {
       background-color: #2b2b2b3b;
       word-break: break-word;
       padding-bottom: 12px;
+      .artist_name {
+        font-family: NexaHeavy;
+      }
+      .show_name {
+        font-family: NexaHeavy;
+      }
       .side {
         font-family: NexaBold;
         letter-spacing: -1px;

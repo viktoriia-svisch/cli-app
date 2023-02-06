@@ -6,7 +6,6 @@
     <section class="flex">
       <div class="more" @click="searchPodcasts" v-if="more">
         <span class="moretitle">En chercher plus</span>
-        <img src="../assets/imgs/play_white.svg" width="30" />
       </div>
     </section>
   </main>
@@ -75,10 +74,6 @@ main {
     border: 0px;
     color: white;
     background-color: #ffffff40;
-    background-image: url("../assets/imgs/play_white.svg");
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
-    background-position: right 10px top 6px;
   }
   .flex {
     justify-content: right;

@@ -14,7 +14,6 @@
       />
       <div class="more" @click="$router.push({ path: '/podcasts' })">
         <span class="voirplus">En voir plus</span>
-        <img src="../assets/imgs/play_white.svg" width="30" />
       </div>
     </section>
     <section id="events_sec" v-if="events.length">
@@ -122,10 +121,6 @@ main {
     border: 0px;
     color: white;
     background-color: #ffffff40;
-    background-image: url("../assets/imgs/play_white.svg");
-    background-repeat: no-repeat;
-    background-size: 16px 24px;
-    background-position: right 10px top 2px;
   }
   #events_sec {
     margin-top: 20px;
