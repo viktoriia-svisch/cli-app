@@ -12,7 +12,7 @@
         <span class="show_name"> {{ show.name }}</span
         ><br />
         <span v-if="show.dj.length"
-          ><span class="side">Animee par</span>
+          ><span class="side">Animee par </span>
           <span class="artist_name">{{ show.dj }}</span></span
         ><br />
         <span class="side" v-if="show.redundancy"
