@@ -124,6 +124,9 @@ body {
         min-height: ~"calc(100vh - 100px)";
         padding-bottom: 15px;
       }
+      .subtitle {
+        margin-top: 40px;
+      }
     }
     .main_section {
       flex-direction: column-reverse;

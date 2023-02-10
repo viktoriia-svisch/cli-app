@@ -8,7 +8,7 @@
       v-on:keyup.enter="sendQuery"
     />
     <p id="filters">
-      <span>
+      <span class="filter_head">
         filtres - 
       </span>
       <span class="filter" @click="pushQuery('selecta')">selecta</span>
@@ -60,9 +60,13 @@ article {
     margin: 15px 0px 13px 0px;
     display: flex;
     justify-content: space-between;
+    .filter_head {
+      position: relative;
+      padding: 5px 4px 2px 5px;
+    }
     .filter {
       position: relative;
-      padding: 5px 4px 2px 20px;
+      padding: 5px 4px 2px 5px;
       cursor: pointer;
       text-align: center;
       background-color: #ffffff40;
@@ -75,7 +79,6 @@ article {
       left: 10px;
       width: 8px;
       height: 8px;
-      background-image: url("../assets/imgs/square.png");
     }
   }
   @media (max-width: 1100px) {

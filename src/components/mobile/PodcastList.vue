@@ -27,7 +27,7 @@ export default {
   grid-gap: 10px;
   grid-auto-rows: minmax(auto, auto);
   .podcast {
-    margin: 0 auto;
+    margin: 0 5px;
   }
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);

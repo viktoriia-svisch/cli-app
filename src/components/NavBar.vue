@@ -27,7 +27,9 @@
         :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
       />
       <IframeSC :iframe_mix="iframe_mix" />
-      <section id="search_sec">
+      <section id="search_sec" :style="
+        `display: ${iframe_mix ? 'none' : 'initial'};`
+      ">
         <img
           src="../assets/imgs/search.svg"
           class="search"

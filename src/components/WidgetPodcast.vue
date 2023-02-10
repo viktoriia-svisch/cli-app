@@ -113,7 +113,7 @@ export default {
     }
     .share {
       font-size: 15px;
-      padding: 15px 8px 5px 8px;
+      padding: 9px 8px 3px 3px;
       cursor: pointer;
       font-family: NexaBold;
       letter-spacing: -1px;
