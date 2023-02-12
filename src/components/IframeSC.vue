@@ -1,9 +1,5 @@
 <template>
-  <section
-    id="mix_frame"
-    :style="`border-color: ${color}`"
-    v-if="iframe_mix"
-  >
+  <section id="mix_frame" v-if="iframe_mix">
     <div id="mix_frame_inner">
       <img
         src="../assets/imgs/play.svg"
@@ -17,7 +13,11 @@
         v-else
         @click="toggleSound"
       />
-      <span @click="toggleSound" class="title_mix">{{ iframe_mix.title }}</span>
+      <div class="title">
+        <span class="live_info" @click="toggleSound">
+          {{ iframe_mix.title }} {{ iframe_mix.title }}
+        </span>
+      </div>
       <div>
         <img
           class="more_mix"
@@ -91,7 +91,7 @@ export default {
     return {
       isPlaying: false,
       showMore: true,
-      color: "#000000"
+      color: "#000000",
     };
   },
   methods: {
@@ -155,10 +155,10 @@ export default {
 </script>
 <style lang="less" scoped>
 #mix_frame {
-  border: 6px solid;
   position: relative;
   width: 266px;
   height: 59px;
+  color: #f50;
   .more_info {
     background-color: white;
     position: fixed;
@@ -174,17 +174,40 @@ export default {
   }
   #mix_frame_inner {
     display: flex;
+    margin-top: 9px;
     .playBtn {
       margin-top: 8px;
       height: 40px;
       cursor: pointer;
     }
-    .title_mix {
-      font-size: 13px;
-      margin-top: 12px;
-      height: 30px;
+    .title {
+      margin-top: 23px;
+      line-height: 75px;
+      text-align: center;
+      width: 200px;
+      white-space: nowrap;
       overflow: hidden;
-      cursor: pointer;
+      box-sizing: border-box;
+      .live_info {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        --end-percent: ~"calc(-33% - 9px)";
+        animation: marquee 10s linear infinite;
+      }
+      &:hover {
+        .live_info {
+          animation-play-state: paused;
+        }
+      }
+      @keyframes marquee {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(var(--end-percent), 0);
+        }
+      }
     }
     div {
       display: flex;
