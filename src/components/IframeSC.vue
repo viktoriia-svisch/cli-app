@@ -231,16 +231,19 @@ export default {
     }
   }
   @media (max-width: 815px) {
-    border: 6px solid #db2916;
     height: 57px;
     width: ~"calc(100% - 90px)";
     #mix_frame_inner {
+      margin-top: 10px;
       .playBtn {
         margin-top: 7px;
+        margin-left: 7px;
       }
-      .title_mix {
-        margin-top: 12px;
-        width: ~"calc(100% - 110px)";
+      .title {
+        margin-top: 20px;
+        position: relative;
+        margin-left: 10px;
+        width: calc(100% - 130px);
       }
       div {
         position: absolute;
