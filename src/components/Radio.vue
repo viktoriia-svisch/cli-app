@@ -177,30 +177,12 @@ export default {
   @media (max-width: 815px) {
     width: calc(100% - 125px);
     margin-left: 20px;
-    justify-content: flex-start;
     .title {
-      margin-bottom: 5px;
-      white-space: initial;
-      width: initial;
-      .invis {
-        color: white !important;
-      } 
-      .live_info {
-        margin-top: -2px;
-        animation: initial;
-        display: block;
-        font-size: 11px;
-        text-align: left;
-        span {
-          display: block;
-        }
-        .dash {
-          display: none;
-        }
-        .show_title {
-          color: #7d7d7d;
-        }
-      }
+      margin-top: -15px;
+      width: calc(100% - 90px);
+    }
+    .reddot {
+      margin-top: 5px;
     }
   }
 }
