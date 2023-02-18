@@ -131,7 +131,7 @@ export default {
     }
   }
   #msg {
-    margin-top: 15px;
+    margin-top: 10px;
     overflow: auto;
     height: 290px;
     background-color: #2b2b2b3b;
