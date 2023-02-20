@@ -296,6 +296,18 @@ export default {
     }
     .week {
       width: 630px;
+      .day {
+        .show {
+          padding: 5px 0px 1px 0px;
+          .genreHld {
+            display: grid;
+            grid-gap: 5px;
+            .genre {
+              margin-right: 0px;
+            }
+          }
+        }
+      }
     }
   }
   @media (max-width: 1000px) {
