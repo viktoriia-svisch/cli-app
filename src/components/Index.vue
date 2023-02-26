@@ -191,6 +191,8 @@ main {
         .event {
           div {
             width: 100%;
+            height: initial;
+            margin-bottom: -6px;
             img {
               height: initial;
               width: 100%;

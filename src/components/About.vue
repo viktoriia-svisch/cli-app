@@ -1,6 +1,10 @@
 <template>
   <section id="legalholder">
     <h2>Mentions legales:</h2>
+    <p>
+      ODC Live est un projet qui a reçu le soutien de la région Grand Est et de
+      la ville de Strasbourg.
+    </p>
     <table id="legaltable">
       <tr>
         <th>Association</th>
