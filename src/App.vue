@@ -64,8 +64,7 @@ export default {
 }
 body {
   margin: 0;
-  font-family: NexaRegular;
-  -webkit-font-smoothing: antialiased;
+  font-family: Nexa;
   #app {
     .bg_img {
       position: fixed;
