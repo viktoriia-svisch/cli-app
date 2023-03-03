@@ -149,5 +149,15 @@ export default {
       opacity: 0.5;
     }
   }
+  @media (max-width: 1200px) {
+    .podimg {
+      width: 100%;
+    }
+  }
+  @media (max-width: 815px) {
+    .podimg {
+      width: 200px;
+    }
+  }
 }
 </style>

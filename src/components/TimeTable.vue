@@ -105,10 +105,9 @@ export default {
         letter-spacing: -1px;
       }
       .genre {
-        margin-top: 7px;
+        display: inline-block;
+        margin-top: 5px;
         text-align: center;
-        position: relative;
-        top: 4px;
         font-size: 15px;
         margin-right: 10px;
         background-color: #00000020;
