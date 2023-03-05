@@ -1,6 +1,9 @@
 <template>
   <section id="chat">
-    <span class="subtitle" id="chat_title">La chatroom</span>
+    <div id="chattitle" @click="open_chat">
+      <span class="subtitle" id="chat_title">La chatroom</span>
+      <img src="../assets/imgs/open_link_icon.png" class="open_link" />
+    </div>
     <section id="msg" ref="msg">
       <tr class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
         <td class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">
@@ -56,6 +59,9 @@ export default {
     };
   },
   methods: {
+    open_chat() {
+      window.open(this.$config.VUE_APP_CHAT);
+    },
     send_msg() {
       if (this.pseudo.length == 0) {
         return;
@@ -116,6 +122,26 @@ export default {
 #chat {
   color: white;
   width: 300px;
+  #chattitle {
+    position: relative;
+    top: -15px;
+    left: -4px;
+    width: 100%;
+    padding: 15px 4px 0px 4px;
+    margin-bottom: -15px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    &:hover {
+      background-color: #ffffff40;
+    }
+    .open_link {
+      width: 30px;
+      height: 30px;
+      bottom: 6px;
+      position: relative;
+    }
+  }
   #chatSend {
     margin-top: 4px;
     .inputchat {
