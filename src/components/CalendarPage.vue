@@ -181,7 +181,7 @@ export default {
       }
     },
     async changeWeek(sign) {
-      let date = new Date(this.week);
+      let date = new Date(this.date);
       if (sign == "+") {
         date.setDate(date.getDate() + 7);
       } else {
@@ -195,7 +195,8 @@ export default {
     getMonday() {
       const curr = new Date();
       const first = curr.getDate() - curr.getDay() + 1;
-      return new Date(curr.setDate(first));
+      let ret = new Date(curr.setDate(first));
+      ret.setHours(12, 0, 0);       return ret;
     },
   },
   async mounted() {
