@@ -16,6 +16,10 @@
         <span class="voirplus">En voir plus</span>
       </div>
     </section>
+    <section id="playlists_sec">
+      <span class="subtitle">Les playlists de la radio</span>
+      <PlaylistList />
+    </section>
     <section id="events_sec" v-if="events.length">
       <span class="subtitle">Les évènements</span>
       <div class="events">
@@ -39,12 +43,14 @@
 import axios from "axios";
 import graph from "@/graphaxios";
 import PodcastList from "./PodcastList.vue";
+import PlaylistList from "./PlaylistList.vue";
 import PodcastListMobile from "./mobile/PodcastList.vue";
 import TimeTable from "./TimeTable";
 export default {
   name: "Index",
   components: {
     PodcastList,
+    PlaylistList,
     PodcastListMobile,
     TimeTable,
   },
@@ -121,6 +127,9 @@ main {
     border: 0px;
     color: white;
     background-color: #ffffff40;
+  }
+  #playlists_sec {
+    margin-top: 25px;
   }
   #events_sec {
     margin-top: 20px;
