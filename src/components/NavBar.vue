@@ -16,9 +16,6 @@
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
-        <router-link id="bigshop" :to="{ path: '/shop' }"
-          ><h1>Shop</h1></router-link
-        >
       </div>
       <Radio
         ref="radio"
@@ -27,9 +24,10 @@
         :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
       />
       <IframeSC :iframe_mix="iframe_mix" />
-      <section id="search_sec" :style="
-        `display: ${iframe_mix ? 'none' : 'initial'};`
-      ">
+      <section
+        id="search_sec"
+        :style="`display: ${iframe_mix ? 'none' : 'initial'};`"
+      >
         <img
           src="../assets/imgs/search.svg"
           class="search"
@@ -77,9 +75,13 @@
           >
         </h3>
         <h3>
-          <a href="https:        </h3>
+          <a href="https:            >Facebook</a
+          >
+        </h3>
         <h3>
-          <a href="https:        </h3>
+          <a href="https:            >Instagram</a
+          >
+        </h3>
         <br />
         <h3 @click="toURL('/About')">About</h3>
       </div>

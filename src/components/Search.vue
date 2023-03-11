@@ -44,7 +44,7 @@ export default {
         .then((res) => {
           if (res.data.collection.length == 0) this.more = false;
           res.data.collection.map((pod) => {
-            if (pod.user && pod.user.permalink == "odc-live") {
+            if (pod.user && pod.user.permalink == "zoneestradio") {
               this.podcasts = this.podcasts.concat(pod);
             }
           });

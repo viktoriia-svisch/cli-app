@@ -63,9 +63,13 @@
           >
         </h3>
         <h3>
-          <a href="https:        </h3>
+          <a href="https:            >Facebook</a
+          >
+        </h3>
         <h3>
-          <a href="https:        </h3>
+          <a href="https:            >Instagram</a
+          >
+        </h3>
         <br />
         <h3 @click="toURL('/about')">About</h3>
       </div>

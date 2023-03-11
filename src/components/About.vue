@@ -2,8 +2,7 @@
   <section id="legalholder">
     <h2>Mentions legales:</h2>
     <p>
-      ODC Live est un projet qui a reçu le soutien de la région Grand Est et de
-      la ville de Strasbourg.
+      Description Zest Radio
     </p>
     <table id="legaltable">
       <tr>
@@ -20,7 +19,7 @@
       </tr>
       <tr>
         <th>Mail</th>
-        <td>contact@odc.live</td>
+        <td>zoneestradio@gmail.com</td>
       </tr>
       <tr>
         <th>Directeur de la publication</th>

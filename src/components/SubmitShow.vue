@@ -8,7 +8,9 @@
         récurrente. <br />Si vous souhaitez réserver un créneau ou proposer un
         concept d'émission n’hésitez pas à envoyer un mail à :
       </p>
-      <h3><a href="mailto:contact@odc.live">contact@odc.live</a></h3>
+      <h3>
+        <a href="mailto:zoneestradio@gmail.com">zoneestradio@gmail.com</a>
+      </h3>
       <p>
         Le sujet de l'email devra etre précédé de la mention
         <b>[programmation]</b> et contenir soit en pièce jointe soit via une URL

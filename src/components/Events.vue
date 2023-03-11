@@ -46,7 +46,7 @@
           <span class="imp">Service captation radio et vidéo</span><br /><br />
           · Live Streaming vidéo : jusqu’à 4 axes disponibles, plans aériens au
           drone, en direct sur Youtube, Facebook ou sur serveur dédié.<br />
-          · Live Streaming radio sur <span class="imp">www.odc.live</span> ou
+          · Live Streaming radio sur <span class="imp">www.zest.radio</span> ou
           sur votre propre serveur.<br />
           · Location de Matériel DJ, Vidéo & Radio, + d’infos par mail.<br />
           · Photographie d’événement : mise en valeur de vos artistes ou
@@ -67,11 +67,13 @@
       <div class="text" id="bloc3">
         <p class="contact">
           <span class="imp"
-            ><a href="mailto:contact@odc.live">Nous contacter</a></span
+            ><a href="mailto:zoneestradio@gmail.com">Nous contacter</a></span
           >
           sur
           <span class="imp"
-            ><a href="mailto:contact@odc.live">contact@odc.live</a></span
+            ><a href="mailto:zoneestradio@gmail.com"
+              >zoneestradio@gmail.com</a
+            ></span
           >
         </p>
       </div>
