@@ -4,7 +4,7 @@
       <router-link :to="{ path: '/' }"
         ><img
           v-if="$route.path != '/events'"
-          alt="ODC Live"
+          alt="z⸱est radio"
           src="../assets/imgs/logo.png"
           height="75"
         />
@@ -59,7 +59,7 @@
     <section class="second" :style="`right: ${second ? '0' : '-350px'}`">
       <img
         id="logo_white"
-        alt="ODC Live"
+        alt="z⸱est radio"
         src="../assets/imgs/logo_white.png"
         width="140"
       />

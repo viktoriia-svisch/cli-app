@@ -17,42 +17,42 @@ const router = new Router({
       path: "/shop",
       component: Shop,
       meta: {
-        title: "ODC Live - Shop",
+        title: "z⸱est radio - Shop",
       },
     },
     {
       path: "/shop/:type/:merch",
       component: ShopMerch,
       meta: {
-        title: "ODC Live - Shop",
+        title: "z⸱est radio - Shop",
       },
     },
     {
       path: "/podcasts",
       component: Podcasts,
       meta: {
-        title: "ODC Live - Podcasts",
+        title: "z⸱est radio - Podcasts",
       },
     },
     {
       path: "/calendar",
       component: CalendarPage,
       meta: {
-        title: "ODC Live - Calendrier",
+        title: "z⸱est radio - Calendrier",
       },
     },
     {
       path: "/search/:query",
       component: Search,
       meta: {
-        title: "ODC Live - Recherche",
+        title: "z⸱est radio - Recherche",
       },
     },
     {
       path: "/propose_show",
       component: SubmitShow,
       meta: {
-        title: "ODC Live - Proposer un show",
+        title: "z⸱est radio - Proposer un show",
       },
     },
     {
@@ -66,7 +66,7 @@ const router = new Router({
       path: "/about",
       component: About,
       meta: {
-        title: "ODC Live - About",
+        title: "z⸱est radio - About",
       },
     },
     {
@@ -83,7 +83,7 @@ const router = new Router({
     },
   ],
 });
-const DEFAULT_TITLE = "ODC Live";
+const DEFAULT_TITLE = "z⸱est radio";
 router.afterEach((to) => {
   Vue.nextTick(() => {
     document.title = to.meta.title || DEFAULT_TITLE;

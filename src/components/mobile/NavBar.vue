@@ -10,7 +10,7 @@
         ><img
           v-if="$route.path != '/events'"
           class="logo"
-          alt="ODC Live"
+          alt="z⸱est radio"
           height="70"
           width="158"
           src="../../assets/imgs/logo.png"
@@ -47,7 +47,7 @@
       <img
         id="logo_white"
         @click="toURL('/')"
-        alt="ODC Live"
+        alt="z⸱est radio"
         src="../../assets/imgs/logo_white.png"
         width="140"
       />
@@ -83,7 +83,7 @@
       <img
         id="logo_white"
         @click="toURL('/')"
-        alt="ODC Live"
+        alt="z⸱est radio"
         src="../../assets/imgs/logo_white.png"
         width="140"
       />

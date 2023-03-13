@@ -72,7 +72,7 @@ export default {
           newMix.podImg = newMix.artwork_url;
         }
         newMix.podImg = newMix.podImg.replace("-large", "-t500x500");
-        document.title = `ODC Live - ${newMix.title}`;
+        document.title = `z⸱est radio - ${newMix.title}`;
         this.setMetadata();
         setTimeout(() => {
                     SC.Widget(this.$refs.sc_iframe).bind(
@@ -117,7 +117,7 @@ export default {
     toggleSound() {
       if (this.iframe_mix) {
         if (this.$refs.sc_iframe) {
-          document.title = `ODC Live - ${this.iframe_mix.title}`;
+          document.title = `z⸱est radio - ${this.iframe_mix.title}`;
           SC.Widget(this.$refs.sc_iframe).toggle();                     SC.Widget(this.$refs.sc_iframe).isPaused((paused) => {
             this.isPlaying = !paused;
           });
