@@ -166,7 +166,7 @@ nav {
       max-width: 500px;
       padding: 10px 20px;
       margin: 12px 0;
-      font-family: NexaBold;
+      font-family: ZestMedium;
       border-radius: 0px;
       border: 0px;
       color: black;
@@ -228,7 +228,7 @@ nav {
   }
   .flex {
     display: flex;
-    font-family: NexaBold;
+    font-family: ZestMedium;
     justify-content: space-between;
   }
   .menu {

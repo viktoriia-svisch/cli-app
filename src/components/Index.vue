@@ -116,7 +116,6 @@ main {
     padding: 10px 17px 6px 17px;
     margin: 8px 0;
     box-sizing: border-box;
-    font-family: NexaBold;
     border-radius: 0px;
     border: 0px;
     color: white;

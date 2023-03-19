@@ -111,10 +111,10 @@ main {
       }
       p {
         font-size: 16px;
-        font-family: NexaBold;
+        font-family: ZestMedium;
         margin: 0;
         .imp {
-          font-family: NexaBold;
+          font-family: ZestMedium;
         }
       }
     }
@@ -131,7 +131,7 @@ main {
     }
     #bloc2 {
       p {
-        font-family: NexaBold;
+        font-family: ZestMedium;
       }
       bottom: 120px;
       right: 0px;
@@ -143,7 +143,7 @@ main {
       bottom: 120px;
       width: 700px;
       p {
-        font-family: NexaBold;
+        font-family: ZestMedium;
       }
     }
   }
@@ -153,21 +153,21 @@ main {
       top: 120px;
       right: 0px;
       p {
-        font-family: NexaBold;
+        font-family: ZestMedium;
       }
     }
     #bloc2 {
       bottom: 220px;
       left: 0;
       p {
-        font-family: NexaBold;
+        font-family: ZestMedium;
       }
     }
     #bloc3 {
       bottom: 120px;
       right: 0;
       p {
-        font-family: NexaBold;
+        font-family: ZestMedium;
       }
     }
   }

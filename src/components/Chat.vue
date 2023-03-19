@@ -149,7 +149,7 @@ export default {
       padding: 5px 17px 6px 17px;
       margin: 4px 0;
       box-sizing: border-box;
-      font-family: NexaBold;
+      font-family: ZestMedium;
       border-radius: 0px;
       border: 0px;
       color: white;
@@ -162,7 +162,6 @@ export default {
     height: 290px;
     background-color: #2b2b2b3b;
     .lmsg {
-      font-family: NexaLight;
       word-wrap: anywhere;
       .tmsg {
         background-color: #00000030;
@@ -178,11 +177,11 @@ export default {
       .lhelp {
         background-color: #2a771430;
         margin-right: 20px;
-        font-family: NexaBold;
+        font-family: ZestMedium;
       }
       .lname {
         margin-right: 20px;
-        font-family: NexaBold;
+        font-family: ZestMedium;
         display: block;
       }
     }

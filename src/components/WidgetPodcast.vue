@@ -98,7 +98,7 @@ export default {
       font-size: 15px;
       padding: 10px 8px 5px 8px;
       cursor: pointer;
-      font-family: NexaBold;
+      font-family: ZestMedium;
       text-align: center;
       background-color: #2b2b2b3b;
       margin-top: 5px;
@@ -115,7 +115,7 @@ export default {
       font-size: 15px;
       padding: 9px 8px 3px 3px;
       cursor: pointer;
-      font-family: NexaBold;
+      font-family: ZestMedium;
       letter-spacing: -1px;
       text-align: center;
       background-color: #dbdbdb3b;

@@ -47,24 +47,16 @@ export default {
 </script>
 <style lang="less">
 @font-face {
-  font-family: NexaLight;
-  src: url("./assets/fonts/nexa_light.otf");
+  font-family: ZestMedium;
+  src: url("./assets/fonts/RetinaMPNarrow-Medium.otf");
 }
 @font-face {
-  font-family: NexaRegular;
-  src: url("./assets/fonts/nexa_regular.otf");
-}
-@font-face {
-  font-family: NexaBold;
-  src: url("./assets/fonts/nexa_bold.otf");
-}
-@font-face {
-  font-family: NexaHeavy;
-  src: url("./assets/fonts/nexa_heavy.otf");
+  font-family: ZestBold;
+  src: url("./assets/fonts/RetinaMPNarrow-Bold.otf");
 }
 body {
   margin: 0;
-  font-family: Nexa;
+  font-family: ZestMedium;
   #app {
     .bg_img {
       position: fixed;
@@ -98,7 +90,7 @@ body {
     color: white;
     margin-bottom: 10px;
     display: inline-block;
-    font-family: NexaHeavy;
+    font-family: ZestBold;
   }
   .voirplus {
     padding-top: 8px;

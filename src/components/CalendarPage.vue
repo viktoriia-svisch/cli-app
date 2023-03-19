@@ -216,14 +216,14 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     .semaine_title {
-      font-family: NexaHeavy;
+      font-family: ZestBold;
     }
     .chgWeek {
       padding: 5px 10px 2px 10px;
       background-color: #ffffff2e;
       cursor: pointer;
       font-size: 15px;
-      font-family: NexaBold;
+      font-family: ZestMedium;
       img {
         position: relative;
         top: 2px;
@@ -251,20 +251,19 @@ export default {
     .day {
       padding: 10px 4px 20px 4px;
       background-color: #ffffff40;
-      font-family: NexaHeavy;
+      font-family: ZestBold;
       .show {
         padding: 5px 10px 1px 0px;
         margin-top: 15px;
         u {
-          font-family: NexaBold;
+          font-family: ZestMedium;
         }
         .side {
-          font-family: NexaRegular;
           letter-spacing: -1px;
         }
         .genreHld {
           .genre {
-            font-family: NexaBold;
+            font-family: ZestMedium;
             position: relative;
             top: 4px;
             font-size: 15px;
@@ -293,7 +292,7 @@ export default {
     .mobile_week_header,
     .mobile_week_title {
       display: flex;
-      font-family: NexaHeavy;
+      font-family: ZestBold;
     }
     .week {
       width: 630px;

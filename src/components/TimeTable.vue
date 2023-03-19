@@ -95,13 +95,13 @@ export default {
       word-break: break-word;
       padding-bottom: 12px;
       .artist_name {
-        font-family: NexaHeavy;
+        font-family: ZestBold;
       }
       .show_name {
-        font-family: NexaHeavy;
+        font-family: ZestBold;
       }
       .side {
-        font-family: NexaBold;
+        font-family: ZestMedium;
         letter-spacing: -1px;
       }
       .genre {
