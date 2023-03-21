@@ -24,28 +24,6 @@
         :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
       />
       <IframeSC :iframe_mix="iframe_mix" />
-      <section
-        id="search_sec"
-        :style="`display: ${iframe_mix ? 'none' : 'initial'};`"
-      >
-        <img
-          src="../assets/imgs/search.svg"
-          class="search"
-          @click="searchVis"
-        />
-        <input
-          :style="
-            `display: ${hiddenSearch ? 'none' : 'initial'};
-            bottom: ${iframe_mix != '' ? '-8px' : '13px'}
-          `
-          "
-          class="input"
-          placeholder="Recherche"
-          type="text"
-          v-model="search"
-          v-on:keyup.enter="sendQuery"
-        />
-      </section>
       <div class="more" @click="second = !second">
         <img v-if="second == false" width="40" src="../assets/imgs/menu.png" />
         <img
@@ -261,7 +239,8 @@ nav {
     }
     .nav,
     #search_sec {
-      width: 100%;
+      width: ~"calc(100% - 25px)";
+      left: 0px;
       .input {
         left: -186px;
         max-width: 150px;
