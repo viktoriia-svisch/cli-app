@@ -153,9 +153,11 @@ nav {
     display: flex;
     justify-content: center;
     a {
-      width: 158px;
+      height: 71px;
+      width: 71px;
       .logo {
         height: 100%;
+        width: 100%;
       }
     }
     #burger {
