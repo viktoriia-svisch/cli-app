@@ -48,11 +48,11 @@ export default {
 <style lang="less">
 @font-face {
   font-family: ZestMedium;
-  src: url("./assets/fonts/RetinaMPNarrow-Medium.otf");
+  src: url("./assets/fonts/RetinaMP-Medium.otf");
 }
 @font-face {
   font-family: ZestBold;
-  src: url("./assets/fonts/RetinaMPNarrow-Bold.otf");
+  src: url("./assets/fonts/RetinaMP-Bold.otf");
 }
 body {
   margin: 0;
