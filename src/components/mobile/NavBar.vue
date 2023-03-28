@@ -207,7 +207,7 @@ nav {
     #logo_white {
       display: block;
       margin: auto;
-      width: 160px;
+      width: 88px;
     }
   }
   #chat_shadow {
