@@ -8,19 +8,11 @@
       />
       <router-link :to="{ path: '/' }"
         ><img
-          v-if="$route.path != '/events'"
           class="logo"
           alt="z⸱est radio"
           height="70"
           width="158"
           src="../../assets/imgs/logo.png"
-        />
-        <img
-          v-else
-          class="logo"
-          src="../../assets/imgs/events.png"
-          height="70"
-          width="158"
         />
       </router-link>
     </section>
@@ -53,7 +45,6 @@
       />
       <div id="link_sec">
         <h3 @click="toURL('/podcasts')">Podcasts</h3>
-        <h3 @click="toURL('/events')">Events</h3>
         <h3 @click="toURL('/calendar')">Calendrier</h3>
         <h3 @click="toURL('/shop')">Shop</h3>
         <br />

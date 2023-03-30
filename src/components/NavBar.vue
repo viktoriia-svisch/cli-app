@@ -2,17 +2,10 @@
   <nav>
     <section class="nav flex">
       <router-link :to="{ path: '/' }"
-        ><img
-          v-if="$route.path != '/events'"
-          alt="z⸱est radio"
-          src="../assets/imgs/logo.png"
-          height="75"
-        />
-        <img v-else src="../assets/imgs/events.png" height="75" />
+        ><img alt="z⸱est radio" src="../assets/imgs/logo.png" height="75" />
       </router-link>
       <div class="flex menu">
         <router-link :to="{ path: '/podcasts' }"><h1>Podcasts</h1></router-link>
-        <router-link :to="{ path: '/events' }"><h1>Events</h1></router-link>
         <router-link :to="{ path: '/calendar' }"
           ><h1>Calendrier</h1></router-link
         >
@@ -43,7 +36,6 @@
       />
       <div class="main">
         <h3 @click="toURL('/podcasts')">Podcasts</h3>
-        <h3 @click="toURL('/events')">Events</h3>
         <h3 @click="toURL('/calendar')">Calendrier</h3>
         <h3 @click="toURL('/shop')">Shop</h3>
         <br />
