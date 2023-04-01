@@ -4,6 +4,8 @@ import Shop from "@/components/Shop";
 import ShopMerch from "@/components/ShopMerch";
 import Index from "@/components/Index";
 import Events from "@/components/Events";
+import Resident from "@/components/Resident";
+import Residents from "@/components/Residents";
 import Podcasts from "@/components/Podcasts";
 import Search from "@/components/Search";
 import CalendarPage from "@/components/CalendarPage";
@@ -68,6 +70,17 @@ const router = new Router({
       meta: {
         title: "z⸱est radio - About",
       },
+    },
+    {
+      path: "/residents",
+      component: Residents,
+      meta: {
+        title: "z⸱est radio - Résidents"
+      },
+    },
+    {
+      path: "/residents/:resident_name",
+      component: Resident,
     },
     {
       path: "/p/:mix_id",
