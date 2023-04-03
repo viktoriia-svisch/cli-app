@@ -134,5 +134,19 @@ main {
   @media (max-width: 1000px) {
     width: 100%;
   }
+  @media (max-width: 600px) {
+    .resident {
+      .socials {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+  @media (max-width: 400px) {
+    .resident {
+      .socials {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  }
 }
 </style>
