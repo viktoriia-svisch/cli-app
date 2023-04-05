@@ -75,7 +75,7 @@ const router = new Router({
       path: "/residents",
       component: Residents,
       meta: {
-        title: "z⸱est radio - Résidents"
+        title: "z⸱est radio - Résident.e.s"
       },
     },
     {
