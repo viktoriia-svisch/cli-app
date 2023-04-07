@@ -81,8 +81,38 @@ main {
       }
     }
   }
+  @media (max-width: 1150px) {
+    .residents {
+      grid-template-columns: repeat(2, 1fr);
+      .resident {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
   @media (max-width: 1000px) {
     width: 100%;
+  }
+  @media (max-width: 800px) {
+    .residents {
+      .resident {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  @media (max-width: 450px) {
+    .residents {
+      grid-template-columns: repeat(1, 1fr);
+      .resident {
+        img {
+          width: 100%;
+          height: 300px;
+        }
+      }
+    }
   }
 }
 </style>
