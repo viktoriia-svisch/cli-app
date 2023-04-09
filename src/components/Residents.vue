@@ -69,7 +69,7 @@ main {
     grid-auto-rows: minmax(auto, auto);
     .resident {
       background-color: #2b2b2b3b;
-      padding: 15px 20px 15px 20px;
+      padding: 5px 20px 15px 20px;
       cursor: pointer;
       img {
         object-fit: cover;
