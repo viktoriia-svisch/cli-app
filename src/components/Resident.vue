@@ -5,7 +5,9 @@
     <div class="resident" @click="toURL(`/residents/${resident.name}`)">
       <h1>{{ resident.name }}</h1>
       <img :src="resident.image" />
-      <p class="description">{{ resident.description }}</p>
+      <p class="description">
+        {{ resident.description.replace(/(?:\r\n|\r|\n)/g, '<br />') }}
+      </p>
       <section class="socials">
         <a
           v-if="resident.facebook.length"
