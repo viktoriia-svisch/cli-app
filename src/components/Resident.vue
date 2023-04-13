@@ -5,9 +5,7 @@
     <div class="resident" @click="toURL(`/residents/${resident.name}`)">
       <h1>{{ resident.name }}</h1>
       <img :src="resident.image" />
-      <p class="description">
-        {{ resident.description.replace(/(?:\r\n|\r|\n)/g, '<br />') }}
-      </p>
+      <p class="description" v-html="resident.description"></p>
       <section class="socials">
         <a
           v-if="resident.facebook.length"
@@ -94,6 +92,10 @@ export default {
       if (res.Resident == null) {
         this.$router.push("/residents");
       }
+      res.Resident.description = res.Resident.description.replace(
+        /(?:\r\n|\r|\n)/g,
+        "<br>"
+      );
       this.resident = res.Resident;
     },
   },
