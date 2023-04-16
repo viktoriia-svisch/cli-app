@@ -1,5 +1,5 @@
 <template>
-  <section id="podcast" v-if="pod.genres">
+  <section id="podcast">
     <img
       :src="podImg"
       class="podimg"
@@ -9,7 +9,7 @@
     <span id="title">
       <span
         class="genre"
-        v-for="genre in pod.genres.slice(0, nb_tags)"
+        v-for="genre in pod.genres ? pod.genres.slice(0, nb_tags) : []"
         v-bind:key="genre"
         ><router-link :to="{ path: '/search/' + genre }">{{
           genre
