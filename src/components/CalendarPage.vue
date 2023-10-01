@@ -61,25 +61,26 @@
             {{
               new Date(Number(show.starts_at)).toLocaleTimeString("fr-FR", {
                 hour: "2-digit",
-                timeZone: "UTC",
+                minute: "2-digit",
+                timeZone: "Europe/Paris",
               })
             }}
             à
             {{
               new Date(Number(show.ends_at)).toLocaleTimeString("fr-FR", {
                 hour: "2-digit",
-                timeZone: "UTC",
+                minute: "2-digit",
+                timeZone: "Europe/Paris",
               })
             }}:</u
           >
           <span> {{ show.name }} </span>
           <br />
-          <span v-if="show.dj.length"
+          <span v-if="show.dj && show.dj.length"
             ><span class="side">Animee par</span> {{ show.dj }}</span
           ><br />
           <span class="side" v-if="show.redundancy"
-            >Toutes les
-            {{ show.redundancy == 1 ? "" : show.redundancy }} semaines</span
+            >Toutes les {{ show.redundancy == 1 ? "" : show.redundancy }} semaines</span
           >
           <span v-else class="side">Emission speciale</span><br />
           <div class="genreHld">
@@ -99,19 +100,21 @@
 </template>
 <script>
 import graph from "@/graphaxios";
+const googleCalendarUrl =
+  "https:const googleCalendarApiKey = "AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs";
 export default {
   name: "CalendarPage",
   data() {
     return {
       shows: [],
       days: [
-        { val: "monday", title: "Lundi" },
-        { val: "tuesday", title: "Mardi" },
-        { val: "wednesday", title: "Mercredi" },
-        { val: "thursday", title: "Jeudi" },
-        { val: "friday", title: "Vendredi" },
-        { val: "saturday", title: "Samedi" },
-        { val: "sunday", title: "Dimanche" },
+        { val: "monday", title: "Lundi", id: 1 },
+        { val: "tuesday", title: "Mardi", id: 2 },
+        { val: "wednesday", title: "Mercredi", id: 3 },
+        { val: "thursday", title: "Jeudi", id: 4 },
+        { val: "friday", title: "Vendredi", id: 5 },
+        { val: "saturday", title: "Samedi", id: 6 },
+        { val: "sunday", title: "Dimanche", id: 0 },
       ],
       weeks: {
         monday: [],
@@ -144,6 +147,7 @@ export default {
         }`,
         { start: this.week }
       );
+      const now = new Date();
             this.weeks.monday = [];
       this.weeks.tuesday = [];
       this.weeks.wednesday = [];
@@ -151,34 +155,103 @@ export default {
       this.weeks.friday = [];
       this.weeks.saturday = [];
       this.weeks.sunday = [];
-      this.shows = res.Shows;
-      for (let i = 0; i < res.Shows.length; i++) {
-        let DST = new Date().getTimezoneOffset() == -60 ? 3600000 : 7200000;
-        let e = new Date(Number(res.Shows[i].starts_at) - DST);
-        switch (e.getDay()) {
-          case 0:
-            this.weeks.sunday.push(res.Shows[i]);
-            break;
-          case 1:
-            this.weeks.monday.push(res.Shows[i]);
-            break;
-          case 2:
-            this.weeks.tuesday.push(res.Shows[i]);
-            break;
-          case 3:
-            this.weeks.wednesday.push(res.Shows[i]);
-            break;
-          case 4:
-            this.weeks.thursday.push(res.Shows[i]);
-            break;
-          case 5:
-            this.weeks.friday.push(res.Shows[i]);
-            break;
-          case 6:
-            this.weeks.saturday.push(res.Shows[i]);
-            break;
-        }
+      this.shows = res.Shows.map((show) => {
+        return {
+          ...show,
+          starts_at: new Date(Number(show.starts_at) + now.getTimezoneOffset() * 60000),
+          ends_at: new Date(Number(show.ends_at) + now.getTimezoneOffset() * 60000),
+        };
+      });
+      await this.getGoogleCalendar();
+      this.dispatchShowsInWeek(this.shows);
+    },
+    async getGoogleCalendar() {
+      const monday = this.date;
+      const oneWeekFromMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
+      const response = await fetch(
+        `${googleCalendarUrl}?` +
+          [
+            "singleEvents=true",
+            "timeZone=Europe%2FParis",
+            "maxAttendees=1",
+            "maxResults=250",
+            "sanitizeHtml=true",
+            "timeMin=" + monday.toISOString(),
+            "timeMax=" + oneWeekFromMonday.toISOString(),
+            "key=" + googleCalendarApiKey,
+          ].join("&")
+      );
+      const body = await response.json();
+      if (!body?.items) {
+        return;
       }
+      let shows = body.items.filter(
+        (item) => item.summary && item.summary.toLowerCase().indexOf("#show") != -1
+      );
+      const parser = new DOMParser();
+      shows = await Promise.all(
+        shows.map(async (show) => {
+          if (!show.description) {
+            return;
+          }
+          const htmlDescription = parser.parseFromString(
+            show.description.replace(/<br>/g, ""),
+            "text/xml"
+          );
+          const info = htmlDescription.getElementsByTagName("li");
+          if (!info) {
+            return;
+          }
+          return {
+            starts_at: new Date(show.start.dateTime).getTime().toString(),
+            ends_at: new Date(show.end.dateTime).getTime().toString(),
+            name: this.stripHtml(info, 0),
+            dj: this.stripHtml(info, 1),
+            redundancy: await this.getRecurrences(show.recurringEventId),
+            genres:
+              this.stripHtml(info, 2) &&
+              this.stripHtml(info, 2).replace(/#/g, "").split(" "),
+          };
+        })
+      );
+      this.shows = this.shows.concat(shows);
+    },
+    stripHtml(infoHtml, index) {
+      return (
+        infoHtml[index] &&
+        infoHtml[index].textContent &&
+        infoHtml[index].textContent.trim()
+      );
+    },
+    dispatchShowsInWeek(shows) {
+      for (let i = 0; i < shows.length; i++) {
+        let e = new Date(Number(shows[i].starts_at));
+        const dayName = this.days.find((d) => d.id === e.getDay()).val;
+        this.weeks[dayName].push(shows[i]);
+      }
+    },
+    async getRecurrences(id) {
+      if (!id) {
+        return;
+      }
+      const response = await fetch(
+        `${googleCalendarUrl}/${id}?` +
+          ["sanitizeHtml=true", "key=" + googleCalendarApiKey].join("&")
+      );
+      const body = await response.json();
+      if (
+        !body?.recurrence ||
+        !body.recurrence[0] ||
+        body.recurrence[0].indexOf("RRULE:FREQ=WEEKLY") === -1
+      ) {
+        return;
+      }
+      const rules = body.recurrence[0].split(";");
+      const interval = rules.find((r) => r.startsWith("INTERVAL="));
+      if (!interval) {
+        return 1;
+      }
+      return Number(interval.replace("INTERVAL=", ""));
     },
     async changeWeek(sign) {
       let date = new Date(this.date);
