@@ -27,7 +27,7 @@ export default {
   name: "Radio",
   props: ["today_shows", "iframe_update"],
   watch: {
-    today_shows: function(newVal, oldVal) {
+    today_shows: function (newVal, oldVal) {
             newVal;
       oldVal;
       if (!this.updated) {
@@ -37,7 +37,7 @@ export default {
         this.checkTitle();
       }
     },
-    iframe_update: function(newVal) {
+    iframe_update: function (newVal) {
       if (newVal != "" && this.isPlaying == true) {
         this.play();
       }
@@ -79,22 +79,7 @@ export default {
             odc_station.now_playing.elapsed == null ||
             odc_station.now_playing.song.title == "Stream Offline"
           ) {
-            const t_shows = this.today_shows;
-            let show = false;
-            for (let i = 0; i < t_shows.length; i++) {
-              let start = new Date(Number(t_shows[i].starts_at));
-              let end = new Date(Number(t_shows[i].ends_at));
-              let now = new Date();
-              let beg = 60 * start.getUTCHours() + start.getMinutes();
-              let stop = 60 * end.getUTCHours() + end.getMinutes();
-              let rn = 60 * now.getHours() + now.getMinutes();
-              if (beg <= rn && rn <= stop) {
-                this.artist = t_shows[i].dj;
-                this.title = `                 show = true;
-              }
-            }
-            this.livestream = true;
-            if (!show) this.title = "Tune In";
+            this.readTitleFromTodayShows();
                         this.timeout = setTimeout(this.checkTitle, 60000);
           } else {
             this.livestream = false;
@@ -112,6 +97,20 @@ export default {
           this.timeout = null;
         });
     },
+    readTitleFromTodayShows() {
+      let show = this.today_shows.find((show) => {
+        let start = new Date(Number(show.starts_at));
+        let end = new Date(Number(show.ends_at));
+        let now = new Date();
+        return start.getTime() <= now.getTime() && now.getTime() <= end.getTime();
+      });
+      this.livestream = true;
+      if (!show) {
+        this.title = "Tune In";
+        return;
+      }
+      this.artist = show.dj;
+      this.title = `     },
   },
 };
 </script>

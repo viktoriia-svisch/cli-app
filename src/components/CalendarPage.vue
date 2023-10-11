@@ -51,11 +51,7 @@
             date.getDate() + k
           ).toLocaleDateString("fr-FR")}`
         }}
-        <section
-          v-for="show in weeks[day.val]"
-          v-bind:key="show.id"
-          class="show"
-        >
+        <section v-for="show in weeks[day.val]" v-bind:key="show.id" class="show">
           <u
             >De
             {{
@@ -84,10 +80,7 @@
           >
           <span v-else class="side">Emission speciale</span><br />
           <div class="genreHld">
-            <span
-              class="genre side"
-              v-for="genre in show.genres"
-              v-bind:key="genre"
+            <span class="genre side" v-for="genre in show.genres" v-bind:key="genre"
               ><router-link :to="{ path: '/search/' + genre }">{{
                 genre
               }}</router-link></span
@@ -99,9 +92,6 @@
   </section>
 </template>
 <script>
-import graph from "@/graphaxios";
-const googleCalendarUrl =
-  "https:const googleCalendarApiKey = "AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs";
 export default {
   name: "CalendarPage",
   data() {
@@ -131,127 +121,25 @@ export default {
   },
   methods: {
     async getCalendar() {
-      const res = await graph(
-        this.$config,
-        "Shows",
-        `query Shows($start: String!) {
-          Shows(start: $start) {
-            id
-            name
-            starts_at
-            ends_at
-            redundancy
-            genres
-            dj
-          }
-        }`,
-        { start: this.week }
-      );
-      const now = new Date();
-            this.weeks.monday = [];
+      this.dispatchShowsInWeek([]);
+      const monday = this.date;
+      const oneWeekFromMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
+      this.shows = await this.getGoogleCalendar(monday, oneWeekFromMonday);
+      this.dispatchShowsInWeek(this.shows);
+    }, 
+    dispatchShowsInWeek(shows) {
+      this.weeks.monday = [];
       this.weeks.tuesday = [];
       this.weeks.wednesday = [];
       this.weeks.thursday = [];
       this.weeks.friday = [];
       this.weeks.saturday = [];
       this.weeks.sunday = [];
-      this.shows = res.Shows.map((show) => {
-        return {
-          ...show,
-          starts_at: new Date(Number(show.starts_at) + now.getTimezoneOffset() * 60000),
-          ends_at: new Date(Number(show.ends_at) + now.getTimezoneOffset() * 60000),
-        };
-      });
-      await this.getGoogleCalendar();
-      this.dispatchShowsInWeek(this.shows);
-    },
-    async getGoogleCalendar() {
-      const monday = this.date;
-      const oneWeekFromMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
-      const response = await fetch(
-        `${googleCalendarUrl}?` +
-          [
-            "singleEvents=true",
-            "timeZone=Europe%2FParis",
-            "maxAttendees=1",
-            "maxResults=250",
-            "sanitizeHtml=true",
-            "timeMin=" + monday.toISOString(),
-            "timeMax=" + oneWeekFromMonday.toISOString(),
-            "key=" + googleCalendarApiKey,
-          ].join("&")
-      );
-      const body = await response.json();
-      if (!body?.items) {
-        return;
-      }
-      let shows = body.items.filter(
-        (item) => item.summary && item.summary.toLowerCase().indexOf("#show") != -1
-      );
-      const parser = new DOMParser();
-      shows = await Promise.all(
-        shows.map(async (show) => {
-          if (!show.description) {
-            return;
-          }
-          const htmlDescription = parser.parseFromString(
-            show.description.replace(/<br>/g, ""),
-            "text/xml"
-          );
-          const info = htmlDescription.getElementsByTagName("li");
-          if (!info) {
-            return;
-          }
-          return {
-            starts_at: new Date(show.start.dateTime).getTime().toString(),
-            ends_at: new Date(show.end.dateTime).getTime().toString(),
-            name: this.stripHtml(info, 0),
-            dj: this.stripHtml(info, 1),
-            redundancy: await this.getRecurrences(show.recurringEventId),
-            genres:
-              this.stripHtml(info, 2) &&
-              this.stripHtml(info, 2).replace(/#/g, "").split(" "),
-          };
-        })
-      );
-      this.shows = this.shows.concat(shows);
-    },
-    stripHtml(infoHtml, index) {
-      return (
-        infoHtml[index] &&
-        infoHtml[index].textContent &&
-        infoHtml[index].textContent.trim()
-      );
-    },
-    dispatchShowsInWeek(shows) {
       for (let i = 0; i < shows.length; i++) {
         let e = new Date(Number(shows[i].starts_at));
         const dayName = this.days.find((d) => d.id === e.getDay()).val;
         this.weeks[dayName].push(shows[i]);
       }
-    },
-    async getRecurrences(id) {
-      if (!id) {
-        return;
-      }
-      const response = await fetch(
-        `${googleCalendarUrl}/${id}?` +
-          ["sanitizeHtml=true", "key=" + googleCalendarApiKey].join("&")
-      );
-      const body = await response.json();
-      if (
-        !body?.recurrence ||
-        !body.recurrence[0] ||
-        body.recurrence[0].indexOf("RRULE:FREQ=WEEKLY") === -1
-      ) {
-        return;
-      }
-      const rules = body.recurrence[0].split(";");
-      const interval = rules.find((r) => r.startsWith("INTERVAL="));
-      if (!interval) {
-        return 1;
-      }
-      return Number(interval.replace("INTERVAL=", ""));
     },
     async changeWeek(sign) {
       let date = new Date(this.date);
