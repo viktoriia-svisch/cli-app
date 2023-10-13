@@ -37,19 +37,18 @@ export default {
     enhanceDate(ts) {
       return new Date(Number(ts)).toLocaleTimeString("fr-FR", {
         hour: "2-digit",
-                timeZone: "UTC",
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       });
     },
     async getCalendar(date) {
       const oneDayFromDate = new Date(date.getTime() + 24 * 60 * 60 * 1000);
       this.today_shows = await this.getGoogleCalendar(date, oneDayFromDate);
-      console.log(this.today_shows);
       this.$parent.$parent.today_shows = this.today_shows;
-    }
+    },
   },
   async mounted() {
     let date = new Date();
-    date.setHours(0,0,0,0);
+    date.setHours(0, 0, 0, 0);
     await this.getCalendar(date);
       },
 };

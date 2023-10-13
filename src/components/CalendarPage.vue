@@ -58,7 +58,7 @@
               new Date(Number(show.starts_at)).toLocaleTimeString("fr-FR", {
                 hour: "2-digit",
                 minute: "2-digit",
-                timeZone: "Europe/Paris",
+                timeZone: timeZone,
               })
             }}
             à
@@ -66,7 +66,7 @@
               new Date(Number(show.ends_at)).toLocaleTimeString("fr-FR", {
                 hour: "2-digit",
                 minute: "2-digit",
-                timeZone: "Europe/Paris",
+                timeZone: timeZone,
               })
             }}:</u
           >
@@ -117,6 +117,7 @@ export default {
       },
       week: String,
       date: null,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
   },
   methods: {
@@ -126,7 +127,7 @@ export default {
       const oneWeekFromMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
       this.shows = await this.getGoogleCalendar(monday, oneWeekFromMonday);
       this.dispatchShowsInWeek(this.shows);
-    }, 
+    },
     dispatchShowsInWeek(shows) {
       this.weeks.monday = [];
       this.weeks.tuesday = [];

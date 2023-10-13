@@ -22,6 +22,7 @@ fetch(process.env.BASE_URL + "config.json").then(res => {
 const googleCalendarUrl =
   "https:
 const googleCalendarApiKey = "AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs";
+const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 Vue.mixin({
   methods: {
     stripHtml(infoHtml, index) {
@@ -59,7 +60,7 @@ Vue.mixin({
         `${googleCalendarUrl}?` +
         [
           "singleEvents=true",
-          "timeZone=Europe%2FParis",
+          "timeZone=" + timeZone,
           "maxAttendees=1",
           "maxResults=250",
           "sanitizeHtml=true",
