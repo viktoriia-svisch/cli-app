@@ -126,6 +126,13 @@ export default {
       const monday = this.date;
       const oneWeekFromMonday = new Date(monday.getTime() + 7 * 24 * 60 * 60 * 1000);
       this.shows = await this.getGoogleCalendar(monday, oneWeekFromMonday);
+            if (!this.shows || !this.shows[0] || !this.shows[0].starts_at) {
+        return;
+      }
+      const firstShowStart = new Date(Number(this.shows[0].starts_at)).getTime();
+      if (monday.getTime() > firstShowStart || oneWeekFromMonday.getTime() < firstShowStart) {
+        return;
+      }
       this.dispatchShowsInWeek(this.shows);
     },
     dispatchShowsInWeek(shows) {
