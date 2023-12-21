@@ -45,7 +45,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
+  color: var(--color-text);
   width: 100%;
   article {
     padding: 10px;
@@ -55,7 +55,7 @@ export default {
       width: 100%;
     }
     a {
-      color: white;
+      color: var(--color-text);
       text-align: center;
       display: block;
       margin: 10px 0px 10px 0px;

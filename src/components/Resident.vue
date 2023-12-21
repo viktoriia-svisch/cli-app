@@ -1,46 +1,59 @@
 <template>
   <main>
-    <span class="subtitle">Les résident.e.s de la radio</span>
+    <h1 class="title">Les résident.e.s de la radio</h1>
     <br />
     <div class="resident" @click="toURL(`/residents/${resident.name}`)">
-      <h1>{{ resident.name }}</h1>
-      <img :src="resident.image" />
-      <p class="description" v-html="resident.description"></p>
-      <section class="socials">
-        <a
-          v-if="resident.facebook.length"
-          :href="resident.facebook"
-          target="_blank"
-          >Facebook</a
-        >
-        <a
-          v-if="resident.instagram.length"
-          :href="resident.instagram"
-          target="_blank"
-          >Instagram</a
-        >
-        <a v-if="resident.raco.length" :href="resident.raco" target="_blank"
-          >Resident Advisor</a
-        >
-        <a
-          v-if="resident.soundcloud.length"
-          :href="resident.soundcloud"
-          target="_blank"
-          >Soundcloud</a
-        >
-        <a
-          v-if="resident.bandcamp.length"
-          :href="resident.bandcamp"
-          target="_blank"
-          >Bandcamp</a
-        >
-        <a
-          v-if="resident.website.length"
-          :href="resident.website"
-          target="_blank"
-          >Website</a
-        >
-      </section>
+      <div class="resident__main">
+        <img :src="resident.image" />
+        <div class="right-side">
+          <h2 class="margin-top-0">{{ resident.name }}</h2>
+          <p class="description" v-html="resident.description"></p>
+          <section class="socials">
+            <a
+              v-if="resident.facebook.length"
+              :href="resident.facebook"
+              target="_blank"
+              class="button"
+              >Facebook</a
+            >
+            <a
+              v-if="resident.instagram.length"
+              :href="resident.instagram"
+              target="_blank"
+              class="button"
+              >Instagram</a
+            >
+            <a
+              v-if="resident.raco.length"
+              :href="resident.raco"
+              target="_blank"
+              class="button"
+              >Resident Advisor</a
+            >
+            <a
+              v-if="resident.soundcloud.length"
+              :href="resident.soundcloud"
+              target="_blank"
+              class="button"
+              >Soundcloud</a
+            >
+            <a
+              v-if="resident.bandcamp.length"
+              :href="resident.bandcamp"
+              target="_blank"
+              class="button"
+              >Bandcamp</a
+            >
+            <a
+              v-if="resident.website.length"
+              :href="resident.website"
+              target="_blank"
+              class="button"
+              >Website</a
+            >
+          </section>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -106,32 +119,45 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  width: 830px;
-  color: white;
+  width: 70%;
+  color: var(--color-text);
+  height: max-content;
   .resident {
-    padding: 15px 20px 15px 20px;
+    &__main {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
     img {
       object-fit: cover;
-      width: 100%;
+      width: 40%;
+      border: 1px solid var(--color-text);
+    }
+    .right-side {
+      width: 50%;
+      flex-grow: 1;
+      flex-shrink: 1;
+      min-width: 300px;
     }
     .description {
-      padding: 15px;
-      background-color: #2b2b2b3b;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      padding: 1rem;
+      border: 1px solid var(--color-text);
     }
     .socials {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 10px;
+      grid-gap: 1rem;
       grid-auto-rows: minmax(auto, auto);
       a {
         text-align: center;
         text-decoration: none;
-        color: white;
-        background-color: #2b2b2b3b;
+        color: var(--color-text);
         padding: 15px;
-        &:hover {
-          background-color: #00000080;
-        }
       }
     }
   }
@@ -139,13 +165,19 @@ main {
     width: 100%;
   }
   @media (max-width: 600px) {
+    .resident img {
+      width: 60%;
+    }
     .resident {
       .socials {
         grid-template-columns: repeat(2, 1fr);
       }
     }
   }
-  @media (max-width: 400px) {
+  @media (max-width: 425px) {
+    .resident img {
+      width: 100%;
+    }
     .resident {
       .socials {
         grid-template-columns: repeat(1, 1fr);

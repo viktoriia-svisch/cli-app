@@ -3,46 +3,34 @@
     <div id="mix_frame_inner">
       <img
         src="../assets/imgs/play.svg"
-        class="playBtn"
+        class="playBtn round-button"
         v-if="!isPlaying"
         @click="toggleSound"
       />
-      <img
-        src="../assets/imgs/stop.png"
-        class="playBtn"
-        v-else
-        @click="toggleSound"
-      />
-      <div class="title">
+      <img src="../assets/imgs/stop.png" class="playBtn round-button" v-else @click="toggleSound" />
+      <div class="player-title">
         <span class="live_info" @click="toggleSound">
-          {{ iframe_mix.title }} {{ iframe_mix.title }}
+          {{ iframe_mix.title }} → {{ iframe_mix.title }} → {{ iframe_mix.title }}
         </span>
       </div>
-      <div>
-        <img
-          class="more_mix"
-          src="../assets/imgs/more_icon.png"
-          @click="showMore = !showMore"
-          v-if="!showMore"
-        />
-        <img
-          class="more_mix"
-          src="../assets/imgs/less_icon.png"
-          @click="showMore = !showMore"
-          v-else
-        />
-        <img
-          class="close_mix"
-          src="../assets/imgs/cross_icon.png"
-          @click="close_mix"
-        />
+      <div >
+        <div @click="$emit('showMore', showMore)">
+          <img
+            class="more_mix round-button"
+            src="../assets/imgs/more_icon.png"
+            @click="showMore = !showMore"
+            v-if="!showMore"
+          />
+          <img
+            class="more_mix round-button"
+            src="../assets/imgs/less_icon.png"
+            @click="showMore = !showMore"
+            v-else
+          />
+        </div>
+        <img class="close_mix round-button" src="../assets/imgs/cross_icon.png" @click="close_mix" />
       </div>
     </div>
-    <section
-      id="more_info_shadow"
-      :style="`display: ${showMore ? 'initial' : 'none'}`"
-      @click="showMore = !showMore"
-    ></section>
     <section class="more_info" :style="`opacity: ${showMore ? '1' : '0'}`">
       <iframe
         ref="sc_iframe"
@@ -50,9 +38,7 @@
         scrolling="no"
         frameborder="no"
         allow="autoplay"
-        :src="
-          `https:        "
-      ></iframe>
+        :src="`https:      ></iframe>
     </section>
   </section>
 </template>
@@ -62,7 +48,7 @@ export default {
   name: "IframeSC",
   props: ["iframe_mix"],
   watch: {
-    iframe_mix: function(newMix) {
+    iframe_mix: function (newMix) {
       this.isPlaying = false;
       this.showMore = true;
             if (newMix != "") {
@@ -156,35 +142,40 @@ export default {
 <style lang="less" scoped>
 #mix_frame {
   position: relative;
-  width: 266px;
-  height: 59px;
   color: #f50;
+  cursor: pointer;
+  height: 100%;
+  width: calc(100% - 70px);
+  padding-left: 6px;
+  display: flex;
+  align-items: center;
   .more_info {
-    background-color: white;
+    background-color: var(--color-bg);
     position: fixed;
     left: 0px;
     transition: 0.5s;
     width: 100%;
-    top: 79px;
+    top: 46px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    box-sizing: border-box;
+    margin: 0;
+    height: 124px;
     iframe {
-      width: ~"calc(100% + 125px)";
-      margin-left: -21px;
-      height: 20px;
+      width: 100%;
+      height: 122px;
     }
   }
   #mix_frame_inner {
     display: flex;
-    margin-top: 9px;
+    align-items: center;
+    width: 100%;
     .playBtn {
-      margin-top: 8px;
       height: 40px;
       cursor: pointer;
     }
-    .title {
-      margin-top: 23px;
-      line-height: 75px;
+    .player-title {
       text-align: center;
-      width: 200px;
       white-space: nowrap;
       overflow: hidden;
       box-sizing: border-box;
@@ -215,45 +206,31 @@ export default {
         cursor: pointer;
         width: 25px;
         height: 25px;
-        padding: 5px 5px 5px 5px;
-        margin-top: 10px;
-        &:hover {
-          background-color: #e8e8e8;
-        }
+        padding: 5px;
       }
       .more_mix {
         cursor: pointer;
         width: 25px;
         height: 25px;
-        padding: 5px 5px 5px 5px;
-        margin-top: 11px;
+        padding: 5px;
       }
     }
   }
   @media (max-width: 815px) {
     height: 57px;
-    width: ~"calc(100% - 90px)";
+    width: calc(100% - 60px);
     #mix_frame_inner {
-      margin-top: 10px;
       .playBtn {
-        margin-top: 7px;
         margin-left: 7px;
       }
-      .title {
-        margin-top: 20px;
+      .player-title {
         position: relative;
         margin-left: 10px;
         width: calc(100% - 130px);
       }
-      div {
+      > div {
         position: absolute;
         right: 0;
-        .close_mix {
-          margin-top: 10px;
-        }
-        .more_mix {
-          margin-top: 10px;
-        }
       }
     }
     #more_info_shadow {
@@ -272,12 +249,13 @@ export default {
       width: 100vw;
       z-index: 1;
       padding-top: 8px;
-      bottom: 69px;
+      bottom: 49px;
+      height: unset;
       iframe {
         width: inherit;
         height: 20px;
         margin-left: -20px;
-        width: ~"calc(100% + 120px)";
+        width: calc(100% + 102px);
       }
     }
   }

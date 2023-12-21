@@ -4,8 +4,8 @@
     <Filters />
     <PodcastList :pods="podcasts" />
     <section class="flex">
-      <div class="more" @click="searchPodcasts" v-if="more">
-        <span class="moretitle">En chercher plus</span>
+      <div class="more button" @click="searchPodcasts" v-if="more">
+        En chercher plus
       </div>
     </section>
   </main>
@@ -63,49 +63,36 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  width: 830px;
+  width: 70%;
+  height: max-content;
   .input {
     max-width: 500px;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    font-family: ZestMedium;
     border-radius: 0px;
     border: 0px;
-    color: white;
-    background-color: #ffffff40;
+    color: var(--color-text);
+    &:hover,
+    &:active,
+    &:active {
+      background-color: var(--color-primary-bg);
+    }
+    &:focus,
+    &:focus-within,
+    &focus-visible {
+      outline: 1px solid var(--color-text);
+    }
   }
   .flex {
     justify-content: right;
     .more {
       position: relative;
-      width: 250px;
-      max-width: 475px;
-      background-color: #00000040;
-      position: relative;
-      height: 24px;
-      padding: 5px 5px 0px 20px;
-      margin-top: 5px;
-      cursor: pointer;
-      .moretitle {
-        color: white;
-      }
-      &:hover {
-        background-color: #00000080;
-      }
-      span {
-        margin-right: 40px;
-      }
-      img {
-        width: 17px;
-        position: absolute;
-        top: 5px;
-        right: 10px;
-      }
+      margin-top: 1rem;
     }
   }
-  @media (max-width: 1000px) {
-    width: initial;
+  @media (max-width: 815px) {
+    width: 100%;
     .flex {
       flex-direction: column;
     }

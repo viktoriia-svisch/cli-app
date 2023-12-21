@@ -1,70 +1,67 @@
 <template>
-  <nav>
-    <section class="nav flex">
-      <router-link :to="{ path: '/' }"
-        ><img alt="z⸱est radio" src="../assets/imgs/logo.png" height="75" />
-      </router-link>
-      <div class="flex menu">
-        <router-link :to="{ path: '/podcasts' }"><h1>Podcasts</h1></router-link>
-        <router-link :to="{ path: '/calendar' }"
-          ><h1>Calendrier</h1></router-link
-        >
-        <router-link :to="{ path: '/residents' }"
-          ><h1>Résident.e.s</h1></router-link
-        >
-      </div>
-      <Radio
-        ref="radio"
-        :today_shows="today_shows"
-        :iframe_update="iframe_mix"
-        :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
-      />
-      <IframeSC :iframe_mix="iframe_mix" />
-      <div class="more" @click="second = !second">
-        <img v-if="second == false" width="40" src="../assets/imgs/menu.png" />
+  <div
+    class="header"
+    :class="{ 'soundcloud-iframe': iframe_mix && showSoundcloudIframe }"
+  >
+    <nav>
+      <section class="nav flex">
+        <div class="flex menu">
+          <router-link :to="{ path: '/' }" style="padding-right: 1rem"
+            ><img alt="z⸱est radio" src="../assets/imgs/logo.png" height="20" />
+          </router-link>
+          <router-link :to="{ path: '/podcasts' }"><h1>Podcasts</h1></router-link>
+          <router-link :to="{ path: '/calendar' }"><h1>Calendrier</h1></router-link>
+          <router-link :to="{ path: '/residents' }"><h1>Résident.e.s</h1></router-link>
+</div>
+        <div class="navbar-right">
+          <Radio
+            ref="radio"
+            :today_shows="today_shows"
+            :iframe_update="iframe_mix"
+            :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
+          />
+          <IframeSC :iframe_mix="iframe_mix" @showMore="setShowMOre($event)" />
+          <div class="more round-button" @click="second = !second">
+            <img v-if="second == false" width="40" src="../assets/imgs/menu.png" />
+            <img
+              v-else
+              width="40"
+              src="../assets/imgs/back_black.png"
+              style="position: relative; top: 5px"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="second" :style="`right: ${second ? '0' : '-30%'}`">
         <img
-          v-else
-          width="40"
-          src="../assets/imgs/back_black.png"
-          style="position: relative; top: 5px;"
+          id="logo_white"
+          alt="z⸱est radio"
+          src="../assets/imgs/logo_white.png"
+          width="140"
         />
-      </div>
-    </section>
-    <section class="second" :style="`right: ${second ? '0' : '-350px'}`">
-      <img
-        id="logo_white"
-        alt="z⸱est radio"
-        src="../assets/imgs/logo_white.png"
-        width="140"
-      />
-      <div class="main">
-        <h3 @click="toURL('/podcasts')">Podcasts</h3>
-        <h3 @click="toURL('/calendar')">Calendrier</h3>
-        <h3 @click="toURL('/residents')">Résident.e.s</h3>
-        <br />
-        <h3 @click="toURL('/propose_show')">Proposer un show</h3>
-        <h3>
-          <a href="https:            >Soundcloud</a
-          >
-        </h3>
-        <h3>
-          <a href="https:            >Facebook</a
-          >
-        </h3>
-        <h3>
-          <a href="https:            >Instagram</a
-          >
-        </h3>
-        <br />
-        <h3 @click="toURL('/About')">About</h3>
-      </div>
-    </section>
-    <section
-      id="second_shadow"
-      :style="`display: ${second ? 'initial' : 'none'}`"
-      @click="second = !second"
-    ></section>
-  </nav>
+        <div class="main menu">
+          <h3 @click="toURL('/podcasts')">Podcasts</h3>
+          <h3 @click="toURL('/calendar')">Calendrier</h3>
+          <h3 @click="toURL('/residents')">Résident.e.s</h3>
+          <br />
+          <h3 @click="toURL('/propose_show')">Proposer un show</h3>
+          <h3>
+            <a href="https:          </h3>
+          <h3>
+            <a href="https:          </h3>
+          <h3>
+            <a href="https:          </h3>
+          <br />
+          <h3 @click="toURL('/About')">About</h3>
+        </div>
+      </section>
+      <section
+        id="second_shadow"
+        :style="`display: ${second ? 'initial' : 'none'}`"
+        @click="second = !second"
+      ></section>
+    </nav>
+  </div>
 </template>
 <script>
 import Radio from "./Radio.vue";
@@ -94,9 +91,14 @@ export default {
       hiddenSearch: true,
       search: "",
       second: false,
+      showSoundcloudIframe: true,
     };
   },
   methods: {
+    setShowMOre(show_more) {
+      this.showSoundcloudIframe = show_more;
+      console.log((this.showSoundcloudIframe = show_more));
+    },
     toURL(dest) {
       this.$router.push(dest);
       this.second = false;
@@ -115,12 +117,23 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.header {
+  height: 1px;
+}
+.soundcloud-iframe {
+  height: 144px;
+}
 nav {
-  background-color: white;
-  position: sticky;
+  background-color: var(--color-bg);
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 3;
+  border-bottom: 1px solid;
+  height: 48px;
+  > section.flex {
+    height: 100%;
+  }
   #search_sec {
     position: relative;
     .search {
@@ -139,11 +152,19 @@ nav {
       max-width: 500px;
       padding: 10px 20px;
       margin: 12px 0;
-      font-family: ZestMedium;
       border-radius: 0px;
       border: 0px;
       color: black;
-      background-color: #e8e8e8;
+      &:hover,
+      &:active,
+      &:active {
+        background-color: var(--color-primary-bg);
+      }
+      &:focus,
+      &:focus-within,
+      &focus-visible {
+        outline: 1px solid var(--color-text);
+      }
     }
   }
   #second_shadow {
@@ -156,19 +177,18 @@ nav {
     background-color: #00000040;
   }
   .second {
-    color: white;
+    color: var(--color-chat-text);
     z-index: 5;
     position: fixed;
     top: -2px;
     right: 0;
     height: ~"calc(100% + 2px)";
-    width: 350px;
+    width: 30%;
     background-color: #000;
     transition: 0.5s;
     #logo_white {
       display: block;
-      margin: auto;
-      width: 185px;
+      margin: 2rem auto;
     }
     #back {
       cursor: pointer;
@@ -177,13 +197,16 @@ nav {
       right: 10px;
     }
     .main {
-      margin: 0px 20px 0px 20px;
-      padding: 2px;
+      margin: 0px 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       h3 {
-        padding: 4px 10px 4px 10px;
         cursor: pointer;
+        margin: 0;
+        width: auto;
         a {
-          color: white;
+          color: var(--color-chat-text);
           text-decoration: none;
           &:hover {
             background-color: #9191912e;
@@ -194,23 +217,15 @@ nav {
   }
   .nav {
     position: relative;
-    width: 1200px;
-    margin: 0 auto;
-    left: -14px;
-    right: 0;
+    padding: 0 2rem;
+    align-items: center;
   }
   .flex {
     display: flex;
-    font-family: ZestMedium;
     justify-content: space-between;
   }
   .menu {
     h1 {
-      padding-left: 30px;
-      padding-right: 30px;
-      padding-top: 20px;
-      margin: 0px;
-      padding: 30px 30px 0px 30px;
       color: black;
       cursor: pointer;
     }
@@ -218,11 +233,18 @@ nav {
       text-decoration: none;
     }
   }
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(30% + 5px);
+    margin-right: 8px;
+    height: 100%;
+  }
   .more {
-    margin: 18px 10px 0px 10px;
-    letter-spacing: -4px;
-    font-size: 24px;
+    font-size: 0px;
     cursor: pointer;
+    margin: auto 0;
   }
   @media (max-width: 1200px) {
     .nav {
@@ -234,7 +256,6 @@ nav {
     }
     .nav,
     #search_sec {
-      width: ~"calc(100% - 25px)";
       left: 0px;
       .input {
         left: -186px;
@@ -248,7 +269,7 @@ nav {
       }
     }
   }
-  @media (max-width: 900px) {
+  @media (max-width: 815) {
     .menu {
       display: none;
     }

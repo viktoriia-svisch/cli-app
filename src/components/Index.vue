@@ -1,10 +1,10 @@
 <template>
   <main>
-    <span class="subtitle">Les derniers podcasts</span>
+    <h1 class="title">Les derniers podcasts</h1>
     <PodcastList :pods="podcasts" class="desktop_pods" />
     <PodcastListMobile :pods="podcasts" class="mobile_pods" />
     <TimeTable class="timetable" />
-    <section class="flex">
+    <section class="flex footer">
       <input
         class="input"
         placeholder="Recherche"
@@ -13,7 +13,7 @@
         v-on:keyup.enter="sendQuery"
       />
       <div class="more" @click="$router.push({ path: '/podcasts' })">
-        <span class="voirplus">En voir plus</span>
+        <div class="button">En voir plus</div>
       </div>
     </section>
     <section id="events_sec" v-if="events.length">
@@ -63,13 +63,11 @@ export default {
     },
     async getPodcasts() {
             if (!this.more) return;
-      await axios
-        .get(this.next)
-        .then((res) => {
-          if (res.data.next_href === null) this.more = false;
-          this.podcasts = this.podcasts.concat(res.data.collection);
-        })
-        .catch();
+      const res = await axios.get(this.next);
+      if (res.data.next_href === null) {
+        this.more = false;
+      }
+      this.podcasts = this.podcasts.concat(res.data.collection);
     },
     async getEvents() {
       const res = await graph(
@@ -94,9 +92,7 @@ export default {
     },
   },
   async mounted() {
-    this.next = `${
-      this.$config.VUE_APP_API
-    }/sounds/0?t=${new Date().getTime()}`;
+    this.next = `${this.$config.VUE_APP_API}/sounds/0?t=${new Date().getTime()}`;
     await this.getPodcasts();
     await this.getEvents();
   },
@@ -104,7 +100,8 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  width: 830px;
+  width: 70%;
+  height: max-content;
   .timetable {
     display: none;
   }
@@ -114,12 +111,20 @@ main {
   .input {
     max-width: 500px;
     padding: 10px 17px 6px 17px;
-    margin: 8px 0;
     box-sizing: border-box;
-    border-radius: 0px;
     border: 0px;
-    color: white;
-    background-color: #ffffff40;
+    color: var(--color-text);
+    border: 1px solid grey;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: var(--color-primary-bg);
+    }
+    &:focus,
+    &:focus-within,
+    &focus-visible {
+      outline: 1px solid var(--color-text);
+    }
   }
   #playlists_sec {
     margin-top: 25px;
@@ -136,46 +141,31 @@ main {
       .event {
         text-decoration: none;
         div {
-          height: 240px;
           width: 410px;
           overflow: hidden;
           img {
-            height: 100%;
+            width: 100%;
           }
         }
         p {
           margin: 0;
           padding: 8px;
-          background-color: #2b2b2b3b;
-          color: white;
+          color: var(--color-text);
           text-align: center;
+          border: 1px solid black;
         }
         &:hover {
           p {
-            background-color: #00000080;
+            background-color: var(--color-primary);
           }
         }
       }
     }
   }
+  .footer {
+    padding: 1rem 0;
+  }
   .more {
-    position: relative;
-    max-width: 475px;
-    width: 250px;
-    background-color: #00000040;
-    position: relative;
-    height: 24px;
-    padding: 8px 5px 0px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    &:hover {
-      background-color: #00000080;
-    }
-    span {
-      position: relative;
-      top: -1px;
-      margin-right: 40px;
-    }
     img {
       width: 17px;
       position: absolute;
@@ -184,7 +174,6 @@ main {
     }
   }
   @media (max-width: 1200px) {
-    width: initial;
     #events_sec {
       .events {
         width: initial;
@@ -208,11 +197,9 @@ main {
     .more {
       width: initial;
     }
-    .flex {
-      flex-direction: column;
-    }
   }
   @media (max-width: 815px) {
+    width: 100%;
     .timetable {
       display: initial;
     }
@@ -225,6 +212,8 @@ main {
       overflow-x: scroll;
       overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
+      margin: 0 -1rem 1rem -1rem;
+      padding: 0 1rem 2px 1rem;
     }
   }
   @media (max-width: 500px) {

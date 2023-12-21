@@ -31,25 +31,24 @@ export default {
 </script>
 <style lang="less" scoped>
 .podcasts {
-  margin-top: 10px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 2rem .5rem;
   grid-auto-rows: minmax(auto, auto);
   .podcast {
     margin: 0 auto;
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 2400px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 1800px) {
     grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 1300px) {
+    grid-template-columns: repeat(2, 1fr);
   }
   @media (max-width: 1000px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 815px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 650px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 </style>

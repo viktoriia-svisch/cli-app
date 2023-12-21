@@ -1,27 +1,27 @@
 <template>
   <section id="podcast">
-    <img
-      :src="podImg"
-      class="podimg"
-      @click="play_podcast"
-      :title="pod.title"
-    />
-    <span id="title">
-      <span
-        class="genre"
-        v-for="genre in pod.genres ? pod.genres.slice(0, nb_tags) : []"
-        v-bind:key="genre"
-        ><router-link :to="{ path: '/search/' + genre }">{{
-          genre
-        }}</router-link></span
-      >
-      <div class="share" @click="share_mix">
-        <div class="innershare">
-          <span>{{ share_msg }}</span>
-          <img src="../assets/imgs/copy_icon.png" />
-        </div>
+    <img :src="podImg" class="podimg" @click="play_podcast" :title="pod.title" />
+    <div class="podcast__footer">
+      <div class="podcast__genres">
+        <span
+          class="genre"
+          v-for="genre in pod.genres ? pod.genres.slice(0, nb_tags) : []"
+          v-bind:key="genre"
+          ><router-link :to="{ path: '/search/' + genre }"
+            >#{{ genre }}</router-link
+          ></span
+        >
       </div>
-    </span>
+      <div class="podcast__buttons">
+        <span>{{ pod.dj }}</span>
+        <span class="soundcloud" @click="open_soundcloud">
+          <img src="../assets/imgs/soundcloud.svg" />
+        </span>
+        <span class="share" @click="share_mix">
+          <img src="../assets/imgs/share.svg" />
+        </span>
+      </div>
+    </div>
   </section>
 </template>
 <script>
@@ -34,26 +34,19 @@ export default {
   data() {
     return {
       podImg: "",
-      share_msg: "Partager",
     };
   },
   methods: {
     share_mix() {
             var input = document.createElement("input");
-      input.setAttribute(
-        "value",
-        `${this.$config.VUE_APP_WEB}/p/${this.pod.id}`
-      );
+      input.setAttribute("value", `${this.$config.VUE_APP_WEB}/p/${this.pod.id}`);
       document.body.appendChild(input);
       input.select();
-      var result = document.execCommand("copy");
+      document.execCommand("copy");
       document.body.removeChild(input);
-      if (result == true) {
-        this.share_msg = "Copié";
-        setTimeout(() => {
-          this.share_msg = "Partager";
-        }, 1000);
-      }
+    },
+    open_soundcloud() {
+        window.open(this.pod.permalink_url);
     },
     play_podcast() {
       this.$parent.$parent.$emit("podcast", "");
@@ -67,8 +60,8 @@ export default {
     this.pod.genres = this.pod.tag_list.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
     if (this.pod.genres != null) {
       this.pod.genres = this.pod.genres.map((g) => {
-        if (g[0] == '"') return g.substring(1, g.length - 1).toUpperCase();
-        else return g.toUpperCase();
+        if (g[0] == '"') return g.substring(1, g.length - 1);
+        else return g;
       });
     }
     if (!this.pod.artwork_url) {
@@ -84,79 +77,50 @@ export default {
 <style lang="less" scoped>
 #podcast {
   position: relative;
-  display: grid;
-  #title {
-    bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  .podcast__footer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+  }
+  .podcast__genres {
+    display: flex;
+    gap: 2px .2rem;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    flex-grow: 1;
+    align-items: center;
+  }
+  .podcast__buttons {
+    display: flex;
     justify-content: flex-end;
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    .genre {
-      font-size: 15px;
-      padding: 10px 8px 5px 8px;
+    gap: 0.5rem;
+    padding: 2px 0 0 0;
+    .share,
+    .soundcloud {
+      font-size: 18px;
       cursor: pointer;
-      font-family: ZestMedium;
-      text-align: center;
-      background-color: #2b2b2b3b;
-      margin-top: 5px;
-      a {
-        color: white;
-        text-decoration: none;
-        display: block;
+      border-radius: 50%;
+      height: 24px;
+      width: 24px;
+      transition: all 0.2s;
+      img {
+        padding: 3.2px;
       }
       &:hover {
-        background-color: #000000a0;
-      }
-    }
-    .share {
-      font-size: 15px;
-      padding: 9px 8px 3px 3px;
-      cursor: pointer;
-      font-family: ZestMedium;
-      letter-spacing: -1px;
-      text-align: center;
-      background-color: #dbdbdb3b;
-      margin-top: 5px;
-      color: white;
-      &:hover {
-        background-color: #dddddda1;
-      }
-      .innershare {
-        display: flex;
-        justify-content: space-around;
-        width: 110px;
-        margin: 0 auto;
-        span {
-          width: 65px;
-        }
-        img {
-          margin-top: -3px;
-          margin-bottom: 5px;
-          width: 20px;
-        }
+        background-color: var(--color-primary);
       }
     }
   }
   .podimg {
-    width: 200px;
+    width: 100%;
     cursor: pointer;
     opacity: 1;
+    transition: all 0.3s;
+    border: 2px solid var(--color-text);
+    box-sizing: border-box;
     &:hover {
-      transition: all 0.2s;
-      opacity: 0.5;
-    }
-  }
-  @media (max-width: 1200px) {
-    .podimg {
-      width: 100%;
-    }
-  }
-  @media (max-width: 815px) {
-    .podimg {
-      width: 200px;
+      border-color: var(--color-primary);
     }
   }
 }

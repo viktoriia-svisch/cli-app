@@ -1,6 +1,6 @@
 <template>
   <main>
-    <span class="subtitle">Les résident.e.s de la radio</span>
+    <h1 class="title">Les résident.e.s de la radio</h1>
     <br />
     <section class="residents">
       <div
@@ -60,24 +60,32 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  width: 830px;
-  color: white;
+  width: 70%;
+  color: var(--color-text);
+  height: max-content;
   .residents {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-gap: 1.5rem;
     grid-auto-rows: minmax(auto, auto);
     .resident {
-      background-color: #2b2b2b3b;
-      padding: 5px 20px 15px 20px;
       cursor: pointer;
+      p {
+        margin: 0.2rem 0;
+      }
       img {
         object-fit: cover;
-        width: 230px;
+        width: 100%;
         height: 230px;
+        border: 1px solid var(--color-text);
       }
       &:hover {
-        background-color: #00000080;
+        img {
+          border-color: var(--color-primary);
+        }
+        p {
+          color: var(--color-primary);
+        }
       }
     }
   }

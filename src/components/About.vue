@@ -70,12 +70,13 @@ export default {
 </script>
 <style lang="less" scoped>
 #legalholder {
-  color: white;
-  width: 830px;
+  color: var(--color-text);
+  width: 70%;
+  height: max-content;
   .outlink {
     font-weight: bold;
     text-decoration: none;
-    color: white;
+    color: var(--color-text);
     &:hover {
       text-decoration-line: underline;
       text-decoration-style: dashed;
@@ -87,7 +88,7 @@ export default {
       height: 40px;
       th {
         text-align: inherit;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid var(--color-text);
       }
       td {
         padding-left: 10px;

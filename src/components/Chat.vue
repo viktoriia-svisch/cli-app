@@ -1,24 +1,26 @@
 <template>
-  <section id="chat">
-    <div id="chattitle" @click="open_chat">
-      <span class="subtitle" id="chat_title">La chatroom</span>
+  <section id="chat" :class="{ 'chat-only': isChatOnly }">
+    <router-link id="chattitle" :to="{ path: '/chat' }">
+      <h3 class="title" id="chat_title">La chatroom</h3>
       <img src="../assets/imgs/open_link_icon.png" class="open_link" />
-    </div>
-    <section id="msg" ref="msg">
-      <tr class="lmsg" v-for="(msg, i) in msgs" v-bind:key="i">
-        <td class="tmsg" :title="new Date(msg.ts).toLocaleDateString('fr')">
-          {{
-            new Date(msg.ts).toLocaleTimeString("fr", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })
-          }}
-        </td>
-        <td>
-          <span class="lname">{{ msg.pseudo }}</span>
-          <span class="lmsg">{{ msg.msg }}</span>
-        </td>
-      </tr>
+    </router-link>
+    <section id="messages" ref="msg">
+      <div class="message" v-for="(msg, i) in msgs" v-bind:key="i">
+        <span style="display: inline-block">
+          <div class="message__author-time">
+            <span>{{ msg.pseudo }}</span>
+            <span :title="new Date(msg.ts).toLocaleDateString('fr')">
+              {{
+                new Date(msg.ts).toLocaleTimeString("fr", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              }}
+            </span>
+          </div>
+          <div class="message__body">{{ msg.msg }}</div>
+        </span>
+      </div>
     </section>
     <section id="send">
       <form id="chatSend" v-on:submit.prevent="send_msg">
@@ -27,16 +29,16 @@
           class="inputchat"
           id="pseudo"
           placeholder="Pseudonyme"
-          style="resize: none;"
+          style="resize: none"
           type="text"
           name="listener"
           v-model="pseudo"
         />
-        <input
+        <textarea
           class="inputchat"
           id="message"
-          style="resize: none;"
-          placeholder="Message"
+          style="resize: none"
+          placeholder="Message ..."
           name="message"
           rows="1"
           v-model="message"
@@ -58,10 +60,14 @@ export default {
       message: "",
     };
   },
-  methods: {
-    open_chat() {
-      window.open(this.$config.VUE_APP_CHAT);
+  computed: {
+    isChatOnly() {
+      const path = window.location.pathname.split("/")[1];
+            this.$route.name;
+      return path === "chat";
     },
+  },
+  methods: {
     send_msg() {
       if (this.pseudo.length == 0) {
         return;
@@ -105,8 +111,7 @@ export default {
       const help = {
         ts: new Date(),
         pseudo: "Help",
-        msg:
-          "Dont be shy, join in the conversation by typing your name and message!",
+        msg: "Dont be shy, join in the conversation by typing your name and message!",
         help: true,
       };
       this.msgs = this.msgs.concat(help);
@@ -120,89 +125,91 @@ export default {
 </script>
 <style lang="less" scoped>
 #chat {
-  color: white;
-  width: 300px;
+  color: var(--color-chat-text);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   #chattitle {
     position: relative;
-    top: -15px;
-    left: -4px;
     width: 100%;
-    padding: 15px 4px 0px 4px;
-    margin-bottom: -15px;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    &:hover {
-      background-color: #ffffff40;
+    margin-bottom: 0.5rem;
+    color: var(--color-chat-text);
+    text-decoration: none;
+    .title {
+      margin: 0;
     }
     .open_link {
-      width: 30px;
-      height: 30px;
-      bottom: 6px;
+      height: 24px;
       position: relative;
+    }
+    &:hover {
+      color: var(--color-primary);
     }
   }
   #chatSend {
-    margin-top: 4px;
     .inputchat {
       width: 100%;
-      padding: 5px 17px 6px 17px;
-      margin: 4px 0;
+      padding: 0.5rem 1rem;
+      margin: 0 0 0.5rem 0;
       box-sizing: border-box;
-      font-family: ZestMedium;
       border-radius: 0px;
-      border: 0px;
-      color: white;
-      background-color: #ffffff40;
+      border: 1px solid var(--color-chat-text);
+      color: var(--color-chat-text);
+      background-color: var(--color-chat-bg);
+      &#message {
+        min-height: 3rem;
+      }
+      &:hover {
+        border-color: var(--color-primary);
+      }
+      &:focus-visible,
+      &:focus {
+        border-color: var(--color-primary);
+        outline: 1px solid var(--color-primary);
+      }
     }
   }
-  #msg {
-    margin-top: 10px;
+  #messages {
+    padding-right: 4px;
+    padding-top: 4px;
     overflow: auto;
-    height: 290px;
-    background-color: #2b2b2b3b;
-    .lmsg {
+    height: 320px;
+    border-top: 1px solid var(--color-chat-text-light);
+    .message {
       word-wrap: anywhere;
-      .tmsg {
-        background-color: #00000030;
-        display: inline-block;
-        width: 48px;
-        padding: 5px 4px 1px 5px;
-        margin-left: 5px;
-        margin-right: 10px;
+      margin-bottom: 1rem;
+      &__author-time {
+        color: var(--color-chat-text-light);
+        display: flex;
+        gap: 2rem;
+        justify-content: space-between;
+        font-size: 0.8rem;
       }
-      .mmsg {
-        letter-spacing: -1px;
-      }
-      .lhelp {
-        background-color: #2a771430;
-        margin-right: 20px;
-        font-family: ZestMedium;
-      }
-      .lname {
-        margin-right: 20px;
-        font-family: ZestMedium;
-        display: block;
-      }
+    }
+  }
+  &.chat-only {
+    height: 100%;
+    #messages {
+      height: 100%;
     }
   }
   @media (max-width: 815px) {
     max-width: initial;
     margin: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 5.5rem);
     position: relative;
-    #chat_title {
+    padding: 0 0.5rem;
+    #chattitle {
       display: none;
     }
-    #send {
-      position: absolute;
-      bottom: 88px;
-      width: 100%;
-    }
-    #msg {
-      height: ~"calc(100% - 200px)";
-      margin-top: 0px;
+    #messages {
+      height: 290px;
+      flex-grow: 1;
     }
   }
 }

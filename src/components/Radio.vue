@@ -1,22 +1,27 @@
 <template>
-  <section id="radio" class="flex" @click="play">
+  <section id="radio" @click="play">
     <audio ref="audioElm" :src="src" preload="none"></audio>
-    <img src="../assets/imgs/play.svg" class="playBtn" v-if="!isPlaying" />
-    <img src="../assets/imgs/stop.png" class="playBtn" v-else />
+    <div>
+      <div class="play-pause-button round-button">
+        <img src="../assets/imgs/play.svg" v-if="!isPlaying" />
+        <img src="../assets/imgs/stop.png" v-else />
+      </div>
+    </div>
     <span class="reddot">•</span>
-    <div class="title">
+    <div class="player-title">
       <span class="live_info" v-if="titleVisible">
         <span v-if="livestream">Live         <span class="invis">{{ artist }}</span>
         <span class="dash" v-if="!livestream"> - </span>
         <span class="show_title invis">{{ title }}</span>
-        <span style="margin-left: 15px"></span>
+        <span style="margin: 0 .5rem 0 .5rem">→</span>
         <span v-if="livestream">Live         <span>{{ artist }}</span>
         <span class="dash" v-if="!livestream"> - </span>
         <span class="show_title">{{ title }}</span>
-        <span style="margin-left: 15px"></span>
+        <span style="margin: 0 .5rem 0 .5rem">→</span>
         <span v-if="livestream">Live         <span class="invis">{{ artist }}</span>
         <span class="dash invis" v-if="!livestream"> - </span>
         <span class="show_title invis">{{ title }}</span>
+        <span style="margin: 0 .5rem 0 .5rem">→</span>
       </span>
     </div>
   </section>
@@ -116,21 +121,24 @@ export default {
 </script>
 <style lang="less" scoped>
 #radio {
-  margin-top: 17px;
+  height: 100%;
   cursor: pointer;
-  width: 282px;
+  width: calc(100% - 70px);
+  padding-left: 6px;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid var(--color-text);
   .flex {
     display: flex;
     justify-content: space-between;
   }
-  .title {
-    margin-top: -14px;
-    line-height: 75px;
+  .player-title {
     text-align: center;
-    width: 200px;
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
+    padding: 14px 0;
+    position: relative;
     .live_info {
       display: inline-block;
       vertical-align: middle;
@@ -143,6 +151,21 @@ export default {
         animation-play-state: paused;
       }
     }
+    &::before, &::after {
+      content: " ";
+      position: absolute;
+      background: linear-gradient(90deg, var(--color-bg), transparent);
+      top: 0;
+      width: 30px;
+      left: 0;
+      height: 100%;
+      z-index: 1;
+    }
+    &::after {
+        left: unset;
+        right: 0;
+        background: linear-gradient(270deg, var(--color-bg), transparent);
+    }
     @keyframes marquee {
       0% {
         transform: translate(0, 0);
@@ -152,13 +175,19 @@ export default {
       }
     }
   }
-  .playBtn {
+  .play-pause-button {
     height: 40px;
+    width: 40px;
+    img {
+      height: 40px;
+      width: 40px;
+    }
   }
   .reddot {
-    margin-top: 7px;
-    margin-left: 10px;
-    margin-right: 20px;
+    margin-top: 0px;
+    margin-left: 4px;
+    margin-right: 14px;
+    margin-bottom: -11px;
     color: red;
     font-size: 34px;
     animation: live 2.5s linear infinite;
@@ -169,15 +198,13 @@ export default {
     }
   }
   @media (max-width: 1200px) {
-    .title {
+    .player-title {
       width: 150px;
     }
   }
   @media (max-width: 815px) {
-    width: calc(100% - 125px);
-    margin-left: 20px;
-    .title {
-      margin-top: -15px;
+    border: none;
+    .player-title {
       width: calc(100% - 90px);
     }
     .reddot {

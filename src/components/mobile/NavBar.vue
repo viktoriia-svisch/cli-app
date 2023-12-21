@@ -1,11 +1,7 @@
 <template>
   <nav>
     <section id="topnav">
-      <img
-        id="burger"
-        @click="second = !second"
-        src="../../assets/imgs/menu.png"
-      />
+      <img id="burger" @click="second = !second" src="../../assets/imgs/menu.png" />
       <router-link :to="{ path: '/' }"
         ><img
           class="logo"
@@ -18,15 +14,12 @@
     </section>
     <section id="bottomnav">
       <Radio
+        style="flex-grow: 1"
         :today_shows="today_shows"
         :iframe_update="iframe_mix"
         :style="`display: ${iframe_mix ? 'none' : 'flex'}`"
       />
-      <img
-        id="chaticon"
-        src="../../assets/imgs/chat.svg"
-        @click="chat = !chat"
-      />
+      <img id="chaticon" src="../../assets/imgs/chat.svg" @click="chat = !chat" />
       <IframeSC :iframe_mix="iframe_mix" />
     </section>
     <section id="second" :style="`left: ${second ? '0' : '-100%'}`">
@@ -41,26 +34,20 @@
         @click="toURL('/')"
         alt="z⸱est radio"
         src="../../assets/imgs/logo_white.png"
-        width="140"
+        width="80"
       />
-      <div id="link_sec">
+      <div id="link_sec" class="menu">
         <h3 @click="toURL('/podcasts')">Podcasts</h3>
         <h3 @click="toURL('/calendar')">Calendrier</h3>
         <h3 @click="toURL('/residents')">Résident.e.s</h3>
         <br />
         <h3 @click="toURL('/propose_show')">Proposer un show</h3>
         <h3>
-          <a href="https:            >Soundcloud</a
-          >
-        </h3>
+          <a href="https:        </h3>
         <h3>
-          <a href="https:            >Facebook</a
-          >
-        </h3>
+          <a href="https:        </h3>
         <h3>
-          <a href="https:            >Instagram</a
-          >
-        </h3>
+          <a href="https:        </h3>
         <br />
         <h3 @click="toURL('/about')">About</h3>
       </div>
@@ -76,14 +63,9 @@
         @click="toURL('/')"
         alt="z⸱est radio"
         src="../../assets/imgs/logo_white.png"
-        width="140"
+        width="80"
       />
-      <img
-        id="back"
-        src="../../assets/imgs/back.png"
-        width="30"
-        @click="chat = !chat"
-      />
+      <img id="back" src="../../assets/imgs/back.png" width="30" @click="chat = !chat" />
       <Chat />
     </section>
     <section
@@ -137,45 +119,44 @@ nav {
   #topnav {
     z-index: 3;
     width: 100%;
-    height: 70px;
+    height: 48px;
     background-color: white;
     position: fixed;
-    top: -1px;
+    top: 0px;
+    border-bottom: 1px solid var(--color-text);
     display: flex;
     justify-content: center;
+    align-items: center;
     a {
-      height: 71px;
-      width: 71px;
+      width: 72px;
       .logo {
-        height: 100%;
         width: 100%;
+        height: auto;
       }
     }
     #burger {
       position: absolute;
-      left: 0;
-      top: 0;
-      padding: 18px;
-      width: 33px;
+      left: 1rem;
+      top: 8px;
+      width: 34px;
     }
   }
   #bottomnav {
     z-index: 3;
     width: 100%;
-    height: 70px;
+    height: 50px;
     background-color: white;
+    border-top: 1px solid var(--color-text);
     position: fixed;
-    bottom: -1px;
+    bottom: 0;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    box-sizing: border-box;
     #chaticon {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      padding: 15px;
-      width: 40px;
-      height: 40px;
-      z-index: 2;
-      background-color: white;
+      width: 34px;
+      padding: 3px;
     }
   }
   #chat_box {
@@ -197,8 +178,7 @@ nav {
     }
     #logo_white {
       display: block;
-      margin: auto;
-      width: 88px;
+      margin: 2rem auto;
     }
   }
   #chat_shadow {
@@ -221,7 +201,10 @@ nav {
     transition: 0.7s;
     color: white;
     #link_sec {
-      padding-left: 18px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       a {
         text-decoration: none;
         color: white;
@@ -236,8 +219,7 @@ nav {
     }
     #logo_white {
       display: block;
-      margin: auto;
-      width: 160px;
+      margin: 2rem auto;
     }
   }
   #second_shadow {

@@ -1,11 +1,11 @@
 <template>
   <section id="calendars">
-    <span class="subtitle">Le calendrier</span>
+    <h1 class="title">Le calendrier</h1>
     <article class="week_header">
-      <h3 class="chgWeek" @click="changeWeek('-')">
-        <img id="prec" src="../assets/imgs/play_white.svg" />
+      <h4 class="chgWeek button" @click="changeWeek('-')">
+        <img id="prec" src="../assets/imgs/play.svg" />
         Semaine précédente
-      </h3>
+      </h4>
       <h3 class="semaine_title" v-if="date">
         Semaine du
         {{
@@ -16,10 +16,10 @@
           ).toLocaleDateString("fr-FR")}`
         }}
       </h3>
-      <h3 class="chgWeek" @click="changeWeek('+')">
+      <h4 class="chgWeek button" @click="changeWeek('+')">
         Semaine suivante
-        <img src="../assets/imgs/play_white.svg" />
-      </h3>
+        <img src="../assets/imgs/play.svg" />
+      </h4>
     </article>
     <h3 v-if="date" class="mobile_week_title">
       Semaine du
@@ -32,61 +32,63 @@
       }}
     </h3>
     <article class="mobile_week_header">
-      <h3 class="chgWeek" @click="changeWeek('-')">
-        <img id="prec" src="../assets/imgs/play_white.svg" />
+      <h3 class="chgWeek button" @click="changeWeek('-')">
+        <img id="prec" src="../assets/imgs/play.svg" />
         Précédente
       </h3>
-      <h3 class="chgWeek" @click="changeWeek('+')">
+      <h3 class="chgWeek button" @click="changeWeek('+')">
         Suivante
-        <img src="../assets/imgs/play_white.svg" />
+        <img src="../assets/imgs/play.svg" />
       </h3>
     </article>
     <section class="week" v-if="date">
-      <div class="day" v-for="(day, k) in days" v-bind:key="day.val">
-        {{ day.title }}
-        {{
-          `${new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate() + k
-          ).toLocaleDateString("fr-FR")}`
-        }}
-        <section v-for="show in weeks[day.val]" v-bind:key="show.id" class="show">
-          <u
-            >De
-            {{
-              new Date(Number(show.starts_at)).toLocaleTimeString("fr-FR", {
-                hour: "2-digit",
-                minute: "2-digit",
-                timeZone: timeZone,
-              })
-            }}
-            à
-            {{
-              new Date(Number(show.ends_at)).toLocaleTimeString("fr-FR", {
-                hour: "2-digit",
-                minute: "2-digit",
-                timeZone: timeZone,
-              })
-            }}:</u
-          >
-          <span> {{ show.name }} </span>
-          <br />
-          <span v-if="show.dj && show.dj.length"
-            ><span class="side">Animee par</span> {{ show.dj }}</span
-          ><br />
-          <span class="side" v-if="show.redundancy"
-            >Toutes les {{ show.redundancy == 1 ? "" : show.redundancy }} semaines</span
-          >
-          <span v-else class="side">Emission speciale</span><br />
-          <div class="genreHld">
-            <span class="genre side" v-for="genre in show.genres" v-bind:key="genre"
-              ><router-link :to="{ path: '/search/' + genre }">{{
-                genre
-              }}</router-link></span
-            >
-          </div>
-        </section>
+      <div v-for="(day, k) in days" v-bind:key="day.val">
+        <div class="day">
+          {{ day.title }}
+          {{
+            `${new Date(
+              date.getFullYear(),
+              date.getMonth(),
+              date.getDate() + k
+            ).toLocaleDateString("fr-FR")}`
+          }}
+          <section v-for="show in weeks[day.val]" v-bind:key="show.id" class="show">
+            <div>
+              <u
+                >{{
+                  new Date(Number(show.starts_at)).toLocaleTimeString("fr-FR", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    timeZone: timeZone,
+                  })
+                }}
+                -
+                {{
+                  new Date(Number(show.ends_at)).toLocaleTimeString("fr-FR", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    timeZone: timeZone,
+                  })
+                }}</u
+              >
+              &nbsp;<span class="show-name">{{ show.name }}</span>
+            </div>
+            <div v-if="show.dj && show.dj.length">
+              Animee par <span class="dj-name">{{ show.dj }}</span>
+            </div>
+            <div v-if="show.redundancy">
+              Toutes les {{ show.redundancy == 1 ? "" : show.redundancy }} semaines
+            </div>
+            <div v-else>Emission speciale</div>
+            <div class="genreHld">
+              <span class="genre" v-for="genre in show.genres" v-bind:key="genre">
+                <router-link :to="{ path: '/search/' + genre }"
+                  >#{{ genre }}
+                </router-link>
+              </span>
+            </div>
+          </section>
+        </div>
       </div>
     </section>
   </section>
@@ -130,7 +132,10 @@ export default {
         return;
       }
       const firstShowStart = new Date(Number(this.shows[0].starts_at)).getTime();
-      if (monday.getTime() > firstShowStart || oneWeekFromMonday.getTime() < firstShowStart) {
+      if (
+        monday.getTime() > firstShowStart ||
+        oneWeekFromMonday.getTime() < firstShowStart
+      ) {
         return;
       }
       this.dispatchShowsInWeek(this.shows);
@@ -178,7 +183,8 @@ export default {
 </script>
 <style lang="less" scoped>
 #calendars {
-  color: white;
+  width: 70%;
+  height: max-content;
   .week_header,
   .mobile_week_header {
     display: flex;
@@ -188,15 +194,12 @@ export default {
       font-family: ZestBold;
     }
     .chgWeek {
-      padding: 5px 10px 2px 10px;
-      background-color: #ffffff2e;
-      cursor: pointer;
-      font-size: 15px;
-      font-family: ZestMedium;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
       img {
         position: relative;
-        top: 2px;
-        width: 15px;
+        width: 28px;
       }
       #prec {
         -webkit-transform: rotate(180deg);
@@ -212,44 +215,24 @@ export default {
     display: none;
   }
   .week {
-    width: 830px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
+    grid-gap: 2rem;
     grid-auto-rows: minmax(auto, auto);
     .day {
-      padding: 10px 4px 20px 4px;
-      background-color: #ffffff40;
-      font-family: ZestBold;
+      padding: 0 0.5rem;
+      border-left: 1px solid var(--color-text);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       .show {
-        padding: 5px 10px 1px 0px;
-        margin-top: 15px;
-        u {
-          font-family: ZestMedium;
+        .show-name,
+        .dj-name {
+          font-family: ZestBold;
         }
-        .side {
-          letter-spacing: -1px;
-        }
-        .genreHld {
-          .genre {
-            font-family: ZestMedium;
-            position: relative;
-            top: 4px;
-            font-size: 15px;
-            margin-right: 10px;
-            background-color: #00000020;
-            padding: 5px 10px 2px 10px;
-            cursor: pointer;
-            text-align: center;
-            padding-top: 5px;
-            a {
-              color: white;
-              text-decoration: none;
-            }
-            &:hover {
-              background-color: #00000080;
-            }
-          }
+        .show-name {
+          padding: 0 0.2rem;
+          background-color: var(--color-primary);
         }
       }
     }
@@ -263,23 +246,14 @@ export default {
       display: flex;
       font-family: ZestBold;
     }
-    .week {
-      width: 630px;
-      .day {
-        .show {
-          padding: 5px 0px 1px 0px;
-          .genreHld {
-            display: grid;
-            grid-gap: 5px;
-            .genre {
-              margin-right: 0px;
-            }
-          }
-        }
-      }
+    .mobile_week_title {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
     }
   }
-  @media (max-width: 1000px) {
+  @media (max-width: 815px) {
+    width: 100%;
     .week {
       width: initial;
       grid-template-columns: repeat(1, 1fr);

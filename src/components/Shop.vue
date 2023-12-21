@@ -1,6 +1,6 @@
 <template>
   <section id="shop">
-    <span class="subtitle">Notre merch</span>
+    <h1 class="title">Notre merch</h1>
     <div class="merch" v-for="obj in shop_data.data" v-bind:key="obj.url">
       <div
         id="img"
@@ -32,7 +32,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
+  color: var(--color-text);
   width: 100%;
   .merch {
     margin: 10px;

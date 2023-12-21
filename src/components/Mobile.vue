@@ -48,8 +48,7 @@ export default {
 main {
   .main_section {
     margin-bottom: 80px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-top: 48px;
   }
 }
 </style>

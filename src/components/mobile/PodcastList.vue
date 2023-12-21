@@ -21,14 +21,10 @@ export default {
 </script>
 <style lang="less" scoped>
 .podcasts {
-  margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
+  grid-gap: 1rem;
   grid-auto-rows: minmax(auto, auto);
-  .podcast {
-    margin: 0 5px;
-  }
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }

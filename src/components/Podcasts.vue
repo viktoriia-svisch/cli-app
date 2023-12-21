@@ -1,12 +1,12 @@
 <template>
   <main>
-    <span class="subtitle">Tous les podcasts</span>
+    <h1 class="title">Tous les podcasts</h1>
     <br />
     <Filters />
     <PodcastList :pods="podcasts" />
     <section class="flex">
       <div class="more" @click="getPodcasts">
-        <span class="voirplus">En voir plus</span>
+        <div class="button">En voir plus</div>
       </div>
     </section>
   </main>
@@ -32,19 +32,19 @@ export default {
   },
   methods: {
     async getPodcasts() {
-            if (!this.more) return;
-      await axios
-        .get(this.next)
-        .then((res) => {
-          if (res.data.next_href === null) this.more = false;
-          this.podcasts = this.podcasts.concat(res.data.collection);
-          this.offset = res.data.next_href.substring(
-            res.data.next_href.indexOf("?offset") + 8
-          );
-          this.offset = this.offset.split("&")[0];
-          this.next = `${this.$config.VUE_APP_API}/sounds/${this.offset}`;
-        })
-        .catch();
+            if (!this.more) {
+        return;
+      }
+      const res = await axios.get(this.next);
+      if (res.data.next_href === null) {
+        this.more = false;
+      }
+      this.podcasts = this.podcasts.concat(res.data.collection);
+      this.offset = res.data.next_href.substring(
+        res.data.next_href.indexOf("?offset") + 8
+      );
+      this.offset = this.offset.split("&")[0];
+      this.next = `${this.$config.VUE_APP_API}/sounds/${this.offset}`;
     },
   },
   async mounted() {
@@ -52,29 +52,19 @@ export default {
       this.offset
     }?t=${new Date().getTime()}`;
     await this.getPodcasts();
-    await this.getPodcasts();
   },
 };
 </script>
 <style lang="less" scoped>
 main {
-  width: 830px;
-  color: white;
+  width: 70%;
+  height: max-content;
   .flex {
     justify-content: end;
     .more {
       position: relative;
-      width: 250px;
-      max-width: 475px;
-      background-color: #00000040;
-      position: relative;
       height: 24px;
-      padding: 5px 5px 0px 20px;
-      margin-top: 10px;
       cursor: pointer;
-      &:hover {
-        background-color: #00000080;
-      }
       span {
         position: relative;
         top: 2px;
@@ -89,7 +79,6 @@ main {
     }
   }
   @media (max-width: 1000px) {
-    width: initial;
     .more {
       width: initial;
     }

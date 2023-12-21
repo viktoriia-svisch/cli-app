@@ -1,11 +1,7 @@
 <template>
   <main>
-    <NavBar
-      :today_shows="today_shows"
-      :color="color"
-      :iframe_mix="iframe_mix"
-    />
-    <section class="main_section flex_center marged">
+    <NavBar :today_shows="today_shows" :color="color" :iframe_mix="iframe_mix" />
+    <section class="main_section flex_center">
       <router-view :key="$route.fullPath" v-on:podcast="iframe_set" />
       <Right />
     </section>
