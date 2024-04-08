@@ -2,7 +2,7 @@
   <section id="prop">
     <h1 class="title">Proposer une émission</h1>
     <div class="prop-container">
-      <img src="../assets/imgs/show.jpeg" />
+      <img src="../../assets/imgs/show.jpeg" />
       <article>
         <p>
           La grille des programmes de zest est ouverte toute la saison aux nouvelles

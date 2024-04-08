@@ -2,7 +2,7 @@
   <section id="chat" :class="{ 'chat-only': isChatOnly }">
     <router-link id="chattitle" :to="{ path: '/chat' }">
       <h3 class="title" id="chat_title">La chatroom</h3>
-      <img src="../assets/imgs/open_link_icon.png" class="open_link" />
+      <img src="../../assets/imgs/open_link_icon.png" class="open_link" />
     </router-link>
     <section id="messages" ref="msg">
       <div class="message" v-for="(msg, i) in msgs" v-bind:key="i">

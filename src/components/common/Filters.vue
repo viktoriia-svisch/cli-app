@@ -49,13 +49,15 @@ article {
     box-sizing: border-box;
     border: 1px solid grey;
     color: black;
-    &:hover, &:active, &:focus {
-        background-color: var(--color-primary-bg);
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: var(--color-primary-bg);
     }
     &:focus,
     &:focus-within,
     &focus-visible {
-        outline: 1px solid var(--color-text);
+      outline: 1px solid var(--color-text);
     }
   }
   #filters {

@@ -2,12 +2,12 @@
   <section id="mix_frame" v-if="iframe_mix">
     <div id="mix_frame_inner">
       <img
-        src="../assets/imgs/play.svg"
+        src="../../assets/imgs/play.svg"
         class="playBtn round-button"
         v-if="!isPlaying"
         @click="toggleSound"
       />
-      <img src="../assets/imgs/stop.png" class="playBtn round-button" v-else @click="toggleSound" />
+      <img src="../../assets/imgs/stop.png" class="playBtn round-button" v-else @click="toggleSound" />
       <div class="player-title">
         <span class="live_info" @click="toggleSound">
           {{ iframe_mix.title }} → {{ iframe_mix.title }} → {{ iframe_mix.title }}
@@ -17,18 +17,18 @@
         <div @click="$emit('showMore', showMore)">
           <img
             class="more_mix round-button"
-            src="../assets/imgs/more_icon.png"
+            src="../../assets/imgs/more_icon.png"
             @click="showMore = !showMore"
             v-if="!showMore"
           />
           <img
             class="more_mix round-button"
-            src="../assets/imgs/less_icon.png"
+            src="../../assets/imgs/less_icon.png"
             @click="showMore = !showMore"
             v-else
           />
         </div>
-        <img class="close_mix round-button" src="../assets/imgs/cross_icon.png" @click="close_mix" />
+        <img class="close_mix round-button" src="../../assets/imgs/cross_icon.png" @click="close_mix" />
       </div>
     </div>
     <section class="more_info" :style="`opacity: ${showMore ? '1' : '0'}`">

@@ -1,9 +1,9 @@
 <template>
   <main>
     <div id="img1" class="img">
-      <img src="../assets/imgs/events/1.jpg" />
+      <img src="../../assets/imgs/events/1.jpg" />
       <div class="text" id="bloc1">
-        <img src="../assets/imgs/events/logo.png" />
+        <img src="../../assets/imgs/events/logo.png" />
         <p>
           Fort de son expérience dans le monde culturel en tant que Webradio,
           ODC propose ses services professionnels dans l’organisation
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div id="img2" class="img">
-      <img src="../assets/imgs/events/2.jpg" />
+      <img src="../../assets/imgs/events/2.jpg" />
       <div class="text" id="bloc1">
         <h2>Nos projets, clients et partenaires</h2>
         <p>
@@ -39,7 +39,7 @@
       </div>
     </div>
     <div id="img3" class="img">
-      <img src="../assets/imgs/events/3.jpg" />
+      <img src="../../assets/imgs/events/3.jpg" />
       <div class="text" id="bloc1">
         <h2>Services & Compétences</h2>
         <p>

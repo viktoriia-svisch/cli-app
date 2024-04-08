@@ -14,7 +14,7 @@
 <script>
 import axios from "axios";
 import Fullscreen from "./components/Fullscreen.vue";
-import Mobile from "./components/Mobile.vue";
+import Mobile from "./components/mobile/Mobile.vue";
 export default {
   name: "App",
   components: {

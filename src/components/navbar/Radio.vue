@@ -3,8 +3,8 @@
     <audio ref="audioElm" :src="src" preload="none"></audio>
     <div>
       <div class="play-pause-button round-button">
-        <img src="../assets/imgs/play.svg" v-if="!isPlaying" />
-        <img src="../assets/imgs/stop.png" v-else />
+        <img src="../../assets/imgs/play.svg" v-if="!isPlaying" />
+        <img src="../../assets/imgs/stop.png" v-else />
       </div>
     </div>
     <span class="reddot">•</span>

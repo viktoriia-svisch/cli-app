@@ -9,7 +9,7 @@
   </section>
 </template>
 <script>
-import shopdata from "../assets/shop_data.js";
+import shopdata from "../../../assets/shop_data.js";
 export default {
   name: "shop",
   data() {

@@ -1,16 +1,17 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Shop from "@/components/Shop";
-import ShopMerch from "@/components/ShopMerch";
+import Shop from "@/components/routes/shop/Shop";
+import ShopMerch from "@/components/routes/shop/ShopMerch";
 import Index from "@/components/Index";
-import Events from "@/components/Events";
-import Resident from "@/components/Resident";
-import Residents from "@/components/Residents";
-import Podcasts from "@/components/Podcasts";
-import Search from "@/components/Search";
-import CalendarPage from "@/components/CalendarPage";
-import SubmitShow from "@/components/SubmitShow";
-import About from "@/components/About";
+import Events from "@/components/routes/Events";
+import Resident from "@/components/routes/resident/Resident";
+import Residents from "@/components/routes/resident/Residents";
+import Podcasts from "@/components/routes/Podcasts";
+import Search from "@/components/routes/Search";
+import CalendarPage from "@/components/routes/CalendarPage";
+import SubmitShow from "@/components/routes/SubmitShow";
+import About from "@/components/routes/About";
+import Live from "@/components/routes/Live";
 Vue.use(Router);
 const router = new Router({
     mode: "history",
@@ -84,6 +85,10 @@ const router = new Router({
         },
         {
             path: "/chat",
+        },
+        {
+            path: "/live",
+            component: Live,
         },
         {
             path: "/p/:mix_id",

@@ -15,10 +15,10 @@
       <div class="podcast__buttons">
         <span>{{ pod.dj }}</span>
         <span class="soundcloud" @click="open_soundcloud">
-          <img src="../assets/imgs/soundcloud.svg" />
+          <img src="../../assets/imgs/soundcloud.svg" />
         </span>
         <span class="share" @click="share_mix">
-          <img src="../assets/imgs/share.svg" />
+          <img src="../../assets/imgs/share.svg" />
         </span>
       </div>
     </div>

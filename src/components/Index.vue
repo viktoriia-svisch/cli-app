@@ -38,9 +38,9 @@
 <script>
 import axios from "axios";
 import graph from "@/graphaxios";
-import PodcastList from "./PodcastList.vue";
+import PodcastList from "./common/PodcastList.vue";
 import PodcastListMobile from "./mobile/PodcastList.vue";
-import TimeTable from "./TimeTable";
+import TimeTable from "./common/TimeTable";
 export default {
   name: "Index",
   components: {

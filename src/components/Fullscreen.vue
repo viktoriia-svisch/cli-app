@@ -9,8 +9,8 @@
 </template>
 <script>
 import axios from "axios";
-import NavBar from "./NavBar.vue";
-import Right from "./Right.vue";
+import NavBar from "./navbar/NavBar.vue";
+import Right from "./common/Right.vue";
 export default {
   name: "Fullscreen",
   props: ["color"],

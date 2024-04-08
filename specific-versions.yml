@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  api:
+    image: $API_IMAGE
+  chat:
+    image: $CHAT_IMAGE
+  admin:
+    image: $ADMIN_IMAGE
+  cli:
+    image: $CLI_IMAGE

@@ -76,9 +76,9 @@
   </nav>
 </template>
 <script>
-import Radio from "../Radio.vue";
-import Chat from "../Chat.vue";
-import IframeSC from "../IframeSC.vue";
+import Radio from "../navbar/Radio.vue";
+import Chat from "../routes/Chat.vue";
+import IframeSC from "../navbar/IframeSC.vue";
 export default {
   name: "NavBar",
   props: ["today_shows", "iframe_mix"],

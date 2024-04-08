@@ -7,7 +7,7 @@
       <section class="nav flex">
         <div class="flex menu">
           <router-link :to="{ path: '/' }" style="padding-right: 1rem"
-            ><img alt="z⸱est radio" src="../assets/imgs/logo.png" height="20" />
+            ><img alt="z⸱est radio" src="../../assets/imgs/logo.png" height="20" />
           </router-link>
           <router-link :to="{ path: '/podcasts' }"><h1>Podcasts</h1></router-link>
           <router-link :to="{ path: '/calendar' }"><h1>Calendrier</h1></router-link>
@@ -22,11 +22,11 @@
           />
           <IframeSC :iframe_mix="iframe_mix" @showMore="setShowMOre($event)" />
           <div class="more round-button" @click="second = !second">
-            <img v-if="second == false" width="40" src="../assets/imgs/menu.png" />
+            <img v-if="second == false" width="40" src="../../assets/imgs/menu.png" />
             <img
               v-else
               width="40"
-              src="../assets/imgs/back_black.png"
+              src="../../assets/imgs/back_black.png"
               style="position: relative; top: 5px"
             />
           </div>
@@ -36,7 +36,7 @@
         <img
           id="logo_white"
           alt="z⸱est radio"
-          src="../assets/imgs/logo_white.png"
+          src="../../assets/imgs/logo_white.png"
           width="140"
         />
         <div class="main menu">
@@ -66,7 +66,7 @@
 <script>
 import Radio from "./Radio.vue";
 import IframeSC from "./IframeSC.vue";
-import "../assets/js/soundcloud.js";
+import "../../assets/js/soundcloud.js";
 export default {
   name: "NavBar",
   props: ["today_shows", "color", "iframe_mix"],

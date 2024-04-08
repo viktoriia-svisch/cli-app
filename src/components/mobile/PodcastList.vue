@@ -10,7 +10,7 @@
   </section>
 </template>
 <script>
-import WidgetPodcast from "../WidgetPodcast.vue";
+import WidgetPodcast from "../common/WidgetPodcast.vue";
 export default {
   name: "PodcastList",
   components: {

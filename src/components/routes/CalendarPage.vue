@@ -3,7 +3,7 @@
     <h1 class="title">Le calendrier</h1>
     <article class="week_header">
       <h4 class="chgWeek button" @click="changeWeek('-')">
-        <img id="prec" src="../assets/imgs/play.svg" />
+        <img id="prec" src="../../assets/imgs/play.svg" />
         Semaine précédente
       </h4>
       <h3 class="semaine_title" v-if="date">
@@ -18,7 +18,7 @@
       </h3>
       <h4 class="chgWeek button" @click="changeWeek('+')">
         Semaine suivante
-        <img src="../assets/imgs/play.svg" />
+        <img src="../../assets/imgs/play.svg" />
       </h4>
     </article>
     <h3 v-if="date" class="mobile_week_title">
@@ -33,12 +33,12 @@
     </h3>
     <article class="mobile_week_header">
       <h3 class="chgWeek button" @click="changeWeek('-')">
-        <img id="prec" src="../assets/imgs/play.svg" />
+        <img id="prec" src="../../assets/imgs/play.svg" />
         Précédente
       </h3>
       <h3 class="chgWeek button" @click="changeWeek('+')">
         Suivante
-        <img src="../assets/imgs/play.svg" />
+        <img src="../../assets/imgs/play.svg" />
       </h3>
     </article>
     <section class="week" v-if="date">

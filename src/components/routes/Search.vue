@@ -12,8 +12,8 @@
 </template>
 <script>
 import axios from "axios";
-import PodcastList from "./PodcastList.vue";
-import Filters from "./Filters.vue";
+import PodcastList from "../common/PodcastList.vue";
+import Filters from "../common/Filters.vue";
 export default {
   name: "Index",
   components: {
