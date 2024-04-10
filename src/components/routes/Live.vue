@@ -84,7 +84,7 @@ export default {
                             break;
                         default:
                                                         console.error('c pt ', data)
-                            this.message = 'Erreur de stream';
+                            this.message = 'C PT';
                             this.terminateStream();
                             break;
                     }
@@ -92,13 +92,15 @@ export default {
             });
         },
         terminateStream() {
-            this.message = 'Stream terminé :/'
+            this.message = 'ah bah ça ztream plus :\'('
             this.hls.destroy();
             this.streamIsOpen = false;
-            this.setStreamListener();
+            setTimeout(() => {
+                this.setStreamListener();
+            }, 3000)
         },
         async setStreamListener() {
-            this.message = 'Pas de Stream pour le moment'
+            this.message = '...'
             console.log('SetStreamListener');
             await this.checkForStream();
             if (this.streamLoading) {
@@ -115,7 +117,7 @@ export default {
                 try {
                     fetch(this.streamUri).then(() => {
                         clearInterval(this.interval);
-                        this.message = 'Stream trouvé ! En cours de chargement ...'
+                        this.message = 'Oh !! il se passe qqch !'
                         this.initHls();
                         this.loadManifest();
                         resolve();
