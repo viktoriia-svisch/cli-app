@@ -1,5 +1,6 @@
 <template>
   <main>
+    <Live></Live>
     <h1 class="title">Les derniers podcasts</h1>
     <PodcastList :pods="podcasts" class="desktop_pods" />
     <PodcastListMobile :pods="podcasts" class="mobile_pods" />
@@ -41,12 +42,14 @@ import graph from "@/graphaxios";
 import PodcastList from "./common/PodcastList.vue";
 import PodcastListMobile from "./mobile/PodcastList.vue";
 import TimeTable from "./common/TimeTable";
+import Live from "./common/Live.vue";
 export default {
   name: "Index",
   components: {
     PodcastList,
     PodcastListMobile,
     TimeTable,
+    Live,
   },
   data() {
     return {

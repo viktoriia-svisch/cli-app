@@ -1,29 +1,14 @@
 <template>
-    <main>
-        <section>
-            {{ message }}
-            <div
-                class="live-video__wrapper"
-                :style="{ 'display': streamIsOpen || streamLoading ? 'block' : 'none' }"
-            >
-                <div
-                    v-if="streamLoading"
-                    class="live-video__wrapper--animation"
-                ></div>
-                <video
-                    class="live-video"
-                    id="zest-live"
-                    @click="videoElement.play()"
-                    muted
-                    autoplay
-                ></video>
-            </div>
-        </section>
-    </main>
+    <section class="live-component" :style="{ 'display': streamIsOpen || streamLoading ? 'block' : 'none' }">
+        <div class="live-video__wrapper">
+            <div v-if="streamLoading" class="live-video__wrapper--animation"></div>
+            <video class="live-video" id="zest-live" @click="videoElement.play()" muted autoplay></video>
+        </div>
+    </section>
 </template>
 <script>
 export default {
-    name: "live",
+    name: "Live",
     components: {},
     data() {
         return {
@@ -53,15 +38,12 @@ export default {
                 return;
             }
             this.streamLoading = true;
-            this.hls.on(this.Hls.Events.MANIFEST_PARSED, (event, data) => {
-                console.log(event, data);
-            });
-            this.hls.on(this.Hls.Events.STEERING_MANIFEST_LOADED, (event, data) => {
-                console.log('steering what ?', event, data);
-            });
-            this.hls.on(this.Hls.Events.INIT_PTS_FOUND, (event, data) => {
-                console.log('c\'est chargé !', event, data);
-                this.message = "ça ztream !!";
+            this.hls.on(this.Hls.Events.MANIFEST_PARSED, () => {
+                            });
+            this.hls.on(this.Hls.Events.STEERING_MANIFEST_LOADED, () => {
+                            });
+            this.hls.on(this.Hls.Events.INIT_PTS_FOUND, () => {
+                                this.message = "ça ztream !!";
                 this.streamIsOpen = true;
                 this.streamLoading = false;
             });
@@ -75,16 +57,13 @@ export default {
                 if (errorFatal) {
                     switch (data.type) {
                         case this.Hls.ErrorTypes.MEDIA_ERROR:
-                            console.log('fatal media error encountered, try to recover');
-                            this.hls.recoverMediaError();
+                                                        this.hls.recoverMediaError();
                             break;
                         case this.Hls.ErrorTypes.NETWORK_ERROR:
-                            console.error('fatal network error encountered', data);
-                                                                                                                                            this.terminateStream();
+                                                                                                                                                                        this.terminateStream();
                             break;
                         default:
-                                                        console.error('c pt ', data)
-                            this.message = 'C PT';
+                                                                                    this.message = 'C PT';
                             this.terminateStream();
                             break;
                     }
@@ -101,15 +80,13 @@ export default {
         },
         async setStreamListener() {
             this.message = '...'
-            console.log('SetStreamListener');
-            await this.checkForStream();
+                        await this.checkForStream();
             if (this.streamLoading) {
                 return;
             }
             clearInterval(this.interval);
             this.interval = setInterval(async () => {
-                console.log('allo ?');
-                await this.checkForStream();
+                                await this.checkForStream();
             }, 10000)
         },
         checkForStream() {
@@ -123,8 +100,7 @@ export default {
                         resolve();
                     }).catch(() => {
                         this.streamIsOpen = false;
-                        console.log('pas de stream');
-                        resolve();
+                                                resolve();
                     });
                 } catch {
                     resolve();
@@ -144,7 +120,7 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-    width: 70%;
+    width: 100%;
 }
 @keyframes loader {
     0% {
@@ -153,6 +129,9 @@ main {
     100% {
         transform: translateX(120%);
     }
+}
+.live-component {
+    margin-bottom: 2rem;
 }
 .live-video__wrapper {
     border: 2px var(--color-primary) solid;

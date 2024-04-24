@@ -11,7 +11,6 @@ import Search from "@/components/routes/Search";
 import CalendarPage from "@/components/routes/CalendarPage";
 import SubmitShow from "@/components/routes/SubmitShow";
 import About from "@/components/routes/About";
-import Live from "@/components/routes/Live";
 Vue.use(Router);
 const router = new Router({
     mode: "history",
@@ -85,10 +84,6 @@ const router = new Router({
         },
         {
             path: "/chat",
-        },
-        {
-            path: "/live",
-            component: Live,
         },
         {
             path: "/p/:mix_id",
