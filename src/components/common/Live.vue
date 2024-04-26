@@ -12,7 +12,7 @@ export default {
     components: {},
     data() {
         return {
-            streamRoute: 'https:            streamKey: 'hello',
+            streamRoute: 'https:            streamKey: 'cest-le-zuper-ztream',
             streamExtension: '.m3u8',
             streamUri: '',
             hls: null,
