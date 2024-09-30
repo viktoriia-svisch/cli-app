@@ -30,7 +30,11 @@ export default {
             if (!Hls && !Hls.isSupported()) {
                 return;
             }
+            const config = {
+                liveMaxLatencyDurationCount: 10
+            }
             this.Hls = Hls;
+            this.Hls.DefaultConfig.liveMaxLatencyDurationCount= 10
             this.hls = new Hls();
         },
         loadManifest() {
