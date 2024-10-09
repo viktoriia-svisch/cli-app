@@ -35,7 +35,6 @@ export default {
 </script>
 <style lang="less" scoped>
 #prop {
-  width: 70%;
   box-sizing: border-box;
   padding-bottom: 5rem;
   height: max-content;
@@ -73,7 +72,6 @@ export default {
     }
   }
   @media (max-width: 800px) {
-    width: 100%;
     article,
     img {
       width: 100%;

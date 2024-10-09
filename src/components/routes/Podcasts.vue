@@ -57,7 +57,6 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  width: 70%;
   height: max-content;
   .flex {
     justify-content: end;

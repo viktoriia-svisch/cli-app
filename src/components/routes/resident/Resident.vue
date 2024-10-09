@@ -119,7 +119,6 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  width: 70%;
   color: var(--color-text);
   height: max-content;
   .resident {

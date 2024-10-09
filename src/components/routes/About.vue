@@ -71,7 +71,6 @@ export default {
 <style lang="less" scoped>
 #legalholder {
   color: var(--color-text);
-  width: 70%;
   height: max-content;
   .outlink {
     font-weight: bold;

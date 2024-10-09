@@ -63,7 +63,6 @@ export default {
 </script>
 <style lang="less" scoped>
 main {
-  width: 70%;
   height: max-content;
   .input {
     max-width: 500px;
