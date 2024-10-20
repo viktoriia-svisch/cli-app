@@ -298,7 +298,7 @@ body {
             margin: 0rem auto 0px auto;
         }
         .mobile_pods .podcast {
-            width: 190px !important;
+            width: 230px !important;
             flex-shrink: 0;
         }
         h3.title,

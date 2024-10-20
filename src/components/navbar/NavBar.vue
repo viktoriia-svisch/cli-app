@@ -132,7 +132,6 @@ export default {
     methods: {
         setShowMOre(show_more) {
             this.showSoundcloudIframe = show_more;
-            console.log((this.showSoundcloudIframe = show_more));
         },
         toURL(dest) {
             this.$router.push(dest);

@@ -1,8 +1,20 @@
 <template>
-    <section class="live-component" :style="{ 'display': streamIsOpen || streamLoading ? 'block' : 'none' }">
+    <section
+        class="live-component"
+        :style="{ 'display': streamIsOpen || streamLoading ? 'block' : 'none' }"
+    >
         <div class="live-video__wrapper">
-            <div v-if="streamLoading" class="live-video__wrapper--animation"></div>
-            <video class="live-video" id="zest-live" @click="videoElement.play()" muted autoplay></video>
+            <div
+                v-if="streamLoading"
+                class="live-video__wrapper--animation"
+            ></div>
+            <video
+                class="live-video"
+                id="zest-live"
+                @click="videoElement.play()"
+                muted
+                autoplay
+            ></video>
         </div>
     </section>
 </template>
@@ -30,12 +42,8 @@ export default {
             if (!Hls && !Hls.isSupported()) {
                 return;
             }
-            const config = {
-                liveMaxLatencyDurationCount: 10
-            }
             this.Hls = Hls;
-            this.Hls.DefaultConfig.liveMaxLatencyDurationCount= 10
-            this.hls = new Hls();
+                        this.hls = new Hls();
         },
         loadManifest() {
             if (!this.Hls) {
@@ -150,6 +158,7 @@ main {
     overflow: hidden;
     video {
         width: 100%;
+        display: block;
     }
 }
 .live-video__wrapper--animation {

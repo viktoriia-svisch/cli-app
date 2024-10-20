@@ -88,9 +88,7 @@ export default {
         }
         this.podImg = this.podImg.replace("-large", "-t500x500");
         this.pod.podImg = this.podImg;
-        console.log(this.pod.display_date, new Date(this.pod.display_date));
-        this.date = new Date(this.pod.display_date).toLocaleDateString("fr-FR");
-            },
+        this.date = new Date(this.pod.display_date).toLocaleDateString("fr-FR").replace(/\            },
 };
 </script>
 <style lang="less" scoped>

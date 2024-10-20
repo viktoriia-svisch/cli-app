@@ -70,7 +70,7 @@
             v-if="date"
         >
             <div
-                v-for="(day, k) in days"
+                v-for="(day, k) in displayedDay"
                 v-bind:key="day.val"
             >
                 <div class="day">
@@ -94,14 +94,14 @@
                                     minute: "2-digit",
                                     timeZone: timeZone,
                                 })
-                                }}
+                            }}
                                 -
                                 {{
                                     new Date(Number(show.ends_at)).toLocaleTimeString("fr-FR", {
                                         hour: "2-digit",
                                         minute: "2-digit",
                                         timeZone: timeZone,
-                                })
+                                    })
                                 }}</u>
                             &nbsp;<span class="show-name">{{ show.name }}</span>
                         </div>
@@ -143,6 +143,7 @@ export default {
                 { val: "saturday", title: "Samedi", id: 6 },
                 { val: "sunday", title: "Dimanche", id: 0 },
             ],
+            displayedDay: [],
             weeks: {
                 monday: [],
                 tuesday: [],
@@ -188,6 +189,7 @@ export default {
                 const dayName = this.days.find((d) => d.id === e.getDay()).val;
                 this.weeks[dayName].push(shows[i]);
             }
+            this.displayedDay = this.days.filter(day => this.weeks[day.val].length > 0);
         },
         async changeWeek(sign) {
             let date = new Date(this.date);

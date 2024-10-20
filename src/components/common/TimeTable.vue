@@ -44,13 +44,13 @@ export default {
         enhanceDate(ts) {
             return new Date(Number(ts)).toLocaleTimeString("fr-FR", {
                 hour: "2-digit",
-                                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
             });
         },
         async getCalendar(date) {
             const oneDayFromDate = new Date(date.getTime() + 24 * 60 * 60 * 1000);
             this.today_shows = await this.getGoogleCalendar(date, oneDayFromDate);
-                                                                        this.$parent.$parent.today_shows = this.today_shows;
+            this.$parent.$parent.today_shows = this.today_shows;
         },
     },
     async mounted() {
