@@ -50,12 +50,21 @@ export default {
                 return;
             }
             this.streamLoading = true;
-            this.hls.on(this.Hls.Events.MANIFEST_PARSED, () => {
-                            });
-            this.hls.on(this.Hls.Events.STEERING_MANIFEST_LOADED, () => {
-                            });
-            this.hls.on(this.Hls.Events.INIT_PTS_FOUND, () => {
-                                this.message = "ça ztream !!";
+            this.hls.on(this.Hls.Events.MANIFEST_PARSED, (data) => {
+                console.log(event, data);
+            });
+            this.hls.on(this.Hls.Events.STEERING_MANIFEST_LOADED, (data) => {
+                console.log('steering what ?', event, data);
+            });
+            this.hls.on(this.Hls.Events.INIT_PTS_FOUND, (data) => {
+                console.log('c\'est chargé !', event, data);
+                this.message = "ça ztream !!";
+                this.streamIsOpen = true;
+                this.streamLoading = false;
+            });
+            this.hls.on(this.Hls.Events.MEDIA_ERROR, (data) => {
+                console.log('c\'est chargé !', event, data);
+                this.message = "ça ztream !!";
                 this.streamIsOpen = true;
                 this.streamLoading = false;
             });
@@ -65,17 +74,21 @@ export default {
         },
         errorHandling() {
             this.hls.on(this.Hls.Events.ERROR, (event, data) => {
-                                                let errorFatal = data.fatal;
+                                                console.log('error: ', event, data);
+                let errorFatal = data.fatal;
                 if (errorFatal) {
                     switch (data.type) {
                         case this.Hls.ErrorTypes.MEDIA_ERROR:
-                                                        this.hls.recoverMediaError();
+                            console.log('fatal media error encountered, try to recover');
+                            this.hls.recoverMediaError();
                             break;
                         case this.Hls.ErrorTypes.NETWORK_ERROR:
-                                                                                                                                                                        this.terminateStream();
+                                                                                                                                                                        console.log('network error', data)
+                            this.terminateStream();
                             break;
                         default:
-                                                                                    this.message = 'C PT';
+                                                        console.error('c pt ', data)
+                            this.message = 'C PT';
                             this.terminateStream();
                             break;
                     }
@@ -92,13 +105,17 @@ export default {
         },
         async setStreamListener() {
             this.message = '...'
-                        await this.checkForStream();
+            console.log('SetStreamListener');
+            await this.checkForStream();
             if (this.streamLoading) {
                 return;
             }
             clearInterval(this.interval);
             this.interval = setInterval(async () => {
-                                await this.checkForStream();
+                console.log('allo ?');
+                if (!this.streamLoading && !this.streamIsOpen) {
+                    await this.checkForStream();
+                }
             }, 10000)
         },
         checkForStream() {
@@ -112,7 +129,8 @@ export default {
                         resolve();
                     }).catch(() => {
                         this.streamIsOpen = false;
-                                                resolve();
+                        console.log('pas de stream');
+                        resolve();
                     });
                 } catch {
                     resolve();
