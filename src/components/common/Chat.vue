@@ -162,6 +162,7 @@ export default {
 </script>
 <style lang="less" scoped>
 #chat {
+    background-color: var(--color-chat-bg);
     color: var(--color-chat-text);
     width: 100%;
     display: flex;

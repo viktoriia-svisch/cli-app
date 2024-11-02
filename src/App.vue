@@ -96,10 +96,12 @@ export default {
     --color-chat-bg: #0f0e00;
     --color-chat-text: #fffffffa;
     --color-chat-text-light: #bdbdbd;
-    --chat-width: 30%;
+        --chat-width: 30%;
     --chat-min-width: 200px;
     --header-height: 42px;
     --padding: 8px;
+        --phone: 430px;
+    --tablet: 815px;
 }
 body {
     margin: 0;
@@ -142,7 +144,7 @@ body {
                 overflow: auto;
                 height: calc(100% - var(--header-height));
             }
-            @media (max-width: 800px) {
+            @media (max-width: 815px) {
                 width: 100%;
             }
         }

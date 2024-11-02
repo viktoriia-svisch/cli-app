@@ -101,7 +101,7 @@ main {
   @media (max-width: 1000px) {
     width: 100%;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 815px) {
     .residents {
       .resident {
         img {

@@ -164,7 +164,8 @@ main {
     margin-bottom: 2rem;
 }
 .live-video__wrapper {
-    border: 2px var(--color-primary) solid;
+    box-sizing: border-box;
+    border: 4px var(--color-primary) solid;
     width: 100%;
     background-image: url('../../assets/imgs/logo.png');
     background-repeat: no-repeat;
@@ -199,5 +200,12 @@ main {
     rotate: 45deg;
     opacity: .6;
     background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+}
+.video-logo {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 80px;
+    opacity: .6;
 }
 </style>

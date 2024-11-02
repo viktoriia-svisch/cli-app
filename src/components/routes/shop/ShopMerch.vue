@@ -63,7 +63,7 @@ export default {
   }
   @media (max-width: 1150px) {
   }
-  @media (max-width: 800px) {
+  @media (max-width: 815px) {
   }
 }
 </style>

@@ -71,7 +71,7 @@ export default {
       margin: 0 auto;
     }
   }
-  @media (max-width: 800px) {
+  @media (max-width: 815px) {
     article,
     img {
       width: 100%;

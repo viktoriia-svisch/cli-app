@@ -13,7 +13,7 @@
     </aside>
 </template>
 <script>
-import Chat from "../routes/Chat.vue";
+import Chat from "../common/Chat.vue";
 import TimeTable from "./TimeTable";
 export default {
     name: "right",

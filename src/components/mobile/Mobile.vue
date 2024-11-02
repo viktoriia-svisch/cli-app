@@ -1,9 +1,18 @@
 <template>
     <main>
-        <NavBar :today_shows="today_shows" :iframe_mix="iframe_mix" />
+        <NavBar
+            :today_shows="today_shows"
+            :iframe_mix="iframe_mix"
+        />
         <section class="global-container">
-            <div class="main_section flex_center">
-                <router-view :key="$route.fullPath" v-on:podcast="iframe_set" />
+            <div
+                class="main_section flex_center"
+                :class="{ 'main-chat': $route.path === '/chat' }"
+            >
+                <router-view
+                    :key="$route.fullPath"
+                    v-on:podcast="iframe_set"
+                />
             </div>
             <Right style="display: none" />
         </section>
@@ -50,6 +59,13 @@ export default {
 main {
     .main_section {
         margin-bottom: 80px;
+    }
+    .global-container {
+        height: calc(100% - var(--header-height)) !important;
+    }
+    .global-container .main_section.flex_center.main-chat {
+        padding: 0 !important;
+        background-color: var(--color-chat-bg);
     }
 }
 </style>

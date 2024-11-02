@@ -11,6 +11,7 @@ import Search from "@/components/routes/Search";
 import CalendarPage from "@/components/routes/CalendarPage";
 import SubmitShow from "@/components/routes/SubmitShow";
 import About from "@/components/routes/About";
+import ChatPage from "@/components/routes/ChatPage";
 Vue.use(Router);
 const router = new Router({
     mode: "history",
@@ -84,6 +85,7 @@ const router = new Router({
         },
         {
             path: "/chat",
+            component: ChatPage,
         },
         {
             path: "/p/:mix_id",

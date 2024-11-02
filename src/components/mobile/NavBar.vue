@@ -53,6 +53,7 @@
                 <h3 @click="toURL('/podcasts')">Podcasts</h3>
                 <h3 @click="toURL('/calendar')">Calendrier</h3>
                 <h3 @click="toURL('/residents')">Résident.e.s</h3>
+                <h3 @click="toURL('/chat')">Chat</h3>
                 <br />
                 <h3 @click="toURL('/propose_show')">Proposer un show</h3>
                 <h3>
@@ -80,23 +81,25 @@
             @click="second = !second"
         ></section>
         <section
-            id="chat_box"
+            class="chat-box"
             :style="`right: ${chat ? '0' : '-100%'}`"
         >
-            <img
-                id="logo_white"
-                @click="toURL('/')"
-                alt="z⸱est radio"
-                src="../../assets/imgs/logo_white.png"
-                width="80"
-            />
-            <img
-                id="back"
-                src="../../assets/imgs/back.png"
-                width="30"
-                @click="chat = !chat"
-            />
-            <Chat />
+            <div class="chat-box__header">
+                <img
+                    id="logo_white"
+                    @click="toURL('/')"
+                    alt="z⸱est radio"
+                    src="../../assets/imgs/logo_white.png"
+                    width="80"
+                />
+                <img
+                    id="back"
+                    src="../../assets/imgs/back.png"
+                    width="30"
+                    @click="chat = !chat"
+                />
+            </div>
+            <Chat style="height: calc(100% - var(--header-height))" />
         </section>
         <section
             id="chat_shadow"
@@ -107,7 +110,7 @@
 </template>
 <script>
 import Radio from "../navbar/Radio.vue";
-import Chat from "../routes/Chat.vue";
+import Chat from "../common/Chat.vue";
 import IframeSC from "../navbar/IframeSC.vue";
 export default {
     name: "NavBar",
@@ -173,7 +176,7 @@ nav {
     #bottomnav {
         z-index: 3;
         width: 100%;
-        height: 50px;
+        height: var(--header-height);
         background-color: white;
         border-top: 1px solid var(--color-text);
         position: fixed;
@@ -189,26 +192,23 @@ nav {
             padding: 3px;
         }
     }
-    #chat_box {
+    .chat-box {
         position: relative;
         z-index: 5;
         position: fixed;
         top: 0;
         height: 100%;
         width: 75%;
-        background-color: black;
+        background-color: var(--color-chat-bg);
         transition: 0.7s;
         color: white;
-        #back {
-            position: absolute;
-            right: 0;
-            top: 0;
-            padding: 18px;
-            width: 33px;
-        }
-        #logo_white {
-            display: block;
-            margin: 2rem auto;
+        &__header {
+            height: var(--header-height);
+            display: flex;
+            #back {}
+            #logo_white {
+                margin: auto
+            }
         }
     }
     #chat_shadow {
@@ -227,7 +227,7 @@ nav {
         top: 0;
         height: 100%;
         width: 75%;
-        background-color: black;
+        background-color: var(--color-chat-bg);
         transition: 0.7s;
         color: white;
         #link_sec {
@@ -265,7 +265,7 @@ nav {
         #second {
             width: 100%;
         }
-        #chat_box {
+        .chat-box {
             width: 100%;
         }
     }
