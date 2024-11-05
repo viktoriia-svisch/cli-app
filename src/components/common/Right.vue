@@ -33,7 +33,7 @@ export default {
 <style lang="less" scoped>
 aside {
     overflow: auto;
-    height: calc(100% - var(--header-height));
+    height: 100%;
     padding: 2rem 2rem 2rem 1rem;
     box-sizing: border-box;
     width: var(--chat-width);

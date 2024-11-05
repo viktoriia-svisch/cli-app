@@ -130,7 +130,8 @@ body {
             background: var(--color-bg);
         }
         .global-container {
-            margin-top: var(--header-height);
+            padding-top: var(--header-height);
+            box-sizing: border-box;
             display: flex;
             width: 100%;
             height: 100%;
@@ -142,7 +143,7 @@ body {
             &.flex_center {
                 gap: 2rem;
                 overflow: auto;
-                height: calc(100% - var(--header-height));
+                height: 100%;
             }
             @media (max-width: 815px) {
                 width: 100%;

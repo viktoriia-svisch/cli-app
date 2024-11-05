@@ -60,5 +60,6 @@ export default {
 <style lang="less" scoped>
 .fullscreen__centred-chat {
     padding: 0 !important;
+    width: unset !important;
 }
 </style>
