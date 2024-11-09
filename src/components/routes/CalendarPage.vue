@@ -2,20 +2,11 @@
     <section id="calendars">
         <h1 class="title">Le calendrier</h1>
         <article class="week_header">
-            <h4
-                class="chgWeek button"
-                @click="changeWeek('-')"
-            >
-                <img
-                    id="prec"
-                    src="../../assets/imgs/play.svg"
-                />
+            <h4 class="chgWeek button" @click="changeWeek('-')">
+                <img id="prec" src="../../assets/imgs/play.svg" />
                 Semaine précédente
             </h4>
-            <h3
-                class="semaine_title"
-                v-if="date"
-            >
+            <h3 class="semaine_title" v-if="date">
                 Semaine du
                 {{
                     `${new Date(
@@ -25,18 +16,12 @@
                     ).toLocaleDateString("fr-FR")}`
                 }}
             </h3>
-            <h4
-                class="chgWeek button"
-                @click="changeWeek('+')"
-            >
+            <h4 class="chgWeek button" @click="changeWeek('+')">
                 Semaine suivante
                 <img src="../../assets/imgs/play.svg" />
             </h4>
         </article>
-        <h3
-            v-if="date"
-            class="mobile_week_title"
-        >
+        <h3 v-if="date" class="mobile_week_title">
             Semaine du
             {{
                 `${new Date(
@@ -47,46 +32,27 @@
             }}
         </h3>
         <article class="mobile_week_header">
-            <h3
-                class="chgWeek button"
-                @click="changeWeek('-')"
-            >
-                <img
-                    id="prec"
-                    src="../../assets/imgs/play.svg"
-                />
+            <h3 class="chgWeek button" @click="changeWeek('-')">
+                <img id="prec" src="../../assets/imgs/play.svg" />
                 Précédente
             </h3>
-            <h3
-                class="chgWeek button"
-                @click="changeWeek('+')"
-            >
+            <h3 class="chgWeek button" @click="changeWeek('+')">
                 Suivante
                 <img src="../../assets/imgs/play.svg" />
             </h3>
         </article>
-        <section
-            class="week"
-            v-if="date"
-        >
-            <div
-                v-for="(day, k) in displayedDay"
-                v-bind:key="day.val"
-            >
+        <section class="week" v-if="date">
+            <div v-for="(day) in displayedDay" v-bind:key="day.val">
                 <div class="day">
                     {{ day.title }}
                     {{
                         `${new Date(
                             date.getFullYear(),
                             date.getMonth(),
-                            date.getDate() + k
+                            date.getDate() + day.index
                         ).toLocaleDateString("fr-FR")}`
                     }}
-                    <section
-                        v-for="show in weeks[day.val]"
-                        v-bind:key="show.id"
-                        class="show"
-                    >
+                    <section v-for="show in weeks[day.val]" v-bind:key="show.id" class="show">
                         <div>
                             <u>{{
                                 new Date(Number(show.starts_at)).toLocaleTimeString("fr-FR", {
@@ -113,11 +79,7 @@
                         </div>
                         <div v-else>Emission speciale</div>
                         <div class="genreHld">
-                            <span
-                                class="genre"
-                                v-for="genre in show.genres"
-                                v-bind:key="genre"
-                            >
+                            <span class="genre" v-for="genre in show.genres" v-bind:key="genre">
                                 <router-link :to="{ path: '/search/' + genre }">#{{ genre }}
                                 </router-link>
                             </span>
@@ -135,13 +97,13 @@ export default {
         return {
             shows: [],
             days: [
-                { val: "monday", title: "Lundi", id: 1 },
-                { val: "tuesday", title: "Mardi", id: 2 },
-                { val: "wednesday", title: "Mercredi", id: 3 },
-                { val: "thursday", title: "Jeudi", id: 4 },
-                { val: "friday", title: "Vendredi", id: 5 },
-                { val: "saturday", title: "Samedi", id: 6 },
-                { val: "sunday", title: "Dimanche", id: 0 },
+                { val: "monday", title: "Lundi", id: 1, index: 0 },
+                { val: "tuesday", title: "Mardi", id: 2, index: 1 },
+                { val: "wednesday", title: "Mercredi", id: 3, index: 2 },
+                { val: "thursday", title: "Jeudi", id: 4, index: 3 },
+                { val: "friday", title: "Vendredi", id: 5, index: 4 },
+                { val: "saturday", title: "Samedi", id: 6, index: 5 },
+                { val: "sunday", title: "Dimanche", id: 0, index: 6 },
             ],
             displayedDay: [],
             weeks: {
