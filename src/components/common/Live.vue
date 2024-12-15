@@ -24,7 +24,8 @@ export default {
     components: {},
     data() {
         return {
-            streamRoute: 'https:            streamKey: 'cest-le-zuper-ztream',
+            streamRoute: this.$config.VUE_APP_STREAM,
+            streamKey: this.$config.VUE_APP_STREAM_KEY,
             streamExtension: '.m3u8',
             streamUri: '',
             hls: null,
