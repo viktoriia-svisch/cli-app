@@ -8,7 +8,6 @@
                 <div class="flex menu">
                     <router-link
                         :to="{ path: '/' }"
-                        style="padding-right: 1rem"
                     ><img
                             alt="z⸱est radio"
                             src="../../assets/imgs/logo.png"

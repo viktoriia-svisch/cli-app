@@ -167,21 +167,21 @@ body {
     h3.title,
     h2.title,
     h1.title {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        line-height: 3rem;
         margin-bottom: .5rem;
-        margin-top: 0;
+        margin-top: 1rem;
         display: inline-block;
         font-family: Zest;
         font-weight: 600;
     }
-    h1.title {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
     nav {
         .menu {
-            gap: 1rem 2rem;
+            gap: 1rem .5rem;
             align-items: flex-start;
+            > :first-child {
+                padding-right: 2rem;
+            }
             h1,
             h2,
             h3 {
@@ -272,7 +272,7 @@ body {
     }
     @media (max-width: 1200px) {
         nav .menu {
-            gap: 1rem 1rem;
+            gap: 1rem .5rem;
         }
     }
     @media (max-width: 1000px) {

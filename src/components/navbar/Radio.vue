@@ -23,30 +23,22 @@
         </div>
         <div class="player-title">
             <span
-                class="live_info"
+                class="live_info infinite-slider"
                 v-if="titleVisible"
             >
-                <span v-if="livestream">Live                 <span class="invis">{{ artist }}</span>
                 <span
-                    class="dash"
-                    v-if="!livestream"
-                > - </span>
-                <span class="show_title invis">{{ title }}</span>
-                <span style="margin: 0 .5rem 0 .5rem">→</span>
-                <span v-if="livestream">Live                 <span>{{ artist }}</span>
-                <span
-                    class="dash"
-                    v-if="!livestream"
-                > - </span>
-                <span class="show_title">{{ title }}</span>
-                <span style="margin: 0 .5rem 0 .5rem">→</span>
-                <span v-if="livestream">Live                 <span class="invis">{{ artist }}</span>
-                <span
-                    class="dash invis"
-                    v-if="!livestream"
-                > - </span>
-                <span class="show_title invis">{{ title }}</span>
-                <span style="margin: 0 .5rem 0 .5rem">→</span>
+                    v-for="index in titleRepetitions"
+                    v-bind:key="index"
+                    class="infinite-slider__content"
+                >
+                    <span v-if="livestream && index">Live                     <span class="invis">{{ artist }}</span>
+                    <span
+                        class="dash"
+                        v-if="!livestream"
+                    > - </span>
+                    <span class="show_title invis">{{ title }}</span>
+                    <span style="margin: 0 .5rem 0 .5rem">→</span>
+                </span>
             </span>
         </div>
     </section>
@@ -64,7 +56,10 @@ export default {
                 this.updated = true;
                 this.src = this.$config.VUE_APP_RADIO.listen_ep;
                 this.now = this.$config.VUE_APP_RADIO.now_ep;
-                this.checkTitle();
+                this.checkTitle()
+                                                                setInterval(() => {
+                    this.checkTitle()
+                }, 5000);
             }
         },
         iframe_update: function (newVal) {
@@ -86,6 +81,7 @@ export default {
             src: "",
             now: "",
             titleVisible: true,
+            titleRepetitions: [1, 2, 3, 4]
         };
     },
     methods: {
@@ -110,10 +106,12 @@ export default {
                         odc_station.now_playing.song.title == "Stream Offline"
                     ) {
                         this.readTitleFromTodayShows();
-                                                this.timeout = setTimeout(this.checkTitle, 60000);
                     } else {
                         this.livestream = false;
                         const now_playing = odc_station.now_playing;
+                        if (this.timeout) {
+                            clearTimeout(this.timeout);
+                        }
                         this.timeout = setTimeout(
                             this.checkTitle,
                             (now_playing.remaining + 3) * 1000
@@ -135,12 +133,13 @@ export default {
                 return start.getTime() <= now.getTime() && now.getTime() <= end.getTime();
             });
             this.livestream = true;
-            if (!show) {
+            if (show) {
+                this.artist = show.dj;
+                this.title = `             } else {
                 this.title = "Tune In";
-                return;
+                this.artist = '';
             }
-            this.artist = show.dj;
-            this.title = `         },
+        },
     },
 };
 </script>
@@ -164,12 +163,23 @@ export default {
         overflow: hidden;
         box-sizing: border-box;
         position: relative;
+        display: flex;
         .live_info {
-            display: inline-block;
+            display: flex;
             vertical-align: middle;
             line-height: normal;
-            --end-percent: ~"calc(-33% - 9px)";
+            justify-content: space-around;
+            flex-direction: row;
+        }
+        .infinite-slider {
             animation: marquee 10s linear infinite;
+            min-width: 200%;
+            flex-shrink: 0;
+            &__content {
+                flex-shrink: 0;
+                width: max-content;
+                max-width: max-content;
+            }
         }
         &:hover {
             .live_info {
@@ -181,7 +191,7 @@ export default {
                 transform: translate(0, 0);
             }
             100% {
-                transform: translate(var(--end-percent), 0);
+                transform: translate(-50%, 0);
             }
         }
     }
