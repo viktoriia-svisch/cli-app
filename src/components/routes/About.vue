@@ -1,19 +1,5 @@
 <template>
     <div>
-        <section id="about">
-            <h1 class="title">À propos de z⸱est radio / zone est radio</h1>
-            <p>
-                z⸱est radio est une webradio Strasbourgoise créé en 2018. Jusqu'au début 2024 la radio était installée
-                au
-                bar du Graffalgar, la Graffateria et les émissions étaient alors public.
-                Le nouveau studio est désormais au Shadok et ne peut malheureusement plus acceuillir de public.
-            </p>
-            <p>
-                En plus de son activité radiophonique z⸱est organise des événements au cours de l'année.
-                Notamment le Soundclash qui a lieu en septembre au molodoi.
-                Mais aussi zest contre la vie chère.
-            </p>
-        </section>
         <section id="legalholder">
             <h2 class="title">Mentions legales:</h2>
             <p>
