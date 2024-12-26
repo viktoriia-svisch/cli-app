@@ -1,13 +1,12 @@
 {
-  "NODE_ENV": "production",
-  "VUE_APP_RADIO": {
-    "listen_ep": "https://radio.zest.radio/radio/8000/radio.mp3",
-    "now_ep": "https://radio.zest.radio/api/nowplaying"
-  },
-  "VUE_APP_WEB": "https://zest.radio",
-  "VUE_APP_CHAT": "https://chat.zest.radio",
-  "VUE_APP_API": "https://api.zest.radio",
-  "VUE_APP_GRAPHQL_HTTP": "https://api.zest.radio/graphql",
-  "VUE_APP_STREAM": "https://stream.zest.radio/live/",
-  "VUE_APP_STREAM_KEY": "cest-le-zuper-ztream"
+    "NODE_ENV": "production",
+    "VUE_APP_RADIO": {
+        "listen_ep": "https://radio.zest.radio/radio/8000/radio.mp3",
+        "now_ep": "https://radio.zest.radio/api/nowplaying"
+    },
+    "VUE_APP_WEB": "https://zest.radio",
+    "VUE_APP_CHAT": "https://chat.zest.radio",
+    "VUE_APP_API": "https://api.zest.radio",
+    "VUE_APP_GRAPHQL_HTTP": "https://api.zest.radio/graphql",
+    "VUE_APP_OWNCAST_STATUS_API": "https://zest.radio/owncast/api/status"
 }

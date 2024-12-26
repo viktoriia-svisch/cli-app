@@ -1,20 +1,17 @@
 <template>
-    <section
-        class="live-component"
-        :style="{ 'display': streamIsOpen || streamLoading ? 'block' : 'none' }"
-    >
-        <div class="live-video__wrapper">
-            <div
-                v-if="streamLoading"
-                class="live-video__wrapper--animation"
-            ></div>
-            <video
-                class="live-video"
-                id="zest-live"
-                @click="videoElement.play()"
-                muted
-                autoplay
-            ></video>
+    <section class="live-component">
+        <div
+            class="live-video__wrapper"
+            :class="{ 'live-video__wrapper--open': openStreamAnimation }"
+            v-if="shouldStreamExist"
+        >
+            <iframe
+                src="https:                width="100%"
+                title="Zest video stream"
+                referrerpolicy="origin"
+                allowfullscreen
+            >
+            </iframe>
         </div>
     </section>
 </template>
@@ -24,189 +21,81 @@ export default {
     components: {},
     data() {
         return {
-            streamRoute: this.$config.VUE_APP_STREAM,
-            streamKey: this.$config.VUE_APP_STREAM_KEY,
-            streamExtension: '.m3u8',
-            streamUri: '',
-            hls: null,
-            Hls: null,
-            videoElement: null,
-            streamIsOpen: false,
-            streamLoading: false,
             interval: null,
-            message: '',
-            fetchStream: Promise,
+            liveStatus: null,
+            animationTimeout: null,
+            openStreamAnimation: false,
+            shouldStreamExist: false
         };
     },
     methods: {
-        initHls() {
-            if (!Hls && !Hls.isSupported()) {
-                return;
+        async getLiveStatus() {
+            const response = await fetch(this.$config.VUE_APP_OWNCAST_STATUS_API);
+            this.liveStatus = await response.json();
+            if (this.shouldStreamExist === false && this.liveStatus.online === true) {
+                this.openStream();
+            } else if (this.shouldStreamExist === true && this.liveStatus.online === false) {
+                this.closeStream();
             }
-            this.Hls = Hls;
-                        this.hls = new Hls();
         },
-        loadManifest() {
-            if (!this.Hls) {
-                return;
-            }
-            this.streamLoading = true;
-            this.hls.on(this.Hls.Events.MANIFEST_PARSED, (data) => {
-                console.log(event, data);
-            });
-            this.hls.on(this.Hls.Events.STEERING_MANIFEST_LOADED, (data) => {
-                console.log('steering what ?', event, data);
-            });
-            this.hls.on(this.Hls.Events.INIT_PTS_FOUND, (data) => {
-                console.log('c\'est chargé !', event, data);
-                this.message = "ça ztream !!";
-                this.streamIsOpen = true;
-                this.streamLoading = false;
-            });
-            this.hls.on(this.Hls.Events.MEDIA_ERROR, (data) => {
-                console.log('c\'est chargé !', event, data);
-                this.message = "ça ztream !!";
-                this.streamIsOpen = true;
-                this.streamLoading = false;
-            });
-            this.errorHandling();
-            this.hls.loadSource(this.streamUri);
-            this.hls.attachMedia(this.videoElement);
+        openStream() {
+            console.log('opening video stream...');
+            this.shouldStreamExist = true;
+            clearTimeout(this.animationTimeout);
+            this.animationTimeout = setTimeout(() => {
+                this.openStreamAnimation = true;
+            }, 100);
         },
-        errorHandling() {
-            this.hls.on(this.Hls.Events.ERROR, (event, data) => {
-                                                console.log('error: ', event, data);
-                let errorFatal = data.fatal;
-                if (errorFatal) {
-                    switch (data.type) {
-                        case this.Hls.ErrorTypes.MEDIA_ERROR:
-                            console.log('fatal media error encountered, try to recover');
-                            this.hls.recoverMediaError();
-                            break;
-                        case this.Hls.ErrorTypes.NETWORK_ERROR:
-                                                                                                                                                                        console.log('network error', data)
-                            this.terminateStream();
-                            break;
-                        default:
-                                                        console.error('c pt ', data)
-                            this.message = 'C PT';
-                            this.terminateStream();
-                            break;
-                    }
-                }
-            });
-        },
-        terminateStream() {
-            this.message = 'ah bah ça ztream plus :\'('
-            this.hls.destroy();
-            this.streamIsOpen = false;
-            setTimeout(() => {
-                this.setStreamListener();
-            }, 3000)
-        },
-        async setStreamListener() {
-            this.message = '...'
-            console.log('SetStreamListener');
-            await this.checkForStream();
-            if (this.streamLoading) {
-                return;
-            }
-            clearInterval(this.interval);
-            this.interval = setInterval(async () => {
-                console.log('allo ?');
-                if (!this.streamLoading && !this.streamIsOpen) {
-                    await this.checkForStream();
-                }
-            }, 10000)
-        },
-        checkForStream() {
-            return new Promise((resolve) => {
-                try {
-                    fetch(this.streamUri).then(() => {
-                        clearInterval(this.interval);
-                        this.message = 'Oh !! il se passe qqch !'
-                        this.initHls();
-                        this.loadManifest();
-                        resolve();
-                    }).catch(() => {
-                        this.streamIsOpen = false;
-                        console.log('pas de stream');
-                        resolve();
-                    });
-                } catch {
-                    resolve();
-                }
-            });
+        closeStream() {
+            console.log('closing video stream...');
+            this.openStreamAnimation = false;
+            clearTimeout(this.animationTimeout);
+            this.animationTimeout = setTimeout(() => {
+                this.shouldStreamExist = false;
+            }, 600);
         }
     },
     mounted() {
-        this.videoElement = document.getElementById('zest-live');
-        this.streamUri = `${this.streamRoute}${this.streamKey}${this.streamExtension}`;
-        this.setStreamListener();
+        this.getLiveStatus();
+        this.interval = setInterval(() => {
+            this.getLiveStatus();
+        }, 5000);
     },
     unmounted() {
         clearInterval(this.interval);
+        clearTimeout(this.animationTimeout);
     }
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
 main {
     width: 100%;
 }
-@keyframes loader {
-    0% {
-        transform: translateX(-50%);
-    }
-    100% {
-        transform: translateX(120%);
-    }
-}
-.live-component {
-    margin-bottom: 2rem;
-}
 .live-video__wrapper {
-    box-sizing: border-box;
-    border: 4px var(--color-primary) solid;
-    width: 100%;
-    background-image: url('../../assets/imgs/logo.png');
-    background-repeat: no-repeat;
-    background-size: 40%;
-    background-position: center;
-    background-color: var(--color-primary-bg);
-    backdrop-filter: opacity(40%);
-    position: relative;
+    border: 2px solid var(--color-text);
+    interpolate-size: allow-keywords;
+    height: 0;
     overflow: hidden;
-    video {
-        width: 100%;
-        display: block;
-    }
+    transition: height .6s ease-in;
 }
-.live-video__wrapper--animation {
+.live-video__wrapper--open {
+    height: auto;
+}
+iframe {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 5/3;
+    border: none;
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    animation: loader 1.6s linear 0s infinite forwards;
-}
-.live-video__wrapper--animation::after {
-    content: '';
-    width: 20%;
-    height: 200%;
-    display: block;
-    position: absolute;
-    top: -50%;
-    left: 0;
-    rotate: 45deg;
-    opacity: .6;
-    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
-}
-.video-logo {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    width: 80px;
-    opacity: .6;
+    overflow: hidden;
+    background-color: #fff;
+    margin: 0 auto;
+    font-family: Zest;
+    body {
+        --theme-text-display-font-family: Zest;
+        --theme-text-body-font-family: Zest;
+        --font-owncast-body: Zest;
+        --font-owncast-display: Zest;
+        --player-container-height: 100%;
+    }
 }
 </style>
