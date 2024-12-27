@@ -23,11 +23,13 @@
                     v-else
                     class="side"
                 >Emission speciale</span><br />
-                <span
-                    class="genre"
-                    v-for="genre in show.genres"
-                    v-bind:key="genre"
-                ><router-link :to="{ path: '/search/' + genre }">#{{ genre }}</router-link></span>
+                <div class="genres-list">
+                    <span
+                        class="genre"
+                        v-for="genre in show.genres"
+                        v-bind:key="genre"
+                    ><router-link :to="{ path: '/search/' + genre }">#{{ genre }}</router-link></span>
+                </div>
             </section>
         </article>
     </section>
@@ -72,6 +74,10 @@ export default {
                 font-family: ZestBold;
             }
             .side {}
+            .genres-list {
+                display: flex;
+                flex-wrap: wrap;
+            }
             .genre {
                 color: var(--color-chat-text);
                 a {
@@ -90,6 +96,12 @@ export default {
         margin: 0;
         width: 100%;
         color: var(--color-text);
+        #shows .show .genre {
+            color: var(--color-text);
+            a {
+                color: var(--color-text);
+            }
+        }
     }
 }
 </style>

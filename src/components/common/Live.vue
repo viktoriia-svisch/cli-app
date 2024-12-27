@@ -6,7 +6,8 @@
             v-if="shouldStreamExist"
         >
             <iframe
-                src="https:                width="100%"
+                :src="$config.VUE_APP_OWNCAST_STREAM"
+                width="100%"
                 title="Zest video stream"
                 referrerpolicy="origin"
                 allowfullscreen

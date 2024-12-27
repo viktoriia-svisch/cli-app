@@ -92,7 +92,7 @@ export default {
     --color-primary-bg: #fdd14269;
     --color-bg: #fffefd;
     --color-text: #000000;
-    --color-text-light: #414141;
+    --color-text-light: hsl(37, 4%, 36%);
     --color-chat-bg: #0f0e00;
     --color-chat-text: #fffffffa;
     --color-chat-text-light: #bdbdbd;
@@ -102,6 +102,64 @@ export default {
     --padding: 8px;
         --phone: 430px;
     --tablet: 815px;
+}
+::-webkit-scrollbar-track {
+    border: 1px solid var(--color-text);
+    box-sizing: border-box;
+    padding: 4px;
+    display: block;
+}
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    display: block;
+    border: 1px solid var(--color-text);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+::-webkit-scrollbar-button:single-button {
+    background-color: var(--color-bg);
+    height: 14px;
+    width: 14px;
+    border: 1px solid var(--color-text);
+    border-width: 0 1px;
+    display: block;
+    background-size: 10px;
+    background-position: center 4px;
+    background-repeat: no-repeat;
+}
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http:}
+::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+    background-color: var(--color-primary);
+}
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http:}
+::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+    background-color: var(--color-primary);
+}
+::-webkit-scrollbar-button:single-button:horizontal {
+    border-width: 1px 0;
+    height: 12px;
+    width: 12px;
+    background-position: 3px 1px;
+}
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http:}
+::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
+    background-color: var(--color-primary);
+}
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http:}
+::-webkit-scrollbar-button:single-button:horizontal:increment:hover {
+    background-color: var(--color-primary);
 }
 body {
     margin: 0;
@@ -244,7 +302,7 @@ body {
         cursor: pointer;
         border-radius: 50%;
         transition: all 0.2s;
-                        &:hover {
+        &:hover {
             background-color: var(--color-primary);
         }
     }

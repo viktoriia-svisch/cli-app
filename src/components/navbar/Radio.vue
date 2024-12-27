@@ -172,7 +172,7 @@ export default {
             flex-direction: row;
         }
         .infinite-slider {
-            animation: marquee 10s linear infinite;
+            animation: marquee 30s linear infinite;
             min-width: 200%;
             flex-shrink: 0;
             &__content {

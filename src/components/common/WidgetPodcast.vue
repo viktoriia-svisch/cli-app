@@ -88,7 +88,8 @@ export default {
         }
         this.podImg = this.podImg.replace("-large", "-t500x500");
         this.pod.podImg = this.podImg;
-        this.date = new Date(this.pod.display_date).toLocaleDateString("fr-FR").replace(/\            },
+        this.date = new Date(this.pod.display_date).toLocaleDateString("fr-FR").replace(/\        this.pod.title = this.pod.title.replace(/(- )?(\d\d\.?){2}(\d\d)?/, '').replace(/(- )?\d\d\/\d\d/, '');
+    },
 };
 </script>
 <style lang="less" scoped>
@@ -115,7 +116,7 @@ export default {
     }
     .podcast__date {
         color: var(--color-text-light);
-        font-size: .8rem;
+        font-size: 1rem;
     }
     .podcast__genres {
         display: flex;
@@ -152,7 +153,8 @@ export default {
         opacity: 1;
         overflow: hidden;
         aspect-ratio: 1;
-                box-sizing: border-box;
+        aspect-ratio: 8 / 7;
+        box-sizing: border-box;
         img {
             box-sizing: border-box;
             width: 100%;

@@ -1,5 +1,33 @@
 <template>
-    <div>
+    <div style="display: flex;flex-direction: column;">
+        <section>
+            <h1 class="title">
+                À propos de z⸱est radio / zone est radio
+            </h1>
+            <p>
+                z⸱est radio est une webradio strasbourgeoise fondée en 2018. Jusqu'au début de l'année 2024, la radio
+                était installée au bar du Graffalgar, à la Graffateria, où les émissions étaient ouvertes au public.
+                Désormais, le nouveau studio se trouve au Shadok, mais il n'est malheureusement plus possible d'y
+                accueillir du public.
+            </p>
+            <p>
+                En parallèle de son activité radiophonique, z⸱est organise divers événements tout au long de l'année.
+                Parmi eux, le <em>Soundclash</em>, qui se déroule chaque mois de septembre au Molodoï.
+            </p>
+            <quote>
+                Un Soundclash est une compétition musicale où les membres d'un crew de Soundsystem opposent leurs
+                compétences les uns aux autres. Les affrontements sonores se déroulent dans une variété de lieux, à la
+                fois à l'intérieur et à l'extérieur, et comportent principalement de la musique reggae, dancehall,
+                dubstep & jungle. Le but est de battre ou de «tuer» leurs concurrents.
+                Le Soundclash de z⸱est radio est un événement sur plusieurs jours avec chaque jour un⸱e invité⸱e
+                d'honneur⸱e reconnu hors compétition, et des competiteur·ices locaux.
+            </quote>
+            <p>
+                <em>zest contre la vie chère</em> est un autre événement qui fait jouer des artistes locaux en back to
+                back de
+                façon aléatoire tirée au sort le soir même. L'événement se veut convivial et accessible à toustes.
+            </p>
+        </section>
         <section id="legalholder">
             <h2 class="title">Mentions legales:</h2>
             <p>
@@ -54,7 +82,8 @@
                         class="outlink"
                         href="https:                        target="_blank"
                     >leopallot.com</a>)
-                </small>
+                </small>.
+                Refonte et maintenance par Tristan Grunert.
             </p>
             <p>
                 Photos de ODC Events prises par Ataraxie Photographie
@@ -77,6 +106,15 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+section {
+    max-width: 1000px;
+}
+quote {
+    color: var(--color-text-light);
+    display: block;
+    padding-left: 1rem;
+    border-left: 1px solid var(--color-text-light);
+}
 #legalholder {
     color: var(--color-text);
     height: max-content;
