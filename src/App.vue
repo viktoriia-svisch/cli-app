@@ -53,10 +53,6 @@ export default {
 </script>
 <style lang="less">
 @font-face {
-    font-family: ZestBold;
-    src: url("./assets/fonts/RetinaMP-Bold.otf");
-}
-@font-face {
     font-family: Zest;
     src: url("./assets/fonts/RetinaMP-Medium.otf");
     font-weight: 500;
@@ -102,12 +98,17 @@ export default {
     --padding: 8px;
         --phone: 430px;
     --tablet: 815px;
+    font-size: 14px;
 }
 ::-webkit-scrollbar-track {
     border: 1px solid var(--color-text);
+    border-width: 0 1px;
     box-sizing: border-box;
     padding: 4px;
     display: block;
+    &:horizontal {
+        border-width: 1px 0;
+    }
 }
 ::-webkit-scrollbar {
     width: 14px;
@@ -117,14 +118,15 @@ export default {
     background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
-    display: block;
+    cursor: pointer;
+    background-image: url('assets/imgs/grain.jpg');
+    background-size: 110px;
     border: 1px solid var(--color-text);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
-}
+    }
 ::-webkit-scrollbar-button:single-button {
+    cursor: pointer;
     background-color: var(--color-bg);
     height: 14px;
     width: 14px;
@@ -164,7 +166,7 @@ export default {
 body {
     margin: 0;
     font-family: Zest;
-    font-weight: 400;
+    font-weight: 300;
     height: calc(100% - var(--header-height));
     overflow: hidden;
     textarea,
@@ -232,6 +234,10 @@ body {
         display: inline-block;
         font-family: Zest;
         font-weight: 600;
+        letter-spacing: -.7px;
+        &--mt-0 {
+            margin-top: 0;
+        }
     }
     nav {
         .menu {
@@ -248,7 +254,7 @@ body {
                 position: relative;
                 overflow: hidden;
                 transition: all 0.3s;
-                font-weight: 500;
+                font-weight: 300;
                 border: 1px solid transparent;
                 &::before {
                     content: "";
@@ -308,7 +314,7 @@ body {
     }
     .genre {
         position: relative;
-        font-size: 14px;
+        font-size: 1rem;
         cursor: pointer;
         padding: 0.1rem 0.4rem 0.1rem 0;
         display: inline;

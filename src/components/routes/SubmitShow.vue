@@ -1,6 +1,6 @@
 <template>
   <section id="prop">
-    <h1 class="title">Proposer une émission</h1>
+    <h1 class="title title--mt-0">Proposer une émission</h1>
     <div class="prop-container">
       <img src="../../assets/imgs/show.jpeg" />
       <article>

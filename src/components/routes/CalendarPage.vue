@@ -1,6 +1,6 @@
 <template>
     <section id="calendars">
-        <h1 class="title">Le calendrier</h1>
+        <h1 class="title title--mt-0">Le calendrier</h1>
         <article class="week_header">
             <h4 class="chgWeek button" @click="changeWeek('-')">
                 <img id="prec" src="../../assets/imgs/play.svg" />
@@ -190,7 +190,7 @@ export default {
         flex-direction: row;
         justify-content: space-between;
         .semaine_title {
-            font-family: ZestBold;
+            font-weight: 600;
         }
         .chgWeek {
             font-size: 14px;
@@ -227,7 +227,7 @@ export default {
             .show {
                 .show-name,
                 .dj-name {
-                    font-family: ZestBold;
+                    font-weight: 600;
                 }
                 .show-name {
                     padding: 0 0.2rem;
@@ -243,7 +243,7 @@ export default {
         .mobile_week_header,
         .mobile_week_title {
             display: flex;
-            font-family: ZestBold;
+            font-weight: 600;
         }
         .mobile_week_title {
             display: block;

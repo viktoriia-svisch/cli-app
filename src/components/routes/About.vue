@@ -1,7 +1,7 @@
 <template>
     <div style="display: flex;flex-direction: column;">
         <section>
-            <h1 class="title">
+            <h1 class="title title--mt-0">
                 À propos de z⸱est radio / zone est radio
             </h1>
             <p>

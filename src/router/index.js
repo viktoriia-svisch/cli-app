@@ -101,7 +101,7 @@ const router = new Router({
         },
     ],
 });
-const DEFAULT_TITLE = "z⸱est radio";
+const DEFAULT_TITLE = "z⸱est radio | Une web radio Strasbourgeoise 100% indépendante.";
 router.afterEach((to) => {
     Vue.nextTick(() => {
         document.title = to.meta.title || DEFAULT_TITLE;

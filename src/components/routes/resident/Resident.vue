@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 class="title">Les résident.e.s de la radio</h1>
+    <h1 class="title title--mt-0">Les résident.e.s de la radio</h1>
     <br />
     <div class="resident" @click="toURL(`/residents/${resident.name}`)">
       <div class="resident__main">

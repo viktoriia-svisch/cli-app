@@ -1,6 +1,6 @@
 <template>
   <section id="shop">
-    <h1 class="title">Notre merch</h1>
+    <h1 class="title title--mt-0">Notre merch</h1>
     <div class="merch" v-for="obj in shop_data.data" v-bind:key="obj.url">
       <div
         id="img"

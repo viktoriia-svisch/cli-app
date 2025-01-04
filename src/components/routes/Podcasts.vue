@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 class="title">Tous les podcasts</h1>
+    <h1 class="title title--mt-0">Tous les podcasts</h1>
     <br />
     <Filters />
     <PodcastList :pods="podcasts" />

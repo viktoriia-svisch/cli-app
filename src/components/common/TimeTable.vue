@@ -3,7 +3,7 @@
         id="tim"
         v-if="today_shows && today_shows.length > 0"
     >
-        <h3 class="title">Le programme du jour</h3>
+        <h3 class="title title--mt-0">Le programme du jour</h3>
         <article id="shows">
             <section
                 v-for="show in today_shows"
@@ -71,7 +71,7 @@ export default {
             margin-bottom: 1rem;
             .artist_name,
             .show_name {
-                font-family: ZestBold;
+                font-weight: 600;
             }
             .side {}
             .genres-list {

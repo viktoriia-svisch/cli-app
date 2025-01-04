@@ -8,7 +8,7 @@
             :to="{ path: '/chat' }"
         >
             <h3
-                class="title"
+                class="title title--mt-0"
                 id="chat_title"
             >La chatroom</h3>
             <img

@@ -1,7 +1,7 @@
 <template>
     <main>
         <Live></Live>
-        <h1 class="title">Les derniers podcasts</h1>
+        <h1 class="title title--mt-0">Les derniers podcasts</h1>
         <PodcastList
             :pods="podcasts"
             class="desktop_pods"

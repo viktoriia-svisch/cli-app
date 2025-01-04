@@ -88,7 +88,7 @@ export default {
         }
         this.podImg = this.podImg.replace("-large", "-t500x500");
         this.pod.podImg = this.podImg;
-        this.date = new Date(this.pod.display_date).toLocaleDateString("fr-FR").replace(/\        this.pod.title = this.pod.title.replace(/(- )?(\d\d\.?){2}(\d\d)?/, '').replace(/(- )?\d\d\/\d\d/, '');
+        this.date = new Date(this.pod.display_date).toLocaleDateString("fr-FR").replace(/\        this.pod.title = this.pod.title.replace(/(- )?(~ )?\(?(\d\d\.?){2}(\d\d){0,2}\)?$/, '').replace(/(- )?(~ )?\(?\d\d\/\d\d\/?(\d\d){0,2}\)?$/, '');
     },
 };
 </script>
@@ -122,7 +122,6 @@ export default {
         display: flex;
         gap: 2px .2rem;
         flex-wrap: wrap;
-        margin-top: 4px;
         flex-grow: 1;
         align-items: center;
     }
@@ -161,7 +160,7 @@ export default {
             transition: transform 0.2s;
             transform-origin: center;
             transform: scale(1);
-                        &:hover {
+            &:hover {
                 transform: scale(1.04);
             }
         }
