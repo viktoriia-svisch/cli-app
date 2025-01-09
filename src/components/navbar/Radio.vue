@@ -11,10 +11,12 @@
         <div style="display: flex;">
             <div class="play-pause-button round-button">
                 <img
+                    alt="play button"
                     src="../../assets/imgs/play.svg"
                     v-if="!isPlaying"
                 />
                 <img
+                    alt="stop button"
                     src="../../assets/imgs/stop.png"
                     v-else
                 />

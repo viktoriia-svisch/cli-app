@@ -241,8 +241,10 @@ body {
     }
     nav {
         .menu {
+            flex-shrink: 1;
             gap: 1rem .5rem;
             align-items: flex-start;
+            overflow: hidden;
             > :first-child {
                 padding-right: 2rem;
             }
@@ -256,6 +258,9 @@ body {
                 transition: all 0.3s;
                 font-weight: 300;
                 border: 1px solid transparent;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 &::before {
                     content: "";
                     display: block;
@@ -277,6 +282,11 @@ body {
                         background-color: var(--color-primary);
                     }
                 }
+            }
+            a {
+                flex-shrink: 1;
+                overflow: hidden;
+                padding: 0 2px;
             }
             a.router-link-active {
                 h1,

@@ -2,6 +2,7 @@
     <div id="podcast">
         <div class="podimg">
             <img
+                alt="Soundcloud podcast image for"
                 :src="podImg"
                 @click="play_podcast"
                 :title="pod.title"
@@ -86,7 +87,8 @@ export default {
         } else {
             this.podImg = this.pod.artwork_url;
         }
-        this.podImg = this.podImg.replace("-large", "-t500x500");
+        this.podImg = this.podImg.replace("-large", "-t300x300");
+        this.podImg = this.podImg.replace(".png", ".webp").replace(".jpg", ".webp");
         this.pod.podImg = this.podImg;
         this.date = new Date(this.pod.display_date).toLocaleDateString("fr-FR").replace(/\        this.pod.title = this.pod.title.replace(/(- )?(~ )?\(?(\d\d\.?){2}(\d\d){0,2}\)?$/, '').replace(/(- )?(~ )?\(?\d\d\/\d\d\/?(\d\d){0,2}\)?$/, '');
     },

@@ -1,2 +1,6 @@
 User-agent: *
-Allow: /
+Allow: /podcasts
+Allow: /calendar
+Allow: /residents
+Allow: /rental
+Allow: /about

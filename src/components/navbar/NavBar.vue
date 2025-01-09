@@ -1,18 +1,10 @@
 <template>
-    <div
-        class="header"
-        :class="{ 'soundcloud-iframe': iframe_mix && showSoundcloudIframe }"
-    >
+    <div class="header" :class="{ 'soundcloud-iframe': iframe_mix && showSoundcloudIframe }">
         <nav>
             <section class="nav flex">
                 <div class="flex menu">
-                    <router-link
-                        :to="{ path: '/' }"
-                    ><img
-                            alt="z⸱est radio"
-                            src="../../assets/imgs/logo.png"
-                            height="20"
-                        />
+                    <router-link :to="{ path: '/' }"><img alt="z⸱est radio" src="../../assets/imgs/logo.png"
+                            height="20" />
                     </router-link>
                     <router-link :to="{ path: '/podcasts' }">
                         <h1>Podcasts</h1>
@@ -23,77 +15,42 @@
                     <router-link :to="{ path: '/residents' }">
                         <h1>Résident.e.s</h1>
                     </router-link>
+                    <router-link :to="{ path: '/rental' }">
+                        <h1>Location de matériel</h1>
+                    </router-link>
                 </div>
                 <div class="navbar-right">
-                    <Radio
-                        ref="radio"
-                        :today_shows="today_shows"
-                        :iframe_update="iframe_mix"
-                        :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`"
-                    />
-                    <IframeSC
-                        :iframe_mix="iframe_mix"
-                        @showMore="setShowMOre($event)"
-                    />
-                    <div
-                        class="more round-button"
-                        @click="second = !second"
-                    >
-                        <img
-                            v-if="second == false"
-                            width="40"
-                            src="../../assets/imgs/menu.png"
-                        />
-                        <img
-                            v-else
-                            width="40"
-                            src="../../assets/imgs/back_black.png"
-                            style="position: relative; top: 5px"
-                        />
+                    <Radio ref="radio" :today_shows="today_shows" :iframe_update="iframe_mix"
+                        :style="`display: ${iframe_mix == '' ? 'flex' : 'none'}`" />
+                    <IframeSC :iframe_mix="iframe_mix" @showMore="setShowMOre($event)" />
+                    <div class="more round-button" @click="second = !second">
+                        <img v-if="second == false" width="40" src="../../assets/imgs/menu.png" />
+                        <img v-else width="40" src="../../assets/imgs/back_black.png"
+                            style="position: relative; top: 5px" />
                     </div>
                 </div>
             </section>
-            <section
-                class="second"
-                :style="`right: ${second ? '0' : '-30%'}`"
-            >
-                <img
-                    id="logo_white"
-                    alt="z⸱est radio"
-                    src="../../assets/imgs/logo_white.png"
-                    width="140"
-                />
+            <section class="second" :style="`right: ${second ? '0' : '-30%'}`">
+                <img id="logo_white" alt="z⸱est radio" src="../../assets/imgs/logo_white.png" width="140" />
                 <div class="main menu">
                     <h3 @click="toURL('/podcasts')">Podcasts</h3>
                     <h3 @click="toURL('/calendar')">Calendrier</h3>
                     <h3 @click="toURL('/residents')">Résident.e.s</h3>
                     <h3 @click="toURL('/chat')">Chat</h3>
+                    <h3 @click="toURL('/rental')">Location de matériel</h3>
                     <br />
                     <h3 @click="toURL('/propose_show')">Proposer un show</h3>
                     <h3>
-                        <a
-                            href="https:                            target="_blank"
-                        >Soundcloud</a>
-                    </h3>
+                        <a href="https:                    </h3>
                     <h3>
-                        <a
-                            href="https:                            target="_blank"
-                        >Facebook</a>
-                    </h3>
+                        <a href="https:                    </h3>
                     <h3>
-                        <a
-                            href="https:                            target="_blank"
-                        >Instagram</a>
-                    </h3>
+                        <a href="https:                    </h3>
                     <br />
                     <h3 @click="toURL('/About')">About</h3>
                 </div>
             </section>
-            <section
-                id="second_shadow"
-                :style="`display: ${second ? 'initial' : 'none'}`"
-                @click="second = !second"
-            >
+            <section id="second_shadow" :style="`display: ${second ? 'initial' : 'none'}`" @click="second = !second">
             </section>
         </nav>
     </div>
@@ -277,6 +234,7 @@ nav {
         box-sizing: border-box;
         padding-right: 2rem;
         gap: var(--padding);
+        flex-shrink: 0;
         #radio {
             padding-left: var(--padding);
         }

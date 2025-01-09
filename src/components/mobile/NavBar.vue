@@ -1,111 +1,50 @@
 <template>
     <nav>
         <section id="topnav">
-            <img
-                id="burger"
-                @click="second = !second"
-                src="../../assets/imgs/menu.png"
-            />
-            <router-link :to="{ path: '/' }"><img
-                    class="logo"
-                    alt="z⸱est radio"
-                    height="70"
-                    width="158"
-                    src="../../assets/imgs/logo.png"
-                />
+            <img id="burger" @click="second = !second" src="../../assets/imgs/menu.png" alt="burger menu"/>
+            <router-link :to="{ path: '/' }"><img class="logo" alt="z⸱est radio" height="70" width="158"
+                    src="../../assets/imgs/logo.png" />
             </router-link>
         </section>
         <section id="bottomnav">
-            <Radio
-                style="flex-grow: 1"
-                :today_shows="today_shows"
-                :iframe_update="iframe_mix"
-                :style="`display: ${iframe_mix ? 'none' : 'flex'}`"
-            />
+            <Radio style="flex-grow: 1" :today_shows="today_shows" :iframe_update="iframe_mix"
+                :style="`display: ${iframe_mix ? 'none' : 'flex'}`" />
             <IframeSC :iframe_mix="iframe_mix" />
-            <img
-                id="chaticon"
-                src="../../assets/imgs/chat.svg"
-                @click="chat = !chat"
-            />
+            <img id="chaticon" src="../../assets/imgs/chat.svg" @click="chat = !chat" alt="chat icon"/>
         </section>
-        <section
-            id="second"
-            :style="`left: ${second ? '0' : '-100%'}`"
-        >
-            <img
-                id="back"
-                src="../../assets/imgs/back.png"
-                width="30"
-                @click="second = !second"
-            />
-            <img
-                id="logo_white"
-                @click="toURL('/')"
-                alt="z⸱est radio"
-                src="../../assets/imgs/logo_white.png"
-                width="80"
-            />
-            <div
-                id="link_sec"
-                class="menu"
-            >
+        <section id="second" :style="`left: ${second ? '0' : '-100%'}`">
+            <img id="back" src="../../assets/imgs/back.png" width="30" @click="second = !second" alt="back button"/>
+            <img id="logo_white" @click="toURL('/')" alt="z⸱est radio" src="../../assets/imgs/logo_white.png"
+                width="80" />
+            <div id="link_sec" class="menu">
                 <h3 @click="toURL('/podcasts')">Podcasts</h3>
                 <h3 @click="toURL('/calendar')">Calendrier</h3>
                 <h3 @click="toURL('/residents')">Résident.e.s</h3>
                 <h3 @click="toURL('/chat')">Chat</h3>
+                <h3 @click="toURL('/rental')">Location de matériel</h3>
                 <br />
                 <h3 @click="toURL('/propose_show')">Proposer un show</h3>
                 <h3>
-                    <a
-                        href="https:                        target="_blank"
-                    >Soundcloud</a>
-                </h3>
+                    <a href="https:                </h3>
                 <h3>
-                    <a
-                        href="https:                        target="_blank"
-                    >Facebook</a>
-                </h3>
+                    <a href="https:                </h3>
                 <h3>
-                    <a
-                        href="https:                        target="_blank"
-                    >Instagram</a>
-                </h3>
+                    <a href="https:                </h3>
                 <br />
                 <h3 @click="toURL('/about')">About</h3>
             </div>
         </section>
-        <section
-            id="second_shadow"
-            :style="`display: ${second ? 'initial' : 'none'}`"
-            @click="second = !second"
-        ></section>
-        <section
-            class="chat-box"
-            :style="`right: ${chat ? '0' : '-100%'}`"
-        >
+        <section id="second_shadow" :style="`display: ${second ? 'initial' : 'none'}`" @click="second = !second">
+        </section>
+        <section class="chat-box" :style="`right: ${chat ? '0' : '-100%'}`">
             <div class="chat-box__header">
-                <img
-                    id="logo_white"
-                    @click="toURL('/')"
-                    alt="z⸱est radio"
-                    src="../../assets/imgs/logo_white.png"
-                    width="80"
-                />
-                <img
-                    id="back"
-                    src="../../assets/imgs/back.png"
-                    width="30"
-                    @click="chat = !chat"
-                />
+                <img id="logo_white" @click="toURL('/')" alt="z⸱est radio" src="../../assets/imgs/logo_white.png"
+                    width="80" />
+                <img id="back" src="../../assets/imgs/back.png" width="30" @click="chat = !chat" alt="back button"/>
             </div>
             <Chat style="height: calc(100% - var(--header-height))" />
         </section>
-        <section
-            id="chat_shadow"
-            :style="`display: ${chat ? 'initial' : 'none'}`"
-            @click="chat = !chat"
-        ></section>
+        <section id="chat_shadow" :style="`display: ${chat ? 'initial' : 'none'}`" @click="chat = !chat"></section>
     </nav>
 </template>
 <script>
